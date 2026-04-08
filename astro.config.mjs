@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://prolepsimarianskelazne.cz",
+  site: "https://zalepsimarianskelazne.cz",
   output: "static",
   integrations: [
     react(),

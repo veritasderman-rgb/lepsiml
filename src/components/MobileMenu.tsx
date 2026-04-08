@@ -75,7 +75,7 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
                 className="text-white font-extrabold text-lg tracking-tight"
                 style={{ letterSpacing: "-0.01em" }}
               >
-                Pro lepší Mariánské Lázně
+                Za lepší Mariánské Lázně
               </span>
               <button
                 type="button"

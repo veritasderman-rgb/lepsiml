@@ -1,6 +1,6 @@
-# Pro lepší Mariánské Lázně
+# Za lepší Mariánské Lázně
 
-Statický web pro kandidátku **Pro lepší Mariánské Lázně** do komunálních voleb v Mariánských Lázních v září 2026.
+Statický web pro kandidátku **Za lepší Mariánské Lázně** do komunálních voleb v Mariánských Lázních v září 2026.
 
 ## Tech stack
 
@@ -92,4 +92,4 @@ mít fotky, stačí je nahrát do `public/images/` a v komponentě
 
 ---
 
-Pro lepší Mariánské Lázně — Protože víme, jak na to.
+Za lepší Mariánské Lázně — Protože víme, jak na to.

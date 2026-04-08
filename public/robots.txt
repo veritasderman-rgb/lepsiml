@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://prolepsimarianskelazne.cz/sitemap.xml
+Sitemap: https://zalepsimarianskelazne.cz/sitemap.xml

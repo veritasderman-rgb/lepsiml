@@ -1,16 +1,16 @@
-// Shared site constants — obsah kampaně Pro lepší Mariánské Lázně.
+// Shared site constants — obsah kampaně Za lepší Mariánské Lázně.
 
 export const site = {
-  name: "Pro lepší Mariánské Lázně",
-  shortName: "PLML",
-  url: "https://prolepsimarianskelazne.cz",
+  name: "Za lepší Mariánské Lázně",
+  shortName: "ZLML",
+  url: "https://zalepsimarianskelazne.cz",
   claim: "Protože víme, jak na to.",
   election: "Komunální volby 2026",
   headline: "Mariánské Lázně si zaslouží líp.",
   subheadline:
     "Dotáhneme radnici. Otevřeme ji lidem. Zajistíme kulturu pro celý rok.",
   description:
-    "Pro lepší Mariánské Lázně — lokální kandidátka do zastupitelstva. Vojta Franta a tým s praktickou zkušeností z radnice i kraje.",
+    "Za lepší Mariánské Lázně — lokální kandidátka do zastupitelstva. Vojta Franta a tým s praktickou zkušeností z radnice i kraje.",
 };
 
 export const nav: { label: string; href: string }[] = [
@@ -21,9 +21,9 @@ export const nav: { label: string; href: string }[] = [
 ];
 
 export const contact = {
-  email: "info@prolepsimarianskelazne.cz",
-  facebook: "https://facebook.com/prolepsimarianskelazne",
-  instagram: "https://instagram.com/prolepsimarianskelazne",
+  email: "info@zalepsimarianskelazne.cz",
+  facebook: "https://facebook.com/zalepsimarianskelazne",
+  instagram: "https://instagram.com/zalepsimarianskelazne",
   spotify: "https://open.spotify.com/",
   youtube: "https://www.youtube.com/",
   transparentAccount: {
