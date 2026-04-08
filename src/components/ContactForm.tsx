@@ -1,12 +1,7 @@
 import { useState, type FormEvent } from "react";
+import { forms } from "../lib/site";
 
 type Status = "idle" | "submitting" | "success" | "error";
-
-function encode(data: Record<string, string>): string {
-  return Object.keys(data)
-    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(data[k]))
-    .join("&");
-}
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -20,29 +15,40 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    // honeypot
-    if ((data.get("bot-field") as string)?.length) {
+    // honeypot — skryté pole „_gotcha" je Formspree standard.
+    if ((data.get("_gotcha") as string)?.length) {
       setStatus("success");
       return;
     }
 
-    const payload: Record<string, string> = {
-      "form-name": "contact",
+    const endpoint = forms.contactEndpoint;
+    if (!endpoint || endpoint.includes("REPLACE_WITH_FORM_ID")) {
+      setStatus("error");
+      setErrorMessage(
+        "Kontaktní formulář ještě není nakonfigurován. Napište nám prosím přímo na e-mail.",
+      );
+      return;
+    }
+
+    const payload = {
       name: (data.get("name") as string) || "",
       email: (data.get("email") as string) || "",
       message: (data.get("message") as string) || "",
     };
 
     try {
-      const res = await fetch("/", {
+      const res = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode(payload),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setStatus("success");
       form.reset();
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMessage(
         "Omlouváme se, zprávu se nepodařilo odeslat. Zkuste to prosím znovu nebo nám napište přímo na e-mail.",
@@ -98,20 +104,15 @@ export default function ContactForm() {
 
   return (
     <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
       className="card"
       style={{ backgroundColor: "var(--color-white)" }}
       noValidate
     >
-      {/* Netlify form plumbing */}
-      <input type="hidden" name="form-name" value="contact" />
+      {/* Honeypot — Formspree konvence (_gotcha) */}
       <p style={{ display: "none" }}>
         <label>
-          Nevyplňujte, prosím: <input name="bot-field" />
+          Nevyplňujte, prosím: <input name="_gotcha" tabIndex={-1} />
         </label>
       </p>
 

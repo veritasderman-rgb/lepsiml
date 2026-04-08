@@ -9,7 +9,8 @@ Statický web pro kandidátku **Za lepší Mariánské Lázně** do komunálníc
 - **React 19** jako Astro islands (hamburger menu, kontaktní formulář)
 - **Source Sans 3** z Google Fonts
 - **Lucide ikony** přes `astro-icon` + `@iconify-json/lucide` (inlined SVG, zero runtime JS)
-- **Netlify** deploy (statický hosting + Netlify Forms pro kontakt)
+- **Vercel** deploy (statický hosting, konfigurace v `vercel.json`)
+- **Formspree** pro kontaktní formulář (endpoint v `src/lib/site.ts`)
 - **Plausible** analytika (script v `Base.astro` zakomentovaný, doplní se po nasazení domény)
 
 ## Struktura
@@ -29,7 +30,7 @@ src/
     ProgramTopic.astro          # Karta programového tématu + accordion
     PodcastCard.astro
     PhotoPlaceholder.astro      # Šedý placeholder s Lucide ikonou User
-    ContactForm.tsx             # React island — Netlify Forms
+    ContactForm.tsx             # React island — POST na Formspree endpoint
   pages/
     index.astro
     program.astro
@@ -69,16 +70,35 @@ Kandidáti zatím používají šedé placeholdery s Lucide ikonou. Až budete
 mít fotky, stačí je nahrát do `public/images/` a v komponentě
 `PhotoPlaceholder.astro` (nebo přímo v datech) doplnit `src`.
 
-## Deploy na Netlify
+## Deploy na Vercel
 
-1. Propojte repozitář.
-2. Build command: `npm run build`
-3. Publish directory: `dist`
-4. Netlify Forms: formulář na `/kontakt` má build-time detekci
-   (skrytý statický form) + React island posílá `POST` na `/`
-   s `form-name=contact`.
-5. Po nasazení domény odkomentujte Plausible script v `Base.astro`
+1. Propojte repozitář (vercel.com → New Project → Import).
+2. Vercel automaticky detekuje Astro framework. Konfigurace je
+   v `vercel.json`:
+   - Build command: `npm run build`
+   - Output directory: `dist`
+   - Security headers a cache pro `/_astro/*` assety
+3. Nic víc není potřeba — Vercel nasadí pure statický výstup bez adaptéru.
+4. Po nasazení domény odkomentujte Plausible script v `Base.astro`
    a doplňte správnou hodnotu `data-domain`.
+
+### Kontaktní formulář (Formspree)
+
+Formulář na `/kontakt` je React island, který posílá `POST` na externí
+endpoint. Výchozí nastavení používá **Formspree**:
+
+1. Zaregistrujte se na [formspree.io](https://formspree.io) a vytvořte
+   nový formulář (např. „Kontakt — kampaň").
+2. Z dashboardu zkopírujte endpoint ve tvaru
+   `https://formspree.io/f/xxxxxxxx`.
+3. Vložte ho do `src/lib/site.ts` → `forms.contactEndpoint`.
+4. Dokud je tam výchozí placeholder `REPLACE_WITH_FORM_ID`, formulář
+   uživateli zobrazí chybovou hlášku a vyzve ke kontaktu e-mailem.
+
+Alternativy: Basin, Web3Forms, nebo vlastní Vercel Serverless Function
+v `src/pages/api/contact.ts` — stačí změnit endpoint v `site.ts`
+(a v případě API route přidat `@astrojs/vercel` adaptér + přepnout
+na SSR).
 
 ## Design principy
 

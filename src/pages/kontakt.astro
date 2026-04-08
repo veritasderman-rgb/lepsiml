@@ -166,19 +166,4 @@ import { contact } from "../lib/site";
     </div>
   </section>
 
-  {/*
-    Hidden static form pro build-time detekci Netlify Forms.
-    React island odesílá data na stejné jméno „contact“.
-  */}
-  <form
-    name="contact"
-    data-netlify="true"
-    data-netlify-honeypot="bot-field"
-    hidden
-  >
-    <input type="text" name="name" />
-    <input type="email" name="email" />
-    <textarea name="message"></textarea>
-    <input type="text" name="bot-field" />
-  </form>
 </Base>

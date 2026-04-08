@@ -6,7 +6,7 @@ export const site = {
   url: "https://zalepsimarianskelazne.cz",
   claim: "Protože víme, jak na to.",
   election: "Komunální volby 2026",
-  headline: "Mariánské Lázně si zaslouží líp.",
+  headline: "Mariánské Lázně si zaslouží víc!",
   subheadline:
     "Dotáhneme radnici. Otevřeme ji lidem. Zajistíme kulturu pro celý rok.",
   description:
@@ -19,6 +19,15 @@ export const nav: { label: string; href: string }[] = [
   { label: "Podcast", href: "/podcast" },
   { label: "Kontakt", href: "/kontakt" },
 ];
+
+export const forms = {
+  // Endpoint kontaktního formuláře.
+  // Po registraci vlastního formuláře na https://formspree.io sem doplňte
+  // ID (např. "https://formspree.io/f/xyzvpknw"). Do té doby formulář zobrazí
+  // chybu „není nakonfigurováno". Alternativa: vlastní Vercel API route
+  // v src/pages/api/contact.ts a endpoint "/api/contact".
+  contactEndpoint: "https://formspree.io/f/REPLACE_WITH_FORM_ID",
+};
 
 export const contact = {
   email: "info@zalepsimarianskelazne.cz",
