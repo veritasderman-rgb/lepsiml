@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+import { pillars } from "../lib/site";
+---
+
+<section
+  class="section"
+  style="background-color: var(--color-primary-bg);"
+  aria-label="Tři hlavní pilíře programu"
+>
+  <div class="container-site">
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        pillars.map((pillar) => (
+          <a
+            href={`/program#${pillar.id}`}
+            class="reveal card card-hover block text-left group"
+            style="background-color: #fff;"
+          >
+            <span
+              class="icon-badge icon-badge-lg"
+              aria-hidden="true"
+              style={`background-color: var(--color-primary-bg); color: ${pillar.borderColor};`}
+            >
+              <Icon name={pillar.icon} width={32} height={32} />
+            </span>
+            <h3
+              class="mt-6 text-xl font-bold"
+              style="color: var(--color-dark);"
+            >
+              {pillar.title}
+            </h3>
+            <p class="mt-3 text-[15px]" style="color: var(--color-text-light);">
+              {pillar.short}
+            </p>
+            <span
+              class="mt-5 inline-flex items-center gap-1 font-semibold text-sm"
+              style="color: var(--color-primary);"
+            >
+              Detail programu
+              <Icon name="lucide:arrow-right" width={16} height={16} />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

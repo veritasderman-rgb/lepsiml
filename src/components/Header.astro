@@ -1,0 +1,66 @@
+---
+import { nav, site } from "../lib/site";
+import MobileMenu from "./MobileMenu.tsx";
+
+type Props = { pathname?: string };
+const { pathname = "/" } = Astro.props;
+---
+
+<header class="sticky top-0 z-50" style="background-color: var(--color-dark);">
+  <div class="container-site flex items-center justify-between gap-6 py-4">
+    <a
+      href="/"
+      class="flex items-center gap-3 text-white"
+      aria-label={`${site.name} — domů`}
+    >
+      <span
+        class="inline-flex items-center justify-center w-10 h-10 rounded-md font-extrabold text-lg"
+        style="background-color: var(--color-primary); color: #fff; letter-spacing: -0.02em;"
+      >
+        ML
+      </span>
+      <span class="flex flex-col leading-tight">
+        <span class="text-white font-extrabold text-[15px] sm:text-base tracking-tight">
+          Pro lepší Mariánské Lázně
+        </span>
+        <span
+          class="hidden sm:block text-[11px] font-semibold tracking-[0.15em] uppercase"
+          style="color: var(--color-primary-pale);"
+        >
+          Komunální volby 2026
+        </span>
+      </span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-1" aria-label="Hlavní navigace">
+      {
+        nav.map((link) => {
+          const active =
+            pathname === link.href ||
+            (link.href !== "/" && pathname.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class="px-4 py-2 text-[15px] font-semibold rounded-md transition-colors"
+              style={`color: ${active ? "var(--color-accent)" : "#ffffff"};`}
+              data-active={active}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+      <a href="/program" class="btn btn-primary ml-3 !py-[10px] !px-5 !text-sm">
+        Náš program
+      </a>
+    </nav>
+
+    <MobileMenu client:load links={nav} pathname={pathname} />
+  </div>
+</header>
+
+<style>
+  header nav a[data-active="false"]:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+import { Icon } from "astro-icon/components";
+import { nav, site, contact } from "../lib/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer style="background-color: var(--color-dark); color: #fff;">
+  <div class="container-site py-16">
+    <div class="grid gap-12 md:grid-cols-[1.2fr_1fr_1fr]">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="inline-flex items-center justify-center w-11 h-11 rounded-md font-extrabold text-lg"
+            style="background-color: var(--color-primary); letter-spacing: -0.02em;"
+          >
+            ML
+          </span>
+          <span class="font-extrabold text-lg tracking-tight">
+            Pro lepší Mariánské Lázně
+          </span>
+        </div>
+        <p class="text-sm max-w-md" style="color: rgba(255,255,255,0.78);">
+          Lokální kandidátka pro komunální volby 2026. Vojta Franta a tým
+          s praktickou zkušeností z radnice i kraje.
+        </p>
+        <p class="text-base font-extrabold mt-5" style="color: var(--color-accent);">
+          {site.claim}
+        </p>
+      </div>
+
+      <div>
+        <h4
+          class="text-xs font-bold uppercase tracking-[0.15em] mb-4"
+          style="color: var(--color-primary-pale);"
+        >
+          Web
+        </h4>
+        <ul class="space-y-2 text-sm">
+          {
+            nav.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="hover:underline"
+                  style="color: #fff;"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h4
+          class="text-xs font-bold uppercase tracking-[0.15em] mb-4"
+          style="color: var(--color-primary-pale);"
+        >
+          Spojte se s námi
+        </h4>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a
+              href={`mailto:${contact.email}`}
+              class="inline-flex items-center gap-2"
+              style="color: #fff;"
+            >
+              <Icon name="lucide:mail" width={18} height={18} />
+              {contact.email}
+            </a>
+          </li>
+          <li>
+            <a
+              href={contact.facebook}
+              class="inline-flex items-center gap-2"
+              style="color: #fff;"
+              rel="me noopener"
+              target="_blank"
+            >
+              <Icon name="lucide:facebook" width={18} height={18} />
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a
+              href={contact.instagram}
+              class="inline-flex items-center gap-2"
+              style="color: #fff;"
+              rel="me noopener"
+              target="_blank"
+            >
+              <Icon name="lucide:instagram" width={18} height={18} />
+              Instagram
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 pt-8 grid gap-6 md:grid-cols-[2fr_1fr] text-sm"
+      style="border-top: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.72);"
+    >
+      <div>
+        <p class="font-semibold" style="color: #fff;">
+          Transparentní účet kampaně
+        </p>
+        <p class="mt-1">
+          <span class="font-mono" style="color: var(--color-primary-pale);">
+            {contact.transparentAccount.number}
+          </span>
+          · {contact.transparentAccount.bank}
+        </p>
+        <p class="mt-1">{contact.transparentAccount.note}</p>
+      </div>
+      <div class="md:text-right">
+        <p>© {year} Pro lepší Mariánské Lázně, z. s.</p>
+        <p class="mt-1">Web vytvořen s péčí pro UNESCO město.</p>
+      </div>
+    </div>
+  </div>
+</footer>

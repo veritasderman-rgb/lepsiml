@@ -1,0 +1,25 @@
+// @ts-check
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
+import icon from "astro-icon";
+import tailwindcss from "@tailwindcss/vite";
+
+// https://astro.build/config
+export default defineConfig({
+  site: "https://prolepsimarianskelazne.cz",
+  output: "static",
+  integrations: [
+    react(),
+    icon({
+      include: {
+        lucide: ["*"],
+      },
+    }),
+  ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  build: {
+    inlineStylesheets: "auto",
+  },
+});

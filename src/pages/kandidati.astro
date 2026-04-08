@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+import LeaderCard from "../components/LeaderCard.astro";
+import TeamGrid from "../components/TeamGrid.astro";
+---
+
+<Base
+  title="Kandidáti"
+  description="Kandidátka Pro lepší Mariánské Lázně: Vojta Franta a tým s praktickou zkušeností z radnice, kraje, podnikání i komunitní práce."
+>
+  <!-- Page header -->
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);"
+  >
+    <span
+      class="hero-shape"
+      style="width: 480px; height: 480px; top: -180px; right: -140px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative py-20 md:py-28">
+      <p class="eyebrow">Kandidátka</p>
+      <h1 class="reveal mt-4" style="color: #fff;">
+        Lidé, kteří Mariánkám rozumí
+      </h1>
+      <p
+        class="reveal mt-6 text-lg md:text-xl max-w-2xl"
+        style="color: var(--color-primary-pale);"
+      >
+        Za kandidátkou Pro lepší Mariánské Lázně stojí tým s praktickou
+        zkušeností — z radnice, z kraje, z podnikání i z komunitní práce.
+      </p>
+    </div>
+  </section>
+
+  <LeaderCard />
+  <TeamGrid />
+</Base>

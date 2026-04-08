@@ -1,0 +1,41 @@
+---
+import { Icon } from "astro-icon/components";
+import type { PodcastEpisode } from "../lib/site";
+
+type Props = { episode: PodcastEpisode };
+const { episode } = Astro.props;
+---
+
+<article class="reveal card card-hover flex flex-col sm:flex-row gap-6 items-start">
+  <div
+    class="shrink-0 flex items-center justify-center w-20 h-20 rounded-xl font-extrabold text-2xl"
+    style="background-color: var(--color-primary-bg); color: var(--color-primary);"
+    aria-hidden="true"
+  >
+    #{episode.number.toString().padStart(2, "0")}
+  </div>
+  <div class="flex-1">
+    <p class="eyebrow" style="color: var(--color-primary);">{episode.date}</p>
+    <h3
+      class="mt-1"
+      style="color: var(--color-dark); font-size: 1.375rem;"
+    >
+      {episode.title}
+    </h3>
+    <p class="mt-3" style="color: var(--color-text-light);">
+      {episode.description}
+    </p>
+
+    <div class="mt-5 flex flex-wrap gap-3">
+      <button
+        type="button"
+        class="btn btn-ghost !py-2 !px-4 !text-sm"
+        disabled
+        style="opacity: 0.7; cursor: not-allowed;"
+      >
+        <Icon name="lucide:play" width={16} height={16} />
+        Připravujeme
+      </button>
+    </div>
+  </div>
+</article>

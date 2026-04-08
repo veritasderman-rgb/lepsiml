@@ -1,0 +1,55 @@
+---
+import { Icon } from "astro-icon/components";
+
+type Props = {
+  name: string;
+  ratio?: "3/4" | "1/1";
+  rounded?: "md" | "full";
+  src?: string;
+  alt?: string;
+};
+
+const {
+  name,
+  ratio = "3/4",
+  rounded = "md",
+  src,
+  alt = `${name} — fotografie`,
+} = Astro.props;
+
+const aspectClass = ratio === "1/1" ? "aspect-square" : "aspect-[3/4]";
+const radiusStyle =
+  rounded === "full"
+    ? "border-radius: 9999px;"
+    : "border-radius: var(--radius-md);";
+---
+
+<div
+  class={`relative overflow-hidden w-full ${aspectClass}`}
+  style={`${radiusStyle} background-color: var(--color-primary-bg); border: 1px solid var(--color-border);`}
+>
+  {
+    src ? (
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+    ) : (
+      <div
+        class="absolute inset-0 flex items-center justify-center"
+        aria-hidden="true"
+      >
+        <Icon
+          name="lucide:user"
+          width={64}
+          height={64}
+          style="color: var(--color-primary-light); opacity: 0.55;"
+        />
+      </div>
+    )
+  }
+  <span class="sr-only">{name}</span>
+</div>
