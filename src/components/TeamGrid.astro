@@ -46,6 +46,16 @@ import { coreTeam } from "../lib/site";
             >
               {member.bio}
             </p>
+            {
+              member.personalMotivation && (
+                <p
+                  class="mt-4 text-center text-[14px] italic"
+                  style="color: var(--color-dark); border-top: 1px solid var(--color-border); padding-top: 14px;"
+                >
+                  „{member.personalMotivation}“
+                </p>
+              )
+            }
           </article>
         ))
       }

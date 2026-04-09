@@ -47,6 +47,17 @@ const { compact = false, showCta = true } = Astro.props;
           </p>
 
           {
+            leader.personalMotivation && (
+              <p
+                class="mt-5 text-[15px] italic"
+                style="color: var(--color-text-light);"
+              >
+                {leader.personalMotivation}
+              </p>
+            )
+          }
+
+          {
             leader.quote && !compact && (
               <blockquote
                 class="mt-8 pl-5 text-lg italic"

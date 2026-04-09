@@ -16,6 +16,7 @@ export const site = {
 export const nav: { label: string; href: string }[] = [
   { label: "Program", href: "/program" },
   { label: "Kandidáti", href: "/kandidati" },
+  { label: "Setkání", href: "/setkani" },
   { label: "Podcast", href: "/podcast" },
   { label: "Kontakt", href: "/kontakt" },
 ];
@@ -99,6 +100,7 @@ export type Candidate = {
   bio: string;
   isLeader?: boolean;
   quote?: string;
+  personalMotivation?: string;
 };
 
 export const leader: Candidate = {
@@ -106,6 +108,8 @@ export const leader: Candidate = {
   role: "Lídr kandidátky · Bývalý náměstek hejtmana Karlovarského kraje",
   bio: "Dlouhé roky jsem působil ve vedení Karlovarského kraje. Teď chci pomoci městu, které mám rád. Mariánské Lázně jsou UNESCO město — zaslouží si vedení, které dotahuje věci do konce. Máme zkušenosti, máme plán a máme odvahu.",
   quote: "Mariánské Lázně potřebují někoho s vizí a citem pro architekturu a kulturu. Musíme vidět dál než za jeden megaprojekt — pečovat o celek, o ulice, parky i detaily, které dělají Mariánky Mariánkami. Hrdost se buduje denně, ne jednou za čtyři roky.",
+  personalMotivation:
+    "V Karlovarském kraji jsem se naučil, že dobrá správa se buduje trpělivostí a poctivostí. Mariánky si to zaslouží.",
   isLeader: true,
 };
 
@@ -114,26 +118,36 @@ export const coreTeam: Candidate[] = [
     name: "Josef Pavlovic",
     role: "Zastupitel města · bývalý náměstek ministra zdravotnictví",
     bio: "Zaměstnanec společnosti Léčebné lázně Mariánské Lázně. Zastupitel města se zkušeností z celostátní úrovně ve zdravotnictví a lázeňství.",
+    personalMotivation:
+      "Znám zdravotnictví i lázně zevnitř. Vím, kde se dá ušetřit a kde se naopak musí investovat, aby Mariánky zůstaly klenotem.",
   },
   {
     name: "Martin Kalina",
     role: "Odborník na kulturu · producent",
     bio: "Dohlédne na to, aby kulturní investice města skutečně fungovaly pro Mariánky celý rok.",
+    personalMotivation:
+      "Kultura nemá být výkladní skříň dvou víkendů v roce. Chci, aby Mariánky žily hudbou a uměním každý den.",
   },
   {
     name: "Žaneta Pivcová",
     role: "Komunitní organizátorka",
     bio: "Propojuje lidi napříč čtvrtěmi. Participativní rozpočet má v malíčku.",
+    personalMotivation:
+      "Nejlepší věci ve městě vznikly, když si lidé sami řekli, co chtějí. Chci jim ten hlas vrátit.",
   },
   {
     name: "Petr Třešňák",
     role: "Bývalý poslanec · expert na zdravotnictví a lázeňství",
     bio: "Stojí za projekty, které dostaly Mariánky mezi klimatické lázně.",
+    personalMotivation:
+      "Bojoval jsem o klimatické lázně na celostátní úrovni. Teď chci, aby ten titul v Mariánkách něco znamenal i v praxi.",
   },
   {
     name: "Jan Pivec",
     role: "IT specialista · otevřená data",
     bio: "Rozklikávací rozpočet a transparentní hospodaření jako standard, ne jako výjimka.",
+    personalMotivation:
+      "Otevřená data nejsou ideologie, ale nástroj. Když občan vidí každou korunu, politika funguje jinak.",
   },
 ];
 
@@ -147,6 +161,7 @@ export type ProgramTopic = {
   ano: string[];
   us: string[];
   forYou: string[];
+  challenges: string[];
 };
 
 export const programTopics: ProgramTopic[] = [
@@ -194,6 +209,11 @@ export const programTopics: ProgramTopic[] = [
       "Zahájení sezóny, u kterého se nemusíte stydět přivést návštěvu z jiného města. A které nestojí miliony z vašich daní.",
       "Opravená radnice jako důstojný střed města, který reprezentuje Mariánky i vás.",
     ],
+    challenges: [
+      "Rekonstrukce radnice bude znamenat dočasný přesun úřadu do provizoria. Otevřeně řekneme kam a na jak dlouho.",
+      "Přechod na úsporný model zahájení sezóny znamená říct „ne“ některým zavedeným dodavatelům. S tím přijde kritika a my ji uneseme.",
+      "Úvěr na rekonstrukci radnice zatíží rozpočet — zveřejníme splátkový plán i dopady, ne jen slibované přínosy.",
+    ],
   },
   {
     id: "rodiny",
@@ -236,6 +256,11 @@ export const programTopics: ProgramTopic[] = [
       "Nová inlinová dráha, kde stráví odpoledne vaše děti i vy — místo aby odjížděly pryč.",
       "Město, ve kterém vaše dospívající děti chtějí zůstat.",
     ],
+    challenges: [
+      "Veřejné lázně jsou projekt za desítky milionů. Bez úvěru nebo dotace to nepůjde a my to jasně řekneme hned.",
+      "Oprava Lokotky je závislá na dohodě s vlastníkem. Bude vyžadovat trpělivé jednání a může trvat víc než jedno volební období.",
+      "Doplnění dětských hřišť po celém městě nezvládneme za jeden rok. Zveřejníme priority a harmonogram, abyste věděli, kdy přijde řada na vaši čtvrť.",
+    ],
   },
   {
     id: "unesco",
@@ -277,6 +302,11 @@ export const programTopics: ProgramTopic[] = [
       "Nové rybníky kousek od domova na procházky, rybaření i koupání.",
       "Funkční lanovka pro výlety nad město — a s ní víc turistů, kteří utratí peníze v místních podnicích a restauracích.",
       "Obnovené lázeňské parky, kam se zase rádi vrátíte na ranní procházku nebo běh.",
+    ],
+    challenges: [
+      "Lanovka vyžaduje koordinaci s krajem i externím provozovatelem. První rok půjde hlavně o jednání, ne o opravy — a to znamená trpělivost.",
+      "Nové rybníky musí projít vodoprávním řízením a souhlasem ochrany přírody. Nebudou hotové v prvním roce, možná ani ve druhém.",
+      "Bikepark u sjezdovky závisí na dohodě s vlastníky pozemků. Projekt existuje, ale bez jejich souhlasu ho nezahájíme.",
     ],
   },
   {
@@ -324,6 +354,11 @@ export const programTopics: ProgramTopic[] = [
       "Žádné skryté zakázky, žádná překvapení na konci roku.",
       "Zpravodaj, který vás informuje — ne propaguje jednoho starostu.",
     ],
+    challenges: [
+      "Participativní rozpočet funguje jen tehdy, když do něj lidé aktivně vstupují. První ročník bude o budování důvěry, ne o zázračných projektech.",
+      "Audit Development centra odhalí nepříjemné věci. Politicky to nebude snadné a někomu se to nebude líbit — ale neděláme to pro popularitu.",
+      "Rozklikávací rozpočet vyžaduje úpravu informačních systémů. První verze nebude dokonalá, ale bude otevřená a postupně ji vylepšíme společně s vámi.",
+    ],
   },
   {
     id: "zelene",
@@ -370,24 +405,39 @@ export const programTopics: ProgramTopic[] = [
       "Levnější provoz městských budov = menší tlak na vaše daně.",
       "Lázeňské parky, zeleň a krajina, kam vykročíte ven rovnou ze své ulice.",
     ],
+    challenges: [
+      "Komunitní energetika vyžaduje administrativu a rozjezd. Výsledky — nižší účty — přijdou až ve druhém roce, ne hned.",
+      "Poptávková doprava do okrajových částí vyžaduje pilotní provoz a vyhodnocení. Je možné, že první model nevyhoví a budeme ho upravovat.",
+      "Status klimatických lázní nás zavazuje k cílům, které mohou omezit některé investice nebo aktivity. To je cena za kvalitu ovzduší a ochranu pramenů.",
+    ],
   },
 ];
 
-export const whyUs = [
+export type WhyUsItem = {
+  icon: string;
+  year: string;
+  title: string;
+  body: string;
+};
+
+export const whyUs: WhyUsItem[] = [
   {
     icon: "lucide:award",
-    title: "UNESCO",
-    body: "Zápis Mariánských Lázní na seznam UNESCO světového dědictví jsme dotáhli za naší éry na radnici.",
+    year: "2021",
+    title: "UNESCO světové dědictví",
+    body: "Zápis Mariánských Lázní na seznam UNESCO jako součást Great Spa Towns of Europe jsme dotáhli za naší éry na radnici. Město získalo ochranu, která zavazuje i chrání.",
   },
   {
     icon: "lucide:leaf",
+    year: "2023",
     title: "Klimatické lázně",
-    body: "V roce 2023 se Mariánské Lázně staly klimatickými lázněmi — unikátní kombinace čtyř léčivých zdrojů.",
+    body: "Mariánské Lázně se staly oficiálně klimatickými lázněmi — jako jediné v ČR kombinují čtyři léčivé zdroje (prameny, plyn, klima, rašelinu).",
   },
   {
     icon: "lucide:eye",
+    year: "2018–2022",
     title: "Otevřená radnice",
-    body: "Zavedli jsme rozklikávací rozpočet, participativní rozpočet a transparentní hospodaření jako standard.",
+    body: "Zavedli jsme rozklikávací rozpočet, participativní rozpočet a transparentní zakázky jako standard. Ne jako experiment, ale jako způsob práce.",
   },
 ];
 
@@ -421,5 +471,57 @@ export const podcastEpisodes: PodcastEpisode[] = [
     date: "Připravujeme",
     description:
       "Zpívající fontána jako symbol nedotažených projektů. Rozebíráme, co brání její rekonstrukci a jak to chceme vyřešit.",
+  },
+];
+
+export type MeetingEvent = {
+  title: string;
+  date: string;
+  time?: string;
+  location: string;
+  neighborhood?: string;
+  description?: string;
+  status: "planned" | "confirmed" | "past";
+};
+
+export const meetings: MeetingEvent[] = [
+  {
+    title: "Veřejná beseda v Úšovicích",
+    date: "15. května 2026",
+    time: "18:00",
+    location: "Kulturní dům Úšovice",
+    neighborhood: "Úšovice",
+    description:
+      "Otevřené setkání s Vojtou Frantou a týmem. Představíme program, odpovíme na vaše otázky a rádi si vyslechneme, co Úšovice trápí.",
+    status: "planned",
+  },
+  {
+    title: "Potkejme se na kolonádě",
+    date: "5. června 2026",
+    time: "17:00",
+    location: "Hlavní kolonáda",
+    neighborhood: "Centrum",
+    description:
+      "Neformální setkání u kolonády. Přijďte si popovídat — o Mariánkách, o tom, co vám na městě chybí, nebo jen tak.",
+    status: "planned",
+  },
+  {
+    title: "Čtvrťové fórum — Chotěnov",
+    date: "20. června 2026",
+    time: "18:00",
+    location: "Základní škola Chotěnov",
+    neighborhood: "Chotěnov",
+    description:
+      "Co trápí Chotěnov? Jaké jsou priority? Společná debata o konkrétních bodech programu — a o tom, co do něj ještě chybí.",
+    status: "planned",
+  },
+  {
+    title: "Beseda na Kladské a Stanovišti",
+    date: "Červenec 2026",
+    location: "Upřesníme",
+    neighborhood: "Kladská a Stanoviště",
+    description:
+      "Okrajové části mají svá specifika a zasluhují samostatnou debatu. Termín upřesníme podle zájmu — napište nám.",
+    status: "planned",
   },
 ];

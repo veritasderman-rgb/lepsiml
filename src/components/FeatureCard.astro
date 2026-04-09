@@ -6,22 +6,35 @@ type Props = {
   title: string;
   body: string;
   accent?: "primary" | "accent";
+  year?: string;
 };
 
-const { icon, title, body, accent = "primary" } = Astro.props;
+const { icon, title, body, accent = "primary", year } = Astro.props;
 
 const accentColor =
   accent === "accent" ? "var(--color-accent)" : "var(--color-primary)";
 ---
 
 <article class="reveal card card-hover h-full flex flex-col">
-  <span
-    class="icon-badge icon-badge-lg"
-    aria-hidden="true"
-    style={`color: ${accentColor};`}
-  >
-    <Icon name={icon} width={34} height={34} />
-  </span>
+  <div class="flex items-start justify-between gap-4">
+    <span
+      class="icon-badge icon-badge-lg"
+      aria-hidden="true"
+      style={`color: ${accentColor};`}
+    >
+      <Icon name={icon} width={34} height={34} />
+    </span>
+    {
+      year && (
+        <span
+          class="inline-flex items-center px-3 py-1 rounded-full text-[12px] font-bold tracking-[0.12em] uppercase"
+          style={`background-color: ${accent === "accent" ? "var(--color-accent-light)" : "var(--color-primary-bg)"}; color: ${accentColor};`}
+        >
+          {year}
+        </span>
+      )
+    }
+  </div>
   <h3 class="mt-6" style="color: var(--color-dark); font-size: 1.375rem;">
     {title}
   </h3>

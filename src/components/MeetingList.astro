@@ -1,0 +1,87 @@
+---
+import { Icon } from "astro-icon/components";
+import { meetings } from "../lib/site";
+
+type Props = {
+  limit?: number;
+  showCta?: boolean;
+};
+
+const { limit, showCta = false } = Astro.props;
+
+const visible = typeof limit === "number" ? meetings.slice(0, limit) : meetings;
+---
+
+<div class="grid gap-5 md:grid-cols-2">
+  {
+    visible.map((event) => (
+      <article
+        class="reveal card card-hover flex flex-col h-full"
+        style="background-color: #fff;"
+      >
+        <div class="flex items-start gap-5">
+          <div
+            class="shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-xl"
+            style="background-color: var(--color-primary-bg); color: var(--color-primary);"
+            aria-hidden="true"
+          >
+            <Icon name="lucide:calendar-days" width={26} height={26} />
+          </div>
+          <div class="flex-1 min-w-0">
+            <p
+              class="text-[13px] font-bold uppercase tracking-[0.12em]"
+              style="color: var(--color-primary);"
+            >
+              {event.date}
+              {event.time && ` · ${event.time}`}
+            </p>
+            <h3
+              class="mt-1 text-[19px] font-bold leading-tight"
+              style="color: var(--color-dark);"
+            >
+              {event.title}
+            </h3>
+            <p
+              class="mt-2 inline-flex items-center gap-2 text-sm"
+              style="color: var(--color-text-light);"
+            >
+              <Icon name="lucide:map-pin" width={15} height={15} />
+              {event.location}
+              {event.neighborhood && ` · ${event.neighborhood}`}
+            </p>
+          </div>
+        </div>
+
+        {
+          event.description && (
+            <p class="mt-5 text-[15px]" style="color: var(--color-text);">
+              {event.description}
+            </p>
+          )
+        }
+
+        {
+          event.status === "planned" && (
+            <span
+              class="mt-5 inline-flex items-center gap-2 self-start text-[13px] font-bold px-3 py-1 rounded-full"
+              style="background-color: var(--color-accent-light); color: #8a5a00;"
+            >
+              <Icon name="lucide:clock" width={13} height={13} />
+              Plánujeme
+            </span>
+          )
+        }
+      </article>
+    ))
+  }
+</div>
+
+{
+  showCta && (
+    <div class="mt-10 text-center">
+      <a href="/setkani" class="btn btn-ghost">
+        Všechna setkání
+      </a>
+    </div>
+  )
+}

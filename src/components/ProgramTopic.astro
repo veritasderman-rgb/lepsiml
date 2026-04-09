@@ -129,5 +129,32 @@ const { topic } = Astro.props;
         }
       </ul>
     </div>
+
+    <div
+      class="mt-5 rounded-xl p-6 md:p-7"
+      style="background-color: #fff; border: 1px dashed var(--color-border);"
+    >
+      <p
+        class="eyebrow flex items-center gap-2"
+        style="color: var(--color-text-light); letter-spacing: 0.12em;"
+      >
+        <Icon name="lucide:alert-triangle" width={16} height={16} />
+        Co nebude snadné — a my vám to říkáme předem
+      </p>
+      <ul class="mt-4 space-y-3 text-[14px]" style="color: var(--color-text);">
+        {
+          topic.challenges.map((line) => (
+            <li class="flex gap-3 items-start">
+              <span
+                aria-hidden="true"
+                class="mt-[7px] w-1.5 h-1.5 rounded-full shrink-0"
+                style="background-color: var(--color-text-light);"
+              />
+              <span>{line}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </article>
