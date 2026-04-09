@@ -8,7 +8,7 @@ export const site = {
   election: "Komunální volby 2026",
   headline: "Mariánské Lázně si zaslouží víc!",
   subheadline:
-    "Dotáhneme radnici. Otevřeme ji lidem. Zajistíme kulturu pro celý rok.",
+    "Hrdé město. Pro rodiny i mladé. Otevřené, udržitelné, naše.",
   description:
     "Za lepší Mariánské Lázně — lokální kandidátka do zastupitelstva. Vojta Franta a tým s praktickou zkušeností z radnice i kraje.",
 };
@@ -52,28 +52,44 @@ export type Pillar = {
 
 export const pillars: Pillar[] = [
   {
-    id: "radnice",
-    icon: "lucide:building-2",
-    title: "Dotáhneme radnici",
+    id: "hrdi",
+    icon: "lucide:landmark",
+    title: "Město, na které jsme hrdí",
     short:
-      "Fontána, Hlavní ulice, Boheminium. Přinesli jsme UNESCO — dotáhneme i zbytek.",
+      "Rekonstrukce radnice, nové osvětlení s optikou, úsporné zahájení sezóny a kolonáda v režii města.",
     borderColor: "var(--color-primary)",
   },
   {
-    id: "komunikace",
-    icon: "lucide:message-circle",
-    title: "Město, co s vámi komunikuje",
+    id: "rodiny",
+    icon: "lucide:users-round",
+    title: "Město pro rodiny a mladé",
     short:
-      "Vrátíme participativní rozpočet. Přijdeme za vámi do každé čtvrti.",
+      "Veřejné lázně u bazénu, chybějící dětská hřiště, oprava Viktorky a Lokotky, inlinová dráha.",
     borderColor: "var(--color-primary-light)",
   },
   {
-    id: "kultura",
-    icon: "lucide:music",
-    title: "Stop předraženým akcím",
+    id: "unesco",
+    icon: "lucide:mountain",
+    title: "Prosperující UNESCO destinace",
     short:
-      "Každá koruna do kultury musí sloužit Mariánkám celý rok. Podpoříme lokální tvůrce a celoroční program.",
+      "Bikepark, cykloinfrastruktura, nové rybníky, oprava lanovky a obnovené lázeňské vycházky.",
     borderColor: "var(--color-accent)",
+  },
+  {
+    id: "radnice",
+    icon: "lucide:eye",
+    title: "Otevřená a průhledná radnice",
+    short:
+      "Participativní rozpočet, rozklikávací rozpočet, audit Development centra, fóra v každé čtvrti.",
+    borderColor: "var(--color-dark)",
+  },
+  {
+    id: "zelene",
+    icon: "lucide:leaf",
+    title: "Udržitelné a zelené Mariánky",
+    short:
+      "Komunitní energetika po vzoru Aše, poptávková doprava do okrajových částí, péče o zeleň a prameny.",
+    borderColor: "var(--color-primary-light)",
   },
 ];
 
@@ -134,58 +150,124 @@ export type ProgramTopic = {
 
 export const programTopics: ProgramTopic[] = [
   {
-    id: "dotahneme-radnici",
-    icon: "lucide:building-2",
-    title: "Dotáhneme radnici",
+    id: "hrdi",
+    icon: "lucide:landmark",
+    title: "Město, na které jsme hrdí",
     borderColor: "var(--color-primary)",
-    lead: "Fontána, Hlavní ulice, Boheminium. Mariánské Lázně potřebují radnici, která projekty dotahuje do konce — ne přestřihává pásky cizí práci.",
+    lead: "Radnice, osvětlení, zahájení sezóny, kolonáda. Mariánské Lázně si zaslouží investice, které jdou do detailu a které nestojí víc, než mají.",
     promises: [
       {
-        title: "Záchrana Zpívající fontány",
-        body: "Kompletní rekonstrukce s jasným harmonogramem a rozpočtem. Žádné provizorní záplaty.",
+        title: "Rekonstrukce radnice",
+        body: "Projektová dokumentace je hotová, financování zajistíme úvěrem. Rekonstrukce začne v prvním roce a dotáhne se do konce volebního období.",
       },
       {
-        title: "Dokončení rekonstrukce Hlavní ulice",
-        body: "Dotáhneme připravené etapy, aby Hlavní ulice konečně sloužila rezidentům i hostům.",
+        title: "Veřejné osvětlení s optikou — dva projekty za cenu jednoho",
+        body: "Modernizace osvětlení v celém městě na úsporné LED. Při té příležitosti do zemních prací natáhneme optiku — jedna investice, dva výsledky.",
       },
       {
-        title: "Udržení Boheminia v Mariánských Lázních",
-        body: "Vyjednáme dlouhodobé udržitelné podmínky pro provoz a rozvoj parku miniatur.",
+        title: "Úsporné zahájení sezóny",
+        body: "Audit současné předražené akce a návrh úsporného modelu. Zahájení sezóny má být hrdostí, ne dírou v rozpočtu.",
+      },
+      {
+        title: "Kolonáda v režii města",
+        body: "Město převezme organizaci kulturních akcí na kolonádě. Konec vyvádění peněz externím dodavatelům a pořadatelům — kolonáda patří Mariánkám.",
       },
       {
         title: "Systematický plán údržby majetku",
         body: "Pasport stavu všech budov a prostranství. Oprav se dočká každá lokalita podle priorit, ne podle přízně.",
       },
-      {
-        title: "Rozpočtová odpovědnost",
-        body: "Každá velká investice bude mít zdroj financování. Žádné překvapení na konci roku.",
-      },
     ],
     ano: [
-      "Slibuje fontánu několik volebních období po sobě.",
-      "Hlavní ulice zůstává rozkopaná.",
-      "Boheminium se řeší za zavřenými dveřmi.",
+      "Radnice chátrá roky bez jasného plánu.",
+      "Zahájení sezóny stojí město obrovské peníze.",
+      "Akce na kolonádě v rukou externích dodavatelů.",
     ],
     us: [
-      "Harmonogram rekonstrukce fontány do prvních 100 dnů.",
-      "Dokončení Hlavní ulice jako priorita č. 1 v investičním plánu.",
-      "Veřejná jednání o budoucnosti Boheminia.",
+      "Rekonstrukce radnice s jasným harmonogramem a financováním.",
+      "Úsporný model zahájení sezóny podložený auditem.",
+      "Kolonáda v režii města a lokálních tvůrců.",
     ],
   },
   {
-    id: "komunikace",
-    icon: "lucide:message-circle",
-    title: "Město, co s vámi komunikuje",
+    id: "rodiny",
+    icon: "lucide:users-round",
+    title: "Město pro rodiny a mladé",
     borderColor: "var(--color-primary-light)",
-    lead: "Radnice musí naslouchat dřív, než rozhodne. Vrátíme nástroje otevřené správy, které v Mariánkách fungovaly.",
+    lead: "Mariánky nesmí být jen skanzen pro turisty. Chceme město, ve kterém chtějí rodiny zůstat a mladí se do něj chtějí vracet.",
+    promises: [
+      {
+        title: "Veřejné lázně — rozšíření bazénu o sauny a vířivku",
+        body: "Tři sauny a vířivka na městských pozemcích vedle bazénu. Pozemky jsou zasíťované, projekt je realizovatelný do čtyř let pod pracovním názvem Veřejné lázně.",
+      },
+      {
+        title: "Dětská hřiště, která akutně chybí",
+        body: "Audit stavu hřišť, doplnění chybějících ploch v každé čtvrti a modernizace stávajících. Hřiště mají být tam, kde bydlí děti — ne jen tam, kde je zrovna místo.",
+      },
+      {
+        title: "Oprava Viktorky a Lokotky",
+        body: "Viktorka městská už se modernizuje, nesmíme se zastavit — zbývá vyřešit tribunu. Lokotka je v dezolátním stavu; najdeme cestu ve spolupráci s vlastníkem.",
+      },
+      {
+        title: "Inlinová dráha u Ploché dráhy",
+        body: "Nová volnočasová plocha pro bruslaře, rodiny i mládež. Plochá dráha dostane přirozené okolí pro sport i setkávání.",
+      },
+    ],
+    ano: [
+      "Dětská hřiště chybí a chátrají.",
+      "Sportoviště v polovičatém stavu — jen část se řeší.",
+      "Mladí v Mariánkách nemají kam jít.",
+    ],
+    us: [
+      "Veřejné lázně jako rozšíření bazénu do čtyř let.",
+      "Doplněná a modernizovaná dětská hřiště v každé čtvrti.",
+      "Dotažená Viktorka, řešená Lokotka, nová inlinová dráha.",
+    ],
+  },
+  {
+    id: "unesco",
+    icon: "lucide:mountain",
+    title: "Prosperující UNESCO destinace",
+    borderColor: "var(--color-accent)",
+    lead: "Mariánské Lázně jsou UNESCO město. Status ale nesmí zůstat jen na ceduli — musí být vidět v kvalitě veřejného prostoru, v péči o krajinu a v nabídce pro návštěvníky.",
+    promises: [
+      {
+        title: "Bikepark a cyklosjezdy u sjezdovky",
+        body: "Projekt cyklosjezdů jako bikeparku existuje roky — chybí jen dotažení. Zároveň rozvoj cykloinfrastruktury obecně: bezpečné stezky, napojení na okolí, servis.",
+      },
+      {
+        title: "Nové rybníky po městě",
+        body: "Zadržení vody v krajině, nové rekreační plochy, příroda na dosah obyvatelům. Rybníky jsou odpověď na klimatickou změnu i na potřebu volného času.",
+      },
+      {
+        title: "Oprava lanovky",
+        body: "Lanovka je symbol Mariánek. Zajistíme její modernizaci a dlouhodobý provoz ve spolupráci s krajem a provozovatelem.",
+      },
+      {
+        title: "Obnovené lázeňské vycházky a péče o parky",
+        body: "Kalamitní těžba v parcích dávno skončila. Je čas vrátit se k systematické péči o lázeňské parky, obnovit značené vycházkové trasy a informační systém.",
+      },
+    ],
+    ano: [
+      "Bikepark zaseknutý v šuplíku.",
+      "Lanovka bez perspektivy.",
+      "Lázeňské parky po kalamitě zanedbané.",
+    ],
+    us: [
+      "Dotažený bikepark a cykloinfrastruktura.",
+      "Plán oprav a provozu lanovky.",
+      "Obnovené vycházky a systematická péče o parky.",
+    ],
+  },
+  {
+    id: "radnice",
+    icon: "lucide:eye",
+    title: "Otevřená a průhledná radnice",
+    borderColor: "var(--color-dark)",
+    lead: "Radnice musí naslouchat dřív, než rozhodne. Vrátíme nástroje otevřené správy, které v Mariánkách prokazatelně fungovaly.",
     promises: [
       {
         title: "Obnovení participativního rozpočtu",
         body: "Lidé rozhodnou o části rozpočtu tak, jak to v Mariánkách fungovalo. Jasná pravidla, transparentní hlasování.",
-      },
-      {
-        title: "Fóra v každé čtvrti",
-        body: "Starosta i radní vyrazí pravidelně za lidmi do Úšovic, Chotěnova i centra. Ne jen před volbami.",
       },
       {
         title: "Plně rozklikávací rozpočet",
@@ -193,11 +275,15 @@ export const programTopics: ProgramTopic[] = [
       },
       {
         title: "Nezávislý audit Development centra",
-        body: "Podíváme se, kam tečou peníze a zda plní svou funkci pro město.",
+        body: "Podíváme se, kam tečou peníze a zda Development centrum skutečně plní svou funkci pro město.",
+      },
+      {
+        title: "Fóra v každé čtvrti",
+        body: "Starosta i radní vyrazí pravidelně za lidmi do Úšovic, Chotěnova, na Stanoviště i do centra. Ne jen před volbami.",
       },
       {
         title: "Nezávislý městský zpravodaj",
-        body: "Redakční rada mimo přímý vliv radnice. Žádný volební leták placený z rozpočtu.",
+        body: "Redakční rada mimo přímý vliv radnice. Žádný volební leták placený z veřejného rozpočtu.",
       },
     ],
     ano: [
@@ -212,38 +298,42 @@ export const programTopics: ProgramTopic[] = [
     ],
   },
   {
-    id: "kultura",
-    icon: "lucide:music",
-    title: "Stop předraženým akcím — kultura celoročně",
-    borderColor: "var(--color-accent)",
-    lead: "Mariánské Lázně nejsou jednorázový festival. Kultura musí sloužit městu po celý rok, ne dvě víkendové show.",
+    id: "zelene",
+    icon: "lucide:leaf",
+    title: "Udržitelné a zelené Mariánky",
+    borderColor: "var(--color-primary-light)",
+    lead: "Mariánské Lázně jsou od roku 2023 klimatickými lázněmi. Tento status si musí zasloužit i praktickými kroky — v energetice, dopravě i péči o krajinu.",
     promises: [
       {
-        title: "Kulturní strategie pro celý rok",
-        body: "Dokument, který jasně říká, kam město investuje a proč. Konec nahodilých rozhodnutí.",
+        title: "Komunitní energetika — zlevnění elektřiny obyvatelům",
+        body: "Vytvoříme městskou energetickou komunitu po vzoru města Aš. Solární výroba na střechách městských budov se promítne do nižších účtů obyvatel.",
       },
       {
-        title: "Audit nákladů na velké akce",
-        body: "Podíváme se, kolik opravdu stojí jednotlivé festivaly a co za to Mariánky dostávají.",
+        title: "Poptávková doprava do okrajových částí",
+        body: "Kladská a Stanoviště dnes nemají prakticky žádné spojení. Zavedeme poptávkový mikrobus nebo sdílenou dopravu, aby nikdo nebyl odříznutý.",
       },
       {
-        title: "Podpora lokální kultury",
-        body: "Granty pro místní umělce, spolky a sezónní programy. Kultura z Mariánek, ne jen do Mariánek.",
+        title: "Klimatické lázně naplno",
+        body: "Statusu klimatických lázní dáme obsah: program ochrany ovzduší, léčivých zdrojů a zeleně s měřitelnými cíli.",
       },
       {
-        title: "Kasino jako kulturní centrum",
-        body: "Otevřeme diskusi o budoucím využití jako živého místa pro koncerty, výstavy a komunitu.",
+        title: "Péče o léčivé prameny a lázeňskou krajinu",
+        body: "Systematická ochrana pramenů, průhledné hospodaření se zdroji, rozšířená péče o lázeňské parky i okolní krajinu.",
+      },
+      {
+        title: "Udržitelné investice města",
+        body: "U každé velké investice vyhodnotíme provozní energetické a ekologické dopady. Levnější provoz, menší zátěž.",
       },
     ],
     ano: [
-      "Miliony za jeden víkendový koncert.",
-      "Chybí kulturní plán pro celý rok.",
-      "Festivaly bez veřejného auditu nákladů.",
+      "Obyvatelé platí plnou cenu elektřiny bez alternativy.",
+      "Kladská a Stanoviště prakticky bez dopravy.",
+      "Status klimatických lázní zatím bez konkrétního obsahu.",
     ],
     us: [
-      "Veřejný audit všech akcí nad 1 mil. Kč.",
-      "Kulturní strategie do roku 2030.",
-      "Férové granty pro lokální umělce a spolky.",
+      "Komunitní energetika a úspory pro obyvatele.",
+      "Poptávková doprava do okrajových částí.",
+      "Konkrétní program naplnění statusu klimatických lázní.",
     ],
   },
 ];
@@ -267,11 +357,11 @@ export const whyUs = [
 ];
 
 export const quickWins = [
-  "Zveřejníme kompletní harmonogram rekonstrukce Zpívající fontány.",
-  "Spustíme participativní rozpočet pro rok 2027.",
-  "Svoláme první kolo čtvrťových fór po celém městě.",
-  "Zadáme nezávislý audit Development centra.",
-  "Předložíme návrh kulturní strategie a otevřeme veřejný audit velkých akcí.",
+  "Zveřejníme harmonogram rekonstrukce radnice a zahájíme přípravu úvěru.",
+  "Zadáme audit zahájení sezóny a úsporný model pro další ročník.",
+  "Spustíme participativní rozpočet pro rok 2027 a svoláme první čtvrťová fóra.",
+  "Zadáme nezávislý audit Development centra a zahájíme přípravu komunitní energetiky po vzoru Aše.",
+  "Předložíme projekt Veřejných lázní a doplníme akutně chybějící dětská hřiště.",
 ];
 
 export type PodcastEpisode = {
