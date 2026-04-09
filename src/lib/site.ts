@@ -105,7 +105,7 @@ export const leader: Candidate = {
   name: "Vojta Franta",
   role: "Lídr kandidátky · Bývalý náměstek hejtmana Karlovarského kraje",
   bio: "Dlouhé roky jsem působil ve vedení Karlovarského kraje. Teď chci pomoci městu, které mám rád. Mariánské Lázně jsou UNESCO město — zaslouží si vedení, které dotahuje věci do konce. Máme zkušenosti, máme plán a máme odvahu.",
-  quote: "Mariánské Lázně nepotřebují další sliby. Potřebují někoho, kdo práci dotáhne.",
+  quote: "Mariánské Lázně potřebují někoho s vizí a citem pro architekturu a kulturu. Musíme vidět dál než za jeden megaprojekt — pečovat o celek, o ulice, parky i detaily, které dělají Mariánky Mariánkami. Hrdost se buduje denně, ne jednou za čtyři roky.",
   isLeader: true,
 };
 
