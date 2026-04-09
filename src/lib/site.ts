@@ -72,7 +72,7 @@ export const pillars: Pillar[] = [
     icon: "lucide:music",
     title: "Stop předraženým akcím",
     short:
-      "Každá koruna do kultury musí sloužit Mariánkám celý rok. Zachráníme orchestr.",
+      "Každá koruna do kultury musí sloužit Mariánkám celý rok. Podpoříme lokální tvůrce a celoroční program.",
     borderColor: "var(--color-accent)",
   },
 ];
@@ -87,8 +87,8 @@ export type Candidate = {
 
 export const leader: Candidate = {
   name: "Vojta Franta",
-  role: "Lídr kandidátky · Bývalý hejtman Karlovarského kraje",
-  bio: "Vedl jsem Karlovarský kraj. Teď chci pomoci městu, které mám rád. Mariánské Lázně jsou UNESCO město — zaslouží si vedení, které dotahuje věci do konce. Máme zkušenosti, máme plán a máme odvahu.",
+  role: "Lídr kandidátky · Bývalý náměstek hejtmana Karlovarského kraje",
+  bio: "Dlouhé roky jsem působil ve vedení Karlovarského kraje. Teď chci pomoci městu, které mám rád. Mariánské Lázně jsou UNESCO město — zaslouží si vedení, které dotahuje věci do konce. Máme zkušenosti, máme plán a máme odvahu.",
   quote: "Mariánské Lázně nepotřebují další sliby. Potřebují někoho, kdo práci dotáhne.",
   isLeader: true,
 };
@@ -96,8 +96,8 @@ export const leader: Candidate = {
 export const coreTeam: Candidate[] = [
   {
     name: "Josef Pavlovic",
-    role: "Místní podnikatel · komunální politika",
-    bio: "Zastupitel se zkušeností s rozpočtovou odpovědností a praktickým vedením města.",
+    role: "Zastupitel města · bývalý náměstek ministra zdravotnictví",
+    bio: "Zaměstnanec společnosti Léčebné lázně Mariánské Lázně. Zastupitel města se zkušeností z celostátní úrovně ve zdravotnictví a lázeňství.",
   },
   {
     name: "Martin Kalina",
@@ -154,7 +154,7 @@ export const programTopics: ProgramTopic[] = [
       },
       {
         title: "Systematický plán údržby majetku",
-        body: "Pasport stavu všech budov a prostranství. Oprav se bude dočkat každá lokalita podle priorit, ne podle přízně.",
+        body: "Pasport stavu všech budov a prostranství. Oprav se dočká každá lokalita podle priorit, ne podle přízně.",
       },
       {
         title: "Rozpočtová odpovědnost",
@@ -219,10 +219,6 @@ export const programTopics: ProgramTopic[] = [
     lead: "Mariánské Lázně nejsou jednorázový festival. Kultura musí sloužit městu po celý rok, ne dvě víkendové show.",
     promises: [
       {
-        title: "Záchrana Západočeského symfonického orchestru",
-        body: "ZSO je kulturní kotva města. Zajistíme stabilní financování a podmínky, aby mohl růst.",
-      },
-      {
         title: "Kulturní strategie pro celý rok",
         body: "Dokument, který jasně říká, kam město investuje a proč. Konec nahodilých rozhodnutí.",
       },
@@ -241,13 +237,13 @@ export const programTopics: ProgramTopic[] = [
     ],
     ano: [
       "Miliony za jeden víkendový koncert.",
-      "ZSO v nejistotě.",
-      "Chybí kulturní plán.",
+      "Chybí kulturní plán pro celý rok.",
+      "Festivaly bez veřejného auditu nákladů.",
     ],
     us: [
-      "Dlouhodobé smlouvy a férové financování ZSO.",
       "Veřejný audit všech akcí nad 1 mil. Kč.",
       "Kulturní strategie do roku 2030.",
+      "Férové granty pro lokální umělce a spolky.",
     ],
   },
 ];
@@ -275,7 +271,7 @@ export const quickWins = [
   "Spustíme participativní rozpočet pro rok 2027.",
   "Svoláme první kolo čtvrťových fór po celém městě.",
   "Zadáme nezávislý audit Development centra.",
-  "Předložíme dlouhodobou smlouvu se ZSO pro záchranu orchestru.",
+  "Předložíme návrh kulturní strategie a otevřeme veřejný audit velkých akcí.",
 ];
 
 export type PodcastEpisode = {
