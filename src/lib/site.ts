@@ -146,6 +146,7 @@ export type ProgramTopic = {
   promises: { title: string; body: string }[];
   ano: string[];
   us: string[];
+  forYou: string[];
 };
 
 export const programTopics: ProgramTopic[] = [
@@ -187,6 +188,12 @@ export const programTopics: ProgramTopic[] = [
       "Úsporný model zahájení sezóny podložený auditem.",
       "Kolonáda v režii města a lokálních tvůrců.",
     ],
+    forYou: [
+      "Bezpečnější cesta z večerní kolonády i z práce díky modernizovanému osvětlení v celém městě.",
+      "Rychlejší a levnější internet přímo ve vašem domě — optika se natáhne souběžně s osvětlením, bez dalších výkopů.",
+      "Zahájení sezóny, u kterého se nemusíte stydět přivést návštěvu z jiného města. A které nestojí miliony z vašich daní.",
+      "Opravená radnice jako důstojný střed města, který reprezentuje Mariánky i vás.",
+    ],
   },
   {
     id: "rodiny",
@@ -222,6 +229,13 @@ export const programTopics: ProgramTopic[] = [
       "Doplněná a modernizovaná dětská hřiště v každé čtvrti.",
       "Dotažená Viktorka, řešená Lokotka, nová inlinová dráha.",
     ],
+    forYou: [
+      "Sauny a vířivka přímo v Mariánkách — už nemusíte jezdit do Karlových Varů nebo Františkových Lázní.",
+      "Dětské hřiště v docházkové vzdálenosti od domova, kam to zvládnete i s kočárkem.",
+      "Viktorka a Lokotka zase jako sportoviště, kam pošlete své děti a nebudete mít strach.",
+      "Nová inlinová dráha, kde stráví odpoledne vaše děti i vy — místo aby odjížděly pryč.",
+      "Město, ve kterém vaše dospívající děti chtějí zůstat.",
+    ],
   },
   {
     id: "unesco",
@@ -256,6 +270,13 @@ export const programTopics: ProgramTopic[] = [
       "Dotažený bikepark a cykloinfrastruktura.",
       "Plán oprav a provozu lanovky.",
       "Obnovené vycházky a systematická péče o parky.",
+    ],
+    forYou: [
+      "Bikepark, kam zajedete s dětmi na kole bez cestování po republice.",
+      "Bezpečné cyklostezky po městě i do okolí — pro rodinné výjezdy i dojíždění do práce.",
+      "Nové rybníky kousek od domova na procházky, rybaření i koupání.",
+      "Funkční lanovka pro výlety nad město — a s ní víc turistů, kteří utratí peníze v místních podnicích a restauracích.",
+      "Obnovené lázeňské parky, kam se zase rádi vrátíte na ranní procházku nebo běh.",
     ],
   },
   {
@@ -296,6 +317,13 @@ export const programTopics: ProgramTopic[] = [
       "Pravidelná čtvrťová fóra na pevném harmonogramu.",
       "Auditované Development centrum s veřejnými výstupy.",
     ],
+    forYou: [
+      "Vy sami rozhodnete, kam půjde část rozpočtu — participativní rozpočet zpátky.",
+      "Jedním kliknutím uvidíte, za co město utrácí každou korunu.",
+      "Starosta a radní přijdou za vámi do vaší čtvrti. Nemusíte nikam cestovat, abyste byli slyšet.",
+      "Žádné skryté zakázky, žádná překvapení na konci roku.",
+      "Zpravodaj, který vás informuje — ne propaguje jednoho starostu.",
+    ],
   },
   {
     id: "zelene",
@@ -334,6 +362,13 @@ export const programTopics: ProgramTopic[] = [
       "Komunitní energetika a úspory pro obyvatele.",
       "Poptávková doprava do okrajových částí.",
       "Konkrétní program naplnění statusu klimatických lázní.",
+    ],
+    forYou: [
+      "Nižší účet za elektřinu díky komunitní energetice po vzoru města Aš.",
+      "Spojení z Kladské a ze Stanoviště do centra — konečně se dostanete i bez vlastního auta.",
+      "Čistší vzduch a chráněné prameny pro zdraví vaší rodiny.",
+      "Levnější provoz městských budov = menší tlak na vaše daně.",
+      "Lázeňské parky, zeleň a krajina, kam vykročíte ven rovnou ze své ulice.",
     ],
   },
 ];
