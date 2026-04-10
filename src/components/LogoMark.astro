@@ -7,7 +7,7 @@ type Props = {
 const { size = 36, variant = "color" } = Astro.props;
 
 const mainLeaf = variant === "white" ? "#ffffff" : "url(#leafGradLogo)";
-const secondLeaf = variant === "white" ? "rgba(255,255,255,0.45)" : "#B7E4C7";
+const secondLeaf = variant === "white" ? "rgba(255,255,255,0.45)" : "#B8D4F0";
 const secondOpacity = variant === "white" ? "0.45" : "0.6";
 const vein = variant === "white" ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.5)";
 const drop = variant === "white" ? "rgba(255,255,255,0.85)" : "#D4A843";
@@ -26,8 +26,8 @@ const gradId = `leafGradLogo-${Math.random().toString(36).slice(2, 6)}`;
     variant === "color" && (
       <defs>
         <linearGradient id={gradId} x1="0" y1="1" x2="0.5" y2="0">
-          <stop offset="0%" stop-color="#2D6A4F" />
-          <stop offset="100%" stop-color="#40916C" />
+          <stop offset="0%" stop-color="#1E56A0" />
+          <stop offset="100%" stop-color="#3B7DD8" />
         </linearGradient>
       </defs>
     )

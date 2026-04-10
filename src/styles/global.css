@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette */
-  --color-primary: #2d6a4f;
-  --color-primary-light: #40916c;
-  --color-primary-pale: #b7e4c7;
-  --color-primary-bg: #f0f7f4;
+  /* Brand palette — modrá, žlutá, bílá (barvy města Mariánské Lázně) */
+  --color-primary: #1e56a0;
+  --color-primary-light: #3b7dd8;
+  --color-primary-pale: #b8d4f0;
+  --color-primary-bg: #eef4fb;
   --color-accent: #d4a843;
-  --color-accent-light: #f2e6c5;
-  --color-dark: #1b4332;
+  --color-accent-light: #f5edcf;
+  --color-dark: #0f2d4a;
   --color-text: #2b2b2b;
-  --color-text-light: #5a6b63;
+  --color-text-light: #5a6878;
   --color-white: #ffffff;
-  --color-off-white: #fafdf9;
-  --color-border: #d8e8de;
+  --color-off-white: #fafbfd;
+  --color-border: #d4dee8;
 
   /* Typography */
   --font-sans: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto,
@@ -176,7 +176,7 @@
 
   .card-hover:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(27, 67, 50, 0.1);
+    box-shadow: 0 12px 28px rgba(15, 45, 74, 0.1);
   }
 
   .eyebrow {
