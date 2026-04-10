@@ -477,7 +477,9 @@ export const podcastEpisodes: PodcastEpisode[] = [
 export type MeetingEvent = {
   title: string;
   date: string;
+  isoDate?: string;
   time?: string;
+  durationMinutes?: number;
   location: string;
   neighborhood?: string;
   description?: string;
@@ -488,7 +490,9 @@ export const meetings: MeetingEvent[] = [
   {
     title: "Veřejná beseda v Úšovicích",
     date: "15. května 2026",
+    isoDate: "20260515",
     time: "18:00",
+    durationMinutes: 120,
     location: "Kulturní dům Úšovice",
     neighborhood: "Úšovice",
     description:
@@ -498,7 +502,9 @@ export const meetings: MeetingEvent[] = [
   {
     title: "Potkejme se na kolonádě",
     date: "5. června 2026",
+    isoDate: "20260605",
     time: "17:00",
+    durationMinutes: 120,
     location: "Hlavní kolonáda",
     neighborhood: "Centrum",
     description:
@@ -508,7 +514,9 @@ export const meetings: MeetingEvent[] = [
   {
     title: "Čtvrťové fórum — Chotěnov",
     date: "20. června 2026",
+    isoDate: "20260620",
     time: "18:00",
+    durationMinutes: 120,
     location: "Základní škola Chotěnov",
     neighborhood: "Chotěnov",
     description:

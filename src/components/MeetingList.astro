@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { meetings } from "../lib/site";
+import type { MeetingEvent } from "../lib/site";
 
 type Props = {
   limit?: number;
@@ -10,69 +11,173 @@ type Props = {
 const { limit, showCta = false } = Astro.props;
 
 const visible = typeof limit === "number" ? meetings.slice(0, limit) : meetings;
+
+/**
+ * Generate an ICS (iCalendar) data URI for a meeting event.
+ * Returns null if the event has no isoDate.
+ */
+function buildIcsDataUri(event: MeetingEvent): string | null {
+  if (!event.isoDate || !event.time) return null;
+
+  const [hours, minutes] = event.time.split(":").map(Number);
+  const dtStart = `${event.isoDate}T${String(hours).padStart(2, "0")}${String(minutes).padStart(2, "0")}00`;
+
+  const duration = event.durationMinutes ?? 120;
+  const endHours = hours + Math.floor((minutes + duration) / 60);
+  const endMinutes = (minutes + duration) % 60;
+  const dtEnd = `${event.isoDate}T${String(endHours).padStart(2, "0")}${String(endMinutes).padStart(2, "0")}00`;
+
+  const desc = (event.description ?? "")
+    .replace(/\\/g, "\\\\")
+    .replace(/;/g, "\\;")
+    .replace(/,/g, "\\,")
+    .replace(/\n/g, "\\n");
+
+  const loc = event.location
+    .replace(/\\/g, "\\\\")
+    .replace(/;/g, "\\;")
+    .replace(/,/g, "\\,");
+
+  const summary = event.title
+    .replace(/\\/g, "\\\\")
+    .replace(/;/g, "\\;")
+    .replace(/,/g, "\\,");
+
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//ZLML//Setkani//CS",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "BEGIN:VEVENT",
+    `DTSTART;TZID=Europe/Prague:${dtStart}`,
+    `DTEND;TZID=Europe/Prague:${dtEnd}`,
+    `SUMMARY:${summary}`,
+    `LOCATION:${loc}`,
+    `DESCRIPTION:${desc}`,
+    "STATUS:TENTATIVE",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+
+  return `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
+}
+
+function buildGoogleCalUrl(event: MeetingEvent): string | null {
+  if (!event.isoDate || !event.time) return null;
+
+  const [hours, minutes] = event.time.split(":").map(Number);
+  const dtStart = `${event.isoDate}T${String(hours).padStart(2, "0")}${String(minutes).padStart(2, "0")}00`;
+
+  const duration = event.durationMinutes ?? 120;
+  const endHours = hours + Math.floor((minutes + duration) / 60);
+  const endMinutes = (minutes + duration) % 60;
+  const dtEnd = `${event.isoDate}T${String(endHours).padStart(2, "0")}${String(endMinutes).padStart(2, "0")}00`;
+
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: event.title,
+    dates: `${dtStart}/${dtEnd}`,
+    ctz: "Europe/Prague",
+    location: event.location,
+    details: event.description ?? "",
+  });
+
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
 ---
 
 <div class="grid gap-5 md:grid-cols-2">
   {
-    visible.map((event) => (
-      <article
-        class="reveal card card-hover flex flex-col h-full"
-        style="background-color: #fff;"
-      >
-        <div class="flex items-start gap-5">
-          <div
-            class="shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-xl"
-            style="background-color: var(--color-primary-bg); color: var(--color-primary);"
-            aria-hidden="true"
-          >
-            <Icon name="lucide:calendar-days" width={26} height={26} />
-          </div>
-          <div class="flex-1 min-w-0">
-            <p
-              class="text-[13px] font-bold uppercase tracking-[0.12em]"
-              style="color: var(--color-primary);"
-            >
-              {event.date}
-              {event.time && ` · ${event.time}`}
-            </p>
-            <h3
-              class="mt-1 text-[19px] font-bold leading-tight"
-              style="color: var(--color-dark);"
-            >
-              {event.title}
-            </h3>
-            <p
-              class="mt-2 inline-flex items-center gap-2 text-sm"
-              style="color: var(--color-text-light);"
-            >
-              <Icon name="lucide:map-pin" width={15} height={15} />
-              {event.location}
-              {event.neighborhood && ` · ${event.neighborhood}`}
-            </p>
-          </div>
-        </div>
+    visible.map((event) => {
+      const icsUri = buildIcsDataUri(event);
+      const googleUrl = buildGoogleCalUrl(event);
+      const hasCalendar = !!icsUri;
 
-        {
-          event.description && (
+      return (
+        <article
+          class="reveal card card-hover flex flex-col h-full"
+          style="background-color: #fff;"
+        >
+          <div class="flex items-start gap-5">
+            <div
+              class="shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-xl"
+              style="background-color: var(--color-primary-bg); color: var(--color-primary);"
+              aria-hidden="true"
+            >
+              <Icon name="lucide:calendar-days" width={26} height={26} />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p
+                class="text-[13px] font-bold uppercase tracking-[0.12em]"
+                style="color: var(--color-primary);"
+              >
+                {event.date}
+                {event.time && ` · ${event.time}`}
+              </p>
+              <h3
+                class="mt-1 text-[19px] font-bold leading-tight"
+                style="color: var(--color-dark);"
+              >
+                {event.title}
+              </h3>
+              <p
+                class="mt-2 inline-flex items-center gap-2 text-sm"
+                style="color: var(--color-text-light);"
+              >
+                <Icon name="lucide:map-pin" width={15} height={15} />
+                {event.location}
+                {event.neighborhood && ` · ${event.neighborhood}`}
+              </p>
+            </div>
+          </div>
+
+          {event.description && (
             <p class="mt-5 text-[15px]" style="color: var(--color-text);">
               {event.description}
             </p>
-          )
-        }
+          )}
 
-        {
-          event.status === "planned" && (
-            <span
-              class="mt-5 inline-flex items-center gap-2 self-start text-[13px] font-bold px-3 py-1 rounded-full"
-              style="background-color: var(--color-accent-light); color: #8a5a00;"
-            >
-              <Icon name="lucide:clock" width={13} height={13} />
-              Plánujeme
-            </span>
-          )
-        }
-      </article>
-    ))
+          <div class="mt-auto pt-5 flex flex-wrap items-center gap-3">
+            {event.status === "planned" && (
+              <span
+                class="inline-flex items-center gap-2 text-[13px] font-bold px-3 py-1 rounded-full"
+                style="background-color: var(--color-accent-light); color: #8a5a00;"
+              >
+                <Icon name="lucide:clock" width={13} height={13} />
+                Plánujeme
+              </span>
+            )}
+
+            {hasCalendar && (
+              <div class="flex items-center gap-2 ml-auto">
+                <a
+                  href={icsUri}
+                  download={`zlml-${event.isoDate}.ics`}
+                  class="inline-flex items-center gap-1.5 text-[13px] font-semibold px-3 py-1.5 rounded-lg transition-colors"
+                  style="color: var(--color-primary); background-color: var(--color-primary-bg);"
+                  title="Stáhnout .ics (Apple Calendar, Outlook, …)"
+                >
+                  <Icon name="lucide:calendar-plus" width={14} height={14} />
+                  Kalendář
+                </a>
+                <a
+                  href={googleUrl}
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-1.5 text-[13px] font-semibold px-3 py-1.5 rounded-lg transition-colors"
+                  style="color: var(--color-primary); background-color: var(--color-primary-bg);"
+                  title="Přidat do Google Kalendáře"
+                >
+                  <Icon name="lucide:external-link" width={14} height={14} />
+                  Google
+                </a>
+              </div>
+            )}
+          </div>
+        </article>
+      );
+    })
   }
 </div>
 
