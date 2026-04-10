@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="420" height="120">
+  <defs>
+    <style>
+      .logo-text { font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- "Za" in gold as emphasis -->
+  <text x="20" y="62" class="logo-text" font-weight="800" font-size="46" fill="#D4A843" letter-spacing="-1">
+    Za
+  </text>
+
+  <!-- "lepší" in dark green, slightly lighter weight -->
+  <text x="80" y="62" class="logo-text" font-weight="700" font-size="46" fill="#40916C" letter-spacing="-1">
+    lepší
+  </text>
+
+  <!-- "Mariánské Lázně" below, full weight, dark -->
+  <text x="20" y="100" class="logo-text" font-weight="800" font-size="36" fill="#1B4332" letter-spacing="-0.8">
+    Mariánské Lázně
+  </text>
+
+  <!-- Subtle vertical bar as structural divider -->
+  <rect x="10" y="24" width="4" height="82" rx="2" fill="#2D6A4F"/>
+
+  <!-- Gold dot accent after "Lázně" -->
+  <circle cx="378" cy="92" r="5" fill="#D4A843"/>
+</svg>

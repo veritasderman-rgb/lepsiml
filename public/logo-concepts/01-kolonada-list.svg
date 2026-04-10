@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="400" height="160">
+  <defs>
+    <style>
+      .logo-text { font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Colonnade arch mark -->
+  <g transform="translate(28, 12)">
+    <!-- Three arches representing the colonnade -->
+    <path d="M0 72 L0 30 Q0 0 20 0 L24 0 Q44 0 44 30 L44 72" fill="none" stroke="#2D6A4F" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M52 72 L52 30 Q52 0 72 0 L76 0 Q96 0 96 30 L96 72" fill="none" stroke="#2D6A4F" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M24 72 L24 42 Q24 18 44 18 L52 18 Q72 18 72 42 L72 72" fill="none" stroke="#40916C" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Base line -->
+    <line x1="-4" y1="72" x2="100" y2="72" stroke="#2D6A4F" stroke-width="4" stroke-linecap="round"/>
+    <!-- Leaf accent (spring/nature) growing from the arch -->
+    <path d="M96 28 Q108 8 120 20 Q108 10 96 28Z" fill="#D4A843"/>
+    <path d="M96 28 Q114 28 118 40 Q108 32 96 28Z" fill="#40916C"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="170" y="42" class="logo-text" font-weight="800" font-size="28" fill="#1B4332" letter-spacing="-0.5">
+    Za lepší
+  </text>
+  <text x="170" y="74" class="logo-text" font-weight="800" font-size="28" fill="#2D6A4F" letter-spacing="-0.5">
+    Mariánské Lázně
+  </text>
+
+  <!-- Tagline -->
+  <text x="170" y="98" class="logo-text" font-weight="600" font-size="12" fill="#5A6B63" letter-spacing="2.5" text-transform="uppercase">
+    KOMUNÁLNÍ VOLBY 2026
+  </text>
+
+  <!-- Accent underline -->
+  <line x1="170" y1="106" x2="260" y2="106" stroke="#D4A843" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
