@@ -21,26 +21,13 @@ export const nav: { label: string; href: string }[] = [
   { label: "Kontakt", href: "/kontakt" },
 ];
 
-export const forms = {
-  // Endpoint kontaktního formuláře.
-  // Po registraci vlastního formuláře na https://formspree.io sem doplňte
-  // ID (např. "https://formspree.io/f/xyzvpknw"). Do té doby formulář zobrazí
-  // chybu „není nakonfigurováno". Alternativa: vlastní Vercel API route
-  // v src/pages/api/contact.ts a endpoint "/api/contact".
-  contactEndpoint: "https://formspree.io/f/REPLACE_WITH_FORM_ID",
-};
-
 export const contact = {
-  email: "info@zalepsimarianskelazne.cz",
+  email: "mail@josefpavlovic.cz",
+  phone: "+420 607 517 967",
   facebook: "https://facebook.com/zalepsimarianskelazne",
   instagram: "https://instagram.com/zalepsimarianskelazne",
   spotify: "https://open.spotify.com/",
   youtube: "https://www.youtube.com/",
-  transparentAccount: {
-    number: "0000000000/0000",
-    bank: "Fio banka",
-    note: "Transparentní účet kampaně — všechny příjmy i výdaje jsou veřejné.",
-  },
 };
 
 export type Pillar = {

@@ -1,13 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
-import ContactForm from "../components/ContactForm.tsx";
 import { Icon } from "astro-icon/components";
 import { contact } from "../lib/site";
 ---
 
 <Base
   title="Kontakt"
-  description="Kontaktujte kandidátku Za lepší Mariánské Lázně. E-mail, sociální sítě, transparentní účet kampaně."
+  description="Kontaktujte kandidátku Za lepší Mariánské Lázně. E-mail, telefon, sociální sítě."
 >
   <!-- Header -->
   <section
@@ -25,145 +24,133 @@ import { contact } from "../lib/site";
         class="reveal mt-6 text-lg md:text-xl max-w-2xl"
         style="color: var(--color-primary-pale);"
       >
-        Chcete se zapojit, kandidovat, přispět nebo se jen zeptat?
-        Napište nám. Ozveme se co nejdřív.
+        Chcete se zapojit, kandidovat nebo se jen zeptat?
+        Napište nám nebo zavolejte. Ozveme se co nejdřív.
       </p>
     </div>
   </section>
 
   <section class="section" style="background-color: var(--color-off-white);">
-    <div class="container-site grid gap-10 lg:grid-cols-[1.2fr_1fr]">
-      <!-- Contact info -->
-      <div>
-        <h2>Napište nám</h2>
-        <p class="mt-3 text-lg" style="color: var(--color-text-light);">
-          Nejrychlejší cesta je e-mail nebo formulář na této stránce.
-          Odpovídáme obvykle do dvou pracovních dní.
-        </p>
+    <div class="container-site max-w-3xl">
+      <h2>Napište nám nebo zavolejte</h2>
+      <p class="mt-3 text-lg" style="color: var(--color-text-light);">
+        Nejrychlejší cesta je e-mail nebo telefon.
+        Odpovídáme obvykle do dvou pracovních dní.
+      </p>
 
-        <div class="mt-8 grid gap-5 sm:grid-cols-2">
-          <a
-            href={`mailto:${contact.email}`}
-            class="card card-hover block"
-          >
-            <span
-              class="icon-badge"
-              style="color: var(--color-primary);"
-              aria-hidden="true"
-            >
-              <Icon name="lucide:mail" width={24} height={24} />
-            </span>
-            <p
-              class="mt-4 text-sm font-bold uppercase tracking-[0.15em]"
-              style="color: var(--color-primary);"
-            >
-              E-mail
-            </p>
-            <p class="mt-1 font-bold" style="color: var(--color-dark);">
-              {contact.email}
-            </p>
-          </a>
-
-          <a
-            href={contact.facebook}
-            rel="noopener"
-            target="_blank"
-            class="card card-hover block"
-          >
-            <span
-              class="icon-badge"
-              style="color: var(--color-primary);"
-              aria-hidden="true"
-            >
-              <Icon name="lucide:facebook" width={24} height={24} />
-            </span>
-            <p
-              class="mt-4 text-sm font-bold uppercase tracking-[0.15em]"
-              style="color: var(--color-primary);"
-            >
-              Facebook
-            </p>
-            <p class="mt-1 font-bold" style="color: var(--color-dark);">
-              Za lepší Mariánské Lázně
-            </p>
-          </a>
-
-          <a
-            href={contact.instagram}
-            rel="noopener"
-            target="_blank"
-            class="card card-hover block"
-          >
-            <span
-              class="icon-badge"
-              style="color: var(--color-primary);"
-              aria-hidden="true"
-            >
-              <Icon name="lucide:instagram" width={24} height={24} />
-            </span>
-            <p
-              class="mt-4 text-sm font-bold uppercase tracking-[0.15em]"
-              style="color: var(--color-primary);"
-            >
-              Instagram
-            </p>
-            <p class="mt-1 font-bold" style="color: var(--color-dark);">
-              @zalepsimarianskelazne
-            </p>
-          </a>
-
-          <div class="card">
-            <span
-              class="icon-badge"
-              style="color: var(--color-accent); background-color: var(--color-accent-light);"
-              aria-hidden="true"
-            >
-              <Icon name="lucide:landmark" width={24} height={24} />
-            </span>
-            <p
-              class="mt-4 text-sm font-bold uppercase tracking-[0.15em]"
-              style="color: var(--color-primary);"
-            >
-              Transparentní účet
-            </p>
-            <p
-              class="mt-1 font-mono font-bold"
-              style="color: var(--color-dark);"
-            >
-              {contact.transparentAccount.number}
-            </p>
-            <p class="text-sm" style="color: var(--color-text-light);">
-              {contact.transparentAccount.bank}
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="mt-10 card"
-          style="background-color: var(--color-primary-bg); border-color: var(--color-primary-pale);"
+      <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        <a
+          href={`mailto:${contact.email}`}
+          class="card card-hover block"
         >
-          <h3 style="color: var(--color-dark); font-size: 1.25rem;">
-            Chcete kandidovat?
-          </h3>
-          <p class="mt-3" style="color: var(--color-text);">
-            Hledáme lidi, kterým na Mariánkách záleží a chtějí přiložit ruku
-            k dílu. Kandidovat můžete i vy — ozvěte se nám a domluvíme si
-            nezávaznou schůzku.
+          <span
+            class="icon-badge"
+            style="color: var(--color-primary);"
+            aria-hidden="true"
+          >
+            <Icon name="lucide:mail" width={24} height={24} />
+          </span>
+          <p
+            class="mt-4 text-sm font-bold uppercase tracking-[0.15em]"
+            style="color: var(--color-primary);"
+          >
+            E-mail
           </p>
-        </div>
+          <p class="mt-1 font-bold" style="color: var(--color-dark);">
+            {contact.email}
+          </p>
+        </a>
+
+        <a
+          href={`tel:${contact.phone.replace(/\s/g, "")}`}
+          class="card card-hover block"
+        >
+          <span
+            class="icon-badge"
+            style="color: var(--color-primary);"
+            aria-hidden="true"
+          >
+            <Icon name="lucide:phone" width={24} height={24} />
+          </span>
+          <p
+            class="mt-4 text-sm font-bold uppercase tracking-[0.15em]"
+            style="color: var(--color-primary);"
+          >
+            Telefon
+          </p>
+          <p class="mt-1 font-bold" style="color: var(--color-dark);">
+            {contact.phone}
+          </p>
+        </a>
+
+        <a
+          href={contact.facebook}
+          rel="noopener"
+          target="_blank"
+          class="card card-hover block"
+        >
+          <span
+            class="icon-badge"
+            style="color: var(--color-primary);"
+            aria-hidden="true"
+          >
+            <Icon name="lucide:facebook" width={24} height={24} />
+          </span>
+          <p
+            class="mt-4 text-sm font-bold uppercase tracking-[0.15em]"
+            style="color: var(--color-primary);"
+          >
+            Facebook
+          </p>
+          <p class="mt-1 font-bold" style="color: var(--color-dark);">
+            Za lepší Mariánské Lázně
+          </p>
+        </a>
+
+        <a
+          href={contact.instagram}
+          rel="noopener"
+          target="_blank"
+          class="card card-hover block"
+        >
+          <span
+            class="icon-badge"
+            style="color: var(--color-primary);"
+            aria-hidden="true"
+          >
+            <Icon name="lucide:instagram" width={24} height={24} />
+          </span>
+          <p
+            class="mt-4 text-sm font-bold uppercase tracking-[0.15em]"
+            style="color: var(--color-primary);"
+          >
+            Instagram
+          </p>
+          <p class="mt-1 font-bold" style="color: var(--color-dark);">
+            @zalepsimarianskelazne
+          </p>
+        </a>
       </div>
 
-      <!-- Form -->
-      <div>
-        <h2 style="font-size: 1.5rem;">Formulář</h2>
-        <p class="mt-2" style="color: var(--color-text-light);">
-          Vaše zpráva dorazí přímo nám.
+      <div
+        class="mt-12 card"
+        style="background-color: var(--color-primary-bg); border-color: var(--color-primary-pale);"
+      >
+        <h3 style="color: var(--color-dark); font-size: 1.25rem;">
+          Chcete kandidovat?
+        </h3>
+        <p class="mt-3" style="color: var(--color-text);">
+          Hledáme lidi, kterým na Mariánkách záleží a chtějí přiložit ruku
+          k dílu. Kandidovat můžete i vy — ozvěte se nám a domluvíme si
+          nezávaznou schůzku.
         </p>
-        <div class="mt-6">
-          <ContactForm client:load />
+        <div class="mt-5">
+          <a href={`mailto:${contact.email}`} class="btn btn-primary">
+            <Icon name="lucide:mail" width={16} height={16} />
+            Napsat e-mail
+          </a>
         </div>
       </div>
     </div>
   </section>
-
 </Base>
