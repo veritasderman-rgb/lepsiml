@@ -1,4 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="12" fill="#2D6A4F"/>
-  <text x="32" y="42" font-family="'Source Sans 3','Segoe UI',system-ui,sans-serif" font-size="28" font-weight="800" text-anchor="middle" fill="#FFFFFF" letter-spacing="-1">ML</text>
+  <defs>
+    <linearGradient id="fg" x1="0" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" stop-color="#2D6A4F"/>
+      <stop offset="100%" stop-color="#40916C"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#1B4332"/>
+  <g transform="translate(20, 32)">
+    <path d="M 0 22 Q 0 -5 12 -22 Q 14 -9 24 0 Q 10 0 0 22Z" fill="url(#fg)"/>
+    <path d="M -2 22 Q -8 0 -2 -16 Q 0 -5.5 8 2 Q 0 6 -2 22Z" fill="#B7E4C7" opacity="0.6"/>
+    <path d="M 0 21 Q 3 5 12 -20" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+    <ellipse cx="1" cy="27" rx="3.5" ry="4" fill="#D4A843"/>
+  </g>
 </svg>

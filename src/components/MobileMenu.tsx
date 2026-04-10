@@ -72,9 +72,23 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
           <div className="relative h-full flex flex-col">
             <div className="flex items-center justify-between px-5 pt-5">
               <span
-                className="text-white font-extrabold text-lg tracking-tight"
+                className="flex items-center gap-2.5 text-white font-extrabold text-lg tracking-tight"
                 style={{ letterSpacing: "-0.01em" }}
               >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 48 72"
+                  width="22"
+                  height="33"
+                  aria-hidden="true"
+                >
+                  <g transform="translate(12, 28)">
+                    <path d="M 0 28 Q 0 -6 14 -28 Q 16 -12 28 0 Q 12 0 0 28Z" fill="#fff" />
+                    <path d="M -2 28 Q -10 0 -2 -20 Q 0 -7 10 2 Q 0 7 -2 28Z" fill="rgba(255,255,255,0.45)" />
+                    <path d="M 0 26 Q 4 6 14 -26" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2" />
+                    <ellipse cx="1" cy="34" rx="4" ry="4.5" fill="rgba(255,255,255,0.85)" />
+                  </g>
+                </svg>
                 Za lepší Mariánské Lázně
               </span>
               <button

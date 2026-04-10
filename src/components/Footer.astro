@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { nav, site, contact } from "../lib/site";
+import LogoMark from "./LogoMark.astro";
 
 const year = new Date().getFullYear();
 ---
@@ -10,12 +11,7 @@ const year = new Date().getFullYear();
     <div class="grid gap-12 md:grid-cols-[1.2fr_1fr_1fr]">
       <div>
         <div class="flex items-center gap-3 mb-4">
-          <span
-            class="inline-flex items-center justify-center w-11 h-11 rounded-md font-extrabold text-lg"
-            style="background-color: var(--color-primary); letter-spacing: -0.02em;"
-          >
-            ML
-          </span>
+          <LogoMark size={30} variant="white" />
           <span class="font-extrabold text-lg tracking-tight">
             Za lepší Mariánské Lázně
           </span>

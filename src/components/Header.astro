@@ -1,6 +1,7 @@
 ---
 import { nav, site } from "../lib/site";
 import MobileMenu from "./MobileMenu.tsx";
+import LogoMark from "./LogoMark.astro";
 
 type Props = { pathname?: string };
 const { pathname = "/" } = Astro.props;
@@ -13,12 +14,7 @@ const { pathname = "/" } = Astro.props;
       class="flex items-center gap-3 text-white"
       aria-label={`${site.name} — domů`}
     >
-      <span
-        class="inline-flex items-center justify-center w-10 h-10 rounded-md font-extrabold text-lg"
-        style="background-color: var(--color-primary); color: #fff; letter-spacing: -0.02em;"
-      >
-        ML
-      </span>
+      <LogoMark size={28} variant="white" />
       <span class="flex flex-col leading-tight">
         <span class="text-white font-extrabold text-[15px] sm:text-base tracking-tight">
           Za lepší Mariánské Lázně
