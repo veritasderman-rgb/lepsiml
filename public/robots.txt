@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zalepsimarianskelazne.cz/sitemap.xml
+Sitemap: https://lepsiml.cz/sitemap.xml

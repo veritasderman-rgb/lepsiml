@@ -22,8 +22,8 @@ const pageTitle = title
   ? `${title} — ${site.name}`
   : `${site.name} — ${site.election}`;
 
-const canonical = new URL(pathname, Astro.site ?? "https://zalepsimarianskelazne.cz");
-const ogImageUrl = new URL(ogImage, Astro.site ?? "https://zalepsimarianskelazne.cz");
+const canonical = new URL(pathname, Astro.site ?? "https://lepsiml.cz");
+const ogImageUrl = new URL(ogImage, Astro.site ?? "https://lepsiml.cz");
 ---
 
 <!doctype html>
@@ -64,7 +64,7 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? "https://zalepsimarianskelazne
     />
 
     {/* Plausible analytics — doplnit doménu po nasazení */}
-    <!-- <script defer data-domain="zalepsimarianskelazne.cz" src="https://plausible.io/js/script.js"></script> -->
+    <!-- <script defer data-domain="lepsiml.cz" src="https://plausible.io/js/script.js"></script> -->
   </head>
   <body>
     <a

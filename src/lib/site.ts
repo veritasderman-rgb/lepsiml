@@ -3,7 +3,7 @@
 export const site = {
   name: "Za lepší Mariánské Lázně",
   shortName: "ZLML",
-  url: "https://zalepsimarianskelazne.cz",
+  url: "https://lepsiml.cz",
   claim: "Protože víme, jak na to.",
   election: "Komunální volby 2026",
   headline: "Mariánské Lázně si zaslouží víc!",
@@ -24,8 +24,8 @@ export const nav: { label: string; href: string }[] = [
 export const contact = {
   email: "mail@josefpavlovic.cz",
   phone: "+420 607 517 967",
-  facebook: "https://facebook.com/zalepsimarianskelazne",
-  instagram: "https://instagram.com/zalepsimarianskelazne",
+  facebook: "https://facebook.com/lepsiml.cz",
+  instagram: "https://instagram.com/lepsiml.cz",
   spotify: "https://open.spotify.com/",
   youtube: "https://www.youtube.com/",
 };
