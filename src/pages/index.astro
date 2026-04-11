@@ -14,6 +14,62 @@ import { Icon } from "astro-icon/components";
   description="Komunální volby 2026 v Mariánských Lázních. Lídr Vojta Franta a tým Za lepší Mariánské Lázně. Dotáhneme radnici, otevřeme ji lidem, zajistíme kulturu celý rok."
 >
   <Hero />
+
+  <!-- Odpočítávání do komunálních voleb 2026 -->
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, var(--color-dark) 0%, #061d3a 100%);"
+    aria-label="Odpočítávání do komunálních voleb 2026"
+  >
+    <span
+      class="hero-shape"
+      style="width: 600px; height: 600px; top: -200px; right: -200px;"
+      aria-hidden="true"
+    ></span>
+    <div class="container-site relative" style="padding-block: 52px 60px;">
+      <div class="text-center">
+        <p
+          class="eyebrow"
+          style="color: var(--color-accent); letter-spacing: 0.25em; font-size: 14px;"
+        >
+          Komunální volby 2026
+        </p>
+        <p class="mt-3 text-lg font-semibold" style="color: rgba(255,255,255,0.7);">
+          Do voleb zbývá
+        </p>
+        <div
+          id="election-countdown"
+          class="mt-6 flex flex-wrap justify-center items-start gap-2"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <div class="countdown-unit">
+            <span id="cd-days" class="countdown-num">–</span>
+            <span class="countdown-label">dní</span>
+          </div>
+          <div class="countdown-sep" aria-hidden="true">:</div>
+          <div class="countdown-unit">
+            <span id="cd-hours" class="countdown-num">–</span>
+            <span class="countdown-label">hodin</span>
+          </div>
+          <div class="countdown-sep" aria-hidden="true">:</div>
+          <div class="countdown-unit">
+            <span id="cd-minutes" class="countdown-num">–</span>
+            <span class="countdown-label">minut</span>
+          </div>
+          <div class="countdown-sep" aria-hidden="true">:</div>
+          <div class="countdown-unit">
+            <span id="cd-seconds" class="countdown-num">–</span>
+            <span class="countdown-label">sekund</span>
+          </div>
+        </div>
+        <p class="mt-6 text-sm" style="color: rgba(255,255,255,0.35);">
+          Pátek 23. října 2026 — otevření volebních místností
+        </p>
+      </div>
+    </div>
+  </section>
+
   <PillarStrip />
   <LeaderCard />
 
@@ -74,7 +130,7 @@ import { Icon } from "astro-icon/components";
   <!-- Podcast teaser -->
   <section
     class="section relative overflow-hidden"
-    style="background-color: var(--color-dark);"
+    style="background-color: var(--color-dark); margin-top: 0;"
     aria-labelledby="podcast-teaser"
   >
     <span
@@ -136,3 +192,45 @@ import { Icon } from "astro-icon/components";
     </div>
   </section>
 </Base>
+
+<script>
+  (function () {
+    // Komunální volby 2026 — pátek 23. října 2026, 14:00 (otevření místností)
+    const ELECTION = new Date("2026-10-23T14:00:00").getTime();
+
+    function pad(n: number): string {
+      return String(n).padStart(2, "0");
+    }
+
+    function tick() {
+      const diff = ELECTION - Date.now();
+      if (diff <= 0) {
+        const el = document.getElementById("election-countdown");
+        if (el) {
+          el.innerHTML =
+            '<p style="color:var(--color-accent);font-size:1.5rem;font-weight:800;">Volby právě probíhají!</p>';
+        }
+        return;
+      }
+
+      const totalSec = Math.floor(diff / 1000);
+      const days = Math.floor(totalSec / 86400);
+      const hours = Math.floor((totalSec % 86400) / 3600);
+      const minutes = Math.floor((totalSec % 3600) / 60);
+      const seconds = totalSec % 60;
+
+      const dEl = document.getElementById("cd-days");
+      const hEl = document.getElementById("cd-hours");
+      const mEl = document.getElementById("cd-minutes");
+      const sEl = document.getElementById("cd-seconds");
+
+      if (dEl) dEl.textContent = String(days);
+      if (hEl) hEl.textContent = pad(hours);
+      if (mEl) mEl.textContent = pad(minutes);
+      if (sEl) sEl.textContent = pad(seconds);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>

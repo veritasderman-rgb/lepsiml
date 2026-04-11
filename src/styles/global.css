@@ -2,12 +2,12 @@
 
 @theme {
   /* Brand palette — modrá, žlutá, bílá (barvy města Mariánské Lázně) */
-  --color-primary: #1e56a0;
-  --color-primary-light: #3b7dd8;
+  --color-primary: #0f3f88;
+  --color-primary-light: #2d6ac6;
   --color-primary-pale: #b8d4f0;
-  --color-primary-bg: #eef4fb;
-  --color-accent: #d4a843;
-  --color-accent-light: #f5edcf;
+  --color-primary-bg: #e8f0fb;
+  --color-accent: #f0c519;
+  --color-accent-light: #fef7c3;
   --color-dark: #0f2d4a;
   --color-text: #2b2b2b;
   --color-text-light: #5a6878;
@@ -133,13 +133,13 @@
   .btn-primary {
     background-color: var(--color-accent);
     color: var(--color-dark);
-    box-shadow: 0 2px 8px rgba(212, 168, 67, 0.25);
+    box-shadow: 0 2px 8px rgba(240, 197, 25, 0.28);
   }
 
   .btn-primary:hover {
-    background-color: #c99a33;
+    background-color: #d9b000;
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(212, 168, 67, 0.35);
+    box-shadow: 0 4px 14px rgba(240, 197, 25, 0.4);
     color: var(--color-dark);
   }
 
@@ -285,6 +285,42 @@
   details.accordion > div.accordion-body {
     padding: 0 0 22px;
     color: var(--color-text);
+  }
+
+  /* Election countdown */
+  .countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 90px;
+  }
+
+  .countdown-num {
+    font-size: clamp(2.5rem, 5vw + 1rem, 4rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--color-accent);
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .countdown-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .countdown-sep {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.2);
+    align-self: flex-start;
+    padding-top: 6px;
+    line-height: 1;
+    user-select: none;
   }
 
   /* Decorative hero shapes */
