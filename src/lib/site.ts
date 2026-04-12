@@ -85,6 +85,7 @@ export type Candidate = {
   name: string;
   role: string;
   bio: string;
+  photo?: string;
   isLeader?: boolean;
   quote?: string;
   personalMotivation?: string;
@@ -104,6 +105,7 @@ export const coreTeam: Candidate[] = [
   {
     name: "Josef Pavlovic",
     role: "Zastupitel města · bývalý náměstek ministra zdravotnictví",
+    photo: "/team/josef-pavlovic.png",
     bio: "Zaměstnanec společnosti Léčebné lázně Mariánské Lázně. Zastupitel města se zkušeností z celostátní úrovně ve zdravotnictví a lázeňství.",
     personalMotivation:
       "Znám zdravotnictví i lázně zevnitř. Vím, kde se dá ušetřit a kde se naopak musí investovat, aby Mariánky zůstaly klenotem.",
@@ -111,6 +113,7 @@ export const coreTeam: Candidate[] = [
   {
     name: "Ing. Martin Kalina",
     role: "Bývalý starosta Mariánských Lázní · dispečer mezinárodní dopravy",
+    photo: "/team/martin-kalina.jpg",
     bio: "Je mu 41 let, téměř pět let byl starostou Mariánských Lázní. Dnes pracuje jako dispečer mezinárodní dopravy a ve volných chvílích se věnuje hlavně četbě, rodině a pasivnímu odpočinku.",
     personalMotivation:
       "Chuť pomáhat s rozvojem Mariánek mě neopustila. Rozhodl jsem se spolu s přáteli znovu nabídnout městu a jeho občanům své nápady a vize.",
