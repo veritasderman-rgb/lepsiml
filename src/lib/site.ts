@@ -109,11 +109,11 @@ export const coreTeam: Candidate[] = [
       "Znám zdravotnictví i lázně zevnitř. Vím, kde se dá ušetřit a kde se naopak musí investovat, aby Mariánky zůstaly klenotem.",
   },
   {
-    name: "Martin Kalina",
-    role: "Odborník na kulturu · producent",
-    bio: "Dohlédne na to, aby kulturní investice města skutečně fungovaly pro Mariánky celý rok.",
+    name: "Ing. Martin Kalina",
+    role: "Bývalý starosta Mariánských Lázní · dispečer mezinárodní dopravy",
+    bio: "Je mu 41 let, téměř pět let byl starostou Mariánských Lázní. Dnes pracuje jako dispečer mezinárodní dopravy a ve volných chvílích se věnuje hlavně četbě, rodině a pasivnímu odpočinku.",
     personalMotivation:
-      "Kultura nemá být výkladní skříň dvou víkendů v roce. Chci, aby Mariánky žily hudbou a uměním každý den.",
+      "Chuť pomáhat s rozvojem Mariánek mě neopustila. Rozhodl jsem se spolu s přáteli znovu nabídnout městu a jeho občanům své nápady a vize.",
   },
   {
     name: "Žaneta Pivcová",
