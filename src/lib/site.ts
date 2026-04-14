@@ -120,10 +120,11 @@ export const coreTeam: Candidate[] = [
   },
   {
     name: "Žaneta Pivcová",
-    role: "Komunitní organizátorka",
-    bio: "Propojuje lidi napříč čtvrtěmi. Participativní rozpočet má v malíčku.",
+    role: "Zubní technička · specialistka na kombinovanou protetiku",
+    photo: "/team/zaneta-pivcova.jpg",
+    bio: "Jsem zubní technička, specialistka na kombinovanou protetiku – ve své práci řeším věci na setiny milimetrů, přesně, funkčně a tak, aby dlouhodobě dávaly smysl. Stejný přístup chci přenést i do fungování města. Mám zkušenost ze sociálně-zdravotní komise, kde jsem se věnovala sociálním službám a zdravotnictví. Dostupnost zdravotní péče vnímám jako klíčovou – zdravotnictví má fungovat pro všechny, bez zbytečných bariér. Zajímá mě také, jak město spravuje svůj majetek a hospodaří s veřejnými prostředky.",
     personalMotivation:
-      "Nejlepší věci ve městě vznikly, když si lidé sami řekli, co chtějí. Chci jim ten hlas vrátit.",
+      "Jsem zvyklá věci dotahovat a nést za ně odpovědnost. V životě mě drží pohyb, hudba a svoboda.",
   },
   {
     name: "Petr Třešňák",
