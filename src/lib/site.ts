@@ -135,10 +135,10 @@ export const coreTeam: Candidate[] = [
   },
   {
     name: "Jan Pivec",
-    role: "IT specialista · otevřená data",
-    bio: "Rozklikávací rozpočet a transparentní hospodaření jako standard, ne jako výjimka.",
+    role: "Student sociologie a politologie · Radní Studentské rady FF UK",
+    bio: "Spoluzakladatel protestní skupiny Média nedáme! Volný čas věnuje přípravě studentských akcí, protestních iniciativ a četbě filosofie. Je přesvědčen, že investice do mladých lidí a jejich budoucnosti jsou klíčem k prosperujícímu městu.",
     personalMotivation:
-      "Otevřená data nejsou ideologie, ale nástroj. Když občan vidí každou korunu, politika funguje jinak.",
+      "Město musí podporovat kultivaci myšlení. Nikoliv propagandou, ale projekty, které budou otevřeny kreativitě a odlišnostem občanů.",
   },
 ];
 
