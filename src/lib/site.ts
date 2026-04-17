@@ -229,7 +229,7 @@ export const programTopics: ProgramTopic[] = [
       },
       {
         title: "Skatingový park",
-        body: "Po letech diskuzí profinancujeme skate park.",
+        body: "Skatepark se v anketě Fóra zdravého města umístil jednoznačně na prvním místě. Preferovaná lokalita je klidová zóna na místě bývalých Hamrnických kasáren, kde Develop centrum počítá se skateparkem, dalšími sportovišti i bydlením. Klub Spa Riders zajistil německého partnera (skate klub RollSchuppen z Arzbergu) a podepsal memorandum o spolupráci — to otevírá cestu k financování z programu INTERREG. Dotační program běží do roku 2027; projekt byl již prezentován na zastupitelstvu.",
       },
     ],
     ano: [
