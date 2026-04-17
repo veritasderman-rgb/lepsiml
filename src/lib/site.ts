@@ -414,7 +414,7 @@ export const healthcarePillars: HealthcarePillar[] = [
     number: 1,
     title: "Lékaře nelákáme na úplatky, ale na moderní zázemí",
     problem:
-      "Finanční bonusy za příchod lékaře často vedou jen k „přelévání" doktorů mezi městy bez dlouhodobého efektu.",
+      "Finanční bonusy za příchod lékaře často vedou jen k „přelévání\u201d doktorů mezi městy bez dlouhodobého efektu.",
     solution:
       "Obce nabídnou vybavené sdílené ordinace nebo moderní obecní zdravotnická centra s nižším nájmem. Pro mladé lékaře je klíčové zázemí, možnost konzultací s kolegy a infrastruktura pro rodinu (školky, byty), nikoliv jen jednorázový bonus.",
   },
@@ -424,7 +424,7 @@ export const healthcarePillars: HealthcarePillar[] = [
     problem:
       "Senioři často končí v nemocnici nebo domově důchodců zbytečně, protože nezvládají drobné úkony nebo dopravu.",
     solution:
-      "Zavedeme službu „Obecní sestra" (Community Nursing) – zdravotníka placeného obcí, který preventivně navštěvuje seniory, pomáhá s léky a propojuje je se službami. Podpoříme Senior Taxi pro cesty k lékaři a na úřady, ideálně ve spolupráci s okolními obcemi pro snížení nákladů.",
+      "Zavedeme službu „Obecní sestra\u201d (Community Nursing) – zdravotníka placeného obcí, který preventivně navštěvuje seniory, pomáhá s léky a propojuje je se službami. Podpoříme Senior Taxi pro cesty k lékaři a na úřady, ideálně ve spolupráci s okolními obcemi pro snížení nákladů.",
   },
   {
     number: 3,
