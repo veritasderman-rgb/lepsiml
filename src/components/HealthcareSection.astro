@@ -1,0 +1,61 @@
+---
+import { Icon } from "astro-icon/components";
+import { healthcarePillars } from "../lib/site";
+---
+
+<section class="section" style="background-color: var(--color-off-white);" aria-labelledby="healthcare-heading">
+  <div class="container-site">
+    <div class="max-w-2xl">
+      <p class="eyebrow" style="color: var(--color-primary);">Zdravotnictví a sociální péče</p>
+      <h2 id="healthcare-heading" class="mt-3">4 hlavní pilíře pro zdravotnictví a naše město</h2>
+      <p class="mt-4 text-lg" style="color: var(--color-text-light);">
+        Zdraví obyvatel není jen záležitost státu — město může udělat konkrétní kroky, které
+        lidem reálně pomohou. Tady jsou čtyři priority, které chceme prosadit.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        healthcarePillars.map((pillar) => (
+          <article class="reveal card !p-0 overflow-hidden" style="background-color: #fff;">
+            <div style="height: 4px; background-color: var(--color-primary);"></div>
+            <div class="p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-5">
+                <span
+                  class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
+                  style="background-color: var(--color-primary-bg); color: var(--color-primary);"
+                  aria-hidden="true"
+                >
+                  {pillar.number}
+                </span>
+                <h3 class="text-[1.05rem] font-bold leading-snug" style="color: var(--color-dark);">
+                  {pillar.title}
+                </h3>
+              </div>
+
+              <div
+                class="rounded-lg p-4 mb-4"
+                style="background-color: #f6f1ec; border: 1px solid #eadfcf;"
+              >
+                <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color: #8a5a00;">
+                  Problém
+                </p>
+                <p class="text-[14px]" style="color: #5a4920;">{pillar.problem}</p>
+              </div>
+
+              <div
+                class="rounded-lg p-4"
+                style="background-color: var(--color-primary-bg); border: 1px solid var(--color-border);"
+              >
+                <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color: var(--color-primary);">
+                  Řešení
+                </p>
+                <p class="text-[14px]" style="color: var(--color-dark);">{pillar.solution}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

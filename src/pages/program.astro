@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import ProgramTopic from "../components/ProgramTopic.astro";
+import HealthcareSection from "../components/HealthcareSection.astro";
 import { Icon } from "astro-icon/components";
 import { programTopics, quickWins } from "../lib/site";
 ---
@@ -42,6 +43,9 @@ import { programTopics, quickWins } from "../lib/site";
       </div>
     </div>
   </section>
+
+  <!-- Healthcare -->
+  <HealthcareSection />
 
   <!-- Quick wins -->
   <section class="section" style="background-color: var(--color-primary-bg);" aria-labelledby="quick-wins">
