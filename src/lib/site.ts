@@ -149,10 +149,10 @@ export type ProgramTopic = {
   lead: string;
   borderColor: string;
   promises: { title: string; body: string }[];
-  ano: string[];
-  us: string[];
-  forYou: string[];
-  challenges: string[];
+  ano?: string[];
+  us?: string[];
+  forYou?: string[];
+  challenges?: string[];
 };
 
 export const programTopics: ProgramTopic[] = [
@@ -400,46 +400,30 @@ export const programTopics: ProgramTopic[] = [
       "Status klimatických lázní nás zavazuje k cílům, které mohou omezit některé investice nebo aktivity. To je cena za kvalitu ovzduší a ochranu pramenů.",
     ],
   },
-];
-
-export type HealthcarePillar = {
-  number: number;
-  title: string;
-  problem: string;
-  solution: string;
-};
-
-export const healthcarePillars: HealthcarePillar[] = [
   {
-    number: 1,
-    title: "Lékaře nelákáme na úplatky, ale na moderní zázemí",
-    problem:
-      "Finanční bonusy za příchod lékaře často vedou jen k „přelévání\u201d doktorů mezi městy bez dlouhodobého efektu.",
-    solution:
-      "Obce nabídnou vybavené sdílené ordinace nebo moderní obecní zdravotnická centra s nižším nájmem. Pro mladé lékaře je klíčové zázemí, možnost konzultací s kolegy a infrastruktura pro rodinu (školky, byty), nikoliv jen jednorázový bonus.",
-  },
-  {
-    number: 2,
-    title: "Pomoc seniorům zůstat doma: Obecní sestra a Senior Taxi",
-    problem:
-      "Senioři často končí v nemocnici nebo domově důchodců zbytečně, protože nezvládají drobné úkony nebo dopravu.",
-    solution:
-      "Zavedeme službu „Obecní sestra\u201d (Community Nursing) – zdravotníka placeného obcí, který preventivně navštěvuje seniory, pomáhá s léky a propojuje je se službami. Podpoříme Senior Taxi pro cesty k lékaři a na úřady, ideálně ve spolupráci s okolními obcemi pro snížení nákladů.",
-  },
-  {
-    number: 3,
-    title: "Duševní zdraví nesmí být tabu",
-    problem: "Nárůst psychických potíží, zejména u dětí a mladistvých, a nedostatek péče.",
-    solution:
-      "Podpora vzniku center duševního zdraví a komunitních služeb poskytnutím městských prostor. Zavedení preventivních programů duševní hygieny do škol zřizovaných městem podle programu SZU – Zdravé školy.",
-  },
-  {
-    number: 4,
-    title: "Koordinace zdravotní a sociální péče",
-    problem:
-      "Lidé dlouho shánějí doktora, mají problém najít toho s volnou kapacitou v dané specializaci (neurolog, kardiolog ad.).",
-    solution:
-      "Zřídíme roli koordinátora — administrativního pracovníka — který pomůže lidem, nejvíce hůře se orientujícím seniorům, se sháněním nového registrujícího lékaře, zubaře či dispenzarizujícího specialisty i s hledáním následné péče, rehabilitace a sociálních služeb.",
+    id: "zdravotnictvi",
+    icon: "lucide:stethoscope",
+    title: "Zdravotnictví a naše město",
+    borderColor: "#0284c7",
+    lead: "Zdravotnictví v menším městě čelí chronickému nedostatku lékařů, zhoršené dostupnosti péče pro seniory a rostoucím psychickým problémům mladých. Město může udělat konkrétní kroky — bez čekání na stát.",
+    promises: [
+      {
+        title: "Lékaře nelákáme na úplatky, ale na moderní zázemí",
+        body: "Finanční bonusy za příchod lékaře vedou jen k přelévání doktorů mezi městy bez efektu. Nabídneme vybavené sdílené ordinace nebo zdravotnická centra s nižším nájmem — pro mladé lékaře je klíčové zázemí, možnost konzultací s kolegy a infrastruktura pro rodinu (školky, byty), nikoliv jen jednorázový bonus.",
+      },
+      {
+        title: "Pomoc seniorům zůstat doma: Obecní sestra a Senior Taxi",
+        body: "Senioři zbytečně končí v nemocnicích nebo domovech důchodců, protože nezvládají drobné úkony nebo dopravu. Zavedeme Obecní sestru (Community Nursing) — zdravotníka placeného obcí, který preventivně navštěvuje seniory a propojuje je se službami. Podpoříme Senior Taxi pro cesty k lékaři a na úřady, ideálně ve spolupráci s okolními obcemi.",
+      },
+      {
+        title: "Duševní zdraví nesmí být tabu",
+        body: "Nárůst psychických potíží u dětí a mladistvých a nedostatek péče jsou realitou i u nás. Podpoříme vznik center duševního zdraví v městských prostorách a zavedeme preventivní programy duševní hygieny do škol zřizovaných městem podle programu SZU – Zdravé školy.",
+      },
+      {
+        title: "Koordinace zdravotní a sociální péče",
+        body: "Lidé dlouho shánějí doktora s volnou kapacitou — neurologa, kardiologa a dalších specialistů. Zřídíme roli koordinátora, který pomůže lidem — zejména hůře se orientujícím seniorům — se sháněním registrujícího lékaře, zubaře či specialisty i s hledáním rehabilitace a sociálních služeb.",
+      },
+    ],
   },
 ];
 

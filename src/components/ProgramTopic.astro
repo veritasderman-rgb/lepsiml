@@ -58,67 +58,69 @@ const { topic } = Astro.props;
         </div>
       </div>
 
-      <div class="mt-10 grid gap-5 md:grid-cols-2">
+      {(topic.ano?.length || topic.us?.length) && (
+        <div class="mt-10 grid gap-5 md:grid-cols-2">
+          {topic.ano?.length && (
+            <div
+              class="rounded-xl p-6"
+              style="background-color: #f6f1ec; border: 1px solid #eadfcf;"
+            >
+              <p
+                class="eyebrow flex items-center gap-2"
+                style="color: #8a5a00; letter-spacing: 0.12em;"
+              >
+                <Icon name="lucide:x" width={16} height={16} />
+                Současné vedení města dělá
+              </p>
+              <ul class="mt-4 space-y-2 text-[15px]" style="color: #5a4920;">
+                {topic.ano.map((line) => (
+                  <li class="flex gap-3">
+                    <span aria-hidden="true" class="mt-[9px] w-1.5 h-1.5 rounded-full shrink-0" style="background-color: #8a5a00;"></span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {topic.us?.length && (
+            <div
+              class="rounded-xl p-6"
+              style="background-color: var(--color-primary-bg); border: 1px solid var(--color-border);"
+            >
+              <p
+                class="eyebrow flex items-center gap-2"
+                style="color: var(--color-primary); letter-spacing: 0.12em;"
+              >
+                <Icon name="lucide:check" width={16} height={16} />
+                My nabízíme
+              </p>
+              <ul class="mt-4 space-y-2 text-[15px]" style="color: var(--color-dark);">
+                {topic.us.map((line) => (
+                  <li class="flex gap-3">
+                    <span aria-hidden="true" class="mt-[9px] w-1.5 h-1.5 rounded-full shrink-0" style="background-color: var(--color-primary);"></span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+
+      {topic.forYou?.length && (
         <div
-          class="rounded-xl p-6"
-          style="background-color: #f6f1ec; border: 1px solid #eadfcf;"
+          class="mt-5 rounded-xl p-6 md:p-8"
+          style="background-color: var(--color-accent-light); border: 1px solid #eadfcf;"
         >
           <p
             class="eyebrow flex items-center gap-2"
             style="color: #8a5a00; letter-spacing: 0.12em;"
           >
-            <Icon name="lucide:x" width={16} height={16} />
-            Současné vedení města dělá
+            <Icon name="lucide:heart-handshake" width={18} height={18} />
+            A co z toho budete mít vy
           </p>
-          <ul class="mt-4 space-y-2 text-[15px]" style="color: #5a4920;">
-            {
-              topic.ano.map((line) => (
-                <li class="flex gap-3">
-                  <span aria-hidden="true" class="mt-[9px] w-1.5 h-1.5 rounded-full shrink-0" style="background-color: #8a5a00;"></span>
-                  <span>{line}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-        <div
-          class="rounded-xl p-6"
-          style="background-color: var(--color-primary-bg); border: 1px solid var(--color-border);"
-        >
-          <p
-            class="eyebrow flex items-center gap-2"
-            style="color: var(--color-primary); letter-spacing: 0.12em;"
-          >
-            <Icon name="lucide:check" width={16} height={16} />
-            My nabízíme
-          </p>
-          <ul class="mt-4 space-y-2 text-[15px]" style="color: var(--color-dark);">
-            {
-              topic.us.map((line) => (
-                <li class="flex gap-3">
-                  <span aria-hidden="true" class="mt-[9px] w-1.5 h-1.5 rounded-full shrink-0" style="background-color: var(--color-primary);"></span>
-                  <span>{line}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
-
-      <div
-        class="mt-5 rounded-xl p-6 md:p-8"
-        style="background-color: var(--color-accent-light); border: 1px solid #eadfcf;"
-      >
-        <p
-          class="eyebrow flex items-center gap-2"
-          style="color: #8a5a00; letter-spacing: 0.12em;"
-        >
-          <Icon name="lucide:heart-handshake" width={18} height={18} />
-          A co z toho budete mít vy
-        </p>
-        <ul class="mt-5 grid gap-3 md:grid-cols-2 text-[15px]" style="color: var(--color-dark);">
-          {
-            topic.forYou.map((line) => (
+          <ul class="mt-5 grid gap-3 md:grid-cols-2 text-[15px]" style="color: var(--color-dark);">
+            {topic.forYou.map((line) => (
               <li class="flex gap-3 items-start">
                 <span
                   class="shrink-0 mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full"
@@ -129,25 +131,25 @@ const { topic } = Astro.props;
                 </span>
                 <span>{line}</span>
               </li>
-            ))
-          }
-        </ul>
-      </div>
+            ))}
+          </ul>
+        </div>
+      )}
 
-      <div
-        class="mt-5 rounded-xl p-6 md:p-7"
-        style="background-color: #fff; border: 1px dashed var(--color-border);"
-      >
-        <p
-          class="eyebrow flex items-center gap-2"
-          style="color: var(--color-text-light); letter-spacing: 0.12em;"
+      {topic.challenges?.length && (
+        <div
+          class="mt-5 rounded-xl p-6 md:p-7"
+          style="background-color: #fff; border: 1px dashed var(--color-border);"
         >
-          <Icon name="lucide:alert-triangle" width={16} height={16} />
-          Co nebude snadné — a my vám to říkáme předem
-        </p>
-        <ul class="mt-4 space-y-3 text-[14px]" style="color: var(--color-text);">
-          {
-            topic.challenges.map((line) => (
+          <p
+            class="eyebrow flex items-center gap-2"
+            style="color: var(--color-text-light); letter-spacing: 0.12em;"
+          >
+            <Icon name="lucide:alert-triangle" width={16} height={16} />
+            Co nebude snadné — a my vám to říkáme předem
+          </p>
+          <ul class="mt-4 space-y-3 text-[14px]" style="color: var(--color-text);">
+            {topic.challenges.map((line) => (
               <li class="flex gap-3 items-start">
                 <span
                   aria-hidden="true"
@@ -156,10 +158,10 @@ const { topic } = Astro.props;
                 />
                 <span>{line}</span>
               </li>
-            ))
-          }
-        </ul>
-      </div>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   </details>
 </article>
