@@ -79,6 +79,14 @@ export const pillars: Pillar[] = [
       "Komunitní energetika po vzoru Aše, poptávková doprava do okrajových částí, péče o zeleň a prameny.",
     borderColor: "var(--color-primary-light)",
   },
+  {
+    id: "zdravotnictvi",
+    icon: "lucide:stethoscope",
+    title: "Zdravotnictví a naše město",
+    short:
+      "Moderní zázemí pro lékaře, Obecní sestra a Senior Taxi pro seniory, duševní zdraví ve školách, koordinátor péče.",
+    borderColor: "#0284c7",
+  },
 ];
 
 export type Candidate = {
