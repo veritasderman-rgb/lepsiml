@@ -148,6 +148,13 @@ export const coreTeam: Candidate[] = [
     personalMotivation:
       "Město musí podporovat kultivaci myšlení. Nikoliv propagandou, ale projekty, které budou otevřeny kreativitě a odlišnostem občanů.",
   },
+  {
+    name: "Martin Nguyen",
+    role: "Student učitelství geografie · Univerzita Karlova",
+    bio: "Student učitelství geografie a teritoriálních studií na Univerzitě Karlově. Jeho blízkými tématy jsou kultura a školství. Ve volném čase se věnuje regionálnímu rozvoji a hře na hudební nástroje.",
+    personalMotivation:
+      "Studium geografie mi dalo cenné znalosti a dovednosti, které bych rád uplatnil na lokální úrovni. Chci, aby Mariánky byly místem, kde mladí lidé chtějí zůstávat a kde rozvoj neprobíhá na úkor přírody.",
+  },
 ];
 
 export type ProgramTopic = {
