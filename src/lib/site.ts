@@ -144,6 +144,7 @@ export const coreTeam: Candidate[] = [
   {
     name: "Jan Pivec",
     role: "Student sociologie a politologie · Radní Studentské rady FF UK",
+    photo: "/team/jan-pivec.jpg",
     bio: "Spoluzakladatel protestní skupiny Média nedáme! Volný čas věnuje přípravě studentských akcí, protestních iniciativ a četbě filosofie. Je přesvědčen, že investice do mladých lidí a jejich budoucnosti jsou klíčem k prosperujícímu městu.",
     personalMotivation:
       "Město musí podporovat kultivaci myšlení. Nikoliv propagandou, ale projekty, které budou otevřeny kreativitě a odlišnostem občanů.",
