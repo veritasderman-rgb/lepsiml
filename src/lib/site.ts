@@ -144,10 +144,8 @@ export const coreTeam: Candidate[] = [
   },
   {
     name: "Zdeněk Třešňák",
-    role: "Bývalý poslanec · expert na zdravotnictví a lázeňství",
-    bio: "Stojí za projekty, které dostaly Mariánky mezi klimatické lázně.",
-    personalMotivation:
-      "Bojoval jsem o klimatické lázně na celostátní úrovni. Teď chci, aby ten titul v Mariánkách něco znamenal i v praxi.",
+    role: "Kandidát",
+    bio: "",
   },
   {
     name: "Paní Barczi",
