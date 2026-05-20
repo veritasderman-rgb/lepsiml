@@ -135,13 +135,6 @@ export const coreTeam: Candidate[] = [
       "Jsem zvyklá věci dotahovat a nést za ně odpovědnost. V životě mě drží pohyb, hudba a svoboda.",
   },
   {
-    name: "Petr Třešňák",
-    role: "Bývalý poslanec · expert na zdravotnictví a lázeňství",
-    bio: "Stojí za projekty, které dostaly Mariánky mezi klimatické lázně.",
-    personalMotivation:
-      "Bojoval jsem o klimatické lázně na celostátní úrovni. Teď chci, aby ten titul v Mariánkách něco znamenal i v praxi.",
-  },
-  {
     name: "Jan Pivec",
     role: "Student sociologie a politologie · Radní Studentské rady FF UK",
     photo: "/team/jan-pivec.jpg",
@@ -150,11 +143,38 @@ export const coreTeam: Candidate[] = [
       "Město musí podporovat kultivaci myšlení. Nikoliv propagandou, ale projekty, které budou otevřeny kreativitě a odlišnostem občanů.",
   },
   {
+    name: "Zdeněk Třešňák",
+    role: "Bývalý poslanec · expert na zdravotnictví a lázeňství",
+    bio: "Stojí za projekty, které dostaly Mariánky mezi klimatické lázně.",
+    personalMotivation:
+      "Bojoval jsem o klimatické lázně na celostátní úrovni. Teď chci, aby ten titul v Mariánkách něco znamenal i v praxi.",
+  },
+  {
+    name: "Paní Barczi",
+    role: "Kandidátka",
+    bio: "",
+  },
+  {
     name: "Martin Nguyen",
     role: "Student učitelství geografie · Univerzita Karlova",
     bio: "Student učitelství geografie a teritoriálních studií na Univerzitě Karlově. Jeho blízkými tématy jsou kultura a školství. Ve volném čase se věnuje regionálnímu rozvoji a hře na hudební nástroje.",
     personalMotivation:
       "Studium geografie mi dalo cenné znalosti a dovednosti, které bych rád uplatnil na lokální úrovni. Chci, aby Mariánky byly místem, kde mladí lidé chtějí zůstávat a kde rozvoj neprobíhá na úkor přírody.",
+  },
+  {
+    name: "Jana Kalinová",
+    role: "Kandidátka",
+    bio: "",
+  },
+  {
+    name: "František Vachout",
+    role: "Kandidát",
+    bio: "",
+  },
+  {
+    name: "Stanislav Rezek",
+    role: "Kandidát",
+    bio: "",
   },
 ];
 
