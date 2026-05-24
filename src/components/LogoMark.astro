@@ -6,48 +6,50 @@ type Props = {
 
 const { size = 36, variant = "color" } = Astro.props;
 
-const mainLeaf = variant === "white" ? "#ffffff" : "url(#leafGradLogo)";
-const secondLeaf = variant === "white" ? "rgba(255,255,255,0.45)" : "#B8D4F0";
-const secondOpacity = variant === "white" ? "0.45" : "0.6";
-const vein = variant === "white" ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.5)";
-const drop = variant === "white" ? "rgba(255,255,255,0.85)" : "#D4A843";
-const gradId = `leafGradLogo-${Math.random().toString(36).slice(2, 6)}`;
+const stroke = variant === "white" ? "#ffffff" : "#000000";
+const fill = variant === "white" ? "#ffffff" : "#000000";
 ---
 
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 48 72"
+  viewBox="0 0 100 100"
   width={size}
-  height={Math.round(size * 1.5)}
+  height={size}
   aria-hidden="true"
   class="logo-mark"
 >
-  {
-    variant === "color" && (
-      <defs>
-        <linearGradient id={gradId} x1="0" y1="1" x2="0.5" y2="0">
-          <stop offset="0%" stop-color="#1E56A0" />
-          <stop offset="100%" stop-color="#3B7DD8" />
-        </linearGradient>
-      </defs>
-    )
-  }
-  <g transform="translate(12, 28)">
-    <path
-      d="M 0 28 Q 0 -6 14 -28 Q 16 -12 28 0 Q 12 0 0 28Z"
-      fill={variant === "color" ? `url(#${gradId})` : mainLeaf}
-    />
-    <path
-      d="M -2 28 Q -10 0 -2 -20 Q 0 -7 10 2 Q 0 7 -2 28Z"
-      fill={secondLeaf}
-      opacity={secondOpacity}
-    />
-    <path
-      d="M 0 26 Q 4 6 14 -26"
-      fill="none"
-      stroke={vein}
-      stroke-width="1.2"
-    />
-    <ellipse cx="1" cy="34" rx="4" ry="4.5" fill={drop} />
+  <!-- Outer ring -->
+  <circle
+    cx="50"
+    cy="50"
+    r="46"
+    fill="none"
+    stroke={stroke}
+    stroke-width="4"
+  />
+
+  <!-- Pirate flag with P (the loop of the P is the flag, the descender is the pole) -->
+  <g fill={fill}>
+    <!-- Flag pole / descender -->
+    <rect x="29" y="18" width="6" height="56" rx="1" />
+    <!-- Flag body — rounded right side to form the loop of "P" -->
+    <path d="M 35 18 H 62 Q 78 18 78 31 V 38 Q 78 51 62 51 H 35 Z" />
   </g>
+  <!-- White hole of the P -->
+  <path
+    d="M 41 26 H 60 Q 70 26 70 34.5 Q 70 43 60 43 H 41 Z"
+    fill={variant === "white" ? "#000000" : "#ffffff"}
+  />
+
+  <!-- Mariánské Lázně skyline silhouette behind the flag -->
+  <path
+    fill={fill}
+    d="M 16 80
+       V 74
+       H 22 V 70 H 28 V 74
+       H 34 V 64 H 40 V 56
+       H 43 V 50 H 46 V 56 H 49 V 64
+       H 55 V 60 H 61 V 64 H 67 V 70
+       H 73 V 74 H 79 V 70 H 84 V 80 Z"
+  />
 </svg>

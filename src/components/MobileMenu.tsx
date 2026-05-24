@@ -66,7 +66,7 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(160deg, var(--color-dark) 0%, var(--color-primary) 100%)",
+                "linear-gradient(160deg, #000000 0%, #0a1a18 100%)",
             }}
           />
           <div className="relative h-full flex flex-col">
@@ -77,17 +77,18 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 48 72"
-                  width="22"
-                  height="33"
+                  viewBox="0 0 100 100"
+                  width="28"
+                  height="28"
                   aria-hidden="true"
                 >
-                  <g transform="translate(12, 28)">
-                    <path d="M 0 28 Q 0 -6 14 -28 Q 16 -12 28 0 Q 12 0 0 28Z" fill="#fff" />
-                    <path d="M -2 28 Q -10 0 -2 -20 Q 0 -7 10 2 Q 0 7 -2 28Z" fill="rgba(255,255,255,0.45)" />
-                    <path d="M 0 26 Q 4 6 14 -26" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2" />
-                    <ellipse cx="1" cy="34" rx="4" ry="4.5" fill="rgba(255,255,255,0.85)" />
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="#ffffff" strokeWidth="4" />
+                  <g fill="#ffffff">
+                    <rect x="29" y="18" width="6" height="56" rx="1" />
+                    <path d="M 35 18 H 62 Q 78 18 78 31 V 38 Q 78 51 62 51 H 35 Z" />
                   </g>
+                  <path d="M 41 26 H 60 Q 70 26 70 34.5 Q 70 43 60 43 H 41 Z" fill="#000000" />
+                  <path fill="#ffffff" d="M 16 80 V 74 H 22 V 70 H 28 V 74 H 34 V 64 H 40 V 56 H 43 V 50 H 46 V 56 H 49 V 64 H 55 V 60 H 61 V 64 H 67 V 70 H 73 V 74 H 79 V 70 H 84 V 80 Z" />
                 </svg>
                 Za lepší Mariánské Lázně
               </span>
