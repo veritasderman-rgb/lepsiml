@@ -75,27 +75,14 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
                 className="flex items-center gap-2.5 text-white font-extrabold text-lg tracking-tight"
                 style={{ letterSpacing: "-0.01em" }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 200 200"
-                  width="28"
-                  height="28"
+                <img
+                  src="/logo.jpg"
+                  width={28}
+                  height={28}
+                  alt=""
                   aria-hidden="true"
-                >
-                  <circle cx="100" cy="100" r="88" fill="none" stroke="#ffffff" strokeWidth="5" />
-                  <path fill="#ffffff" d="M 78 26 L 94 32 L 94 162 L 88 162 L 88 32 Z" />
-                  <path fill="#ffffff" d="M 94 34 L 148 34 Q 168 34 168 56 Q 168 94 140 108 Q 122 116 104 114 Q 96 113 94 112 Z" />
-                  <g fill="#ffffff">
-                    <rect x="135" y="124" width="2.5" height="8" />
-                    <rect x="132" y="126" width="8.5" height="2" />
-                    <path d="M 124 144 Q 124 132 136.5 127 Q 149 132 149 144 Z" />
-                    <rect x="125" y="144" width="23" height="11" />
-                    <path d="M 113 158 V 148 Q 113 142 119 142 Q 125 142 125 148 V 158 Z" />
-                    <path d="M 148 158 V 148 Q 148 142 154 142 Q 160 142 160 148 V 158 Z" />
-                    <rect x="116" y="153" width="42" height="3" />
-                    <rect x="108" y="156" width="54" height="3" />
-                  </g>
-                </svg>
+                  style={{ display: "block", filter: "invert(1)" }}
+                />
                 Za lepší Mariánské Lázně
               </span>
               <button
