@@ -45,7 +45,7 @@ export const pillars: Pillar[] = [
     title: "Město, na které jsme hrdí",
     short:
       "Rekonstrukce radnice, nové osvětlení s optikou, úsporné zahájení sezóny a kolonáda v režii města.",
-    borderColor: "var(--color-primary)",
+    borderColor: "var(--color-spa-gold)",
   },
   {
     id: "rodiny",
@@ -53,7 +53,7 @@ export const pillars: Pillar[] = [
     title: "Město pro rodiny a mladé",
     short:
       "Veřejné lázně u bazénu, chybějící dětská hřiště, oprava Viktorky a Lokotky, inlinová dráha.",
-    borderColor: "var(--color-primary-light)",
+    borderColor: "var(--color-pirate)",
   },
   {
     id: "unesco",
@@ -61,7 +61,7 @@ export const pillars: Pillar[] = [
     title: "Prosperující UNESCO destinace",
     short:
       "Bikepark, cykloinfrastruktura, nové rybníky, oprava lanovky a obnovené lázeňské vycházky.",
-    borderColor: "var(--color-accent)",
+    borderColor: "var(--color-spa-gold)",
   },
   {
     id: "radnice",
@@ -69,7 +69,7 @@ export const pillars: Pillar[] = [
     title: "Otevřená a průhledná radnice",
     short:
       "Participativní rozpočet, rozklikávací rozpočet, audit Development centra, fóra v každé čtvrti.",
-    borderColor: "var(--color-dark)",
+    borderColor: "var(--color-ink)",
   },
   {
     id: "zelene",
@@ -77,7 +77,7 @@ export const pillars: Pillar[] = [
     title: "Udržitelné a zelené Mariánky",
     short:
       "Komunitní energetika po vzoru Aše, poptávková doprava do okrajových částí, péče o zeleň a prameny.",
-    borderColor: "var(--color-primary-light)",
+    borderColor: "var(--color-spa-forest)",
   },
   {
     id: "zdravotnictvi",
@@ -85,7 +85,7 @@ export const pillars: Pillar[] = [
     title: "Zdravotnictví a naše město",
     short:
       "Moderní zázemí pro lékaře, Obecní sestra a Senior Taxi pro seniory, duševní zdraví ve školách, koordinátor péče.",
-    borderColor: "#0284c7",
+    borderColor: "var(--color-pirate-dark)",
   },
 ];
 
@@ -194,7 +194,7 @@ export const programTopics: ProgramTopic[] = [
     id: "hrdi",
     icon: "lucide:landmark",
     title: "Město, na které jsme hrdí",
-    borderColor: "var(--color-primary)",
+    borderColor: "var(--color-spa-gold)",
     lead: "Radnice, osvětlení, zahájení sezóny, kolonáda. Mariánské Lázně si zaslouží investice, které jdou do detailu a které nestojí víc, než mají.",
     promises: [
       {
@@ -242,7 +242,7 @@ export const programTopics: ProgramTopic[] = [
     id: "rodiny",
     icon: "lucide:users-round",
     title: "Město pro rodiny a mladé",
-    borderColor: "var(--color-primary-light)",
+    borderColor: "var(--color-pirate)",
     lead: "Mariánky nesmí být jen skanzen pro turisty. Chceme město, ve kterém chtějí rodiny zůstat a mladí se do něj chtějí vracet.",
     promises: [
       {
@@ -293,7 +293,7 @@ export const programTopics: ProgramTopic[] = [
     id: "unesco",
     icon: "lucide:mountain",
     title: "Prosperující UNESCO destinace",
-    borderColor: "var(--color-accent)",
+    borderColor: "var(--color-spa-gold)",
     lead: "Mariánské Lázně jsou UNESCO město. Status ale nesmí zůstat jen na ceduli — musí být vidět v kvalitě veřejného prostoru, v péči o krajinu a v nabídce pro návštěvníky.",
     promises: [
       {
@@ -332,7 +332,7 @@ export const programTopics: ProgramTopic[] = [
     id: "radnice",
     icon: "lucide:eye",
     title: "Otevřená a průhledná radnice",
-    borderColor: "var(--color-dark)",
+    borderColor: "var(--color-ink)",
     lead: "Radnice musí naslouchat dřív, než rozhodne. Vrátíme nástroje otevřené správy, které v Mariánkách prokazatelně fungovaly.",
     promises: [
       {
@@ -387,7 +387,7 @@ export const programTopics: ProgramTopic[] = [
     id: "zelene",
     icon: "lucide:leaf",
     title: "Udržitelné a zelené Mariánky",
-    borderColor: "var(--color-primary-light)",
+    borderColor: "var(--color-spa-forest)",
     lead: "Mariánské Lázně jsou od roku 2023 klimatickými lázněmi. Tento status si musí zasloužit i praktickými kroky — v energetice, dopravě i péči o krajinu.",
     promises: [
       {
@@ -438,7 +438,7 @@ export const programTopics: ProgramTopic[] = [
     id: "zdravotnictvi",
     icon: "lucide:stethoscope",
     title: "Zdravotnictví a naše město",
-    borderColor: "#0284c7",
+    borderColor: "var(--color-pirate-dark)",
     lead: "Zdravotnictví v menším městě čelí chronickému nedostatku lékařů, zhoršené dostupnosti péče pro seniory a rostoucím psychickým problémům mladých. Město může udělat konkrétní kroky — bez čekání na stát.",
     promises: [
       {

@@ -27,31 +27,22 @@ const { compact = false, showCta = true } = Astro.props;
           />
         </div>
         <div>
-          <p class="eyebrow" style="color: var(--color-primary);">
-            Lídr kandidátky
-          </p>
-          <h2
-            id="leader-heading"
-            class="mt-3"
-            style="color: var(--color-dark); font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);"
-          >
+          <p class="eyebrow">Lídr kandidátky</p>
+          <h2 id="leader-heading" class="mt-3">
             {leader.name}
           </h2>
-          <p
-            class="mt-2 font-semibold"
-            style="color: var(--color-primary-light);"
-          >
+          <p class="mt-2 mono-meta" style="color: var(--color-pirate);">
             {leader.role}
           </p>
-          <p class="mt-6 text-[17px]" style="color: var(--color-text);">
+          <p class="mt-6 text-[17px]" style="color: var(--color-graphite);">
             {leader.bio}
           </p>
 
           {
             leader.personalMotivation && (
               <p
-                class="mt-5 text-[15px] italic"
-                style="color: var(--color-text-light);"
+                class="mt-5 text-[16px] accent-quote"
+                style="color: var(--color-spa-forest);"
               >
                 {leader.personalMotivation}
               </p>
@@ -61,8 +52,8 @@ const { compact = false, showCta = true } = Astro.props;
           {
             leader.quote && !compact && (
               <blockquote
-                class="mt-8 pl-5 text-lg italic"
-                style="border-left: 4px solid var(--color-accent); color: var(--color-dark);"
+                class="mt-8 pl-5 accent-quote"
+                style="border-left: 4px solid var(--color-pirate); color: var(--color-ink); font-size: clamp(1.25rem, 1vw + 0.75rem, 1.625rem); line-height: 1.4;"
               >
                 „{leader.quote}“
               </blockquote>
@@ -73,8 +64,8 @@ const { compact = false, showCta = true } = Astro.props;
             showCta && (
               <a
                 href="/kandidati"
-                class="mt-8 inline-flex items-center gap-2 font-bold"
-                style="color: var(--color-primary);"
+                class="mt-8 inline-flex items-center gap-2 mono-meta"
+                style="color: var(--color-pirate-dark);"
               >
                 Celý tým
                 <svg

@@ -97,33 +97,30 @@ function buildGoogleCalUrl(event: MeetingEvent): string | null {
       return (
         <article
           class="reveal card card-hover flex flex-col h-full"
-          style="background-color: #fff;"
+          style="background-color: var(--color-paper); border-left: 4px solid var(--color-pirate);"
         >
           <div class="flex items-start gap-5">
             <div
-              class="shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-xl"
-              style="background-color: var(--color-primary-bg); color: var(--color-primary);"
+              class="shrink-0 flex flex-col items-center justify-center w-16 h-16"
+              style="background-color: var(--color-ink); color: var(--color-pirate);"
               aria-hidden="true"
             >
               <Icon name="lucide:calendar-days" width={26} height={26} />
             </div>
             <div class="flex-1 min-w-0">
-              <p
-                class="text-[13px] font-bold uppercase tracking-[0.12em]"
-                style="color: var(--color-primary);"
-              >
+              <p class="mono-meta" style="color: var(--color-pirate);">
                 {event.date}
                 {event.time && ` · ${event.time}`}
               </p>
               <h3
-                class="mt-1 text-[19px] font-bold leading-tight"
-                style="color: var(--color-dark);"
+                class="mt-1 leading-tight"
+                style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-ink); font-size: 1.75rem;"
               >
                 {event.title}
               </h3>
               <p
                 class="mt-2 inline-flex items-center gap-2 text-sm"
-                style="color: var(--color-text-light);"
+                style="color: var(--color-smoke);"
               >
                 <Icon name="lucide:map-pin" width={15} height={15} />
                 {event.location}
@@ -133,7 +130,7 @@ function buildGoogleCalUrl(event: MeetingEvent): string | null {
           </div>
 
           {event.description && (
-            <p class="mt-5 text-[15px]" style="color: var(--color-text);">
+            <p class="mt-5 text-[15px]" style="color: var(--color-graphite);">
               {event.description}
             </p>
           )}
@@ -141,8 +138,8 @@ function buildGoogleCalUrl(event: MeetingEvent): string | null {
           <div class="mt-auto pt-5 flex flex-wrap items-center gap-3">
             {event.status === "planned" && (
               <span
-                class="inline-flex items-center gap-2 text-[13px] font-bold px-3 py-1 rounded-full"
-                style="background-color: var(--color-accent-light); color: #8a5a00;"
+                class="inline-flex items-center gap-2 mono-meta px-3 py-1"
+                style="background-color: var(--color-spa-stone); color: var(--color-spa-gold);"
               >
                 <Icon name="lucide:clock" width={13} height={13} />
                 Plánujeme
@@ -154,8 +151,8 @@ function buildGoogleCalUrl(event: MeetingEvent): string | null {
                 <a
                   href={icsUri}
                   download={`zlml-${event.isoDate}.ics`}
-                  class="inline-flex items-center gap-1.5 text-[13px] font-semibold px-3 py-1.5 rounded-lg transition-colors"
-                  style="color: var(--color-primary); background-color: var(--color-primary-bg);"
+                  class="inline-flex items-center gap-1.5 mono-meta px-3 py-1.5 transition-colors"
+                  style="color: var(--color-ink); background-color: var(--color-spa-stone);"
                   title="Stáhnout .ics (Apple Calendar, Outlook, …)"
                 >
                   <Icon name="lucide:calendar-plus" width={14} height={14} />
@@ -165,8 +162,8 @@ function buildGoogleCalUrl(event: MeetingEvent): string | null {
                   href={googleUrl}
                   target="_blank"
                   rel="noopener"
-                  class="inline-flex items-center gap-1.5 text-[13px] font-semibold px-3 py-1.5 rounded-lg transition-colors"
-                  style="color: var(--color-primary); background-color: var(--color-primary-bg);"
+                  class="inline-flex items-center gap-1.5 mono-meta px-3 py-1.5 transition-colors"
+                  style="color: var(--color-ink); background-color: var(--color-spa-stone);"
                   title="Přidat do Google Kalendáře"
                 >
                   <Icon name="lucide:external-link" width={14} height={14} />
