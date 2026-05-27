@@ -1,10 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <rect width="100" height="100" rx="18" fill="#ffffff"/>
-  <circle cx="50" cy="50" r="44" fill="none" stroke="#000000" stroke-width="4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="36" fill="#ffffff"/>
+  <circle cx="100" cy="100" r="86" fill="none" stroke="#000000" stroke-width="5"/>
+  <path fill="#000000" d="M 78 26 L 94 32 L 94 162 L 88 162 L 88 32 Z"/>
+  <path fill="#000000" d="M 94 34 L 148 34 Q 168 34 168 56 Q 168 94 140 108 Q 122 116 104 114 Q 96 113 94 112 Z"/>
   <g fill="#000000">
-    <rect x="29" y="18" width="6" height="56" rx="1"/>
-    <path d="M 35 18 H 62 Q 78 18 78 31 V 38 Q 78 51 62 51 H 35 Z"/>
+    <rect x="135" y="124" width="2.5" height="8"/>
+    <rect x="132" y="126" width="8.5" height="2"/>
+    <path d="M 124 144 Q 124 132 136.5 127 Q 149 132 149 144 Z"/>
+    <rect x="125" y="144" width="23" height="11"/>
+    <path d="M 113 158 V 148 Q 113 142 119 142 Q 125 142 125 148 V 158 Z"/>
+    <path d="M 148 158 V 148 Q 148 142 154 142 Q 160 142 160 148 V 158 Z"/>
+    <rect x="116" y="153" width="42" height="3"/>
+    <rect x="108" y="156" width="54" height="3"/>
   </g>
-  <path d="M 41 26 H 60 Q 70 26 70 34.5 Q 70 43 60 43 H 41 Z" fill="#ffffff"/>
-  <path fill="#000000" d="M 16 80 V 74 H 22 V 70 H 28 V 74 H 34 V 64 H 40 V 56 H 43 V 50 H 46 V 56 H 49 V 64 H 55 V 60 H 61 V 64 H 67 V 70 H 73 V 74 H 79 V 70 H 84 V 80 Z"/>
 </svg>
