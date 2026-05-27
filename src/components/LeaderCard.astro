@@ -28,10 +28,17 @@ const { compact = false, showCta = true } = Astro.props;
         </div>
         <div>
           <p class="eyebrow">Lídr kandidátky</p>
-          <h2 id="leader-heading" class="mt-3">
+          <h2
+            id="leader-heading"
+            class="mt-3"
+            style="font-family: var(--font-body); font-weight: 800; text-transform: none; letter-spacing: -0.02em; color: var(--color-ink); font-size: clamp(2rem, 2.5vw + 1rem, 2.75rem); line-height: 1.1;"
+          >
             {leader.name}
           </h2>
-          <p class="mt-2 mono-meta" style="color: var(--color-pirate);">
+          <p
+            class="mt-2"
+            style="font-family: var(--font-body); font-weight: 500; color: var(--color-pirate-dark); font-size: 16px; line-height: 1.45;"
+          >
             {leader.role}
           </p>
           <p class="mt-6 text-[17px]" style="color: var(--color-graphite);">
@@ -64,8 +71,8 @@ const { compact = false, showCta = true } = Astro.props;
             showCta && (
               <a
                 href="/kandidati"
-                class="mt-8 inline-flex items-center gap-2 mono-meta"
-                style="color: var(--color-pirate-dark);"
+                class="mt-8 inline-flex items-center gap-2"
+                style="font-family: var(--font-body); font-weight: 700; font-size: 16px; color: var(--color-pirate-dark);"
               >
                 Celý tým
                 <svg
