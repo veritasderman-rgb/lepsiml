@@ -5,14 +5,14 @@ import { pillars } from "../lib/site";
 
 <section
   class="section"
-  style="background-color: var(--color-primary-bg);"
+  style="background-color: var(--color-spa-stone);"
   aria-labelledby="pillars-heading"
 >
   <div class="container-site">
     <div class="max-w-2xl mb-12">
-      <p class="eyebrow" style="color: var(--color-primary);">Program</p>
+      <p class="eyebrow">Program</p>
       <h2 id="pillars-heading" class="mt-3">Šest pilířů pro lepší Mariánky</h2>
-      <p class="mt-4 text-lg" style="color: var(--color-text-light);">
+      <p class="mt-4 text-lg" style="color: var(--color-smoke);">
         Konkrétní plán, jak dotáhnout radnici, podpořit rodiny, využít
         potenciál UNESCO, otevřít úřad lidem, proměnit status klimatických
         lázní v reálné kroky a zlepšit dostupnost zdravotní péče.
@@ -25,27 +25,27 @@ import { pillars } from "../lib/site";
           <a
             href={`/program#${pillar.id}`}
             class="reveal card card-hover block text-left group"
-            style="background-color: #fff;"
+            style={`background-color: var(--color-paper); border-top: 4px solid ${pillar.borderColor};`}
           >
             <span
               class="icon-badge icon-badge-lg"
               aria-hidden="true"
-              style={`background-color: var(--color-primary-bg); color: ${pillar.borderColor};`}
+              style={`background-color: var(--color-spa-stone); color: ${pillar.borderColor};`}
             >
               <Icon name={pillar.icon} width={32} height={32} />
             </span>
             <h3
-              class="mt-6 text-xl font-bold"
-              style="color: var(--color-dark);"
+              class="mt-6"
+              style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-ink); font-size: 1.875rem; line-height: 1.1;"
             >
               {pillar.title}
             </h3>
-            <p class="mt-3 text-[15px]" style="color: var(--color-text-light);">
+            <p class="mt-3 text-[15px]" style="color: var(--color-smoke);">
               {pillar.short}
             </p>
             <span
-              class="mt-5 inline-flex items-center gap-1 font-semibold text-sm"
-              style="color: var(--color-primary);"
+              class="mt-5 inline-flex items-center gap-1 mono-meta"
+              style="color: var(--color-pirate);"
             >
               Detail programu
               <Icon name="lucide:arrow-right" width={16} height={16} />

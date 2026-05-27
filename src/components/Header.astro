@@ -7,21 +7,23 @@ type Props = { pathname?: string };
 const { pathname = "/" } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50" style="background-color: var(--color-dark);">
+<header class="sticky top-0 z-50" style="background-color: var(--color-ink);">
   <div class="container-site flex items-center justify-between gap-6 py-4">
     <a
       href="/"
       class="flex items-center gap-3 text-white"
       aria-label={`${site.name} — domů`}
     >
-      <LogoMark size={28} variant="white" />
+      <LogoMark size={32} variant="white" />
       <span class="flex flex-col leading-tight">
-        <span class="text-white font-extrabold text-[15px] sm:text-base tracking-tight">
+        <span
+          style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-paper); font-size: 18px;"
+        >
           Za lepší Mariánské Lázně
         </span>
         <span
-          class="hidden sm:block text-[11px] font-semibold tracking-[0.15em] uppercase"
-          style="color: var(--color-primary-pale);"
+          class="hidden sm:block mono-meta"
+          style="color: var(--color-pirate-light); font-size: 10px;"
         >
           Komunální volby 2026
         </span>
@@ -37,8 +39,8 @@ const { pathname = "/" } = Astro.props;
           return (
             <a
               href={link.href}
-              class="px-4 py-2 text-[15px] font-semibold rounded-md transition-colors"
-              style={`color: ${active ? "var(--color-accent)" : "#ffffff"};`}
+              class="px-4 py-2 transition-colors"
+              style={`font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em; font-size: 16px; color: ${active ? "var(--color-pirate)" : "var(--color-paper)"};`}
               data-active={active}
             >
               {link.label}

@@ -3,14 +3,14 @@ import PhotoPlaceholder from "./PhotoPlaceholder.astro";
 import { coreTeam } from "../lib/site";
 ---
 
-<section class="section" style="background-color: var(--color-primary-bg);" aria-labelledby="team-heading">
+<section class="section" style="background-color: var(--color-spa-stone);" aria-labelledby="team-heading">
   <div class="container-site">
     <div class="max-w-2xl">
-      <p class="eyebrow" style="color: var(--color-primary);">Jádro týmu</p>
+      <p class="eyebrow">Jádro týmu</p>
       <h2 id="team-heading" class="mt-3">
         Lidé, kteří radnici rozumí
       </h2>
-      <p class="mt-4 text-lg" style="color: var(--color-text-light);">
+      <p class="mt-4 text-lg" style="color: var(--color-smoke);">
         Kandidátka má praktickou zkušenost — z radnice, z kraje, z podnikání
         i z komunitní práce. Nikdo neslibuje nemožné. Všichni chceme stejný cíl:
         Mariánky, kde se dobře žije celý rok.
@@ -30,28 +30,28 @@ import { coreTeam } from "../lib/site";
               />
             </div>
             <h3
-              class="mt-5 text-center text-xl font-bold"
-              style="color: var(--color-dark);"
+              class="mt-5 text-center"
+              style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-ink); font-size: 1.75rem;"
             >
               {member.name}
             </h3>
             <p
-              class="mt-1 text-center text-sm font-semibold"
-              style="color: var(--color-primary-light);"
+              class="mt-1 text-center mono-meta"
+              style="color: var(--color-pirate);"
             >
               {member.role}
             </p>
             <p
               class="mt-4 text-center text-[15px]"
-              style="color: var(--color-text-light);"
+              style="color: var(--color-smoke);"
             >
               {member.bio}
             </p>
             {
               member.personalMotivation && (
                 <p
-                  class="mt-4 text-center text-[14px] italic"
-                  style="color: var(--color-dark); border-top: 1px solid var(--color-border); padding-top: 14px;"
+                  class="mt-4 text-center text-[15px] accent-quote"
+                  style="color: var(--color-spa-forest); border-top: 1px solid var(--color-mist); padding-top: 14px;"
                 >
                   „{member.personalMotivation}“
                 </p>
@@ -64,12 +64,14 @@ import { coreTeam } from "../lib/site";
 
     <div
       class="mt-14 reveal card text-center max-w-2xl mx-auto"
-      style="background-color: #fff;"
+      style="background-color: var(--color-paper);"
     >
-      <h3 style="color: var(--color-dark); font-size: 1.25rem;">
+      <h3
+        style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-ink); font-size: 1.875rem;"
+      >
         Kandidátku průběžně představujeme
       </h3>
-      <p class="mt-3" style="color: var(--color-text-light);">
+      <p class="mt-3" style="color: var(--color-smoke);">
         Další kandidáty postupně zveřejníme v podcastu Ze sklepa
         a na sociálních sítích. Chcete být u toho? Sledujte nás.
       </p>

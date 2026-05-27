@@ -77,13 +77,23 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
               >
                 <img
                   src="/logo.jpg"
-                  width={28}
-                  height={28}
+                  width={32}
+                  height={32}
                   alt=""
                   aria-hidden="true"
                   style={{ display: "block", filter: "invert(1)" }}
                 />
-                Za lepší Mariánské Lázně
+                <span
+                  style={{
+                    fontFamily:
+                      '"Bebas Neue", Impact, "Arial Black", sans-serif',
+                    textTransform: "uppercase",
+                    letterSpacing: "0.04em",
+                    fontSize: "20px",
+                  }}
+                >
+                  Za lepší Mariánské Lázně
+                </span>
               </span>
               <button
                 type="button"
@@ -117,10 +127,16 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-3 text-white text-3xl font-extrabold tracking-tight"
+                    className="block py-3 text-white"
                     style={{
                       borderBottom: "1px solid rgba(255,255,255,0.12)",
-                      color: active ? "var(--color-accent)" : "#ffffff",
+                      color: active ? "var(--color-pirate)" : "#ffffff",
+                      fontFamily:
+                        '"Bebas Neue", Impact, "Arial Black", sans-serif',
+                      textTransform: "uppercase",
+                      letterSpacing: "0.04em",
+                      fontSize: "40px",
+                      lineHeight: 1,
                     }}
                   >
                     {link.label}

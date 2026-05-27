@@ -1,53 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#000000"/>
-      <stop offset="100%" stop-color="#0a1a18"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Background -->
-  <rect width="1200" height="630" fill="url(#bg)"/>
-
-  <!-- Decorative circles -->
-  <circle cx="1050" cy="-50" r="320" fill="#00b2a9" opacity="0.10"/>
-  <circle cx="100" cy="700" r="280" fill="#00b2a9" opacity="0.06"/>
-
-  <!-- Logo mark — top left (real logo, inverted to white via mask) -->
-  <defs>
     <filter id="invertLogo">
       <feColorMatrix type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0"/>
     </filter>
   </defs>
+
+  <!-- Background — pirate ink -->
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- Subtle pirate-teal glow top right -->
+  <circle cx="1050" cy="-50" r="320" fill="#00b2a8" opacity="0.10"/>
+  <circle cx="100" cy="700" r="280" fill="#00b2a8" opacity="0.06"/>
+
+  <!-- Logo mark — top left (real logo inverted to white) -->
   <image href="/logo.jpg" x="80" y="60" width="130" height="130" filter="url(#invertLogo)"/>
 
-  <!-- Campaign label -->
-  <text x="80" y="225" font-family="'Source Sans 3',system-ui,sans-serif" font-weight="700" font-size="22" fill="#00b2a9" letter-spacing="4">
-    KOMUNÁLNÍ VOLBY 2026
+  <!-- Campaign label — JetBrains Mono style kicker -->
+  <text x="80" y="232" font-family="'JetBrains Mono','Menlo',monospace" font-weight="600" font-size="20" fill="#7fe0d9" letter-spacing="4">
+    KOMUNÁLNÍ VOLBY 2026 / MARIÁNSKÉ LÁZNĚ
   </text>
 
-  <!-- Main headline -->
-  <text x="80" y="315" font-family="'Source Sans 3',system-ui,sans-serif" font-weight="800" font-size="82" fill="#FFFFFF" letter-spacing="-2">
-    Mariánské Lázně
+  <!-- Main headline — Bebas Neue uppercase -->
+  <text x="80" y="350" font-family="'Bebas Neue',Impact,sans-serif" font-weight="400" font-size="110" fill="#FFFFFF" letter-spacing="4">
+    MARIÁNSKÉ LÁZNĚ
   </text>
-  <text x="80" y="410" font-family="'Source Sans 3',system-ui,sans-serif" font-weight="800" font-size="82" fill="#FFFFFF" letter-spacing="-2">
-    si zaslouží víc!
+  <text x="80" y="455" font-family="'Bebas Neue',Impact,sans-serif" font-weight="400" font-size="110" fill="#FFFFFF" letter-spacing="4">
+    SI ZASLOUŽÍ <tspan fill="#00b2a8">VÍC!</tspan>
   </text>
-
-  <!-- Teal accent line -->
-  <rect x="80" y="435" width="120" height="5" rx="3" fill="#00b2a9"/>
 
   <!-- Subheadline -->
-  <text x="80" y="490" font-family="'Source Sans 3',system-ui,sans-serif" font-weight="600" font-size="28" fill="#b3ebe5">
+  <text x="80" y="510" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="500" font-size="24" fill="#e8e8e8">
     Hrdé město. Pro rodiny i mladé. Otevřené, udržitelné, naše.
   </text>
 
-  <!-- Bottom bar -->
-  <rect x="0" y="540" width="1200" height="90" fill="rgba(0,0,0,0.45)"/>
-  <text x="80" y="595" font-family="'Source Sans 3',system-ui,sans-serif" font-weight="800" font-size="30" fill="#FFFFFF">
-    Za lepší Mariánské Lázně
-  </text>
-  <text x="1120" y="595" text-anchor="end" font-family="'Source Sans 3',system-ui,sans-serif" font-weight="600" font-size="22" fill="#00b2a9">
+  <!-- Bottom accent stripe — pirate teal / spa gold -->
+  <rect x="0" y="600" width="720" height="30" fill="#00b2a8"/>
+  <rect x="720" y="600" width="480" height="30" fill="#d4a24c"/>
+
+  <!-- URL stamp -->
+  <text x="1120" y="582" text-anchor="end" font-family="'JetBrains Mono','Menlo',monospace" font-weight="500" font-size="20" fill="#FFFFFF" letter-spacing="2">
     lepsiml.cz
   </text>
 </svg>

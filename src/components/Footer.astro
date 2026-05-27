@@ -6,29 +6,38 @@ import LogoMark from "./LogoMark.astro";
 const year = new Date().getFullYear();
 ---
 
-<footer style="background-color: var(--color-dark); color: #fff;">
+<footer style="background-color: var(--color-ink); color: var(--color-paper);">
+  <div
+    style="height: 6px; background: linear-gradient(90deg, var(--color-pirate) 0% 60%, var(--color-spa-gold) 60% 100%);"
+    aria-hidden="true"
+  ></div>
   <div class="container-site py-16">
     <div class="grid gap-12 md:grid-cols-[1.2fr_1fr_1fr]">
       <div>
         <div class="flex items-center gap-3 mb-4">
-          <LogoMark size={30} variant="white" />
-          <span class="font-extrabold text-lg tracking-tight">
+          <LogoMark size={36} variant="white" />
+          <span
+            style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-paper); font-size: 20px;"
+          >
             Za lepší Mariánské Lázně
           </span>
         </div>
-        <p class="text-sm max-w-md" style="color: rgba(255,255,255,0.78);">
+        <p class="text-sm max-w-md" style="color: var(--color-mist);">
           Lokální kandidátka pro komunální volby 2026. Vojta Franta a tým
           s praktickou zkušeností z radnice i kraje.
         </p>
-        <p class="text-base font-extrabold mt-5" style="color: var(--color-accent);">
+        <p
+          class="mt-5 accent-quote"
+          style="color: var(--color-pirate); font-size: 1.25rem;"
+        >
           {site.claim}
         </p>
       </div>
 
       <div>
         <h4
-          class="text-xs font-bold uppercase tracking-[0.15em] mb-4"
-          style="color: var(--color-primary-pale);"
+          class="mono-meta mb-4"
+          style="color: var(--color-pirate-light);"
         >
           Web
         </h4>
@@ -51,8 +60,8 @@ const year = new Date().getFullYear();
 
       <div>
         <h4
-          class="text-xs font-bold uppercase tracking-[0.15em] mb-4"
-          style="color: var(--color-primary-pale);"
+          class="mono-meta mb-4"
+          style="color: var(--color-pirate-light);"
         >
           Spojte se s námi
         </h4>
@@ -106,20 +115,24 @@ const year = new Date().getFullYear();
     </div>
 
     <div
-      class="mt-12 pt-8 grid gap-6 md:grid-cols-[2fr_1fr] text-sm"
-      style="border-top: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.72);"
+      class="mt-12 pt-8 grid gap-6 md:grid-cols-[2fr_1fr] text-sm mono-meta"
+      style="border-top: 1px solid rgba(255,255,255,0.14); color: var(--color-ash); text-transform: none; letter-spacing: 0.05em;"
     >
       <div>
-        <p class="font-semibold" style="color: #fff;">
-          Kontakt
-        </p>
+        <p style="color: var(--color-paper); font-weight: 600;">Kontakt</p>
         <p class="mt-1">
-          <a href={`mailto:${contact.email}`} style="color: var(--color-primary-pale);">
+          <a
+            href={`mailto:${contact.email}`}
+            style="color: var(--color-pirate);"
+          >
             {contact.email}
           </a>
         </p>
         <p class="mt-1">
-          <a href={`tel:${contact.phone.replace(/\s/g, "")}`} style="color: var(--color-primary-pale);">
+          <a
+            href={`tel:${contact.phone.replace(/\s/g, "")}`}
+            style="color: var(--color-pirate);"
+          >
             {contact.phone}
           </a>
         </p>
