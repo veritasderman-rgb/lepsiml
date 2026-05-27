@@ -13,22 +13,13 @@
   <circle cx="1050" cy="-50" r="320" fill="#00b2a9" opacity="0.10"/>
   <circle cx="100" cy="700" r="280" fill="#00b2a9" opacity="0.06"/>
 
-  <!-- Logo mark — top left -->
-  <g transform="translate(80, 60) scale(0.65)">
-    <circle cx="100" cy="100" r="88" fill="none" stroke="#ffffff" stroke-width="5"/>
-    <path fill="#ffffff" d="M 78 26 L 94 32 L 94 162 L 88 162 L 88 32 Z"/>
-    <path fill="#ffffff" d="M 94 34 L 148 34 Q 168 34 168 56 Q 168 94 140 108 Q 122 116 104 114 Q 96 113 94 112 Z"/>
-    <g fill="#ffffff">
-      <rect x="135" y="124" width="2.5" height="8"/>
-      <rect x="132" y="126" width="8.5" height="2"/>
-      <path d="M 124 144 Q 124 132 136.5 127 Q 149 132 149 144 Z"/>
-      <rect x="125" y="144" width="23" height="11"/>
-      <path d="M 113 158 V 148 Q 113 142 119 142 Q 125 142 125 148 V 158 Z"/>
-      <path d="M 148 158 V 148 Q 148 142 154 142 Q 160 142 160 148 V 158 Z"/>
-      <rect x="116" y="153" width="42" height="3"/>
-      <rect x="108" y="156" width="54" height="3"/>
-    </g>
-  </g>
+  <!-- Logo mark — top left (real logo, inverted to white via mask) -->
+  <defs>
+    <filter id="invertLogo">
+      <feColorMatrix type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <image href="/logo.jpg" x="80" y="60" width="130" height="130" filter="url(#invertLogo)"/>
 
   <!-- Campaign label -->
   <text x="80" y="225" font-family="'Source Sans 3',system-ui,sans-serif" font-weight="700" font-size="22" fill="#00b2a9" letter-spacing="4">
