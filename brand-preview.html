@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Preview — Piráti Mariánské Lázně</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-ink: #000000;
+  --color-paper: #FFFFFF;
+  --color-pirate: #00B2A8;
+  --color-pirate-dark: #008078;
+  --color-pirate-light: #7FE0D9;
+  --color-spa-gold: #D4A24C;
+  --color-spa-forest: #2D5F4E;
+  --color-spa-stone: #F5EFE0;
+  --color-graphite: #1A1A1A;
+  --color-smoke: #6B6B6B;
+  --color-ash: #A8A8A8;
+  --color-mist: #E8E8E8;
+  --color-cream: #FAF8F3;
+  --color-success: #2D7D5B;
+  --color-warning: #E89F2E;
+  --color-error: #C8392D;
+  --color-info: #2E78C8;
+  --font-display: "Bebas Neue", Impact, sans-serif;
+  --font-body: "Inter", Roboto, sans-serif;
+  --font-accent: "Cormorant Garamond", Georgia, serif;
+  --font-mono: "JetBrains Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  line-height: 1.6;
+  font-feature-settings: "ss01", "kern";
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 48px 24px; }
+
+/* HERO */
+.hero {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 96px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--color-pirate) 0% 60%, var(--color-spa-gold) 60% 100%);
+}
+.hero .inner { max-width: 1200px; margin: 0 auto; }
+.hero .kicker {
+  font-family: var(--font-mono);
+  color: var(--color-pirate-light);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+.hero h1 .accent { color: var(--color-pirate); }
+.hero p {
+  font-size: 20px;
+  max-width: 680px;
+  color: var(--color-mist);
+  margin-bottom: 40px;
+}
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 20px;
+  padding: 14px 32px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  margin-right: 12px;
+}
+.btn-primary {
+  background: var(--color-pirate);
+  color: var(--color-ink);
+  border-color: var(--color-pirate);
+}
+.btn-primary:hover { background: var(--color-pirate-dark); border-color: var(--color-pirate-dark); color: var(--color-paper); }
+.btn-secondary {
+  background: transparent;
+  color: var(--color-paper);
+  border-color: var(--color-paper);
+}
+.btn-secondary:hover { background: var(--color-paper); color: var(--color-ink); }
+
+/* SECTION */
+section { padding: 64px 0; }
+.section-title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+.section-sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-smoke);
+  margin-bottom: 32px;
+}
+
+/* COLOR SWATCHES */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+.swatch {
+  border: 1px solid var(--color-mist);
+  background: var(--color-paper);
+}
+.swatch-color {
+  height: 120px;
+  position: relative;
+}
+.swatch-meta {
+  padding: 12px 14px;
+  font-size: 13px;
+}
+.swatch-meta .name {
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  display: block;
+  margin-bottom: 2px;
+}
+.swatch-meta .hex {
+  color: var(--color-smoke);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.swatch-meta .role {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--color-graphite);
+  line-height: 1.4;
+}
+
+/* GROUP HEADER */
+.group-header {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 24px;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-ink);
+}
+
+/* TYPOGRAPHY DEMO */
+.type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-mist);
+}
+.type-row .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-smoke);
+  flex-shrink: 0;
+  width: 100px;
+}
+.type-row .sample { flex: 1; }
+.t-display { font-family: var(--font-display); font-size: 76px; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.02em; }
+.t-h1 { font-family: var(--font-display); font-size: 61px; line-height: 1.1; text-transform: uppercase; }
+.t-h2 { font-family: var(--font-display); font-size: 49px; line-height: 1.15; text-transform: uppercase; }
+.t-h3 { font-family: var(--font-display); font-size: 39px; line-height: 1.2; text-transform: uppercase; }
+.t-h4 { font-family: var(--font-body); font-weight: 600; font-size: 31px; line-height: 1.25; }
+.t-lg { font-family: var(--font-body); font-size: 20px; line-height: 1.5; }
+.t-base { font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+.t-accent { font-family: var(--font-accent); font-style: italic; font-size: 24px; color: var(--color-spa-forest); }
+.t-mono { font-family: var(--font-mono); font-size: 14px; background: var(--color-mist); padding: 2px 8px; }
+
+/* COMPONENT DEMO */
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: var(--color-paper);
+  border: 1px solid var(--color-mist);
+  padding: 24px;
+}
+.card.spa { background: var(--color-spa-stone); border-color: var(--color-spa-gold); }
+.card.dark { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+.card h4 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+.card.dark h4 { color: var(--color-pirate); }
+.card p { color: var(--color-graphite); margin-bottom: 16px; }
+.card.dark p { color: var(--color-mist); }
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--color-pirate);
+  color: var(--color-ink);
+}
+.badge.gold { background: var(--color-spa-gold); }
+.badge.forest { background: var(--color-spa-forest); color: var(--color-paper); }
+
+/* LOGO BLOCK */
+.logo-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.logo-frame {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  border: 1px solid var(--color-mist);
+}
+.logo-frame.white { background: var(--color-paper); }
+.logo-frame.black { background: var(--color-ink); }
+.logo-frame.pirate { background: var(--color-pirate); }
+.logo-frame.gold { background: var(--color-spa-gold); }
+.logo-frame img { max-width: 80%; height: auto; }
+.logo-frame.black img, .logo-frame.pirate img, .logo-frame.gold img {
+  filter: invert(1);
+}
+.logo-caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-smoke);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* FOOTER */
+footer {
+  background: var(--color-ink);
+  color: var(--color-mist);
+  padding: 48px 24px;
+  margin-top: 64px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
+footer .container { padding: 0 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+footer a { color: var(--color-pirate); text-decoration: none; }
+
+.callout {
+  background: var(--color-spa-stone);
+  border-left: 4px solid var(--color-spa-gold);
+  padding: 24px;
+  margin: 24px 0;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--color-spa-forest);
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .hero { padding: 64px 24px; }
+  .section-title { font-size: 36px; }
+  .t-display { font-size: 52px; }
+  .t-h1 { font-size: 40px; }
+  .type-row { flex-direction: column; gap: 8px; }
+  .type-row .label { width: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="inner">
+    <div class="kicker">Komunální volby 2026 / Mariánské Lázně</div>
+    <h1>Ať to tu <span class="accent">žije</span>.</h1>
+    <p>Brand preview pro vývoj webu a grafiky. Toto je živá ukázka tokenů — barev, typografie a komponent — definovaných v <code style="font-family: var(--font-mono); background: rgba(255,255,255,0.1); padding: 2px 6px;">BRAND-TOKENS.md</code>.</p>
+    <a href="#" class="btn btn-primary">Přidej se</a>
+    <a href="#" class="btn btn-secondary">Program</a>
+  </div>
+</header>
+
+<!-- COLORS -->
+<section class="container">
+  <div class="section-sub">01 / Paleta</div>
+  <h2 class="section-title">Barvy</h2>
+
+  <div class="group-header">Primární — Piráti</div>
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#000000;"></div>
+      <div class="swatch-meta"><span class="name">--color-ink</span><span class="hex">#000000</span><div class="role">Logo, headlines, hlavní text</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFFFF; border-bottom: 1px solid var(--color-mist);"></div>
+      <div class="swatch-meta"><span class="name">--color-paper</span><span class="hex">#FFFFFF</span><div class="role">Pozadí, inverze loga</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#00B2A8;"></div>
+      <div class="swatch-meta"><span class="name">--color-pirate</span><span class="hex">#00B2A8</span><div class="role">CTA, odkazy, akcent</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#008078;"></div>
+      <div class="swatch-meta"><span class="name">--color-pirate-dark</span><span class="hex">#008078</span><div class="role">Hover, aktivní stav</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#7FE0D9;"></div>
+      <div class="swatch-meta"><span class="name">--color-pirate-light</span><span class="hex">#7FE0D9</span><div class="role">Highlight, jemné pozadí</div></div>
+    </div>
+  </div>
+
+  <div class="group-header">Lokální akcent — Mariánské Lázně</div>
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#D4A24C;"></div>
+      <div class="swatch-meta"><span class="name">--color-spa-gold</span><span class="hex">#D4A24C</span><div class="role">Kolonáda, krémové fasády, dekorativní akcent</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#2D5F4E;"></div>
+      <div class="swatch-meta"><span class="name">--color-spa-forest</span><span class="hex">#2D5F4E</span><div class="role">Lázeňské lesy, příroda, success</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F5EFE0;"></div>
+      <div class="swatch-meta"><span class="name">--color-spa-stone</span><span class="hex">#F5EFE0</span><div class="role">Pískovcový krém, jemné pozadí sekcí</div></div>
+    </div>
+  </div>
+
+  <div class="group-header">Neutrály</div>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch-color" style="background:#1A1A1A;"></div><div class="swatch-meta"><span class="name">--color-graphite</span><span class="hex">#1A1A1A</span></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#6B6B6B;"></div><div class="swatch-meta"><span class="name">--color-smoke</span><span class="hex">#6B6B6B</span></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#A8A8A8;"></div><div class="swatch-meta"><span class="name">--color-ash</span><span class="hex">#A8A8A8</span></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8E8E8;"></div><div class="swatch-meta"><span class="name">--color-mist</span><span class="hex">#E8E8E8</span></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FAF8F3;"></div><div class="swatch-meta"><span class="name">--color-cream</span><span class="hex">#FAF8F3</span></div></div>
+  </div>
+
+  <div class="group-header">Stavové</div>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch-color" style="background:#2D7D5B;"></div><div class="swatch-meta"><span class="name">--color-success</span><span class="hex">#2D7D5B</span></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E89F2E;"></div><div class="swatch-meta"><span class="name">--color-warning</span><span class="hex">#E89F2E</span></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C8392D;"></div><div class="swatch-meta"><span class="name">--color-error</span><span class="hex">#C8392D</span></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2E78C8;"></div><div class="swatch-meta"><span class="name">--color-info</span><span class="hex">#2E78C8</span></div></div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="container">
+  <div class="section-sub">02 / Typografie</div>
+  <h2 class="section-title">Fonty &amp; škála</h2>
+
+  <div class="type-row">
+    <div class="label">Display 76</div>
+    <div class="sample t-display">Ať to tu žije!</div>
+  </div>
+  <div class="type-row">
+    <div class="label">H1 61</div>
+    <div class="sample t-h1">Mariánské Lázně potřebují změnu</div>
+  </div>
+  <div class="type-row">
+    <div class="label">H2 49</div>
+    <div class="sample t-h2">Náš program pro město</div>
+  </div>
+  <div class="type-row">
+    <div class="label">H3 39</div>
+    <div class="sample t-h3">Doprava &amp; veřejný prostor</div>
+  </div>
+  <div class="type-row">
+    <div class="label">H4 31</div>
+    <div class="sample t-h4">Inter Semibold — podsekce</div>
+  </div>
+  <div class="type-row">
+    <div class="label">Lead 20</div>
+    <div class="sample t-lg">Lead paragraf, perex článku. Inter Regular, line-height 1.5. Příjemné na čtení, dostatečný kontrast s body textem.</div>
+  </div>
+  <div class="type-row">
+    <div class="label">Body 16</div>
+    <div class="sample t-base">Toto je base body text v Inter 16px. Slouží jako základ pro veškerý čtený obsah na webu. Diakritika funguje: žluťoučký kůň úpěl ďábelské ódy. Kvalitní digitální typografie s plnou podporou českých znaků.</div>
+  </div>
+  <div class="type-row">
+    <div class="label">Accent</div>
+    <div class="sample t-accent">„Lázně nemají být skanzen, mají být živé město." — Cormorant Garamond Italic</div>
+  </div>
+  <div class="type-row">
+    <div class="label">Mono</div>
+    <div class="sample"><span class="t-mono">--color-pirate: #00B2A8</span> — JetBrains Mono pro kód, čísla, data</div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section class="container">
+  <div class="section-sub">03 / Logo</div>
+  <h2 class="section-title">Aplikace loga</h2>
+  <p style="margin-bottom: 16px; max-width: 640px; color: var(--color-graphite);">Logo na různých pozadích. Pro web doporučuji převést do SVG (filter: invert(1) pro inverzní varianty, jinak připravit dedikované soubory pro print).</p>
+
+  <div class="logo-block">
+    <div>
+      <div class="logo-frame white"><img src="286659567_5234767386609494_6413822378597525888_n.jpg" alt="Logo na bílé"></div>
+      <div class="logo-caption">Primary — na paper</div>
+    </div>
+    <div>
+      <div class="logo-frame black"><img src="286659567_5234767386609494_6413822378597525888_n.jpg" alt="Logo na černé"></div>
+      <div class="logo-caption">Inverse — na ink</div>
+    </div>
+    <div>
+      <div class="logo-frame pirate"><img src="286659567_5234767386609494_6413822378597525888_n.jpg" alt="Logo na tyrkysové"></div>
+      <div class="logo-caption">Pirate background</div>
+    </div>
+    <div>
+      <div class="logo-frame gold"><img src="286659567_5234767386609494_6413822378597525888_n.jpg" alt="Logo na zlaté"></div>
+      <div class="logo-caption">Spa gold accent</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section class="container">
+  <div class="section-sub">04 / Komponenty</div>
+  <h2 class="section-title">Ukázky</h2>
+
+  <h3 style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.02em; margin: 16px 0;">Buttony</h3>
+  <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px;">
+    <button class="btn btn-primary" style="color: var(--color-ink);">Volit Piráty</button>
+    <a href="#" class="btn" style="background: var(--color-ink); color: var(--color-paper);">Program</a>
+    <a href="#" class="btn" style="background: transparent; color: var(--color-ink); border-color: var(--color-ink);">Sekundární</a>
+    <a href="#" class="btn" style="background: var(--color-spa-gold); color: var(--color-ink); border-color: var(--color-spa-gold);">Lokální akcent</a>
+  </div>
+
+  <h3 style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.02em; margin: 16px 0;">Badges</h3>
+  <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px;">
+    <span class="badge">Nová priorita</span>
+    <span class="badge gold">Lokální téma</span>
+    <span class="badge forest">Příroda</span>
+  </div>
+
+  <h3 style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.02em; margin: 16px 0;">Karty</h3>
+  <div class="components-grid">
+    <div class="card">
+      <span class="badge">Doprava</span>
+      <h4 style="margin-top: 12px;">Lázeňská bez aut</h4>
+      <p>Pěší zóny, sdílená kola, MHD zdarma pro občany. Návrhy konkrétních ulic k úpravě.</p>
+      <a href="#" style="color: var(--color-pirate); font-weight: 600;">Číst víc →</a>
+    </div>
+    <div class="card spa">
+      <span class="badge gold">Lokální</span>
+      <h4 style="margin-top: 12px;">Kolonáda 2030</h4>
+      <p>Plán postupné rekonstrukce hlavní kolonády bez narušení sezony.</p>
+      <a href="#" style="color: var(--color-spa-forest); font-weight: 600;">Číst víc →</a>
+    </div>
+    <div class="card dark">
+      <span class="badge">Transparence</span>
+      <h4 style="margin-top: 12px;">Otevřená radnice</h4>
+      <p>Všechny smlouvy, faktury a zápisy online do 48 hodin.</p>
+      <a href="#" style="color: var(--color-pirate); font-weight: 600;">Číst víc →</a>
+    </div>
+  </div>
+
+  <div class="callout">
+    „Pravý lokální patriotismus znamená dělat věci pořádně, ne jen mávat vlajkou."
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Piráti Mariánské Lázně © 2026 — Brand v1.0</div>
+    <div>Generováno z <a href="BRAND-TOKENS.md">BRAND-TOKENS.md</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
