@@ -143,6 +143,14 @@ export const coreTeam: Candidate[] = [
       "Město musí podporovat kultivaci myšlení. Nikoliv propagandou, ale projekty, které budou otevřeny kreativitě a odlišnostem občanů.",
   },
   {
+    name: "Alan Hodovský",
+    role: "Truhlář · pendler v Německu",
+    photo: "/team/alan-hodovsky.jpg",
+    bio: "Jsem hrdý truhlář a momentálně pracuji jako pendler v Německu, odkud si domů vozím inspiraci, jak věci dělat lépe. Chci, aby Mariánky byly městem, kde mladí lidé vidí svou budoucnost a mají chuť zde zůstávat. Mým hlavním cílem je aktivně budovat a podporovat místní komunity, které u nás vytvoří živé a přátelské prostředí.",
+    personalMotivation:
+      "Jako srdcař a řemeslník se chci zasadit o konkrétní projekty — mým velkým snem a závazkem je vybudování moderního skateparku pro naše děti a mládež. Pojďme společně dát Mariánkám novou energii a prostor pro život.",
+  },
+  {
     name: "Zdeněk Třešňák",
     role: "Kandidát",
     bio: "",
