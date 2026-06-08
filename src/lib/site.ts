@@ -16,8 +16,6 @@ export const site = {
 export const nav: { label: string; href: string }[] = [
   { label: "Program", href: "/program" },
   { label: "Kandidáti", href: "/kandidati" },
-  { label: "Setkání", href: "/setkani" },
-  { label: "Podcast", href: "/podcast" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
@@ -138,7 +136,7 @@ export const coreTeam: Candidate[] = [
     name: "Jan Pivec",
     role: "Student sociologie a politologie · Radní Studentské rady FF UK",
     photo: "/team/jan-pivec.jpg",
-    bio: "Spoluzakladatel protestní skupiny Média nedáme! Volný čas věnuje přípravě studentských akcí, protestních iniciativ a četbě filosofie. Je přesvědčen, že investice do mladých lidí a jejich budoucnosti jsou klíčem k prosperujícímu městu.",
+    bio: "Spoluzakladatel studentské iniciativy „Média nedáme!“. Volný čas věnuje přípravě studentských akcí, protestních iniciativ a četbě filosofie. Je přesvědčen, že investice do mladých lidí a jejich budoucnosti jsou klíčem k prosperujícímu městu.",
     personalMotivation:
       "Město musí podporovat kultivaci myšlení. Nikoliv propagandou, ale projekty, které budou otevřeny kreativitě a odlišnostem občanů.",
   },
@@ -151,21 +149,21 @@ export const coreTeam: Candidate[] = [
       "Jako srdcař a řemeslník se chci zasadit o konkrétní projekty — mým velkým snem a závazkem je vybudování moderního skateparku pro naše děti a mládež. Pojďme společně dát Mariánkám novou energii a prostor pro život.",
   },
   {
-    name: "Zdeněk Třešňák",
-    role: "Kandidát",
-    bio: "",
-  },
-  {
-    name: "Paní Barczi",
-    role: "Kandidátka",
-    bio: "",
-  },
-  {
     name: "Martin Nguyen",
     role: "Student učitelství geografie · Univerzita Karlova",
     bio: "Student učitelství geografie a teritoriálních studií na Univerzitě Karlově. Jeho blízkými tématy jsou kultura a školství. Ve volném čase se věnuje regionálnímu rozvoji a hře na hudební nástroje.",
     personalMotivation:
       "Studium geografie mi dalo cenné znalosti a dovednosti, které bych rád uplatnil na lokální úrovni. Chci, aby Mariánky byly místem, kde mladí lidé chtějí zůstávat a kde rozvoj neprobíhá na úkor přírody.",
+  },
+  {
+    name: "Zdeněk Třešňák",
+    role: "Kandidát",
+    bio: "",
+  },
+  {
+    name: "Jana Barcziová",
+    role: "Kandidátka",
+    bio: "",
   },
   {
     name: "Jana Kalinová",
@@ -503,6 +501,7 @@ export const quickWins = [
   "Spustíme participativní rozpočet pro rok 2027 a svoláme první čtvrťová fóra.",
   "Zadáme nezávislý audit Development centra a zahájíme přípravu komunitní energetiky po vzoru Aše.",
   "Předložíme projekt Veřejných lázní a doplníme akutně chybějící dětská hřiště.",
+  "Spustíme studii proveditelnosti programu Duševní zdraví v lázeňství a postavíme Mariánské Lázně do role lídra této celostátní debaty.",
 ];
 
 export type PodcastEpisode = {
