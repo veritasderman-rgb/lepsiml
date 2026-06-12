@@ -150,8 +150,9 @@ export const coreTeam: Candidate[] = [
       "Jako srdcař a řemeslník se chci zasadit o konkrétní projekty — mým velkým snem a závazkem je vybudování moderního skateparku pro naše děti a mládež. Pojďme společně dát Mariánkám novou energii a prostor pro život.",
   },
   {
-    name: "Martin Nguyen",
+    name: "Huy Khánh Nguyen",
     role: "Student učitelství geografie · Univerzita Karlova",
+    photo: "/team/huy-khanh-nguyen.jpg",
     bio: "Student učitelství geografie a teritoriálních studií na Univerzitě Karlově. Jeho blízkými tématy jsou kultura a školství. Ve volném čase se věnuje regionálnímu rozvoji a hře na hudební nástroje.",
     personalMotivation:
       "Studium geografie mi dalo cenné znalosti a dovednosti, které bych rád uplatnil na lokální úrovni. Chci, aby Mariánky byly místem, kde mladí lidé chtějí zůstávat a kde rozvoj neprobíhá na úkor přírody.",
