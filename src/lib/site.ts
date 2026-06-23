@@ -207,7 +207,7 @@ export const programTopics: ProgramTopic[] = [
     promises: [
       {
         title: "Rekonstrukce radnice",
-        body: "Projektová dokumentace je hotová, financování zajistíme úvěrem. Rekonstrukce začne v prvním roce a dotáhne se do konce volebního období.",
+        body: "Projektová dokumentace je hotová. Financování chceme primárně postavit na dotacích a strategických programech — především z Operačního programu Spravedlivá transformace, který Karlovarský kraj cíleně podporuje. Úvěr poslouží zejména jako předfinancování, ne jako hlavní zdroj. Rekonstrukce začne v prvním roce a dotáhne se do konce volebního období.",
       },
       {
         title: "Veřejné osvětlení — dva projekty za cenu jednoho",
@@ -242,7 +242,7 @@ export const programTopics: ProgramTopic[] = [
       "Opravená radnice jako důstojný střed města, který reprezentuje Mariánky i vás.",
     ],
     challenges: [
-      "Rekonstrukce radnice bude znamenat zadlužení města vysokou částkou, ale věříme, že město má jít příklad jak se o své budovy starat. Úvěr na rekonstrukci radnice zatíží rozpočet — zveřejníme splátkový plán i dopady, ne jen slibované přínosy.",
+      "Rekonstrukce radnice je velká investice. Chceme ji primárně pokrýt z dotací a strategických programů — především z Operačního programu Spravedlivá transformace. Úvěr poslouží hlavně jako předfinancování, dokud nedotečou dotační peníze. I tak ale rozpočet dočasně zatíží — zveřejníme splátkový plán, čerpání dotací i průběžné dopady, ne jen slibované přínosy.",
       "Přechod na úsporný model zahájení sezóny znamená říct „ne\u201d některým zavedeným dodavatelům. S tím přijde kritika a my ji uneseme.",
     ],
   },
@@ -498,7 +498,7 @@ export const whyUs: WhyUsItem[] = [
 ];
 
 export const quickWins = [
-  "Zveřejníme harmonogram rekonstrukce radnice a zahájíme přípravu úvěru.",
+  "Zveřejníme harmonogram rekonstrukce radnice, zahájíme přípravu dotace z Operačního programu Spravedlivá transformace a předfinancujícího úvěru.",
   "Zadáme audit zahájení sezóny a úsporný model pro další ročník.",
   "Spustíme participativní rozpočet pro rok 2027 a svoláme první čtvrťová fóra.",
   "Zadáme nezávislý audit Development centra a zahájíme přípravu komunitní energetiky po vzoru Aše.",
