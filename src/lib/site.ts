@@ -158,6 +158,14 @@ export const coreTeam: Candidate[] = [
       "Studium geografie mi dalo cenné znalosti a dovednosti, které bych rád uplatnil na lokální úrovni. Chci, aby Mariánky byly místem, kde mladí lidé chtějí zůstávat a kde rozvoj neprobíhá na úkor přírody.",
   },
   {
+    name: "William Vlček",
+    role: "Student skladby a klasické kytary · nejmladší člen rady Západočeského hudebního centra · hudební pedagog",
+    photo: "/team/william-vlcek.jpg",
+    bio: "Mariánské Lázně jsou od nepaměti jedno z nejnavštěvovanějších lázeňských míst v republice. Právě v oblasti kultury se můžeme pyšnit mnohým: nejstarším symfonickým orchestrem v zemi, Chopinovým festivalem, Domem Chopin a krásnou architekturou lázeňského prostředí. Rád bych tuto tvář zachoval i nadále, podporoval veřejný hudební život a soustředil se na opravu reprezentativních budov.",
+    personalMotivation:
+      "Jsme skrz na skrz turistickým městem a dle toho bychom měli investovat.",
+  },
+  {
     name: "Zdeněk Třešňák",
     role: "Kandidát",
     bio: "",
