@@ -166,9 +166,9 @@ export const coreTeam: Candidate[] = [
       "Jsme skrz na skrz turistickým městem a dle toho bychom měli investovat.",
   },
   {
-    name: "Jana Barci",
+    name: "Jana Barcziová",
     role: "Kandidátka",
-    bio: "Jana Barci kandiduje proto, že jí záleží na místě, kde žije. Chce obec, která je bezpečná, upravená, otevřená a přátelská ke všem generacím. V komunální politice podle ní nejde o velká hesla, ale o každodenní práci — o chodníky, zeleň, dopravu, služby, sousedské vztahy i férovou komunikaci s lidmi. Chce prosazovat věci, které mají skutečný dopad na běžný život obyvatel. Do voleb přináší energii, praktičnost a chuť naslouchat. Věří, že když se rozhoduje s respektem a zdravým rozumem, může se obec posouvat správným směrem.",
+    bio: "Jana Barcziová kandiduje proto, že jí záleží na místě, kde žije. Chce obec, která je bezpečná, upravená, otevřená a přátelská ke všem generacím. V komunální politice podle ní nejde o velká hesla, ale o každodenní práci — o chodníky, zeleň, dopravu, služby, sousedské vztahy i férovou komunikaci s lidmi. Chce prosazovat věci, které mají skutečný dopad na běžný život obyvatel. Do voleb přináší energii, praktičnost a chuť naslouchat. Věří, že když se rozhoduje s respektem a zdravým rozumem, může se obec posouvat správným směrem.",
     personalMotivation:
       "Aby se nám tu žilo lépe každý den.",
   },
