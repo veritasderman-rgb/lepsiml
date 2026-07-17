@@ -315,31 +315,20 @@
     .sport-point .sp-t { margin-top: 4px; color: var(--ink); font-size: 15.5px; }
     .sport-closing { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); font-weight: 700; color: var(--ink); }
 
-    /* ---------- NEWSLETTER ---------- */
-    #newsletter h2 { font-size: clamp(28px, 8vw, 46px); }
-    #newsletter .nl-lead { margin-top: 16px; color: #E6E0D2; max-width: 46ch; font-size: 18px; }
-    .nl-form { margin-top: 26px; max-width: 520px; }
-    .field { margin-top: 14px; }
-    .field label { display: block; font-family: "Barlow Condensed", sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 14px; color: var(--yellow); margin-bottom: 6px; }
-    .field input[type="text"], .field input[type="email"], .field input[type="tel"] {
-      width: 100%; font-family: "Barlow", sans-serif; font-size: 17px;
-      padding: 13px 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.06); color: var(--cream);
+    /* ---------- SLEDUJ NÁS ---------- */
+    #sledujte-nas h2 { font-size: clamp(28px, 8vw, 46px); }
+    .nl-lead { margin-top: 16px; color: #E6E0D2; max-width: 46ch; font-size: 18px; }
+    .social-cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px; }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: 11px;
+      font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em; font-size: 19px;
+      padding: 15px 28px; border-radius: var(--radius);
+      background: var(--grad); color: #fff; text-decoration: none;
+      transition: transform 0.12s ease, filter 0.12s ease;
     }
-    .field input::placeholder { color: #8C8676; }
-    .field input:focus { border-color: var(--yellow); background: rgba(255,255,255,0.1); }
-    .field .req { color: var(--pink); }
-    .consent { margin-top: 18px; display: flex; gap: 11px; align-items: flex-start; }
-    .consent input { margin-top: 4px; width: 20px; height: 20px; flex: 0 0 auto; accent-color: var(--pink); }
-    .consent label { font-size: 14px; color: #D8D2C4; line-height: 1.5; }
-    .consent a { color: var(--yellow); }
-    .nl-submit { margin-top: 20px; width: 100%; }
-    .nl-msg { margin-top: 16px; border-radius: 10px; padding: 14px 16px; font-size: 15.5px; display: none; }
-    .nl-msg.show { display: block; }
-    .nl-msg.ok { background: rgba(255,197,61,0.14); border: 1px solid var(--yellow); color: var(--yellow); }
-    .nl-msg.err { background: rgba(255,62,138,0.14); border: 1px solid var(--pink); color: #FFB8D2; }
-    .field-err { color: #FFB8D2; font-size: 13.5px; margin-top: 5px; display: none; }
-    .field-err.show { display: block; }
+    .social-btn:hover { transform: translateY(-1px); filter: brightness(1.05); text-decoration: none; }
+    .social-btn svg { width: 22px; height: 22px; }
 
     /* ---------- CONCLUSION ---------- */
     .syn-grid { margin-top: 24px; display: grid; gap: 14px; grid-template-columns: 1fr; }
@@ -391,8 +380,8 @@
       <div class="goal-box"><div id="hero-goal"></div></div>
       <div class="stats" id="hero-stats"></div>
       <div class="hero-cta">
-        <a href="#newsletter" class="btn btn-grad">Chci projekty přednostně e-mailem</a>
-        <a href="#kalendar" class="btn btn-ghost-light">Zobrazit projekty</a>
+        <a href="#kalendar" class="btn btn-grad">Zobrazit projekty</a>
+        <a href="#sledujte-nas" class="btn btn-ghost-light">Chci to vědět první →</a>
       </div>
     </div>
   </header>
@@ -421,40 +410,22 @@
     </div>
   </section>
 
-  <!-- ============ NEWSLETTER ============ -->
-  <section id="newsletter" class="sec-dark">
+  <!-- ============ SLEDUJ NÁS ============ -->
+  <section id="sledujte-nas" class="sec-dark">
     <div class="wrap">
-      <p class="eyebrow">Přednostní odběr</p>
-      <h2>Buď první, kdo to uvidí.</h2>
-      <p class="nl-lead">Každý projekt pošleme odběratelům e-mailem dřív, než ho odemkneme tady a na sítích. Žádný spam — jen Plán 1155 a pozvánky na debaty.</p>
-
-      <form class="nl-form" id="nl-form" novalidate>
-        <div class="field">
-          <label for="nl-name">Jméno <span class="req">*</span></label>
-          <input type="text" id="nl-name" name="name" autocomplete="name" placeholder="Jan Novák" required />
-          <p class="field-err" id="err-name">Vyplňte prosím jméno.</p>
-        </div>
-        <div class="field">
-          <label for="nl-email">E-mail <span class="req">*</span></label>
-          <input type="email" id="nl-email" name="email" autocomplete="email" placeholder="jan@email.cz" required />
-          <p class="field-err" id="err-email">Zadejte platný e-mail.</p>
-        </div>
-        <div class="field">
-          <label for="nl-phone">Telefon <span style="color:var(--muted-2)">(nepovinné)</span></label>
-          <input type="tel" id="nl-phone" name="phone" autocomplete="tel" placeholder="+420 777 123 456" />
-          <p class="field-err" id="err-phone">Zadejte telefon ve tvaru +420 777 123 456.</p>
-        </div>
-        <div class="consent">
-          <input type="checkbox" id="nl-consent" name="consent" required />
-          <label for="nl-consent">
-            Souhlasím se zpracováním osobních údajů pro zasílání informací o kampani Plán 1155.
-            Odhlásit se lze kdykoli jedním klikem. <a href="#zasady" id="gdpr-link">Zásady zpracování OÚ</a>.
-          </label>
-        </div>
-        <p class="field-err" id="err-consent">Bez souhlasu vás bohužel nemůžeme přihlásit.</p>
-        <button type="submit" class="btn btn-grad nl-submit">Odebírat přednostně</button>
-        <div class="nl-msg" id="nl-msg" role="status" aria-live="polite"></div>
-      </form>
+      <p class="eyebrow">Chceš to vědět první?</p>
+      <h2>Sleduj nás na sítích.</h2>
+      <p class="nl-lead">Každý projekt odhalujeme nejdřív na sociálních sítích. Přidej se a žádný ti neuteče — a k tomu pozvánky na debaty a dění z kampaně.</p>
+      <div class="social-cta">
+        <a class="social-btn" href="https://www.facebook.com/PiratiML" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+          Facebook
+        </a>
+        <a class="social-btn" href="https://www.instagram.com/pirati_zalepsiml/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+      </div>
     </div>
   </section>
 
@@ -469,7 +440,7 @@
         <p class="f1"><b>40 miliard je připraveno.</b> Projekty jsou napsané. <span id="finale-election"></span></p>
         <p class="f2" id="finale-slogan"></p>
         <div class="fcta">
-          <a href="#newsletter" class="btn btn-ghost-light">Chci projekty přednostně</a>
+          <a href="#sledujte-nas" class="btn btn-ghost-light">Sleduj nás na sítích →</a>
         </div>
       </div>
     </div>
@@ -493,12 +464,6 @@
   /* ============================================================
      KONFIGURACE
      ============================================================ */
-
-  // Endpoint pro newsletter (POST JSON: {name, email, phone, consent, source}).
-  // Prázdné = fallback hláška (napojit Ecomail / Mailchimp / Make webhook).
-  // Ecomail:    https://api2.ecomailapp.cz/lists/{ID}/subscribe  (přes proxy/Make)
-  // Make.com:   webhook URL z modulu "Custom webhook"
-  const NEWSLETTER_ENDPOINT = "";
 
   // Kdy se který projekt odemkne (půlnoc lokálního času). Snadno přepsatelné.
   const UNLOCK_SCHEDULE = {
@@ -892,7 +857,7 @@
         + '<span class="num">' + pad2(p.id) + '</span></div>'
         + '<p class="teaser">' + esc(p.teaser) + '</p>'
         + '<p class="unlock-date">' + ICON_CLOCK + ' Odemykáme ' + fmtUnlockShort(p.id) + '</p>'
-        + '<p class="micro">Chceš to vědět dřív? <a href="#newsletter">→ newsletter</a></p>'
+        + '<p class="micro">Chceš to vědět dřív? <a href="#sledujte-nas">→ sleduj nás</a></p>'
         + '</div></article>';
     }
 
@@ -993,77 +958,6 @@
       if (btn) { el.classList.add("open"); btn.setAttribute("aria-expanded", "true"); btn.textContent = "Skrýt detail ↑"; }
       setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
     }
-  })();
-
-  /* ============================================================
-     NEWSLETTER FORMULÁŘ
-     ============================================================ */
-  (function newsletter() {
-    const form = document.getElementById("nl-form");
-    const msg = document.getElementById("nl-msg");
-    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    const PHONE_RE = /^(\+420\s?)?\d{3}\s?\d{3}\s?\d{3}$/;
-
-    function showErr(id, on) {
-      document.getElementById(id).classList.toggle("show", on);
-    }
-    function setMsg(type, text) {
-      msg.className = "nl-msg show " + type;
-      msg.textContent = text;
-    }
-
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      msg.className = "nl-msg";
-
-      const name = document.getElementById("nl-name").value.trim();
-      const email = document.getElementById("nl-email").value.trim();
-      const phone = document.getElementById("nl-phone").value.trim();
-      const consent = document.getElementById("nl-consent").checked;
-
-      const okName = name.length >= 2;
-      const okEmail = EMAIL_RE.test(email);
-      const okPhone = phone === "" || PHONE_RE.test(phone);
-      showErr("err-name", !okName);
-      showErr("err-email", !okEmail);
-      showErr("err-phone", !okPhone);
-      showErr("err-consent", !consent);
-
-      if (!okName || !okEmail || !okPhone || !consent) {
-        const firstBad = form.querySelector(".field-err.show");
-        if (firstBad) firstBad.previousElementSibling ? firstBad.previousElementSibling.focus?.() : null;
-        return;
-      }
-
-      const payload = { name: name, email: email, phone: phone, consent: consent, source: "plan-1155" };
-
-      // Bez endpointu → fallback
-      if (!NEWSLETTER_ENDPOINT) {
-        setMsg("ok", "Jsi v týmu. První projekt ti přistane do schránky ještě před odemčením. (Napojení rozesílky dokončujeme — pro jistotu nám napiš i na Facebook.)");
-        form.reset();
-        return;
-      }
-
-      const btn = form.querySelector(".nl-submit");
-      const orig = btn.textContent;
-      btn.disabled = true;
-      btn.textContent = "Odesílám…";
-      try {
-        const res = await fetch(NEWSLETTER_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        setMsg("ok", "Jsi v týmu. První projekt ti přistane do schránky ještě před odemčením.");
-        form.reset();
-      } catch (err) {
-        setMsg("err", "Něco se nepovedlo — zkus to prosím znovu, nebo nám napiš na Facebook. (" + (err && err.message ? err.message : "chyba") + ")");
-      } finally {
-        btn.disabled = false;
-        btn.textContent = orig;
-      }
-    });
   })();
   </script>
 </body>
