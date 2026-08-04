@@ -356,6 +356,7 @@ export const candidates: Candidate[] = [
     gender: "M",
     age: 41,
     occupation: "OSVČ",
+    residence: "Mariánské Lázně",
     nominatedBy: NOMINEE_INDEPENDENT,
     affiliation: PARTY_NONE,
   },
