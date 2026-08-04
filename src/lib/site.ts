@@ -87,54 +87,73 @@ export const pillars: Pillar[] = [
   },
 ];
 
+export const PARTY_PIRATI = "Česká pirátská strana";
+export const PARTY_NONE = "bez politické příslušnosti";
+export const NOMINEE_INDEPENDENT = "nezávislý kandidát";
+
 export type Candidate = {
+  /** Pořadí na kandidátní listině. */
+  order: number;
+  /** Jméno tak, jak ho používáme na webu. */
   name: string;
-  role: string;
-  bio: string;
+  /** Akademické tituly z kandidátní listiny. */
+  titles?: string;
+  /** Jméno na hlasovacím lístku, pokud se liší od `name`. */
+  ballotName?: string;
+  gender: "M" | "Ž";
+  age: number;
+  /** Povolání dle kandidátní listiny. */
+  occupation: string;
+  /** Trvalý pobyt (obec) dle kandidátní listiny. */
+  residence?: string;
+  /** Navrhující strana. */
+  nominatedBy: string;
+  /** Politická příslušnost. */
+  affiliation: string;
+  /** Redakční popisek pro kartu na webu (jinak se použije `occupation`). */
+  role?: string;
+  bio?: string;
   photo?: string;
   isLeader?: boolean;
   quote?: string;
   personalMotivation?: string;
 };
 
-export const leader: Candidate = {
-  name: "Vojta Franta",
-  role: "Lídr kandidátky · Bývalý náměstek hejtmana Karlovarského kraje",
-  photo: "/team/vojta-franta.jpg",
-  bio: "Dlouhé roky jsem působil ve vedení Karlovarského kraje. Teď chci pomoci městu, které mám rád. Mariánské Lázně jsou UNESCO město — zaslouží si vedení, které dotahuje věci do konce. Máme zkušenosti, máme plán a máme odvahu.",
-  quote: "Mariánské Lázně potřebují někoho s vizí a citem pro architekturu a kulturu. Musíme vidět dál než za jeden megaprojekt — pečovat o celek, o ulice, parky i detaily, které dělají Mariánky Mariánkami. Hrdost se buduje denně, ne jednou za čtyři roky.",
-  personalMotivation:
-    "V Karlovarském kraji jsem se naučil, že dobrá správa se buduje trpělivostí a poctivostí. Mariánky si to zaslouží.",
-  isLeader: true,
-};
-
-export const coreTeam: Candidate[] = [
+/**
+ * Kompletní kandidátní listina v pořadí, v jakém je podána.
+ * Jediný zdroj pravdy — `leader` i `coreTeam` se odvozují z tohoto pole.
+ */
+export const candidates: Candidate[] = [
   {
-    name: "Josef Pavlovic",
-    role: "Zastupitel města · bývalý náměstek ministra zdravotnictví",
-    photo: "/team/josef-pavlovic.png",
-    bio: "Zaměstnanec společnosti Léčebné lázně Mariánské Lázně. Zastupitel města se zkušeností z celostátní úrovně ve zdravotnictví a lázeňství.",
+    order: 1,
+    name: "Vojta Franta",
+    ballotName: "Vojtěch Franta",
+    titles: "Ing. arch.",
+    gender: "M",
+    age: 41,
+    occupation:
+      "architekt, zastupitel města, bývalý starosta a náměstek hejtmana",
+    residence: "Mariánské Lázně",
+    nominatedBy: PARTY_PIRATI,
+    affiliation: PARTY_PIRATI,
+    role: "Lídr kandidátky · Bývalý náměstek hejtmana Karlovarského kraje",
+    photo: "/team/vojta-franta.jpg",
+    bio: "Dlouhé roky jsem působil ve vedení Karlovarského kraje. Teď chci pomoci městu, které mám rád. Mariánské Lázně jsou UNESCO město — zaslouží si vedení, které dotahuje věci do konce. Máme zkušenosti, máme plán a máme odvahu.",
+    quote: "Mariánské Lázně potřebují někoho s vizí a citem pro architekturu a kulturu. Musíme vidět dál než za jeden megaprojekt — pečovat o celek, o ulice, parky i detaily, které dělají Mariánky Mariánkami. Hrdost se buduje denně, ne jednou za čtyři roky.",
     personalMotivation:
-      "Znám zdravotnictví i lázně zevnitř. Vím, kde se dá ušetřit a kde se naopak musí investovat, aby Mariánky zůstaly klenotem.",
+      "V Karlovarském kraji jsem se naučil, že dobrá správa se buduje trpělivostí a poctivostí. Mariánky si to zaslouží.",
+    isLeader: true,
   },
   {
-    name: "Ing. Martin Kalina",
-    role: "Bývalý starosta Mariánských Lázní · dispečer mezinárodní dopravy",
-    photo: "/team/martin-kalina.jpg",
-    bio: "Je mu 41 let, téměř pět let byl starostou Mariánských Lázní. Dnes pracuje jako dispečer mezinárodní dopravy a ve volných chvílích se věnuje hlavně četbě, rodině a pasivnímu odpočinku.",
-    personalMotivation:
-      "Chuť pomáhat s rozvojem Mariánek mě neopustila. Rozhodl jsem se spolu s přáteli znovu nabídnout městu a jeho občanům své nápady a vize.",
-  },
-  {
-    name: "Žaneta Pivcová",
-    role: "Zubní technička · specialistka na kombinovanou protetiku",
-    photo: "/team/zaneta-pivcova.jpg",
-    bio: "Jsem zubní technička, specialistka na kombinovanou protetiku – ve své práci řeším věci na setiny milimetrů, přesně, funkčně a tak, aby dlouhodobě dávaly smysl. Stejný přístup chci přenést i do fungování města. Mám zkušenost ze sociálně-zdravotní komise, kde jsem se věnovala sociálním službám a zdravotnictví. Dostupnost zdravotní péče vnímám jako klíčovou – zdravotnictví má fungovat pro všechny, bez zbytečných bariér. Zajímá mě také, jak město spravuje svůj majetek a hospodaří s veřejnými prostředky.",
-    personalMotivation:
-      "Jsem zvyklá věci dotahovat a nést za ně odpovědnost. V životě mě drží pohyb, hudba a svoboda.",
-  },
-  {
+    order: 2,
     name: "Jan Pivec",
+    gender: "M",
+    age: 20,
+    occupation:
+      "student sociologie a politologie, radní Studentské rady FF UK, spoluzakladatel „Média nedáme!“, nadšený čtenář filosofie",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
     role: "Student sociologie a politologie · Radní Studentské rady FF UK",
     photo: "/team/jan-pivec.jpg",
     bio: "Spoluzakladatel studentské iniciativy „Média nedáme!“. Volný čas věnuje přípravě studentských akcí, protestních iniciativ a četbě filosofie. Je přesvědčen, že investice do mladých lidí a jejich budoucnosti jsou klíčem k prosperujícímu městu.",
@@ -142,7 +161,47 @@ export const coreTeam: Candidate[] = [
       "Město musí podporovat kultivaci myšlení. Nikoliv propagandou, ale projekty, které budou otevřeny kreativitě a odlišnostem občanů.",
   },
   {
+    order: 3,
+    name: "Josef Pavlovic",
+    titles: "Bc.",
+    gender: "M",
+    age: 42,
+    occupation:
+      "Head of marketing LLML, člen Správní rady VZP, předseda SR ZSO, autor portálu skorezdravotnictvi.cz",
+    residence: "Mariánské Lázně",
+    nominatedBy: PARTY_PIRATI,
+    affiliation: PARTY_PIRATI,
+    role: "Zastupitel města · bývalý náměstek ministra zdravotnictví",
+    photo: "/team/josef-pavlovic.png",
+    bio: "Zaměstnanec společnosti Léčebné lázně Mariánské Lázně. Zastupitel města se zkušeností z celostátní úrovně ve zdravotnictví a lázeňství.",
+    personalMotivation:
+      "Znám zdravotnictví i lázně zevnitř. Vím, kde se dá ušetřit a kde se naopak musí investovat, aby Mariánky zůstaly klenotem.",
+  },
+  {
+    order: 4,
+    name: "Žaneta Pivcová",
+    gender: "Ž",
+    age: 46,
+    occupation:
+      "zubní technik – specialistka na kombinovanou protetiku, členka sociálně-zdravotní komise města ML",
+    residence: "Mariánské Lázně",
+    nominatedBy: PARTY_PIRATI,
+    affiliation: PARTY_PIRATI,
+    role: "Zubní technička · specialistka na kombinovanou protetiku",
+    photo: "/team/zaneta-pivcova.jpg",
+    bio: "Jsem zubní technička, specialistka na kombinovanou protetiku – ve své práci řeším věci na setiny milimetrů, přesně, funkčně a tak, aby dlouhodobě dávaly smysl. Stejný přístup chci přenést i do fungování města. Mám zkušenost ze sociálně-zdravotní komise, kde jsem se věnovala sociálním službám a zdravotnictví. Dostupnost zdravotní péče vnímám jako klíčovou – zdravotnictví má fungovat pro všechny, bez zbytečných bariér. Zajímá mě také, jak město spravuje svůj majetek a hospodaří s veřejnými prostředky.",
+    personalMotivation:
+      "Jsem zvyklá věci dotahovat a nést za ně odpovědnost. V životě mě drží pohyb, hudba a svoboda.",
+  },
+  {
+    order: 5,
     name: "Alan Hodovský",
+    gender: "M",
+    age: 43,
+    occupation: "truhlář, srdcař, skater",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
     role: "Truhlář · pendler v Německu",
     photo: "/team/alan-hodovsky.png",
     bio: "Jsem hrdý truhlář a momentálně pracuji jako pendler v Německu, odkud si domů vozím inspiraci, jak věci dělat lépe. Chci, aby Mariánky byly městem, kde mladí lidé vidí svou budoucnost a mají chuť zde zůstávat. Mým hlavním cílem je aktivně budovat a podporovat místní komunity, které u nás vytvoří živé a přátelské prostředí.",
@@ -150,7 +209,14 @@ export const coreTeam: Candidate[] = [
       "Jako srdcař a řemeslník se chci zasadit o konkrétní projekty — mým velkým snem a závazkem je vybudování moderního skateparku pro naše děti a mládež. Pojďme společně dát Mariánkám novou energii a prostor pro život.",
   },
   {
+    order: 6,
     name: "Huy Khánh Nguyen",
+    gender: "M",
+    age: 22,
+    occupation: "student učitelství geografie a dějepisu",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
     role: "Student učitelství geografie · Univerzita Karlova",
     photo: "/team/huy-khanh-nguyen.jpg",
     bio: "Student učitelství geografie a teritoriálních studií na Univerzitě Karlově. Jeho blízkými tématy jsou kultura a školství. Ve volném čase se věnuje regionálnímu rozvoji a hře na hudební nástroje.",
@@ -158,7 +224,44 @@ export const coreTeam: Candidate[] = [
       "Studium geografie mi dalo cenné znalosti a dovednosti, které bych rád uplatnil na lokální úrovni. Chci, aby Mariánky byly místem, kde mladí lidé chtějí zůstávat a kde rozvoj neprobíhá na úkor přírody.",
   },
   {
+    order: 7,
+    name: "Jana Barcziová",
+    gender: "Ž",
+    age: 66,
+    occupation: "profesionální babička",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
+    role: "Profesionální babička",
+    bio: "Jana Barcziová kandiduje proto, že jí záleží na místě, kde žije. Chce obec, která je bezpečná, upravená, otevřená a přátelská ke všem generacím. V komunální politice podle ní nejde o velká hesla, ale o každodenní práci — o chodníky, zeleň, dopravu, služby, sousedské vztahy i férovou komunikaci s lidmi. Chce prosazovat věci, které mají skutečný dopad na běžný život obyvatel. Do voleb přináší energii, praktičnost a chuť naslouchat. Věří, že když se rozhoduje s respektem a zdravým rozumem, může se obec posouvat správným směrem.",
+    personalMotivation: "Aby se nám tu žilo lépe každý den.",
+  },
+  {
+    order: 8,
+    name: "Martin Kalina",
+    titles: "Ing.",
+    gender: "M",
+    age: 42,
+    occupation: "dispečer, bývalý starosta Mariánských Lázní",
+    residence: "Mariánské Lázně",
+    nominatedBy: PARTY_PIRATI,
+    affiliation: PARTY_PIRATI,
+    role: "Bývalý starosta Mariánských Lázní · dispečer mezinárodní dopravy",
+    photo: "/team/martin-kalina.jpg",
+    bio: "Téměř pět let byl starostou Mariánských Lázní. Dnes pracuje jako dispečer mezinárodní dopravy a ve volných chvílích se věnuje hlavně četbě, rodině a pasivnímu odpočinku.",
+    personalMotivation:
+      "Chuť pomáhat s rozvojem Mariánek mě neopustila. Rozhodl jsem se spolu s přáteli znovu nabídnout městu a jeho občanům své nápady a vize.",
+  },
+  {
+    order: 9,
     name: "William Vlček",
+    gender: "M",
+    age: 22,
+    occupation:
+      "student skladby a klasické kytary, člen rady Západočeského hudebního centra, recenzent Opery PLUS, hudební pedagog",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
     role: "Student skladby a klasické kytary · nejmladší člen rady Západočeského hudebního centra · hudební pedagog",
     photo: "/team/william-vlcek.jpg",
     bio: "Mariánské Lázně jsou od nepaměti jedno z nejnavštěvovanějších lázeňských míst v republice. Právě v oblasti kultury se můžeme pyšnit mnohým: nejstarším symfonickým orchestrem v zemi, Chopinovým festivalem, Domem Chopin a krásnou architekturou lázeňského prostředí. Rád bych tuto tvář zachoval i nadále, podporoval veřejný hudební život a soustředil se na opravu reprezentativních budov.",
@@ -166,33 +269,140 @@ export const coreTeam: Candidate[] = [
       "Jsme skrz na skrz turistickým městem a dle toho bychom měli investovat.",
   },
   {
-    name: "Jana Barcziová",
-    role: "Kandidátka",
-    bio: "Jana Barcziová kandiduje proto, že jí záleží na místě, kde žije. Chce obec, která je bezpečná, upravená, otevřená a přátelská ke všem generacím. V komunální politice podle ní nejde o velká hesla, ale o každodenní práci — o chodníky, zeleň, dopravu, služby, sousedské vztahy i férovou komunikaci s lidmi. Chce prosazovat věci, které mají skutečný dopad na běžný život obyvatel. Do voleb přináší energii, praktičnost a chuť naslouchat. Věří, že když se rozhoduje s respektem a zdravým rozumem, může se obec posouvat správným směrem.",
-    personalMotivation:
-      "Aby se nám tu žilo lépe každý den.",
+    order: 10,
+    name: "Jan Pipta",
+    titles: "Ing.",
+    gender: "M",
+    age: 32,
+    occupation: "projektant, OSVČ, lezec, tvůrce",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
   },
   {
-    name: "Zdeněk Třešňák",
-    role: "Kandidát",
-    bio: "",
-  },
-  {
-    name: "Jana Kalinová",
-    role: "Kandidátka",
-    bio: "",
-  },
-  {
+    order: 11,
     name: "František Vachout",
-    role: "Kandidát",
-    bio: "",
+    gender: "M",
+    age: 38,
+    occupation: "cestovatel a poradce",
+    residence: "Stanoviště",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
   },
   {
+    order: 12,
+    name: "Zdeněk Třešňák",
+    titles: "Ing.",
+    gender: "M",
+    age: 70,
+    occupation: "zeměměřič",
+    residence: "Mariánské Lázně",
+    nominatedBy: PARTY_PIRATI,
+    affiliation: PARTY_PIRATI,
+  },
+  {
+    order: 13,
+    name: "Lukáš Jadlovský",
+    gender: "M",
+    age: 41,
+    occupation: "OSVČ – fotograf",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
+  },
+  {
+    order: 14,
+    name: "Zbyněk Martínek",
+    gender: "M",
+    age: 75,
+    occupation: "OSVČ – zahradník",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
+  },
+  {
+    order: 15,
+    name: "Vojtěch Řežábek",
+    gender: "M",
+    age: 41,
+    occupation: "jednatel",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
+  },
+  {
+    order: 16,
+    name: "Jana Kalinová",
+    gender: "Ž",
+    age: 40,
+    occupation: "zdravotní sestra, domácí péče",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
+  },
+  {
+    order: 17,
+    name: "Hana Předotová",
+    gender: "Ž",
+    age: 67,
+    occupation: "důchodkyně, dámská krejčová",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
+  },
+  {
+    order: 18,
     name: "Stanislav Rezek",
-    role: "Kandidát",
-    bio: "",
+    gender: "M",
+    age: 41,
+    occupation: "OSVČ",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
+  },
+  {
+    order: 19,
+    name: "Kateřina Pavlovicová",
+    gender: "Ž",
+    age: 42,
+    occupation: "logistika",
+    residence: "Mariánské Lázně",
+    nominatedBy: PARTY_PIRATI,
+    affiliation: PARTY_PIRATI,
+  },
+  {
+    order: 20,
+    name: "Kateřina Marie Harajdová",
+    gender: "Ž",
+    age: 33,
+    occupation: "tattoo designer",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
+  },
+  {
+    order: 21,
+    name: "Roman Juřica",
+    gender: "M",
+    age: 48,
+    occupation: "podnikatel",
+    residence: "Mariánské Lázně",
+    nominatedBy: NOMINEE_INDEPENDENT,
+    affiliation: PARTY_NONE,
   },
 ];
+
+/** Celé jméno na hlasovacím lístku včetně titulů. */
+export function ballotName(c: Candidate): string {
+  return [c.titles, c.ballotName ?? c.name].filter(Boolean).join(" ");
+}
+
+export const leader: Candidate = candidates[0];
+
+/** Kandidáti od dvojky dolů — v pořadí kandidátní listiny. */
+export const coreTeam: Candidate[] = candidates.slice(1);
+
+/** Kandidáti s vlastním medailonkem (mají fotku nebo text). */
+export const featuredTeam: Candidate[] = coreTeam.filter((c) => c.bio);
 
 export type ProgramTopic = {
   id: string;

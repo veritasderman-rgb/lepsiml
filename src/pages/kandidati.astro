@@ -2,6 +2,12 @@
 import Base from "../layouts/Base.astro";
 import LeaderCard from "../components/LeaderCard.astro";
 import TeamGrid from "../components/TeamGrid.astro";
+import { candidates } from "../lib/site";
+
+const total = candidates.length;
+const women = candidates.filter((c) => c.gender === "Ž").length;
+const youngest = Math.min(...candidates.map((c) => c.age));
+const oldest = Math.max(...candidates.map((c) => c.age));
 ---
 
 <Base
@@ -26,12 +32,47 @@ import TeamGrid from "../components/TeamGrid.astro";
         class="reveal mt-6 text-lg md:text-xl max-w-2xl"
         style="color: var(--color-mist);"
       >
-        Kandidátku Za lepší Mariánské Lázně tvoří tým s praktickou
+        Kandidátku Za lepší Mariánské Lázně tvoří {total} lidí s praktickou
         zkušeností — z radnice, z kraje, z podnikání i z komunitní práce.
       </p>
+
+      <dl class="reveal mt-10 flex flex-wrap gap-x-12 gap-y-6">
+        <div>
+          <dt class="stat-label">Kandidátů</dt>
+          <dd class="stat-value">{total}</dd>
+        </div>
+        <div>
+          <dt class="stat-label">Žen na listině</dt>
+          <dd class="stat-value">{women}</dd>
+        </div>
+        <div>
+          <dt class="stat-label">Věkové rozpětí</dt>
+          <dd class="stat-value">{youngest}–{oldest}</dd>
+        </div>
+      </dl>
     </div>
   </section>
 
-  <LeaderCard />
+  <LeaderCard showCta={false} />
   <TeamGrid />
 </Base>
+
+<style>
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-pirate-light);
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--color-paper);
+    margin-top: 6px;
+  }
+</style>
