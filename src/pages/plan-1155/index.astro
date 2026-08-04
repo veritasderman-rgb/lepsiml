@@ -155,6 +155,7 @@ const sportVisibleAtBuild = sportProjectIds.some((id) => {
             <article
               class="plan-card reveal"
               id={`projekt-${pad2(p.id)}`}
+              data-id={p.id}
               data-unlock={p.unlock}
               data-state={isUnlockedAtBuild(p.unlock) ? "unlocked" : "locked"}
             >
@@ -725,14 +726,21 @@ const sportVisibleAtBuild = sportProjectIds.some((id) => {
     var today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    /* Náhled pro redakci: ?preview=all odemkne vše, ?preview=5 projekty s id <= 5. */
+    var previewParam = new URLSearchParams(location.search).get("preview");
+    var previewMax =
+      previewParam && !isNaN(parseInt(previewParam, 10)) ? parseInt(previewParam, 10) : null;
+
     function unlockDate(iso) {
       var d = new Date(iso + "T00:00:00");
       return isNaN(d.getTime()) ? null : d;
     }
 
-    function isUnlocked(iso) {
+    function isUnlocked(iso, id) {
+      if (previewParam === "all") return true;
+      if (previewMax !== null) return id <= previewMax;
       var d = unlockDate(iso);
-      return d ? d <= today : true;
+      return d ? d <= today : false;
     }
 
     var fmt = new Intl.DateTimeFormat("cs-CZ", { day: "numeric", month: "long" });
@@ -742,7 +750,7 @@ const sportVisibleAtBuild = sportProjectIds.some((id) => {
     var unlocked = 0;
     cards.forEach(function (card) {
       var iso = card.getAttribute("data-unlock");
-      var open = isUnlocked(iso);
+      var open = isUnlocked(iso, parseInt(card.getAttribute("data-id"), 10));
       card.setAttribute("data-state", open ? "unlocked" : "locked");
       if (open) unlocked++;
 
