@@ -1,0 +1,857 @@
+---
+import Base from "../../layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+import {
+  planMeta,
+  planProjects,
+  planSynergies,
+  sportArgument,
+  sportProjectIds,
+} from "../../lib/plan1155";
+
+const pad2 = (n: number) => String(n).padStart(2, "0");
+
+/**
+ * Stav odemčení se dopočítává v prohlížeči (viz skript dole) — statický build
+ * by jinak zamrzl na datu posledního nasazení. Tady renderujeme stav k buildu,
+ * aby stránka dávala smysl i bez JS.
+ */
+const buildToday = new Date();
+buildToday.setHours(0, 0, 0, 0);
+const isUnlockedAtBuild = (iso: string) => new Date(`${iso}T00:00:00`) <= buildToday;
+
+const unlockedAtBuild = planProjects.filter((p) => isUnlockedAtBuild(p.unlock));
+const sportVisibleAtBuild = sportProjectIds.some((id) => {
+  const p = planProjects.find((x) => x.id === id);
+  return p ? isUnlockedAtBuild(p.unlock) : false;
+});
+---
+
+<Base
+  title={planMeta.title}
+  description={planMeta.lead}
+  pathname="/plan-1155/"
+>
+  <!-- ============ HERO ============ -->
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%);"
+    aria-labelledby="plan-heading"
+  >
+    <span
+      class="hero-shape"
+      style="width: 520px; height: 520px; top: -200px; right: -160px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative py-20 md:py-28">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">
+        {planMeta.subtitle}
+      </p>
+      <h1 id="plan-heading" class="reveal mt-4" style="color: var(--color-paper);">
+        {planMeta.title}
+      </h1>
+      <p
+        class="reveal mt-6 text-lg md:text-xl max-w-2xl"
+        style="color: var(--color-mist);"
+      >
+        {planMeta.lead}
+      </p>
+
+      <p
+        class="reveal mt-8 max-w-2xl plan-goal"
+        set:html={planMeta.goal.replace(
+          /^(Cíl:)/,
+          '<b style="color: var(--color-pirate-light);">$1</b>',
+        )}
+      />
+
+      <dl class="reveal mt-10 grid gap-4 sm:grid-cols-3">
+        {
+          planMeta.stats.map((s) => (
+            <div class="plan-stat">
+              <dt class="mono-meta" style="color: var(--color-pirate-light);">
+                {s.label}
+              </dt>
+              <dd class="plan-stat-value">{s.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="#kalendar" class="btn btn-primary">Zobrazit projekty →</a>
+        <a href="#sledujte-nas" class="btn btn-outline">Chci to vědět první</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KALENDÁŘ PROJEKTŮ ============ -->
+  <section
+    id="kalendar"
+    class="section"
+    style="background-color: var(--color-spa-stone);"
+    aria-labelledby="kalendar-heading"
+  >
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Adventní kalendář projektů</p>
+        <h2 id="kalendar-heading" class="mt-3">
+          10 projektů. Odhalujeme jeden po druhém.
+        </h2>
+      </div>
+
+      <div class="progress-wrap reveal mt-10">
+        <div class="progress-top">
+          <span>Odemčeno</span>
+          <span><b id="prog-count">{unlockedAtBuild.length}</b> / {planProjects.length}</span>
+        </div>
+        <div class="progress-bar">
+          <div
+            class="progress-fill"
+            id="prog-fill"
+            style={`width: ${(unlockedAtBuild.length / planProjects.length) * 100}%;`}
+          >
+          </div>
+        </div>
+        <p class="countdown" id="countdown"></p>
+      </div>
+
+      <!-- Společný argument pro sportovní projekty #02–#04 -->
+      <div
+        id="sport-block"
+        class="mt-10 card reveal"
+        style="background-color: var(--color-paper); border-left: 4px solid var(--color-pirate);"
+        hidden={!sportVisibleAtBuild}
+      >
+        <p class="eyebrow">Společný argument</p>
+        <h3 class="mt-3 plan-h3">{sportArgument.title}</h3>
+        <p class="mt-3 text-lg" style="color: var(--color-smoke); font-weight: 600;">
+          {sportArgument.claim}
+        </p>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2">
+          {
+            sportArgument.points.map((pt) => (
+              <div>
+                <p class="mono-meta" style="color: var(--color-pirate-dark);">
+                  {pt.n}
+                </p>
+                <p class="mt-1 text-[15px]" style="color: var(--color-graphite);">
+                  {pt.text}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+        <p
+          class="mt-6 pt-4 font-semibold"
+          style="border-top: 1px solid var(--color-mist); color: var(--color-ink);"
+        >
+          {sportArgument.closing}
+        </p>
+      </div>
+
+      <div class="plan-grid mt-10">
+        {
+          planProjects.map((p) => (
+            <article
+              class="plan-card reveal"
+              id={`projekt-${pad2(p.id)}`}
+              data-unlock={p.unlock}
+              data-state={isUnlockedAtBuild(p.unlock) ? "unlocked" : "locked"}
+            >
+              {/* ---- zamčeno ---- */}
+              <div class="plan-locked">
+                <div class="flex items-center gap-4">
+                  <span class="lock-badge" aria-hidden="true">
+                    <Icon name="lucide:lock" width={22} height={22} />
+                  </span>
+                  <span class="plan-num">{pad2(p.id)}</span>
+                </div>
+                <p class="mt-5 text-lg font-semibold" style="color: var(--color-ink);">
+                  {p.teaser}
+                </p>
+                <p class="mono-meta mt-4 flex items-center gap-2" style="color: var(--color-smoke);">
+                  <Icon name="lucide:clock" width={15} height={15} aria-hidden="true" />
+                  Odemykáme <span data-unlock-label={p.unlock} />
+                </p>
+                <p class="mono-meta mt-3" style="color: var(--color-smoke);">
+                  Chceš to vědět dřív? <a href="#sledujte-nas" class="plan-link">→ sleduj nás</a>
+                </p>
+              </div>
+
+              {/* ---- odemčeno ---- */}
+              <div class="plan-unlocked">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="kicker">Projekt {pad2(p.id)}</span>
+                  {p.tags.map((t) => (
+                    <span class="plan-tag">{t}</span>
+                  ))}
+                </div>
+                <h3 class="mt-4 plan-h3">{p.title}</h3>
+                <p class="mt-2 text-lg" style="color: var(--color-smoke); font-weight: 600;">
+                  {p.claim}
+                </p>
+
+                <div class="keynum">
+                  <span class="keynum-money">{p.investice}</span>
+                  <span class="kicker">Intenzita: {p.intenzita}</span>
+                </div>
+
+                <button
+                  type="button"
+                  class="btn btn-ghost expand-btn mt-5 w-full"
+                  aria-expanded="false"
+                  aria-controls={`detail-${pad2(p.id)}`}
+                >
+                  Celý projekt →
+                </button>
+
+                <div class="plan-detail" id={`detail-${pad2(p.id)}`} hidden>
+                  <div class="d-block">
+                    <p class="d-head">Co to je</p>
+                    <p>{p.coToJe}</p>
+                  </div>
+                  <div class="d-block">
+                    <p class="d-head">Proč</p>
+                    <p>{p.proc}</p>
+                  </div>
+
+                  <div class="money-box">
+                    <p class="mono-meta" style="color: var(--color-pirate-light);">
+                      Za kolik a z čeho
+                    </p>
+                    <p class="money-num">{p.investice}</p>
+                    <p class="mt-3">
+                      <span class="kicker kicker-invert">
+                        Intenzita podpory: {p.intenzita}
+                      </span>
+                    </p>
+                    <p class="mt-4 text-[15px]" style="color: var(--color-mist);">
+                      {p.financovani}
+                    </p>
+                  </div>
+
+                  <div class="d-block">
+                    <p class="d-head">Co z toho město má</p>
+                    <p>{p.prinos}</p>
+                  </div>
+
+                  <div class="d-block">
+                    <p class="d-head">Harmonogram</p>
+                    <ol class="timeline">
+                      {p.harmonogram.map((t) => (
+                        <li class="tl-item">
+                          <span class="tl-year">{t.rok}</span>
+                          <span>{t.text}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+
+                  <div class="d-block">
+                    <p class="d-head">Odpovědi na kritiku</p>
+                    <div class="crit-box">
+                      {p.kritika.map((k) => (
+                        <div class="crit-item">
+                          <p class="crit-q">„{k.q}“</p>
+                          <p class="crit-a">{k.a}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="share" data-share={`projekt-${pad2(p.id)}`}>
+                    <span class="mono-meta" style="color: var(--color-smoke);">Sdílet:</span>
+                    <a class="share-btn" data-share-fb target="_blank" rel="noopener" href="#">
+                      <Icon name="lucide:facebook" width={15} height={15} aria-hidden="true" />
+                      Facebook
+                    </a>
+                    <button type="button" class="share-btn" data-share-copy>
+                      <Icon name="lucide:link" width={15} height={15} aria-hidden="true" />
+                      Kopírovat odkaz
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLEDUJTE NÁS ============ -->
+  <section
+    id="sledujte-nas"
+    class="section"
+    style="background-color: var(--color-ink);"
+    aria-labelledby="sledujte-heading"
+  >
+    <div class="container-site">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">
+        Chceš to vědět první?
+      </p>
+      <h2 id="sledujte-heading" class="mt-3" style="color: var(--color-paper);">
+        Sleduj nás na sítích.
+      </h2>
+      <p class="mt-5 text-lg max-w-xl" style="color: var(--color-mist);">
+        Každý projekt odhalujeme nejdřív na sociálních sítích. Přidej se a žádný
+        ti neuteče — a k tomu pozvánky na debaty a dění z kampaně.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="https://www.facebook.com/PiratiML"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary"
+        >
+          <Icon name="lucide:facebook" width={20} height={20} aria-hidden="true" />
+          Facebook
+        </a>
+        <a
+          href="https://www.instagram.com/pirati_zalepsiml/"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline"
+        >
+          <Icon name="lucide:instagram" width={20} height={20} aria-hidden="true" />
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SYNERGIE ============ -->
+  <section class="section" aria-labelledby="synergie-heading">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Synergie 10X</p>
+        <h2 id="synergie-heading" class="mt-3">Růstový ekosystém</h2>
+      </div>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        {
+          planSynergies.map((s) => (
+            <div class="reveal card" style="border-left: 4px solid var(--color-spa-gold);">
+              <p class="mono-meta" style="color: var(--color-pirate-dark);">
+                {s.title}
+              </p>
+              <p class="mt-2 text-[15px]" style="color: var(--color-graphite);">
+                {s.text}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div
+        class="reveal mt-14 card"
+        style="background-color: var(--color-ink); border-color: var(--color-ink);"
+      >
+        <p class="finale-1">
+          <b style="color: var(--color-pirate-light);">40 miliard je připraveno.</b>
+          Projekty jsou napsané. {planMeta.election}
+        </p>
+        <p class="finale-2">{planMeta.finale}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/program" class="btn btn-primary">Náš program</a>
+          <a href="#sledujte-nas" class="btn btn-outline">Sleduj nás na sítích →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- hero ---------- */
+  .plan-goal {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: clamp(1.25rem, 2vw + 0.75rem, 1.75rem);
+    line-height: 1.2;
+    color: var(--color-paper);
+    border-left: 4px solid var(--color-pirate);
+    padding-left: 18px;
+  }
+
+  .plan-stat {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background-color: rgba(255, 255, 255, 0.04);
+    padding: 18px 20px;
+  }
+
+  .plan-stat-value {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
+    line-height: 1.1;
+    color: var(--color-paper);
+    margin-top: 6px;
+  }
+
+  /* ---------- progress ---------- */
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-smoke);
+  }
+
+  .progress-top b {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--color-ink);
+  }
+
+  .progress-bar {
+    margin-top: 8px;
+    height: 10px;
+    background-color: var(--color-mist);
+    border: 1px solid var(--color-ash);
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background-color: var(--color-pirate);
+    transition: width 600ms ease;
+  }
+
+  .countdown {
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-smoke);
+  }
+
+  .countdown b {
+    color: var(--color-pirate-dark);
+  }
+
+  /* ---------- karty projektů ---------- */
+  .plan-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1024px) {
+    .plan-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .plan-card[data-open] {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .plan-card {
+    border: 1px solid var(--color-mist);
+    background-color: var(--color-paper);
+    padding: 26px 24px;
+    scroll-margin-top: 90px;
+  }
+
+  .plan-card[data-state="locked"] {
+    background-color: var(--color-cream);
+    border-style: dashed;
+    border-color: var(--color-ash);
+  }
+
+  .plan-card[data-state="locked"] .plan-unlocked,
+  .plan-card[data-state="unlocked"] .plan-locked {
+    display: none;
+  }
+
+  .lock-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 auto;
+    background-color: var(--color-pirate);
+    color: var(--color-ink);
+  }
+
+  .plan-num {
+    font-family: var(--font-display);
+    font-size: 52px;
+    line-height: 0.9;
+    color: var(--color-ash);
+  }
+
+  .plan-h3 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    font-size: clamp(1.375rem, 1.5vw + 1rem, 1.75rem);
+    line-height: 1.2;
+    color: var(--color-ink);
+  }
+
+  .plan-link {
+    color: var(--color-pirate-dark);
+    font-weight: 600;
+  }
+
+  .kicker {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    background-color: var(--color-pirate);
+    color: var(--color-ink);
+    line-height: 1.3;
+  }
+
+  .kicker-invert {
+    background-color: var(--color-pirate-light);
+  }
+
+  .plan-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    background-color: var(--color-spa-stone);
+    border: 1px solid var(--color-mist);
+    color: var(--color-smoke);
+    line-height: 1.3;
+  }
+
+  .keynum {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    padding: 14px 16px;
+    background-color: var(--color-spa-stone);
+  }
+
+  .keynum-money {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    font-size: clamp(1.25rem, 3vw, 1.625rem);
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  /* ---------- detail projektu ---------- */
+  .plan-detail {
+    border-top: 1px solid var(--color-mist);
+    margin-top: 20px;
+    padding-top: 4px;
+  }
+
+  .plan-detail[hidden] {
+    display: none;
+  }
+
+  .d-block {
+    margin-top: 22px;
+  }
+
+  .d-head {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-pirate-dark);
+  }
+
+  .d-head::before {
+    content: "";
+    width: 22px;
+    height: 3px;
+    background-color: var(--color-pirate);
+  }
+
+  .d-block > p:last-child {
+    margin-top: 8px;
+    color: var(--color-graphite);
+  }
+
+  .money-box {
+    margin-top: 22px;
+    padding: 22px 20px;
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .money-num {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    line-height: 1.05;
+    color: var(--color-paper);
+    margin-top: 8px;
+  }
+
+  .timeline {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    color: var(--color-graphite);
+  }
+
+  .tl-year {
+    flex: 0 0 auto;
+    min-width: 86px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--color-pirate-dark);
+    padding-top: 4px;
+  }
+
+  .crit-box {
+    margin-top: 12px;
+    border: 1px solid var(--color-mist);
+    background-color: var(--color-cream);
+    padding: 16px 18px;
+  }
+
+  .crit-item {
+    padding-block: 10px;
+    border-top: 1px dashed var(--color-mist);
+  }
+
+  .crit-item:first-child {
+    border-top: none;
+    padding-top: 2px;
+  }
+
+  .crit-q {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .crit-a {
+    margin-top: 5px;
+    color: var(--color-smoke);
+  }
+
+  /* ---------- sdílení ---------- */
+  .share {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background-color: var(--color-spa-stone);
+    border: 1px solid var(--color-mist);
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .share-btn:hover {
+    background-color: var(--color-mist);
+    border-color: var(--color-ink);
+  }
+
+  /* ---------- finále ---------- */
+  .finale-1 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: clamp(1.5rem, 3vw + 1rem, 2.5rem);
+    line-height: 1.1;
+    color: var(--color-paper);
+  }
+
+  .finale-2 {
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(1.125rem, 1.5vw + 0.75rem, 1.5rem);
+    line-height: 1.35;
+    color: var(--color-pirate-light);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var cards = Array.prototype.slice.call(
+      document.querySelectorAll(".plan-card[data-unlock]"),
+    );
+    if (!cards.length) return;
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    function unlockDate(iso) {
+      var d = new Date(iso + "T00:00:00");
+      return isNaN(d.getTime()) ? null : d;
+    }
+
+    function isUnlocked(iso) {
+      var d = unlockDate(iso);
+      return d ? d <= today : true;
+    }
+
+    var fmt = new Intl.DateTimeFormat("cs-CZ", { day: "numeric", month: "long" });
+
+    /* Stav odemčení dopočítáváme v prohlížeči — statický build by zamrzl
+       na datu posledního nasazení. */
+    var unlocked = 0;
+    cards.forEach(function (card) {
+      var iso = card.getAttribute("data-unlock");
+      var open = isUnlocked(iso);
+      card.setAttribute("data-state", open ? "unlocked" : "locked");
+      if (open) unlocked++;
+
+      var label = card.querySelector("[data-unlock-label]");
+      var d = unlockDate(iso);
+      if (label && d) label.textContent = fmt.format(d);
+    });
+
+    var total = cards.length;
+    var count = document.getElementById("prog-count");
+    var fill = document.getElementById("prog-fill");
+    if (count) count.textContent = String(unlocked);
+    if (fill) fill.style.width = (unlocked / total) * 100 + "%";
+
+    /* odpočet k nejbližšímu zamčenému projektu */
+    var cd = document.getElementById("countdown");
+    if (cd) {
+      var next = cards
+        .filter(function (c) {
+          return c.getAttribute("data-state") === "locked" && unlockDate(c.getAttribute("data-unlock"));
+        })
+        .sort(function (a, b) {
+          return unlockDate(a.getAttribute("data-unlock")) - unlockDate(b.getAttribute("data-unlock"));
+        })[0];
+
+      if (unlocked >= total) {
+        cd.textContent = "Všech " + total + " projektů je odemčeno. Rozhodnou volby 9.–10. října 2026.";
+      } else if (next) {
+        var days = Math.ceil((unlockDate(next.getAttribute("data-unlock")) - new Date()) / 86400000);
+        var when;
+        if (days <= 0) when = "dnes";
+        else if (days === 1) when = "zítra";
+        else when = "za <b>" + days + "</b> " + (days >= 2 && days <= 4 ? "dny" : "dní");
+        cd.innerHTML = "Další projekt odemykáme " + when + ".";
+      } else {
+        cd.textContent = "";
+      }
+    }
+
+    /* společný sportovní argument — jen když je odemčený aspoň jeden z #02–#04 */
+    var sportBlock = document.getElementById("sport-block");
+    if (sportBlock) {
+      var sportOpen = [2, 3, 4].some(function (id) {
+        var c = document.getElementById("projekt-0" + id);
+        return c && c.getAttribute("data-state") === "unlocked";
+      });
+      sportBlock.hidden = !sportOpen;
+    }
+
+    /* odkazy na sdílení — sestavíme až v prohlížeči, ať sedí doména */
+    cards.forEach(function (card) {
+      var share = card.querySelector("[data-share]");
+      if (!share) return;
+      var url = location.origin + location.pathname + "#" + card.id;
+      var fb = share.querySelector("[data-share-fb]");
+      if (fb) fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+      var copy = share.querySelector("[data-share-copy]");
+      if (copy) copy.setAttribute("data-url", url);
+    });
+
+    /* rozbalování detailu + kopírování odkazu */
+    document.addEventListener("click", function (e) {
+      var btn = e.target.closest(".expand-btn");
+      if (btn) {
+        var card = btn.closest(".plan-card");
+        var detail = document.getElementById(btn.getAttribute("aria-controls"));
+        var open = detail.hasAttribute("hidden");
+        if (open) {
+          detail.removeAttribute("hidden");
+          card.setAttribute("data-open", "");
+        } else {
+          detail.setAttribute("hidden", "");
+          card.removeAttribute("data-open");
+        }
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        btn.textContent = open ? "Skrýt detail ↑" : "Celý projekt →";
+        return;
+      }
+
+      var copyBtn = e.target.closest("[data-share-copy]");
+      if (copyBtn) {
+        var txt = copyBtn.getAttribute("data-url") || location.href;
+        var orig = copyBtn.innerHTML;
+        var done = function () {
+          copyBtn.textContent = "Zkopírováno!";
+          setTimeout(function () {
+            copyBtn.innerHTML = orig;
+          }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(txt).then(done, function () {
+            window.prompt("Zkopírujte odkaz:", txt);
+          });
+        } else {
+          window.prompt("Zkopírujte odkaz:", txt);
+        }
+      }
+    });
+
+    /* #projekt-0X v URL → rozbalit a odscrollovat */
+    if (location.hash) {
+      var el = document.querySelector(location.hash);
+      if (el && el.classList.contains("plan-card") && el.getAttribute("data-state") === "unlocked") {
+        var b = el.querySelector(".expand-btn");
+        if (b) b.click();
+        setTimeout(function () {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 60);
+      }
+    }
+  })();
+</script>
