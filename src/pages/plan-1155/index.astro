@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { Icon } from "astro-icon/components";
+import { contact } from "../../lib/site";
 import {
   planMeta,
   planProjects,
@@ -300,7 +301,7 @@ const sportVisibleAtBuild = sportProjectIds.some((id) => {
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a
-          href="https://www.facebook.com/PiratiML"
+          href={contact.facebook}
           target="_blank"
           rel="noopener"
           class="btn btn-primary"
@@ -309,7 +310,7 @@ const sportVisibleAtBuild = sportProjectIds.some((id) => {
           Facebook
         </a>
         <a
-          href="https://www.instagram.com/pirati_zalepsiml/"
+          href={contact.instagram}
           target="_blank"
           rel="noopener"
           class="btn btn-outline"

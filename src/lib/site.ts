@@ -22,7 +22,7 @@ export const nav: { label: string; href: string }[] = [
 export const contact = {
   email: "mail@josefpavlovic.cz",
   phone: "+420 607 517 967",
-  facebook: "https://www.facebook.com/PiratiML",
+  facebook: "https://www.facebook.com/profile.php?id=61590480732736",
   instagram: "https://www.instagram.com/pirati_zalepsiml/",
   spotify: "https://open.spotify.com/",
   youtube: "https://www.youtube.com/",
