@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { nav, site, contact } from "../lib/site";
+import { nav, site, contact, transparencyDashboard } from "../lib/site";
 import LogoMark from "./LogoMark.astro";
 
 const year = new Date().getFullYear();
@@ -55,6 +55,22 @@ const year = new Date().getFullYear();
               </li>
             ))
           }
+          <li>
+            <a
+              href={transparencyDashboard.url}
+              class="hover:underline"
+              style="color: #fff;"
+              rel="noopener"
+            >
+              {transparencyDashboard.name}
+            </a>
+            <span
+              class="block text-xs mt-0.5"
+              style="color: var(--color-ash);"
+            >
+              Transparentní data o městě — pokus ve spolupráci s AI
+            </span>
+          </li>
         </ul>
       </div>
 
