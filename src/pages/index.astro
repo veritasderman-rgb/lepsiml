@@ -5,7 +5,7 @@ import PillarStrip from "../components/PillarStrip.astro";
 import LeaderCard from "../components/LeaderCard.astro";
 import FeatureCard from "../components/FeatureCard.astro";
 import MeetingList from "../components/MeetingList.astro";
-import { whyUs } from "../lib/site";
+import { whyUs, transparencyDashboard } from "../lib/site";
 import { Icon } from "astro-icon/components";
 
 // Dočasně skryté sekce — zapnout přepnutím na true, až bude obsah ready.
@@ -137,6 +137,70 @@ const SHOW_PODCAST_TEASER = false;
   </section>
 
   <LeaderCard />
+
+  <!-- Transparentnost v praxi — sesterský web Naše Mariánky v přehledech -->
+  <section
+    class="relative overflow-hidden"
+    style="background-color: var(--color-ink);"
+    aria-labelledby="transparentnost-heading"
+  >
+    <span
+      class="hero-shape"
+      style="width: 520px; height: 520px; top: -180px; left: -160px;"
+      aria-hidden="true"
+    ></span>
+    <div class="container-site relative" style="padding-block: 72px;">
+      <div class="grid gap-10 lg:grid-cols-[1.3fr_1fr] items-center">
+        <div>
+          <p class="eyebrow" style="color: var(--color-pirate-light);">
+            Transparentnost v praxi
+          </p>
+          <h2
+            id="transparentnost-heading"
+            class="mt-3"
+            style="color: var(--color-paper);"
+          >
+            Naše Mariánky v přehledech
+          </h2>
+          <p class="mt-5 text-lg max-w-xl" style="color: var(--color-mist);">
+            Otevřenou radnici neslibujeme jen v programu — zkusili jsme si ji
+            postavit. Usnesení, jmenovitá hlasování, smlouvy z registru, zápisy
+            z komisí i peníze města
+            <strong style="color: var(--color-paper);">
+              na jednom místě, prohledávatelné a s odkazem na zdroj u každého
+              čísla</strong
+            >.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a
+              href={transparencyDashboard.url}
+              rel="noopener"
+              class="btn btn-primary"
+            >
+              Otevřít přehledy →
+            </a>
+          </div>
+        </div>
+        <div
+          class="reveal"
+          style="border: 1px solid rgba(255,255,255,0.14); border-radius: 0; padding: 28px; background-color: rgba(255,255,255,0.04);"
+        >
+          <p class="mono-meta" style="color: var(--color-pirate-light);">
+            Pokus ve spolupráci s AI
+          </p>
+          <p class="mt-3 text-[15px]" style="color: rgba(255,255,255,0.8);">
+            Přehledy postavila umělá inteligence pod naším dohledem — výhradně
+            z veřejných a dostupných zdrojů, se všemi mezerami, které z toho
+            plynou. Skutečný městský dashboard potřebuje přímé napojení na
+            systémy radnice.
+            <strong style="color: var(--color-paper);">
+              A přesně ten chceme z radnice spustit.</strong
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Proč my -->
   <section

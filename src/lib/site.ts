@@ -19,6 +19,15 @@ export const nav: { label: string; href: string }[] = [
   { label: "Kontakt", href: "/kontakt" },
 ];
 
+/**
+ * Sesterský web: transparentní přehledy o městě z veřejných zdrojů.
+ * Pokus ve spolupráci s AI — ukázka, jak myslíme otevřenou radnici.
+ */
+export const transparencyDashboard = {
+  name: "Naše Mariánky v přehledech",
+  url: "https://marianky.vercel.app",
+};
+
 export const contact = {
   email: "mail@josefpavlovic.cz",
   phone: "+420 607 517 967",
