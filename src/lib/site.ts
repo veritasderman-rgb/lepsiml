@@ -13,12 +13,6 @@ export const site = {
     "Za lepší Mariánské Lázně — lokální kandidátka do zastupitelstva. Vojta Franta a tým s praktickou zkušeností z radnice i kraje.",
 };
 
-export const nav: { label: string; href: string }[] = [
-  { label: "Program", href: "/program" },
-  { label: "Kandidáti", href: "/kandidati" },
-  { label: "Kontakt", href: "/kontakt" },
-];
-
 /**
  * Sesterský web: transparentní přehledy o městě z veřejných zdrojů.
  * Pokus ve spolupráci s AI — ukázka, jak myslíme otevřenou radnici.
@@ -27,6 +21,28 @@ export const transparencyDashboard = {
   name: "Naše Mariánky v přehledech",
   url: "https://marianky.vercel.app",
 };
+
+export type NavLink = {
+  label: string;
+  href: string;
+  /** Odkaz mimo web — otevírá se v novém okně a nese vizuální označení. */
+  external?: boolean;
+  /** Delší popis pro title/aria, když je `label` zkrácený kvůli šířce menu. */
+  fullLabel?: string;
+};
+
+export const nav: NavLink[] = [
+  { label: "Program", href: "/program" },
+  { label: "10X lépe", href: "/plan-1155/", fullLabel: "Mariánky 10X lépe" },
+  { label: "Kandidáti", href: "/kandidati" },
+  {
+    label: "Přehledy",
+    href: transparencyDashboard.url,
+    external: true,
+    fullLabel: transparencyDashboard.name,
+  },
+  { label: "Kontakt", href: "/kontakt" },
+];
 
 export const contact = {
   email: "mail@josefpavlovic.cz",
