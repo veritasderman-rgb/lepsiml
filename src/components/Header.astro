@@ -30,25 +30,49 @@ const { pathname = "/" } = Astro.props;
       </span>
     </a>
 
-    <nav class="hidden md:flex items-center gap-1" aria-label="Hlavní navigace">
+    <nav class="hidden xl:flex items-center gap-1" aria-label="Hlavní navigace">
       {
         nav.map((link) => {
           const active =
-            pathname === link.href ||
-            (link.href !== "/" && pathname.startsWith(link.href));
+            !link.external &&
+            (pathname === link.href ||
+              (link.href !== "/" && pathname.startsWith(link.href)));
           return (
             <a
               href={link.href}
-              class="px-4 py-2 transition-colors"
+              class="px-3 py-2 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
               style={`font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em; font-size: 16px; color: ${active ? "var(--color-pirate)" : "var(--color-paper)"};`}
               data-active={active}
+              title={link.fullLabel}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener" : undefined}
             >
               {link.label}
+              {link.external && (
+                <>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    style="opacity: 0.7;"
+                  >
+                    <path d="M7 17 17 7" />
+                    <path d="M9 7h8v8" />
+                  </svg>
+                  <span class="sr-only">(otevře se v novém okně)</span>
+                </>
+              )}
             </a>
           );
         })
       }
-      <a href="/program" class="btn btn-primary ml-3 !py-[10px] !px-5 !text-sm">
+      <a href="/program" class="btn btn-primary ml-2 !py-[10px] !px-4 !text-sm">
         Náš program
       </a>
     </nav>
