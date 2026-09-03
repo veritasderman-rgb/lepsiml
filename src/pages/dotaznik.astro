@@ -16,8 +16,10 @@ import {
   surveyScale,
 } from "../lib/survey";
 
-// Dokud není hotový online formulář, nenabízíme mrtvé tlačítko.
+// Dokud není hotový online formulář ani tisková verze s doplněným IČO,
+// nenabízíme mrtvá tlačítka.
 const online = surveyFormUrl.length > 0;
+const pdfReady = surveyPdf.length > 0;
 ---
 
 <Base title={surveyMeta.title} description={surveyMeta.intro}>
@@ -62,9 +64,13 @@ const online = surveyFormUrl.length > 0;
             </span>
           )
         }
-        <a href={surveyPdf} class="btn btn-outline" download>
-          Stáhnout k tisku (PDF)
-        </a>
+        {
+          pdfReady && (
+            <a href={surveyPdf} class="btn btn-outline" download>
+              Stáhnout k tisku (PDF)
+            </a>
+          )
+        }
       </div>
     </div>
   </section>

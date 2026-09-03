@@ -124,7 +124,12 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
               </button>
             </div>
 
-            <nav className="flex-1 flex flex-col justify-center px-8 gap-1">
+            {/* Scrollovatelné, protože na ležatém telefonu se položky do okna
+                nevejdou a scroll stránky je pod otevřeným menu zamčený.
+                Centrování řeší min-h-full na vnitřním divu — justify-center
+                přímo na scrollovacím prvku by ořízlo horní část obsahu. */}
+            <nav className="flex-1 overflow-y-auto overscroll-contain px-8">
+              <div className="min-h-full flex flex-col justify-center gap-1 py-4">
               {links.map((link) => {
                 const active = !link.external && pathname === link.href;
                 return (
@@ -173,9 +178,10 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
                   </a>
                 );
               })}
+              </div>
             </nav>
 
-            <div className="px-8 pb-10">
+            <div className="px-8 pb-10 pt-4 flex-shrink-0">
               <a
                 href="/program"
                 onClick={() => setOpen(false)}
