@@ -113,3 +113,29 @@ na SSR).
 ---
 
 Za lepší Mariánské Lázně — Protože víme, jak na to.
+
+## Dotazník pro obyvatele
+
+Online dotazník na `/dotaznik` zapisuje odpovědi do Postgresu na Neonu.
+
+**Proměnná prostředí:** `DATABASE_URL` — connection string na Neon projekt
+`lepsiml-dotaznik`. Nastavuje se v Nastavení projektu na Vercelu
+(Environment Variables) pro Production i Preview. Bez ní vrací
+`/api/dotaznik` chybu 503 a nic se neukládá; zbytek webu funguje.
+
+Lokálně: založit `.env` s `DATABASE_URL=...` (soubor je v `.gitignore`).
+
+**Schéma** je v tabulce `odpovedi`. Kromě sloupců hlídá i dvě věci, na které
+se nedá zapomenout v aplikačním kódu: v otázce 1 smí být nejvýš tři odpovědi
+a kontaktní údaje se nedají uložit bez zaškrtnutého souhlasu.
+
+**Export odpovědí** pro vyhodnocení:
+
+```sql
+select vytvoreno, problemy, problem_jine, projekty, zmena, zdroj
+from odpovedi order by vytvoreno;
+```
+
+Kontaktní údaje jsou v samostatných sloupcích (`email`, `telefon`, `jmeno`,
+`souhlas`, `kontakt_zajmy`) — pro analýzu odpovědí je nepotřebujete, tak je
+do exportu netahejte.

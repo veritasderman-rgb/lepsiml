@@ -7,7 +7,7 @@ import {
   surveyConsent,
   surveyContactOptions,
   surveyDisclaimer,
-  surveyFormUrl,
+  surveyEndpoint,
   surveyMeta,
   surveyPdf,
   surveyProblems,
@@ -16,9 +16,7 @@ import {
   surveyScale,
 } from "../lib/survey";
 
-// Dokud není hotový online formulář ani tisková verze s doplněným IČO,
-// nenabízíme mrtvá tlačítka.
-const online = surveyFormUrl.length > 0;
+// Tisková verze se nabízí až s doplněným IČO v tiráži.
 const pdfReady = surveyPdf.length > 0;
 ---
 
@@ -33,153 +31,178 @@ const pdfReady = surveyPdf.length > 0;
       class="hero-shape"
       style="width: 500px; height: 500px; top: -190px; right: -150px;"
       aria-hidden="true"></span>
-    <div class="container-site relative py-20 md:py-28">
+    <div class="container-site relative py-20 md:py-24">
       <p class="eyebrow" style="color: var(--color-pirate-light);">
         Ptáme se lidí, kteří tu žijí
       </p>
       <h1 id="dotaznik-heading" class="reveal mt-4" style="color: var(--color-paper);">
         {surveyMeta.lead}
       </h1>
-      <p
-        class="reveal mt-6 text-lg md:text-xl max-w-2xl"
-        style="color: var(--color-mist);"
-      >
+      <p class="reveal mt-6 text-lg md:text-xl max-w-2xl" style="color: var(--color-mist);">
         {surveyMeta.intro}
       </p>
-
       <p class="reveal mono-meta mt-6 flex items-center gap-2" style="color: var(--color-pirate-light);">
         <Icon name="lucide:clock" width={15} height={15} aria-hidden="true" />
         {surveyMeta.duration}
       </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#formular" class="btn btn-primary">Vyplnit dotazník →</a>
+        {pdfReady && (
+          <a href={surveyPdf} class="btn btn-outline" download>Stáhnout k tisku (PDF)</a>
+        )}
+      </div>
+    </div>
+  </section>
 
-      <div class="mt-10 flex flex-wrap gap-3">
-        {
-          online ? (
-            <a href={surveyFormUrl} target="_blank" rel="noopener" class="btn btn-primary">
-              Vyplnit online →
-            </a>
-          ) : (
-            <span class="btn" style="background-color: rgba(255,255,255,0.08); color: var(--color-mist); border-color: rgba(255,255,255,0.2); cursor: default;">
-              Online formulář připravujeme
+  <!-- ============ FORMULÁŘ ============ -->
+  <section id="formular" class="section" style="background-color: var(--color-spa-stone);">
+    <div class="container-site">
+      <form id="dotaznik-form" novalidate>
+        <!-- Past na roboty; skrytá i pro odečítače. -->
+        <div class="hp" aria-hidden="true">
+          <label>Nechte prázdné <input type="text" name="web" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <!-- Otázka 1 -->
+        <fieldset class="card q-card">
+          <legend class="q-legend">
+            <span class="mono-meta" style="color: var(--color-pirate-dark);">Otázka 1</span>
+            <span class="q-title">Co vás v Mariánských Lázních nejvíce trápí?</span>
+          </legend>
+          <p class="q-help">
+            Vyberte maximálně {SURVEY_MAX_PROBLEMS} odpovědi.
+            <output id="pocet-problemu" class="pocet">0 / {SURVEY_MAX_PROBLEMS}</output>
+          </p>
+          <div class="opt-grid mt-5">
+            {surveyProblems.map((p) => (
+              <label class="opt">
+                <input type="checkbox" name="problemy" value={p} />
+                <span>{p}</span>
+              </label>
+            ))}
+          </div>
+          <label class="jine mt-4">
+            <span class="jine-label">Jiné — vlastními slovy</span>
+            <input type="text" name="problemJine" maxlength="500" autocomplete="off" />
+          </label>
+        </fieldset>
+
+        <!-- Otázka 2 -->
+        <fieldset class="card q-card mt-6">
+          <legend class="q-legend">
+            <span class="mono-meta" style="color: var(--color-pirate-dark);">Otázka 2</span>
+            <span class="q-title">
+              Jak důležité jsou podle vás následující projekty pro budoucnost
+              Mariánských Lázní?
             </span>
-          )
-        }
-        {
-          pdfReady && (
-            <a href={surveyPdf} class="btn btn-outline" download>
-              Stáhnout k tisku (PDF)
-            </a>
-          )
-        }
-      </div>
-    </div>
-  </section>
+          </legend>
+          <p class="q-help">
+            U každého projektu vyberte jedno číslo. Nemusíte hodnotit všechny.
+          </p>
+          <ol class="scale-legend mt-4">
+            {surveyScale.map((s) => (
+              <li><span class="scale-num">{s.value}</span>{s.label}</li>
+            ))}
+          </ol>
 
-  <!-- ============ NA CO SE PTÁME ============ -->
-  <section class="section" style="background-color: var(--color-spa-stone);">
-    <div class="container-site">
-      <div class="max-w-2xl">
-        <p class="eyebrow">Na co se ptáme</p>
-        <h2 class="mt-3">Tři otázky, tři minuty</h2>
+          <div class="mt-6 grid gap-4">
+            {surveyProjects.map((p) => (
+              <fieldset class="proj">
+                <legend class="sr-only">Projekt {p.id}: {p.title}</legend>
+                <div class="proj-text">
+                  <p class="proj-num">{p.id}</p>
+                  <p class="proj-title">{p.title}</p>
+                  <p class="proj-desc">{p.description}</p>
+                </div>
+                <div class="proj-scale" role="group" aria-label={`Hodnocení projektu ${p.title}`}>
+                  {surveyScale.map((s) => (
+                    <label class="scale-opt" title={s.label}>
+                      <input type="radio" name={`projekt-${p.id}`} value={s.value} />
+                      <span>{s.value}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+          </div>
+        </fieldset>
+
+        <!-- Otázka 3 -->
+        <fieldset class="card q-card mt-6" style="border-left: 4px solid var(--color-spa-gold);">
+          <legend class="q-legend">
+            <span class="mono-meta" style="color: var(--color-pirate-dark);">Otázka 3</span>
+            <span class="q-title">
+              Kdybyste mohl/a v Mariánských Lázních změnit jednu věc, co by to bylo?
+            </span>
+          </legend>
+          <p class="q-help">
+            Vlastními slovy. Zajímá nás i to, co jsme do dotazníku nezařadili —
+            tahle odpověď je pro nás nejcennější.
+          </p>
+          <textarea name="zmena" rows="5" maxlength="2000" class="ta mt-4"></textarea>
+        </fieldset>
+
+        <!-- Kontakt -->
+        <fieldset class="card q-card mt-6">
+          <legend class="q-legend">
+            <span class="mono-meta" style="color: var(--color-pirate-dark);">Nepovinná část</span>
+            <span class="q-title">Chcete zůstat v kontaktu?</span>
+          </legend>
+          <p class="q-help">
+            Kontakt je dobrovolný. Dotazník je bez něj stejně platný.
+          </p>
+
+          <div class="mt-5 grid gap-3">
+            {surveyContactOptions.map((o) => (
+              <label class="opt">
+                <input type="checkbox" name="kontaktZajmy" value={o.id} />
+                <span>{o.label}</span>
+              </label>
+            ))}
+          </div>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-3">
+            <label class="pole">
+              <span class="pole-label">E-mail</span>
+              <input type="email" name="email" maxlength="254" autocomplete="email" />
+            </label>
+            <label class="pole">
+              <span class="pole-label">Telefon (volitelné)</span>
+              <input type="tel" name="telefon" maxlength="40" autocomplete="tel" />
+            </label>
+            <label class="pole">
+              <span class="pole-label">Jméno (volitelné)</span>
+              <input type="text" name="jmeno" maxlength="100" autocomplete="name" />
+            </label>
+          </div>
+
+          <label class="opt mt-5 souhlas">
+            <input type="checkbox" name="souhlas" value="1" />
+            <span>{surveyConsent}</span>
+          </label>
+          <p id="souhlas-hint" class="chyba mt-2" hidden>
+            Bez zaškrtnutí souhlasu kontakt neuložíme. Buď souhlas zaškrtněte,
+            nebo kontaktní pole nechte prázdná — dotazník odešleme i tak.
+          </p>
+        </fieldset>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <button type="submit" class="btn btn-primary" id="odeslat">Odeslat dotazník</button>
+          <p id="stav" class="stav" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <!-- Poděkování po odeslání -->
+      <div id="hotovo" class="card dekujeme" hidden>
+        <p class="eyebrow">Odesláno</p>
+        <h2 class="mt-3">Děkujeme za váš čas i za váš názor.</h2>
         <p class="mt-4 text-lg" style="color: var(--color-smoke);">
-          Než dotazník vyplníte, můžete si projít, na co se ptáme. Nic víc
-          v něm není — na volební preference ani politickou orientaci se
-          neptáme.
+          Odpověď máme. Souhrn zveřejníme na lepsiml.cz — včetně projektů,
+          které dopadly nejhůř.
         </p>
-      </div>
-
-      <!-- Otázka 1 -->
-      <div class="reveal card mt-10" style="background-color: var(--color-paper);">
-        <p class="mono-meta" style="color: var(--color-pirate-dark);">Otázka 1</p>
-        <h3 class="mt-3 q-title">Co vás v Mariánských Lázních nejvíce trápí?</h3>
-        <p class="mt-2" style="color: var(--color-smoke);">
-          Vyberte maximálně {SURVEY_MAX_PROBLEMS} odpovědi.
-        </p>
-        <ul class="opt-grid mt-6">
-          {surveyProblems.map((p) => <li class="opt">{p}</li>)}
-          <li class="opt opt-other">Jiné — vlastními slovy</li>
-        </ul>
-      </div>
-
-      <!-- Otázka 2 -->
-      <div class="reveal card mt-6" style="background-color: var(--color-paper);">
-        <p class="mono-meta" style="color: var(--color-pirate-dark);">Otázka 2</p>
-        <h3 class="mt-3 q-title">
-          Jak důležité jsou podle vás následující projekty pro budoucnost
-          Mariánských Lázní?
-        </h3>
-        <p class="mt-2" style="color: var(--color-smoke);">
-          U každého projektu vyberete jedno číslo. Není vám některý projekt
-          jasný? Zeptejte se nás, rádi ho vysvětlíme.
-        </p>
-
-        <ol class="scale-legend mt-5">
-          {
-            surveyScale.map((s) => (
-              <li>
-                <span class="scale-num">{s.value}</span>
-                {s.label}
-              </li>
-            ))
-          }
-        </ol>
-
-        <div class="mt-8 grid gap-5 md:grid-cols-2">
-          {
-            surveyProjects.map((p) => (
-              <div class="proj">
-                <p class="proj-num">{p.id}</p>
-                <p class="proj-title">{p.title}</p>
-                <p class="proj-desc">{p.description}</p>
-              </div>
-            ))
-          }
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/program" class="btn btn-ghost">Náš program</a>
         </div>
-      </div>
-
-      <!-- Otázka 3 -->
-      <div class="reveal card mt-6" style="background-color: var(--color-paper); border-left: 4px solid var(--color-spa-gold);">
-        <p class="mono-meta" style="color: var(--color-pirate-dark);">Otázka 3</p>
-        <h3 class="mt-3 q-title">
-          Kdybyste mohl/a v Mariánských Lázních změnit jednu věc, co by to
-          bylo?
-        </h3>
-        <p class="mt-2" style="color: var(--color-smoke);">
-          Vlastními slovy. Zajímá nás i to, co jsme do dotazníku nezařadili —
-          tahle odpověď je pro nás nejcennější.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ KONTAKT / SOUHLAS ============ -->
-  <section class="section" aria-labelledby="kontaktni-blok">
-    <div class="container-site">
-      <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr]">
-        <div>
-          <p class="eyebrow">Nepovinná část</p>
-          <h2 id="kontaktni-blok" class="mt-3">Chcete zůstat v kontaktu?</h2>
-          <p class="mt-4 text-lg" style="color: var(--color-smoke);">
-            Kontakt je dobrovolný. Dotazník je bez něj stejně platný — nic se
-            tím neztrácí a nikomu se nic neposílá.
-          </p>
-          <ul class="mt-6 grid gap-3">
-            {
-              surveyContactOptions.map((o) => (
-                <li class="opt">{o.label}</li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <aside class="card" style="background-color: var(--color-cream); align-self: start;">
-          <p class="mono-meta" style="color: var(--color-pirate-dark);">
-            Jak nakládáme s údaji
-          </p>
-          <p class="mt-3 text-[14px]" style="color: var(--color-graphite); line-height: 1.6;">
-            {surveyConsent}
-          </p>
-        </aside>
       </div>
     </div>
   </section>
@@ -188,31 +211,13 @@ const pdfReady = surveyPdf.length > 0;
   <section class="section" style="background-color: var(--color-ink);">
     <div class="container-site">
       <p class="eyebrow" style="color: var(--color-pirate-light);">Slibujeme</p>
-      <h2 class="mt-3" style="color: var(--color-paper);">
-        Co s odpověďmi uděláme
-      </h2>
-
+      <h2 class="mt-3" style="color: var(--color-paper);">Co s odpověďmi uděláme</h2>
       <ul class="mt-8 grid gap-4 md:grid-cols-2 max-w-4xl">
-        {
-          surveyPromises.map((p) => (
-            <li class="promise">{p}</li>
-          ))
-        }
+        {surveyPromises.map((p) => <li class="promise">{p}</li>)}
       </ul>
-
-      <div class="mt-10 flex flex-wrap gap-3">
-        {
-          online && (
-            <a href={surveyFormUrl} target="_blank" rel="noopener" class="btn btn-primary">
-              Vyplnit online →
-            </a>
-          )
-        }
-        <a href={`mailto:${contact.email}`} class="btn btn-outline">
-          Mám otázku k projektu
-        </a>
+      <div class="mt-10">
+        <a href={`mailto:${contact.email}`} class="btn btn-outline">Mám otázku k projektu</a>
       </div>
-
       <p class="mt-10 text-[13px] max-w-3xl" style="color: var(--color-ash); line-height: 1.6;">
         {surveyDisclaimer}
       </p>
@@ -221,125 +226,211 @@ const pdfReady = surveyPdf.length > 0;
 </Base>
 
 <style>
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .q-card { background-color: var(--color-paper); }
+  .q-legend { display: block; padding: 0; }
   .q-title {
+    display: block;
+    margin-top: 10px;
     font-family: var(--font-body);
     font-weight: 700;
-    text-transform: none;
-    letter-spacing: -0.01em;
     font-size: clamp(1.25rem, 1.5vw + 0.875rem, 1.625rem);
     line-height: 1.25;
     color: var(--color-ink);
   }
-
-  .opt-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 10px;
+  .q-help { margin-top: 10px; color: var(--color-smoke); font-size: 15px; }
+  .pocet {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    margin-left: 8px;
+    background-color: var(--color-spa-stone);
+    border: 1px solid var(--color-mist);
+    color: var(--color-smoke);
   }
+  .pocet[data-plno="true"] { background-color: var(--color-pirate); color: var(--color-ink); border-color: var(--color-pirate); }
 
-  @media (min-width: 768px) {
-    .opt-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
+  .opt-grid { display: grid; gap: 10px; }
+  @media (min-width: 768px) { .opt-grid { grid-template-columns: 1fr 1fr; } }
 
   .opt {
-    position: relative;
-    padding: 12px 14px 12px 44px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
     background-color: var(--color-cream);
     border: 1px solid var(--color-mist);
     color: var(--color-graphite);
     font-size: 15px;
     line-height: 1.4;
-    list-style: none;
+    cursor: pointer;
+    transition: border-color 150ms ease, background-color 150ms ease;
   }
+  .opt:hover { border-color: var(--color-pirate); }
+  .opt:has(input:checked) { border-color: var(--color-pirate); background-color: #eefbfa; }
+  .opt:has(input:disabled) { opacity: 0.45; cursor: not-allowed; }
+  .opt input { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--color-pirate-dark); }
+  .souhlas { font-size: 13.5px; line-height: 1.5; color: var(--color-smoke); align-items: flex-start; }
 
-  /* Prázdné zaškrtávátko — stránka je náhled tištěného dotazníku. */
-  .opt::before {
-    content: "";
-    position: absolute;
-    left: 14px;
-    top: 13px;
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--color-pirate);
+  .jine, .pole { display: block; }
+  .jine-label, .pole-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-smoke);
+    margin-bottom: 6px;
+  }
+  .jine input, .pole input, .ta {
+    width: 100%;
+    padding: 11px 13px;
     background-color: var(--color-paper);
-  }
-
-  .opt-other {
-    font-style: italic;
-    color: var(--color-smoke);
-  }
-
-  .scale-legend {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 18px;
-    font-size: 14px;
-    color: var(--color-smoke);
-  }
-
-  .scale-legend li {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .scale-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background-color: var(--color-spa-stone);
-    border: 1px solid var(--color-mist);
-    font-family: var(--font-display);
+    border: 1px solid var(--color-ash);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
     font-size: 15px;
-    line-height: 1;
     color: var(--color-ink);
+  }
+  .ta { resize: vertical; line-height: 1.55; }
+  .jine input:focus, .pole input:focus, .ta:focus { outline: 2px solid var(--color-pirate); outline-offset: 1px; border-color: var(--color-pirate); }
+
+  .scale-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: var(--color-smoke); }
+  .scale-legend li { display: inline-flex; align-items: center; gap: 8px; }
+  .scale-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px;
+    background-color: var(--color-spa-stone); border: 1px solid var(--color-mist);
+    font-family: var(--font-display); font-size: 15px; line-height: 1; color: var(--color-ink);
   }
 
   .proj {
-    border-left: 3px solid var(--color-pirate);
-    padding-left: 16px;
+    display: grid; gap: 14px;
+    border: 0; border-left: 3px solid var(--color-pirate);
+    padding: 0 0 0 16px; margin: 0;
   }
+  @media (min-width: 640px) { .proj { grid-template-columns: minmax(0, 1fr) auto; align-items: center; } }
+  .proj-num { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; color: var(--color-pirate-dark); }
+  .proj-title { font-weight: 700; font-size: 17px; line-height: 1.3; color: var(--color-ink); margin-top: 3px; }
+  .proj-desc { font-size: 14.5px; line-height: 1.5; color: var(--color-smoke); margin-top: 5px; }
 
-  .proj-num {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    color: var(--color-pirate-dark);
+  .proj-scale { display: flex; gap: 6px; flex: 0 0 auto; }
+  .scale-opt { position: relative; cursor: pointer; }
+  .scale-opt input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  .scale-opt span {
+    display: flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    background-color: var(--color-cream); border: 1px solid var(--color-mist);
+    font-family: var(--font-display); font-size: 19px; line-height: 1; color: var(--color-ink);
+    transition: background-color 150ms ease, border-color 150ms ease;
   }
+  .scale-opt:hover span { border-color: var(--color-pirate); }
+  .scale-opt input:checked + span { background-color: var(--color-pirate); border-color: var(--color-pirate-dark); }
+  .scale-opt input:focus-visible + span { outline: 2px solid var(--color-pirate-dark); outline-offset: 2px; }
 
-  .proj-title {
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 1.3;
-    color: var(--color-ink);
-    margin-top: 3px;
-  }
+  .chyba { color: var(--color-error); font-size: 14px; line-height: 1.5; }
+  .stav { font-size: 15px; color: var(--color-smoke); margin: 0; }
+  .stav[data-typ="chyba"] { color: var(--color-error); }
 
-  .proj-desc {
-    font-size: 14.5px;
-    line-height: 1.5;
-    color: var(--color-smoke);
-    margin-top: 5px;
-  }
+  .dekujeme { background-color: var(--color-paper); border-left: 4px solid var(--color-pirate); }
 
   .promise {
-    list-style: none;
-    padding: 18px 20px;
+    list-style: none; padding: 18px 20px;
     background-color: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-left: 3px solid var(--color-pirate);
-    color: var(--color-mist);
-    font-size: 15px;
-    line-height: 1.55;
+    color: var(--color-mist); font-size: 15px; line-height: 1.55;
   }
 </style>
+
+<script is:inline define:vars={{ endpoint: surveyEndpoint, maxProblemu: SURVEY_MAX_PROBLEMS }}>
+  (function () {
+    const form = document.getElementById("dotaznik-form");
+    if (!form) return;
+    const stav = document.getElementById("stav");
+    const tlacitko = document.getElementById("odeslat");
+    const hotovo = document.getElementById("hotovo");
+    const pocet = document.getElementById("pocet-problemu");
+    const souhlasHint = document.getElementById("souhlas-hint");
+    const problemy = () => [...form.querySelectorAll('input[name="problemy"]')];
+
+    // Otázka 1 smí mít nejvýš tři odpovědi — nezaškrtnuté zbytky zamkneme,
+    // ať se limit projeví dřív než při odeslání.
+    function hlidejLimit() {
+      const zaskrtnuto = problemy().filter((i) => i.checked);
+      const plno = zaskrtnuto.length >= maxProblemu;
+      problemy().forEach((i) => { i.disabled = !i.checked && plno; });
+      pocet.textContent = zaskrtnuto.length + " / " + maxProblemu;
+      pocet.dataset.plno = String(plno);
+    }
+    form.addEventListener("change", (e) => {
+      if (e.target.name === "problemy") hlidejLimit();
+      if (["email", "telefon", "jmeno", "souhlas"].includes(e.target.name)) hlidejSouhlas();
+    });
+    hlidejLimit();
+
+    function kontaktVyplnen() {
+      return ["email", "telefon", "jmeno"].some((n) => form.elements[n].value.trim().length > 0);
+    }
+    function hlidejSouhlas() {
+      souhlasHint.hidden = !(kontaktVyplnen() && !form.elements.souhlas.checked);
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (kontaktVyplnen() && !form.elements.souhlas.checked) {
+        hlidejSouhlas();
+        souhlasHint.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
+      const fd = new FormData(form);
+      const projekty = {};
+      for (const [k, v] of fd.entries()) {
+        if (k.startsWith("projekt-")) projekty[k.slice(8)] = Number(v);
+      }
+      const souhlas = fd.get("souhlas") === "1";
+      const data = {
+        web: fd.get("web") || "",
+        problemy: fd.getAll("problemy"),
+        problemJine: fd.get("problemJine") || "",
+        projekty,
+        zmena: fd.get("zmena") || "",
+        kontaktZajmy: fd.getAll("kontaktZajmy"),
+        souhlas,
+        email: souhlas ? fd.get("email") : "",
+        telefon: souhlas ? fd.get("telefon") : "",
+        jmeno: souhlas ? fd.get("jmeno") : "",
+      };
+
+      tlacitko.disabled = true;
+      stav.dataset.typ = "";
+      stav.textContent = "Odesíláme…";
+
+      try {
+        const r = await fetch(endpoint, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        if (r.ok) {
+          form.hidden = true;
+          hotovo.hidden = false;
+          hotovo.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        const telo = await r.json().catch(() => ({}));
+        stav.dataset.typ = "chyba";
+        stav.textContent = telo.chyba || "Odeslání se nepovedlo. Zkuste to prosím znovu.";
+      } catch {
+        stav.dataset.typ = "chyba";
+        stav.textContent = "Nepodařilo se spojit se serverem. Zkontrolujte připojení a zkuste to znovu.";
+      } finally {
+        tlacitko.disabled = false;
+      }
+    });
+  })();
+</script>

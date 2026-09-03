@@ -5,11 +5,10 @@
 export const surveyUrl = "https://lepsiml.cz/dotaznik";
 
 /**
- * Odkaz na online formulář (Google Forms). QR na tištěném dotazníku míří na
- * /dotaznik, ne sem — díky tomu jde formulář vyměnit bez přetisku letáků.
- * Dokud je prázdný, stránka místo tlačítka ukáže, že se online sběr připravuje.
+ * Endpoint, kam formulář posílá odpovědi. Serverless funkce na Vercelu
+ * (api/dotaznik.ts) je zapisuje do Neonu.
  */
-export const surveyFormUrl = "";
+export const surveyEndpoint = "/api/dotaznik";
 
 /**
  * Tisková verze dotazníku ke stažení. Zatím prázdná: tiskové PDF má
