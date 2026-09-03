@@ -17,6 +17,7 @@ const { pathname = "/" } = Astro.props;
       <LogoMark size={32} variant="white" />
       <span class="flex flex-col leading-tight">
         <span
+          class="whitespace-nowrap"
           style="font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-paper); font-size: 18px;"
         >
           Za lepší Mariánské Lázně
@@ -40,7 +41,7 @@ const { pathname = "/" } = Astro.props;
           return (
             <a
               href={link.href}
-              class="px-3 py-2 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
+              class="px-2 py-2 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
               style={`font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em; font-size: 16px; color: ${active ? "var(--color-pirate)" : "var(--color-paper)"};`}
               data-active={active}
               title={link.fullLabel}
@@ -72,7 +73,7 @@ const { pathname = "/" } = Astro.props;
           );
         })
       }
-      <a href="/program" class="btn btn-primary ml-2 !py-[10px] !px-4 !text-sm">
+      <a href="/program" class="btn btn-primary ml-2 !py-[10px] !px-4 !text-sm whitespace-nowrap">
         Náš program
       </a>
     </nav>

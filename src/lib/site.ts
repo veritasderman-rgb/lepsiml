@@ -34,6 +34,7 @@ export type NavLink = {
 export const nav: NavLink[] = [
   { label: "Program", href: "/program" },
   { label: "10X lépe", href: "/plan-1155/", fullLabel: "Mariánky 10X lépe" },
+  { label: "Dotazník", href: "/dotaznik" },
   { label: "Kandidáti", href: "/kandidati" },
   {
     label: "Přehledy",
