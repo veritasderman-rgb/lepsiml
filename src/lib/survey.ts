@@ -11,8 +11,25 @@ export const surveyUrl = "https://lepsiml.cz/dotaznik";
  */
 export const surveyFormUrl = "";
 
-/** Tisková verze dotazníku ke stažení. */
-export const surveyPdf = "/dotaznik/ZLM-dotaznik-A4.pdf";
+/**
+ * Tisková verze dotazníku ke stažení. Zatím prázdná: tiskové PDF má
+ * v tiráži nevyplněné `IČO ________` a veřejně nabízet ke stažení
+ * dokument s nedokončenou identifikací zadavatele nechceme. Až bude
+ * IČO doplněno, sem přijde cesta k souboru a tlačítko naskočí samo.
+ */
+export const surveyPdf = "";
+
+/**
+ * QR kód pro tištěný dotazník — soubory v public/dotaznik/ jsou tiskové
+ * podklady, ne assety webu, takže je odsud nic needituje ani nelinkuje.
+ * Míří na `surveyUrl`, ne rovnou na formulář, aby šel formulář vyměnit
+ * bez přetisku.
+ */
+export const surveyQrAssets = {
+  print: "/dotaznik/qr-dotaznik.svg",
+  raster: "/dotaznik/qr-dotaznik.png",
+  onDark: "/dotaznik/qr-dotaznik-invert.svg",
+};
 
 export const surveyMeta = {
   title: "Dotazník pro obyvatele Mariánských Lázní",
