@@ -29,7 +29,10 @@ if (!pusteno) {
   });
 }
 
-// Klíč z adresy si uložíme, ať ho nemusíte mít v historii prohlížeče napořád.
+// Klíč z adresy uložíme do cookie a hned přesměrujeme na adresu bez něj.
+// Bez přesměrování by klíč zůstal v řádku prohlížeče, v historii, v hlavičce
+// Referer při prokliku do menu a v analytice — a kdo ho získá, dostane se
+// ke všem osobním údajům. Stránka se na adrese s klíčem vůbec nevykreslí.
 if (zUrl === KLIC) {
   Astro.cookies.set(COOKIE, KLIC!, {
     httpOnly: true,
@@ -38,6 +41,7 @@ if (zUrl === KLIC) {
     path: "/vysledky",
     maxAge: 60 * 60 * 24 * 30,
   });
+  return Astro.redirect("/vysledky", 303);
 }
 
 let data: Vysledky | null = null;

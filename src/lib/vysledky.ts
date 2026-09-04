@@ -55,7 +55,12 @@ export async function nactiVysledky(url: string): Promise<Vysledky> {
         count(*) filter (where zdroj = 'papir')::int       as papir,
         min(vytvoreno)                                     as prvni,
         max(vytvoreno)                                     as posledni,
-        count(*) filter (where souhlas)::int               as "sKontaktem"
+        -- Stejná podmínka jako u výpisu kontaktů níž, jinak by souhrn
+        -- hlásil víc lidí, než se pak v tabulce ukáže: souhlas jde
+        -- zaškrtnout i bez vyplněného e-mailu a telefonu.
+        count(*) filter (
+          where souhlas and (email is not null or telefon is not null)
+        )::int                                             as "sKontaktem"
       from odpovedi
     `,
     sql`
