@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /vysledky
 
 Sitemap: https://lepsiml.cz/sitemap.xml

@@ -1,0 +1,271 @@
+---
+// Neveřejné vyhodnocení dotazníku.
+//
+// Stránka není v menu ani v sitemap a nese noindex, ale to je jen kosmetika —
+// v odpovědích jsou osobní údaje, takže o přístupu rozhoduje klíč v proměnné
+// SURVEY_ADMIN_KEY. Bez klíče (i bez nastavené proměnné) vrací 404, aby se
+// obsah nemohl omylem zveřejnit.
+
+import Base from "../layouts/Base.astro";
+import { surveyProjects, surveyContactOptions } from "../lib/survey";
+import { nactiVysledky, type Vysledky } from "../lib/vysledky";
+
+export const prerender = false;
+
+const KLIC = import.meta.env.SURVEY_ADMIN_KEY ?? process.env.SURVEY_ADMIN_KEY;
+const DB = import.meta.env.DATABASE_URL ?? process.env.DATABASE_URL;
+const COOKIE = "zlm_vysledky";
+
+const zUrl = Astro.url.searchParams.get("klic");
+const zCookie = Astro.cookies.get(COOKIE)?.value;
+
+// Fail closed: bez nastaveného klíče se stránka nezobrazí nikomu.
+const pusteno = Boolean(KLIC) && (zUrl === KLIC || zCookie === KLIC);
+
+if (!pusteno) {
+  return new Response("Stránka nenalezena.", {
+    status: 404,
+    headers: { "content-type": "text/plain; charset=utf-8" },
+  });
+}
+
+// Klíč z adresy uložíme do cookie a hned přesměrujeme na adresu bez něj.
+// Bez přesměrování by klíč zůstal v řádku prohlížeče, v historii, v hlavičce
+// Referer při prokliku do menu a v analytice — a kdo ho získá, dostane se
+// ke všem osobním údajům. Stránka se na adrese s klíčem vůbec nevykreslí.
+if (zUrl === KLIC) {
+  Astro.cookies.set(COOKIE, KLIC!, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    path: "/vysledky",
+    maxAge: 60 * 60 * 24 * 30,
+  });
+  return Astro.redirect("/vysledky", 303);
+}
+
+let data: Vysledky | null = null;
+let chyba: string | null = null;
+if (!DB) {
+  chyba = "Není nastavená proměnná DATABASE_URL.";
+} else {
+  try {
+    data = await nactiVysledky(DB);
+  } catch (e) {
+    chyba = e instanceof Error ? e.message : "Načtení dat selhalo.";
+  }
+}
+
+const nazvyProjektu = new Map(surveyProjects.map((p) => [p.id, p.title]));
+const nazvyZajmu = new Map(surveyContactOptions.map((o) => [o.id, o.label]));
+
+const datum = (d: string | null) =>
+  d ? new Date(d).toLocaleString("cs-CZ", { dateStyle: "medium", timeStyle: "short" }) : "—";
+
+const maxProblem = data?.problemy[0]?.pocet ?? 1;
+---
+
+<Base title="Vyhodnocení dotazníku" description="Neveřejné vyhodnocení." noindex>
+  <section class="section" style="background-color: var(--color-cream);">
+    <div class="container-site">
+      <p class="eyebrow">Neveřejné · jen pro tým</p>
+      <h1 class="mt-3" style="font-size: clamp(2rem, 4vw, 3rem);">Vyhodnocení dotazníku</h1>
+
+      {chyba && (
+        <p class="varovani mt-6">{chyba}</p>
+      )}
+
+      {data && (
+        <>
+          <!-- Souhrn -->
+          <dl class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="kpi">
+              <dt class="kpi-label">Odpovědí celkem</dt>
+              <dd class="kpi-cislo">{data.souhrn.celkem}</dd>
+            </div>
+            <div class="kpi">
+              <dt class="kpi-label">Z webu / z papíru</dt>
+              <dd class="kpi-cislo">{data.souhrn.web} / {data.souhrn.papir}</dd>
+            </div>
+            <div class="kpi">
+              <dt class="kpi-label">Nechalo kontakt</dt>
+              <dd class="kpi-cislo">{data.souhrn.sKontaktem}</dd>
+            </div>
+            <div class="kpi">
+              <dt class="kpi-label">Poslední odpověď</dt>
+              <dd class="kpi-text">{datum(data.souhrn.posledni)}</dd>
+            </div>
+          </dl>
+
+          {data.souhrn.celkem === 0 && (
+            <p class="mt-8 text-lg" style="color: var(--color-smoke);">
+              Zatím nedorazila žádná odpověď.
+            </p>
+          )}
+
+          <!-- Otázka 1 -->
+          <h2 class="nadpis mt-16">Otázka 1 — co lidi nejvíc trápí</h2>
+          <p class="pod" >Každý mohl vybrat až tři odpovědi, součet je proto vyšší než počet dotazníků.</p>
+          <ol class="zebricek mt-6">
+            {data.problemy.map((p, i) => (
+              <li class="zeb-radek">
+                <span class="zeb-poradi">{i + 1}.</span>
+                <span class="zeb-nazev">{p.problem}</span>
+                <span class="zeb-pruh" aria-hidden="true">
+                  <span style={`width: ${(p.pocet / maxProblem) * 100}%`}></span>
+                </span>
+                <span class="zeb-pocet">{p.pocet}×</span>
+              </li>
+            ))}
+          </ol>
+          {data.problemy.length === 0 && <p class="pod mt-4">Zatím nic.</p>}
+
+          {data.jine.length > 0 && (
+            <>
+              <h3 class="podnadpis mt-10">Vlastní odpovědi („jiné")</h3>
+              <ul class="citace mt-4">
+                {data.jine.map((j) => (
+                  <li><span class="cit-datum">{datum(j.vytvoreno)}</span>{j.text}</li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          <!-- Otázka 2 -->
+          <h2 class="nadpis mt-16">Otázka 2 — pořadí projektů</h2>
+          <p class="pod">Seřazeno podle průměru na škále 1–4. Sloupce ukazují, kolikrát projekt dostal které číslo.</p>
+          <div class="tabulka-obal mt-6">
+            <table class="tabulka">
+              <thead>
+                <tr>
+                  <th>Projekt</th>
+                  <th class="c">Průměr</th>
+                  <th class="c">Hodnocení</th>
+                  <th class="c">1</th>
+                  <th class="c">2</th>
+                  <th class="c">3</th>
+                  <th class="c">4</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.projekty.map((p) => (
+                  <tr>
+                    <td>
+                      <span class="proj-id">{p.id}</span>
+                      {nazvyProjektu.get(p.id) ?? "neznámý projekt"}
+                    </td>
+                    <td class="c prumer">{p.prumer.toFixed(2)}</td>
+                    <td class="c">{p.hodnoceni}</td>
+                    <td class="c slabe">{p.h1}</td>
+                    <td class="c slabe">{p.h2}</td>
+                    <td class="c">{p.h3}</td>
+                    <td class="c silne">{p.h4}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {data.projekty.length === 0 && <p class="pod mt-4">Zatím nikdo nehodnotil.</p>}
+
+          <!-- Otázka 3 -->
+          <h2 class="nadpis mt-16">Otázka 3 — co by lidi změnili</h2>
+          <p class="pod">Nejcennější část dotazníku. Vlastní slova respondentů, nejnovější nahoře.</p>
+          <ul class="citace mt-6">
+            {data.zmeny.map((z) => (
+              <li><span class="cit-datum">{datum(z.vytvoreno)}</span>{z.text}</li>
+            ))}
+          </ul>
+          {data.zmeny.length === 0 && <p class="pod mt-4">Zatím nic.</p>}
+
+          <!-- Kontakty -->
+          <h2 class="nadpis mt-16">Kontakty</h2>
+          <p class="varovani mt-3">
+            Osobní údaje lidí, kteří dali souhlas. Použít výhradně k tomu, k čemu
+            souhlas byl — informace do voleb 2026. Nekopírovat mimo tým a po
+            volbách smazat.
+          </p>
+          <div class="tabulka-obal mt-6">
+            <table class="tabulka">
+              <thead>
+                <tr>
+                  <th>Kdy</th>
+                  <th>Jméno</th>
+                  <th>E-mail</th>
+                  <th>Telefon</th>
+                  <th>O co má zájem</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.kontakty.map((k) => (
+                  <tr>
+                    <td class="nowrap">{datum(k.vytvoreno)}</td>
+                    <td>{k.jmeno ?? "—"}</td>
+                    <td>{k.email ? <a href={`mailto:${k.email}`}>{k.email}</a> : "—"}</td>
+                    <td>{k.telefon ?? "—"}</td>
+                    <td>
+                      {k.zajmy.length
+                        ? <ul class="zajmy">{k.zajmy.map((z) => <li>{nazvyZajmu.get(z) ?? z}</li>)}</ul>
+                        : "—"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {data.kontakty.length === 0 && <p class="pod mt-4">Zatím nikdo nenechal kontakt.</p>}
+        </>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nadpis {
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    font-size: clamp(1.375rem, 1.5vw + 1rem, 1.75rem);
+    color: var(--color-ink);
+  }
+  .podnadpis {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--color-ink);
+  }
+  .pod { margin-top: 8px; color: var(--color-smoke); font-size: 15px; }
+
+  .kpi { background-color: var(--color-paper); border: 1px solid var(--color-mist); border-left: 3px solid var(--color-pirate); padding: 16px 18px; }
+  .kpi-label { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-smoke); }
+  .kpi-cislo { font-family: var(--font-display); font-size: 2.25rem; line-height: 1; color: var(--color-ink); margin-top: 6px; }
+  .kpi-text { font-size: 15px; color: var(--color-graphite); margin-top: 8px; }
+
+  .zebricek { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .zeb-radek { display: grid; grid-template-columns: 32px minmax(0, 1fr) 90px 48px; align-items: center; gap: 12px; background-color: var(--color-paper); border: 1px solid var(--color-mist); padding: 10px 14px; }
+  @media (max-width: 640px) { .zeb-radek { grid-template-columns: 28px minmax(0,1fr) 44px; } .zeb-pruh { display: none; } }
+  .zeb-poradi { font-family: var(--font-display); font-size: 18px; color: var(--color-pirate-dark); }
+  .zeb-nazev { font-size: 15px; color: var(--color-graphite); }
+  .zeb-pruh { display: block; height: 8px; background-color: var(--color-mist); }
+  .zeb-pruh > span { display: block; height: 100%; background-color: var(--color-pirate); }
+  .zeb-pocet { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--color-ink); text-align: right; }
+
+  .tabulka-obal { overflow-x: auto; border: 1px solid var(--color-mist); background-color: var(--color-paper); }
+  .tabulka { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .tabulka th, .tabulka td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--color-mist); vertical-align: top; }
+  .tabulka th { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-smoke); background-color: var(--color-spa-stone); white-space: nowrap; }
+  .tabulka tr:last-child td { border-bottom: 0; }
+  .tabulka .c { text-align: center; }
+  .tabulka .nowrap { white-space: nowrap; }
+  .prumer { font-family: var(--font-display); font-size: 18px; color: var(--color-ink); }
+  .slabe { color: var(--color-ash); }
+  .silne { color: var(--color-pirate-dark); font-weight: 700; }
+  .proj-id { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--color-pirate-dark); margin-right: 8px; }
+  .zajmy { margin: 0; padding-left: 16px; font-size: 13.5px; color: var(--color-smoke); }
+
+  .citace { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .citace li { background-color: var(--color-paper); border: 1px solid var(--color-mist); border-left: 3px solid var(--color-spa-gold); padding: 14px 16px; font-size: 15px; line-height: 1.55; color: var(--color-graphite); white-space: pre-wrap; }
+  .cit-datum { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--color-ash); margin-bottom: 6px; }
+
+  .varovani { background-color: #fff4f2; border: 1px solid var(--color-error); border-left: 3px solid var(--color-error); padding: 14px 16px; font-size: 14.5px; line-height: 1.55; color: var(--color-graphite); }
+</style>
