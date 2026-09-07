@@ -4,6 +4,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { site } from "../lib/site";
 import Analytics from "@vercel/analytics/astro";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 
 type Props = {
   title?: string;
@@ -68,9 +70,7 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? "https://lepsiml.cz");
       rel="stylesheet"
     />
 
-    {/* Plausible analytics — doplnit doménu po nasazení */}
-    <!-- <script defer data-domain="lepsiml.cz" src="https://plausible.io/js/script.js"></script> -->
-    
+    <GoogleAnalytics />
     <Analytics />
   </head>
   <body>
@@ -88,6 +88,8 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? "https://lepsiml.cz");
     </main>
 
     <Footer />
+
+    <CookieConsent />
 
     <!-- Reveal on scroll (vanilla Intersection Observer, no libs) -->
     <script is:inline>
