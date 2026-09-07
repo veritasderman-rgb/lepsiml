@@ -1,0 +1,78 @@
+---
+/**
+ * Lišta se souhlasem s cookies. Zobrazí se jen tomu, kdo se ještě
+ * nerozhodl; volba se ukládá do localStorage a rovnou se promítne do
+ * Google Consent Mode v2. Bez JS se lišta neukáže vůbec — a GA taky ne,
+ * takže se nic neměří ani nezobrazuje.
+ */
+import { CONSENT_KEY, GA_ID } from "../lib/consent";
+
+// Dokud není nastavené PUBLIC_GA_ID, není k čemu souhlas dávat — lišta se
+// nevykreslí vůbec. Vercel Analytics běží bez cookies.
+const enabled = !!GA_ID;
+---
+
+{ enabled && (
+
+<div
+  id="cookie-consent"
+  hidden
+  class="fixed inset-x-0 bottom-0 z-[60] px-4 pb-4 sm:px-6 sm:pb-6"
+>
+  <div
+    class="mx-auto flex max-w-3xl flex-col gap-4 rounded-lg border border-border bg-white px-6 py-5 shadow-lg sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p class="text-sm leading-relaxed text-text-light">
+      Tento web používá cookies pro anonymní měření návštěvnosti (Google
+      Analytics, Vercel). Bez souhlasu se žádné analytické cookies neukládají.
+    </p>
+    <div class="flex shrink-0 gap-3">
+      <button type="button" data-consent="denied" class="btn btn-outline">
+        Odmítnout
+      </button>
+      <button type="button" data-consent="granted" class="btn btn-primary">
+        Souhlasím
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ CONSENT_KEY }}>
+  (function () {
+    var bar = document.getElementById("cookie-consent");
+    if (!bar) return;
+
+    var stored = null;
+    try {
+      stored = localStorage.getItem(CONSENT_KEY);
+    } catch (e) {}
+    if (stored === "granted" || stored === "denied") return;
+
+    bar.hidden = false;
+
+    bar.addEventListener("click", function (event) {
+      var button = event.target.closest("[data-consent]");
+      if (!button) return;
+      var choice = button.getAttribute("data-consent");
+
+      try {
+        localStorage.setItem(CONSENT_KEY, choice);
+      } catch (e) {
+        /* private mode – volba platí jen pro tuto návštěvu */
+      }
+
+      // GA nemusí běžet (vývoj / nenastavené PUBLIC_GA_ID) – pak není co updatovat.
+      if (typeof window.gtag === "function") {
+        window.gtag("consent", "update", {
+          ad_storage: choice,
+          ad_user_data: choice,
+          ad_personalization: choice,
+          analytics_storage: choice,
+        });
+      }
+
+      bar.hidden = true;
+    });
+  })();
+</script>
+) }
