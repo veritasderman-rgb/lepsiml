@@ -56,6 +56,21 @@ const enabled = !!GA_ID;
       bar.hidden = false;
     });
 
+    // Volba padlá v jiné záložce. Bez tohohle by tahle jela dál s původním
+    // souhlasem až do přenačtení, takže odvolání by chvíli neplatilo.
+    window.addEventListener("storage", function (event) {
+      if (event.key !== null && event.key !== CONSENT_KEY) return;
+      var choice = null;
+      try {
+        choice = localStorage.getItem(CONSENT_KEY);
+      } catch (e) {}
+      if (choice !== "granted" && choice !== "denied") return;
+      if (typeof window.gtag === "function") {
+        window.gtag("consent", "update", { analytics_storage: choice });
+      }
+      bar.hidden = true;
+    });
+
     bar.addEventListener("click", function (event) {
       var button = event.target.closest("[data-consent]");
       if (!button) return;
