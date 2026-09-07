@@ -46,9 +46,15 @@ const enabled = !!GA_ID;
     try {
       stored = localStorage.getItem(CONSENT_KEY);
     } catch (e) {}
-    if (stored === "granted" || stored === "denied") return;
+    if (stored !== "granted" && stored !== "denied") bar.hidden = false;
 
-    bar.hidden = false;
+    // Odkaz „Nastavení cookies" v patičce lištu otevře znovu — souhlas musí jít
+    // odvolat stejně snadno, jako se dával.
+    document.addEventListener("click", function (event) {
+      if (!event.target.closest("[data-cookie-settings]")) return;
+      event.preventDefault();
+      bar.hidden = false;
+    });
 
     bar.addEventListener("click", function (event) {
       var button = event.target.closest("[data-consent]");
@@ -62,13 +68,9 @@ const enabled = !!GA_ID;
       }
 
       // GA nemusí běžet (vývoj / nenastavené PUBLIC_GA_ID) – pak není co updatovat.
+      // Přepíná se jen analytics_storage; reklamní souhlas zůstává denied.
       if (typeof window.gtag === "function") {
-        window.gtag("consent", "update", {
-          ad_storage: choice,
-          ad_user_data: choice,
-          ad_personalization: choice,
-          analytics_storage: choice,
-        });
+        window.gtag("consent", "update", { analytics_storage: choice });
       }
 
       bar.hidden = true;

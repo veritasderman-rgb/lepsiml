@@ -25,10 +25,12 @@ const enabled = import.meta.env.PROD && !!GA_ID;
         try {
           granted = localStorage.getItem(CONSENT_KEY) === "granted";
         } catch (e) {}
+        // Reklamní souhlas zůstává vždycky denied — lišta mluví jen o měření
+        // návštěvnosti, na reklamní účely se neptá, tak je nesmíme udělit.
         gtag("consent", "default", {
-          ad_storage: granted ? "granted" : "denied",
-          ad_user_data: granted ? "granted" : "denied",
-          ad_personalization: granted ? "granted" : "denied",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
           analytics_storage: granted ? "granted" : "denied",
           wait_for_update: 500,
         });

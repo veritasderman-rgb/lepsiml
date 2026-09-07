@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { nav, site, contact, transparencyDashboard } from "../lib/site";
 import LogoMark from "./LogoMark.astro";
+import { GA_ID } from "../lib/consent";
 
 const year = new Date().getFullYear();
 ---
@@ -156,6 +157,15 @@ const year = new Date().getFullYear();
       <div class="md:text-right">
         <p>© {year} Za lepší Mariánské Lázně, z. s.</p>
         <p class="mt-1">Web vytvořen s péčí pro UNESCO město.</p>
+        {
+          GA_ID && (
+            <p class="mt-1">
+              <button type="button" data-cookie-settings class="underline hover:no-underline">
+                Nastavení cookies
+              </button>
+            </p>
+          )
+        }
       </div>
     </div>
   </div>
