@@ -1,0 +1,174 @@
+---
+/**
+ * Ochrana osobních údajů.
+ *
+ * Popisuje jen to, co web opravdu dělá — dotazník, měření návštěvnosti
+ * a jednu hodnotu v prohlížeči. Nic dalšího se nesbírá, tak se tu nic
+ * dalšího neslibuje ani nezamlčuje.
+ *
+ * Části o Google Analytics se řídí toutéž proměnnou jako měření samo
+ * (PUBLIC_GA_ID). Dokud není nastavená, GA neběží a nemá smysl o ní psát.
+ */
+import Base from "../layouts/Base.astro";
+import { contact, site } from "../lib/site";
+import { GA_ID } from "../lib/consent";
+
+const aktualizovano = "7. 9. 2026";
+---
+
+<Base
+  title="Ochrana osobních údajů"
+  description="Jak nakládáme s osobními údaji: dotazník, měření návštěvnosti a vaše práva podle GDPR."
+>
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%);"
+  >
+    <span
+      class="hero-shape"
+      style="width: 480px; height: 480px; top: -180px; right: -140px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative py-20 md:py-28">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">Ochrana údajů</p>
+      <h1 class="reveal mt-4" style="color: var(--color-paper);">
+        Co o vás víme a proč
+      </h1>
+      <p
+        class="reveal mt-6 text-lg md:text-xl max-w-2xl"
+        style="color: var(--color-mist);"
+      >
+        Krátce a bez právničiny: web sbírá jen to, co sami vyplníte,
+        a anonymní čísla o návštěvnosti. Nic víc.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="background-color: var(--color-cream);">
+    <div class="container-site max-w-3xl">
+      <p class="eyebrow" style="color: var(--color-pirate-dark);">Správce údajů</p>
+      <h2 class="mt-3">Kdo za web odpovídá</h2>
+      <p class="mt-4 text-lg" style="color: var(--color-smoke);">
+        Správcem osobních údajů je <strong>{site.name}, z. s.</strong>,
+        IČO <strong>[DOPLNIT IČO]</strong>, se sídlem
+        <strong>[DOPLNIT ADRESU SÍDLA]</strong>.
+      </p>
+      <p class="mt-4" style="color: var(--color-smoke);">
+        Ve všem, co se týká vašich údajů, se ozvěte na
+        <a href={`mailto:${contact.email}`} style="color: var(--color-pirate-dark);">
+          {contact.email}
+        </a>{" "}
+        nebo na {contact.phone}. Pověřence pro ochranu osobních údajů
+        nemáme — spolek naší velikosti ho mít nemusí.
+      </p>
+
+      <h2 class="mt-14">Dotazník</h2>
+      <p class="mt-4" style="color: var(--color-smoke);">
+        Dotazník má dvě části a nakládá se s nimi jinak.
+      </p>
+      <ul class="mt-4 space-y-3" style="color: var(--color-smoke);">
+        <li>
+          <strong>Odpovědi o městě</strong> — co vás trápí, co si myslíte
+          o projektech, co byste změnili. Ukládají se <strong>bez jména
+          a bez kontaktu</strong>, takže z nich nejde poznat, kdo je napsal.
+          Slouží k tomu, abychom věděli, co lidi v Mariánkách zajímá.
+        </li>
+        <li>
+          <strong>Kontakt</strong> — jméno, e-mail, telefon a témata,
+          o kterých chcete slyšet. Ukládá se <strong>jen když zaškrtnete
+          souhlas</strong>. Bez zaškrtnutí se kontakt zahodí a uloží se
+          jen anonymní odpovědi. Hlídá to kód i databáze.
+        </li>
+      </ul>
+      <p class="mt-4" style="color: var(--color-smoke);">
+        Právním základem pro kontakt je <strong>váš souhlas</strong>
+        (čl. 6 odst. 1 písm. a GDPR). Můžete ho kdykoli odvolat e-mailem
+        a údaje smažeme. Odpovědi o městě zpracováváme na základě
+        <strong> oprávněného zájmu</strong> (písm. f) — chceme vědět, co
+        lidi ve městě trápí, a nejsou u nich žádné identifikátory.
+      </p>
+      <p class="mt-4" style="color: var(--color-smoke);">
+        Data leží v databázi u <strong>Neon Inc.</strong>, která web hostuje
+        pro nás jako zpracovatel. Kontaktní údaje mažeme
+        <strong> nejpozději do konce roku 2026</strong>, tedy po komunálních
+        volbách, ke kterým se kampaň váže — a dřív, když o to požádáte.
+      </p>
+
+      <h2 class="mt-14">Měření návštěvnosti</h2>
+      <p class="mt-4" style="color: var(--color-smoke);">
+        Zajímá nás, které stránky lidi čtou. Nezajímá nás, kdo je čte.
+      </p>
+      <ul class="mt-4 space-y-3" style="color: var(--color-smoke);">
+        <li>
+          <strong>Vercel Web Analytics</strong> — počítá zobrazení stránek
+          <strong> bez cookies</strong> a bez profilů jednotlivých čtenářů.
+          Vercel Inc. je zároveň hostingem webu.
+        </li>
+        {
+          GA_ID && (
+            <li>
+              <strong>Google Analytics</strong> — spustí se
+              <strong> až po vašem souhlasu</strong> na liště, která se
+              objeví při první návštěvě. Do té doby neukládá žádné cookies.
+              Po souhlasu si uloží cookies <code>_ga</code> a{" "}
+              <code>_ga_*</code> a data odcházejí společnosti Google.
+              Souhlas se týká <strong>jen měření návštěvnosti</strong> —
+              reklamní účely a personalizace zůstávají zamítnuté i po
+              kliknutí na „Souhlasím“, protože o ně web nežádá.
+            </li>
+          )
+        }
+      </ul>
+      {
+        GA_ID && (
+          <p class="mt-4" style="color: var(--color-smoke);">
+            Souhlas jde kdykoli změnit i úplně odvolat — odkaz{" "}
+            <button type="button" data-cookie-settings class="odkaz-jako-text">
+              Nastavení cookies
+            </button>{" "}
+            najdete v patičce každé stránky. Odvolání platí okamžitě,
+            i v ostatních otevřených záložkách.
+          </p>
+        )
+      }
+
+      <h2 class="mt-14">Co si web ukládá u vás v prohlížeči</h2>
+      {
+        GA_ID ? (
+          <p class="mt-4" style="color: var(--color-smoke);">
+            Jedinou vlastní hodnotu, kterou si web ukládá, je{" "}
+            <code>plml.cookieConsent.v1</code> — vaše odpověď na liště se
+            souhlasem. Bez ní by se lišta ptala při každém načtení. Neodchází
+            nikam a smažete ji vyčištěním dat téhle stránky.
+          </p>
+        ) : (
+          <p class="mt-4" style="color: var(--color-smoke);">
+            Web si u vás v prohlížeči neukládá nic vlastního.
+          </p>
+        )
+      }
+
+      <h2 class="mt-14">Vaše práva</h2>
+      <p class="mt-4" style="color: var(--color-smoke);">
+        Podle GDPR máte právo vědět, co o vás vedeme, dostat kopii, nechat
+        si to opravit nebo smazat, omezit zpracování, vznést proti němu
+        námitku a odvolat souhlas. Stačí napsat na{" "}
+        <a href={`mailto:${contact.email}`} style="color: var(--color-pirate-dark);">
+          {contact.email}
+        </a>{" "}
+        — ozveme se do měsíce.
+      </p>
+      <p class="mt-4" style="color: var(--color-smoke);">
+        Když budete mít pocit, že s údaji nakládáme špatně, můžete si
+        stěžovat u <strong>Úřadu pro ochranu osobních údajů</strong>
+        (Pplk. Sochora 27, Praha 7,{" "}
+        <a href="https://uoou.gov.cz" rel="noopener" style="color: var(--color-pirate-dark);">
+          uoou.gov.cz
+        </a>). Ozvěte se ale radši nejdřív nám, bývá to rychlejší.
+      </p>
+
+      <p class="mt-14 text-sm" style="color: var(--color-ash);">
+        Naposledy upraveno {aktualizovano}.
+      </p>
+    </div>
+  </section>
+</Base>
