@@ -182,9 +182,9 @@ export default function HypotekaKalkulacka({
               Program je od {minDeti} dětí
             </p>
             <p>
-              S {deti === 0 ? "žádným dítětem" : "jedním dítětem"} na něj zatím
-              nedosáhnete. Míří na rodiny, které drží mariánské školy plné, a
-              rozpočet města má svůj strop. Raději slíbíme méně a splníme to.
+              {deti === 0 ? "Bez dětí" : "S jedním dítětem"} na něj zatím
+              nedosáhnete. Rozpočet města má svůj strop a nám jde především
+              o plné třídy. Radši slíbíme méně a dodržíme to.
             </p>
             <p className="kalk-hlaska-splatka">
               Vaše měsíční splátka:{" "}
@@ -202,7 +202,7 @@ export default function HypotekaKalkulacka({
                 měsíčně místo {czk.format(Math.round(v.mesicniSplatka))}.{" "}
                 {v.nadStrop
                   ? `Jistina a úrok nad ${czk.format(strop)}.`
-                  : "Jen jistina. Úrok jde za městem."}
+                  : "Zbývající úrok by platilo město."}
               </p>
             </div>
 
@@ -239,11 +239,11 @@ export default function HypotekaKalkulacka({
       </div>
 
       <p className="kalk-disclaimer">
-        Orientační propočet z anuitní splátky — úrok v ní postupně klesá, takže
-        částka za první rok je nejvyšší ze všech deseti. Nezahrnuje případné
-        zdanění podpory, které ještě řešíme s daňovým poradcem, ani poplatky
-        banky. Rozhodující budou schválená pravidla programu, ne tahle
-        kalkulačka.
+        Orientační propočet z anuitní splátky. Úrok v ní postupně klesá, takže
+        částka za první rok je ze všech deseti nejvyšší. Nepočítáme v ní
+        s poplatky banky ani s případným zdaněním podpory, které ještě řešíme
+        s daňovým poradcem. Rozhodující budou schválená pravidla programu, ne
+        tahle kalkulačka.
       </p>
     </div>
   );

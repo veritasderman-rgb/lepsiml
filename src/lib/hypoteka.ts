@@ -29,9 +29,9 @@ export const hypotekaMeta = {
   title: "Úrok z hypotéky za vás zaplatí město",
   claim: "Máte dvě děti? V Mariánkách splácíte jen jistinu.",
   lead:
-    "Stát podporu hypoték pro mladé rodiny slíbil a odložil. My ji chceme dát dohromady tady, z peněz, které ve městě nechají lázeňští hosté. Tohle je návrh, se kterým jdeme do voleb — ne hotová vyhláška.",
+    "Stát podporu hypoték pro mladé rodiny slíbil a odložil. Chceme ji poskládat tady u nás, z peněz, které v Mariánkách nechají lázeňští hosté. Berte to jako návrh, se kterým jdeme do voleb, ne jako hotovou vyhlášku.",
   status:
-    "Návrh programu. Než ho předložíme zastupitelstvu, musíme doladit daňové a právní detaily — které, píšeme níž otevřeně.",
+    "Než návrh předložíme zastupitelstvu, musíme s právníky a daňaři doladit několik věcí. Které to jsou, píšeme níž na rovinu.",
   start: "Chceme spustit do roka od voleb.",
 };
 
@@ -57,19 +57,19 @@ export const procTo: Karta[] = [
     icon: "lucide:file-clock",
     title: "Stát slíbil a odložil",
     body:
-      "Podpora hypoték pro mladé rodiny je v programovém prohlášení vlády. V dubnu 2026 k ní ministryně financí řekla, že parametry „nejsou vydiskutovány politicky“, a kabinet se k tématu chce vrátit až v druhé polovině volebního období. Rodina, která splácí dnes, z toho nemá nic.",
+      "Slib je černý na bílém v programovém prohlášení vlády. V dubnu 2026 k tomu ministryně financí dodala, že parametry zatím nejsou politicky vydiskutované a že se k nim kabinet vrátí až v druhé polovině volebního období. Kdo splácí dnes, ten si počká.",
   },
   {
     icon: "lucide:calculator",
     title: "Superdávka počítá nájem, ne hypotéku",
     body:
-      "Splátka hypotéky není uznatelný náklad na bydlení a úrok už vůbec ne. Vlastníci mají ve výpočtu jen paušál ve výši 30 % nájemního normativu. Kdo pracuje, koupil si bydlení a splácí úrok, nedostane na ten úrok od státu ani korunu.",
+      "Kdo bydlí v nájmu, tomu superdávka nájem spočítá. Kdo splácí hypotéku, tomu ne. Vlastníkům se do výpočtu započítá paušál ve výši třiceti procent nájemního normativu a tím to končí. Na úrok, který každý měsíc odchází bance, stát nepřispěje ani korunou.",
   },
   {
     icon: "lucide:map-pin",
     title: "Tak si pomůžeme sami",
     body:
-      "Město má vlastní příjem, o kterém rozhoduje samo — poplatek z pobytu. Dnes se rozpustí v rozpočtu. Chceme z něj část vracet rodinám, které tu žijí celý rok, ne jen tři noci.",
+      "Jeden příjem ale máme ve vlastních rukou: poplatek z pobytu. O tom, kam poputuje, nerozhoduje ministerstvo, ale zastupitelstvo. Část z něj chceme každý rok poslat rodinám, které v Mariánkách bydlí natrvalo.",
   },
 ];
 
@@ -78,37 +78,37 @@ export const podminky: Podminka[] = [
     icon: "lucide:users-round",
     title: "Dvě děti a víc",
     body:
-      "Program míří na rodiny, které drží mariánské školy plné. U jednoho dítěte zatím nepočítáme — rozpočet by to neunesl a raději slíbíme méně a splníme to.",
+      "Počítáme s rodinami, které drží mariánské školy plné. Na jedno dítě se program zatím vztahovat nebude, protože by to rozpočet neunesl. Radši slíbíme méně a dodržíme to.",
   },
   {
     icon: "lucide:house",
     title: "Trvalý pobyt v Mariánských Lázních",
     body:
-      "Celá rodina, ne jen papír. Platí i pro občany jiných států EU, kteří jsou tu hlášení k pobytu.",
+      "Hlášená tu musí být celá rodina, ne jeden z rodičů kvůli papíru. Podmínka platí stejně pro občany jiných států Evropské unie, kteří jsou v Mariánských Lázních přihlášení k pobytu.",
   },
   {
     icon: "lucide:key-round",
     title: "Bydlíte ve svém. Tady.",
     body:
-      "Byt nebo dům, ve kterém skutečně bydlíte. Ne investiční byt, ne krátkodobé pronájmy. Tahle podmínka je zároveň nejlepší nástroj proti prázdným bytům, jaký město má.",
+      "Byt nebo dům, ve kterém opravdu bydlíte. Nemovitost koupená na investici nebo pronajímaná turistům přes noc do programu nepatří.",
   },
   {
     icon: "lucide:percent",
     title: "Úrok z jistiny do 3 milionů",
     body:
-      "Máte vyšší hypotéku? Úrok nad tři miliony si platíte sami — a víte to předem, ne až u přepážky. Kalkulačka níž to spočítá na korunu.",
+      "Kdo má hypotéku vyšší, doplácí si úrok nad tři miliony sám. Nikoho tím nechceme překvapit až u okénka, a proto si to každý může spočítat v kalkulačce o kus níž.",
   },
   {
     icon: "lucide:calendar-check",
     title: "Deset let, jednou ročně",
     body:
-      "Vyplácí se jednou za rok proti potvrzení z banky o zaplaceném úroku. Žádné měsíční papírování, žádný úředník navíc.",
+      "Jednou za rok přinesete z banky potvrzení o zaplaceném úroku a město vám ho proplatí. Nic víc se po vás nechce a na radnici kvůli tomu nevznikne nové místo.",
   },
   {
     icon: "lucide:undo-2",
     title: "Odstěhujete se do deseti let? Vracíte.",
     body:
-      "Je to podpora bydlení v Mariánkách, ne odstupné. Podmínku vratky má i švýcarský Albinen, ze kterého vycházíme.",
+      "Podpora je vázaná na to, že tu zůstanete bydlet. Když se rodina odstěhuje dřív, vyplacené peníze se vracejí. Stejné pravidlo má i švýcarský Albinen, od kterého jsme nápad opsali.",
   },
 ];
 
@@ -116,17 +116,17 @@ export const financovani = {
   eyebrow: "Financování",
   title: "Hosté platí. Rodiny dostanou.",
   veta:
-    "Každý host tu nechá 50 korun za noc. Dnes se ty peníze rozpustí v rozpočtu a nikdo neví kde. Chceme, aby z nich část každý rok šla rodinám, které tu žijí celý rok — ne jen tři noci.",
+    "Za každou přenocovanou noc odvede host městu padesát korun. Sečteno dohromady jsou to desítky milionů, které se dnes rozplynou v rozpočtu, aniž by kdokoli poznal kde. Jejich část má jednou za rok odejít rodinám, které tu nejsou tři noci, ale celý život.",
   polozky: [
     {
       value: "50 Kč",
       label: "za noc",
-      note: "Zákonné maximum poplatku z pobytu podle zákona o místních poplatcích. Mariánky ho vybírají už dnes.",
+      note: "Víc než padesát korun za noc vybrat zákon o místních poplatcích nedovolí. Mariánky jsou na tom stropu už dnes.",
     },
     {
       value: "20 mil.",
       label: "ročně strop programu",
-      note: "Do rozpočtu jde pevný roční limit. Program nemůže přerůst přes to, co si město odhlasuje.",
+      note: "Strop, který si zastupitelstvo schválí v rozpočtu. Přes něj se program nedostane, ať se přihlásí kdokoli.",
     },
     {
       value: "≈ 2,8 %",
@@ -135,7 +135,7 @@ export const financovani = {
     },
   ],
   poznamka:
-    "Skutečný roční výnos poplatku z pobytu si necháváme potvrdit ze závěrečného účtu města — čísla v tabulce níž na něm nestojí, stojí na počtu rodin.",
+    "Kolik poplatek z pobytu vynese doopravdy, si ověřujeme v závěrečném účtu města. Tabulka níž na tom čísle nestojí, počítá se v ní s počtem rodin.",
 };
 
 export const rozpocet: RozpoctovyRadek[] = [
@@ -153,44 +153,44 @@ export const rozpocet: RozpoctovyRadek[] = [
 export const rozpoctoveRoky = ["2027", "2028", "2029", "2030"] as const;
 
 export const rozpocetPoznamka =
-  "Modelový propočet, ne rozpočtová položka. Stojí na odhadu ~130 rodin se dvěma a více dětmi, které dnes splácejí hypotéku — číslo si ověřujeme v datech ČSÚ. Hrubý náklad roste, čistý drží kolem deseti milionů, protože každá rodina, která kvůli programu zůstane nebo se přihlásí k pobytu, platí zpátky do rozpočtu.";
+  "Jde o modelový propočet, ne o schválenou rozpočtovou položku. Celý stojí na odhadu, že v Mariánkách splácí hypotéku zhruba sto třicet rodin se dvěma a více dětmi; to číslo si ověřujeme v datech statistického úřadu. Hrubý náklad rok od roku roste, čistý zůstává kolem deseti milionů. Každá rodina, která tu kvůli programu zůstane nebo se přihlásí k trvalému pobytu, totiž část peněz vrátí zpátky do městské kasy.";
 
 export const prinosy: Karta[] = [
   {
     icon: "lucide:school",
     title: "Plné třídy",
     body:
-      "Škola stojí stejné peníze při osmnácti i při dvaceti šesti dětech ve třídě. Budova, teplo, ředitel, od ledna i nepedagogičtí pracovníci. Poloprázdná škola je nejdražší věc, kterou město platí.",
+      "Škola vyjde na stejné peníze, ať ve třídě sedí osmnáct dětí, nebo dvacet šest. Budova, teplo, ředitel a od letošního ledna i kuchařky se školníky se platí tak jako tak. Nejdražší položka, jakou město ve školství má, je poloprázdná třída.",
   },
   {
     icon: "lucide:coins",
     title: "Rodina se zaplatí sama",
     body:
-      "Za rodinu s dětmi v našich školách pošle stát městu přes sto tisíc ročně přes rozpočtové určení daní. Rodina, která kvůli programu zůstane, ten náklad z velké části vrátí.",
+      "Za rodinu, jejíž děti chodí do mariánských škol, pošle stát městu přes rozpočtové určení daní zhruba sto tisíc korun ročně. U rodiny, která tu kvůli programu zůstane, se tedy velká část podpory vrátí rovnou zpátky.",
   },
   {
     icon: "lucide:user-check",
     title: "Přehlášené trvalé pobyty",
     body:
-      "Spousta lidí tu bydlí a trvalý pobyt má jinde. Přehlásí se a město dostane peníze, které mu už dávno patřily.",
+      "Řada lidí v Mariánkách bydlí, ale trvalý pobyt má pořád u rodičů v Praze nebo v Plzni. Jakmile se přehlásí, přiteče do městské kasy zhruba osmnáct tisíc korun ročně za každého z nich.",
   },
   {
     icon: "lucide:stethoscope",
     title: "Lidé do lázní a nemocnice",
     body:
-      "Personál nechybí proto, že by nechtěl. Chybí proto, že nemá kde bydlet. Tohle to řeší, aniž by město muselo postavit jediný dům.",
+      "Sestrám, lékařům a personálu lázní nechybí chuť sem nastoupit, chybí jim tu bydlení. Program s tím pohne, aniž by město muselo postavit jediný dům.",
   },
   {
     icon: "lucide:building-2",
     title: "Levnější než stavět",
     body:
-      "Startovací byty znamenají roky povolování, stamiliony a pár desítek bytů. Tohle je provozní výdaj, který se dá spustit v řádu měsíců a dosáhne na stovky rodin.",
+      "Než město postaví dvacet startovacích bytů, uběhnou roky povolování a utratí se stovky milionů. Příspěvek na úrok je běžný provozní výdaj: dá se spustit během pár měsíců a dosáhnou na něj stovky rodin.",
   },
   {
     icon: "lucide:home",
     title: "Zbraň proti prázdným bytům",
     body:
-      "Podmínka „bydlíte tu, ve svém, deset let“ je nejlepší nástroj proti investičním bytům a krátkodobým pronájmům, jaký město kdy mělo — a nestojí nic navíc.",
+      "Podmínka „bydlíte tu, ve svém, deset let“ zvýhodňuje lidi, kteří tu mají domov, před investory, co byt koupí a pronajímají ho přes noc. A město to nestojí ani korunu navíc.",
   },
 ];
 
@@ -201,10 +201,10 @@ export const vzory: Vzor[] = [
     body: [
       "Vesnice se zavřenou školou si v referendu v roce 2017 odhlasovala příspěvek na nastěhování: 25 000 franků na dospělého, 10 000 na dítě.",
       "Podmínka: koupíš nemovitost, bydlíš tam, deset let. Jinak vracíš.",
-      "Od spuštění v roce 2018 se takhle přistěhovalo 38 dospělých a 11 dětí — zhruba pětina obce. Sousední Zeneggen program převzal.",
+      "Od spuštění v roce 2018 se takhle přistěhovalo osmatřicet dospělých a jedenáct dětí, tedy zhruba pětina obce. Sousední Zeneggen pak program převzal po nich.",
     ],
     pouceni:
-      "Poučení pro nás: peníze až po několika letech pobytu, ne dopředu. A jasná pravidla hned na webu — do Albinenu chodí stovky dotazů denně od lidí, kteří podmínky nesplňují.",
+      "Co si z toho bereme: vyplácet až po několika letech pobytu, ne dopředu. A mít podmínky na webu černé na bílém. Do Albinenu chodí stovky dotazů denně a drtivá většina od lidí, kteří na příspěvek nedosáhnou.",
   },
   {
     misto: "Maďarsko",
@@ -212,15 +212,15 @@ export const vzory: Vzor[] = [
     body: [
       "Po prvním dítěti je půjčka bezúročná, po druhém stát smaže část dluhu, po třetím zbytek.",
       "U hypoték mladých manželů maže stát část jistiny podle počtu dětí.",
-      "Stupňování podle dětí funguje hlavně v tom, že mu lidé rozumí na první poslech.",
+      "Na tomhle stupňování je nejcennější to, že mu člověk rozumí na první poslech.",
     ],
     pouceni:
-      "Poučení pro nás: neslibovat, že podpora zvedne porodnost — v Maďarsku se to navzdory obrovským penězům nestalo. Slibujeme plné školy, protože to se za čtyři roky dá spočítat.",
+      "Co si z toho bereme: neslibovat, že podpora zvedne porodnost. Maďaři do rodinné politiky lijí procenta HDP a porodnost se jim stejně nehnula. Plné školy jsou něco jiného, ty se dají za čtyři roky spočítat.",
   },
 ];
 
 export const prvenstvi =
-  "Nevíme o jiném městě v Česku, které by úrok z hypotéky svým rodinám hradilo. Hledali jsme. Pokud o nějakém víte, napište nám — doplníme ho sem a rádi se přiučíme.";
+  "O jiném českém městě, které by svým rodinám hradilo úrok z hypotéky, nevíme. Hledali jsme poctivě. Jestli na nějaké narazíte, napište nám: doplníme ho sem a rádi se od něj přiučíme.";
 
 /**
  * Otevřené otázky. Tahle sekce je jádro poctivosti celé stránky —
@@ -230,57 +230,57 @@ export const dolazujeme = [
   {
     title: "Daňový dopad na vaši peněženku",
     body:
-      "Zákon o daních z příjmů osvobozuje dotace od obce hlavně na pořízení majetku. Refundace úroku do téhle škatulky nemusí spadnout — pak by se z ní odváděla daň a rodina by dostala čistého méně, než kolik zaplatila bance. Řešíme s daňovým poradcem, jestli program postavit jinak, nebo částku dorovnat. Než to budeme vědět, neslibujeme, že dostanete úrok zpátky do poslední koruny.",
+      "Zákon o daních z příjmů osvobozuje obecní dotace především tehdy, když jdou na pořízení majetku. Příspěvek na úrok do téhle kolonky spadnout nemusí, a pak by se z něj odváděla daň. Rodině by se tak vrátilo míň, než kolik za rok poslala bance. S daňovým poradcem proto hledáme, jestli program postavit jinak, nebo částku rovnou dorovnat. Dokud to nebudeme vědět jistě, neslibujeme vám úrok zpátky do poslední koruny.",
   },
   {
     title: "Co když bude zájem větší než limit",
     body:
-      "Program má mít pevný strop dvacet milionů ročně. Podle našeho propočtu se do něj vejdeme, ale při silnějším zájmu na něj časem narazíme. Pravidlo pro ten případ — pořadí podle podání žádosti, nebo poměrné krácení všem — musí být v pravidlech dřív, než přijde první žádost. Nechceme, aby se někdo dozvěděl u přepážky, že peníze došly.",
+      "Strop dvacet milionů ročně je pevný a podle propočtu se do něj vejdeme. Kdyby byl zájem větší, než čekáme, jednou na něj narazíme. Co se stane potom, jestli rozhodne pořadí podaných žádostí, nebo se částka pokrátí všem stejně, musí stát v pravidlech dřív, než dorazí první žádost. Nikdo se nemá dozvídat u okénka, že peníze došly.",
   },
   {
     title: "Jména příjemců budou veřejná",
     body:
-      "Dotace nad 50 tisíc korun se ze zákona zveřejňuje na úřední desce na tři roky. Říkáme to rovnou, ať to nikdo nezjistí až u podpisu smlouvy. Jsou to veřejné peníze a rozdávají se veřejně — jinak by to ani nešlo dělat poctivě.",
+      "Smlouvu o dotaci nad padesát tisíc korun musí město vyvěsit na úřední desku a nechat ji tam tři roky. Píšeme to sem rovnou, ať to nikoho nepřekvapí u podpisu. Veřejné peníze se rozdávají veřejně a jinak by to ani poctivě nešlo.",
   },
   {
     title: "Právní forma a schvalování",
     body:
-      "Počítáme s dotačním programem podle zákona o rozpočtových pravidlech územních rozpočtů; dotace nad 50 tisíc schvaluje zastupitelstvo. Podmínku trvalého pobytu musíme nastavit tak, aby obstála — obce v minulosti narazily na to, že své občany třídily podle délky pobytu bez pořádného důvodu.",
+      "Počítáme s dotačním programem podle zákona o rozpočtových pravidlech územních rozpočtů, kde o každé jednotlivé podpoře nad padesát tisíc hlasuje zastupitelstvo. Zbývá doladit podmínku trvalého pobytu tak, aby obstála: jiné obce si už spálily prsty na tom, že své občany třídily podle délky pobytu a neuměly to pořádně zdůvodnit.",
   },
 ];
 
 export const faq: Faq[] = [
   {
     q: "Není to dotace pro ty, co už mají?",
-    a: "Je pro lidi, kteří tady pracují, platí tu daně a vychovávají tu děti. Půlka peněz je na to, aby tu rodiny zůstaly, půlka na to, aby přišly nové. Říct starousedlíkům, že si nic nezaslouží, protože si bydlení už pořídili, nám přijde jako divný způsob, jak se o město starat.",
+    a: "Je pro lidi, kteří tu pracují, platí tu daně a vychovávají tu děti. Zhruba polovina peněz má udržet rodiny, které tu už jsou, druhá přivést nové. Říkat starousedlíkům, že si nezaslouží nic, protože si bydlení pořídili včas, nám přijde jako zvláštní způsob, jak se starat o město.",
   },
   {
     q: "Kde na to město vezme?",
-    a: "Z poplatku z pobytu. Hosté v Mariánkách přenocují víc než milionkrát ročně a z každé noci jde do rozpočtu padesát korun. Dnes se ty peníze rozpustí v provozu. Chceme, aby z nich část každý rok šla rodinám, které tu bydlí celý rok.",
+    a: "Z poplatku z pobytu. Hosté tu přenocují víc než milionkrát do roka a z každé noci odvedou do rozpočtu padesát korun. Dnes tyhle peníze skončí v běžném provozu města. Část z nich má podle nás patřit lidem, kteří tu bydlí po celý rok.",
   },
   {
     q: "Stát to slíbil taky. Proč vám mám věřit?",
-    a: "Protože nesliby se dají zkontrolovat. Vláda podporu hypoték odložila na druhou polovinu volebního období — je to dohledatelné. My můžeme program předložit zastupitelstvu do roka od voleb a vy si můžete přečíst, jestli jsme to udělali. Na rozdíl od státu je radnice na dosah.",
+    a: "Protože sliby radnice si zkontrolujete líp než sliby vlády. Že stát podporu hypoték odložil na druhou polovinu volebního období, je dohledatelné. My program předložíme zastupitelstvu do roka od voleb a vy si v zápise přečtete, jestli jsme to udělali, nebo ne.",
   },
   {
     q: "Porodnost tím stejně nezvednete.",
-    a: "To ani nechceme. Chceme plné školy. Rozdíl je v tom, že plné školy se za čtyři roky spočítají — stačí se podívat, kolik dětí v mariánských školách přibylo nebo ubylo.",
+    a: "To ani nezkoušíme. Chceme plné školy, a to je něco jiného. Za čtyři roky se dá jednoduše spočítat, kolik dětí v mariánských školách přibylo nebo ubylo.",
   },
   {
     q: "Budu z toho platit daň?",
-    a: "To je věc, kterou si zatím netroufáme slíbit. Osvobození od daně z příjmů míří hlavně na dotace na pořízení majetku a refundace úroku tam nemusí spadat. Řešíme to s daňovým poradcem a výsledek napíšeme sem — včetně toho, kdyby byl nepříjemný.",
+    a: "Zatím to nevíme jistě a nebudeme nic předstírat. Zákon osvobozuje hlavně obecní dotace na pořízení nemovitosti a u příspěvku na splácený úrok si tím nikdo jistý není. Sedíme kvůli tomu s daňovým poradcem a odpověď napíšeme sem, i kdyby byla nepříjemná.",
   },
   {
     q: "Co když se přihlásí víc lidí, než na kolik jsou peníze?",
-    a: "Program má mít pevný roční strop. Pravidlo pro převis zájmu — pořadí podle data podání, nebo krácení všem stejně — musí být v pravidlech dřív, než se otevřou žádosti. Zatím rozhodnuté není a nebudeme předstírat, že je.",
+    a: "Program má mít pevný roční strop. Kdyby ho zájem přerostl, musí být předem dané, kdo dostane přednost: jestli ten, kdo přijde dřív, nebo se prostě ubere všem stejně. Chceme to mít v pravidlech od začátku, ne až v okamžiku, kdy bude pozdě. Rozhodnuté to zatím není.",
   },
   {
     q: "Mám hypotéku 4,5 milionu. Co já?",
-    a: "Úrok z prvních tří milionů jistiny by hradilo město, zbytek byste platili sami. Kalkulačka výš vám to spočítá dopředu, ať se nedozvíte nic nepříjemného až u přepážky.",
+    a: "Úrok z prvních tří milionů by hradilo město, zbytek byste si platili sami. Kalkulačka výš vám to spočítá dopředu, abyste věděli, do čeho jdete.",
   },
   {
     q: "Proč zrovna dvě děti a proč deset let?",
-    a: "Dvě děti proto, že program míří na rodiny, které drží školy plné, a rozpočet města má svůj strop. Deset let proto, že tak dlouho trvá, než se rodina ve městě zabydlí — a přesně tuhle lhůtu používá i Albinen, ze kterého vycházíme.",
+    a: "Dvě děti proto, že rozpočet města má svůj strop a nám jde především o plné třídy. Deset let proto, že kratší lhůta by z podpory udělala příspěvek na stěhování. Stejnou dobu ostatně používá i Albinen.",
   },
 ];
 
