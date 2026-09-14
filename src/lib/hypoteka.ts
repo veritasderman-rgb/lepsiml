@@ -78,7 +78,7 @@ export const podminky: Podminka[] = [
     icon: "lucide:users-round",
     title: "Dvě děti a víc",
     body:
-      "Počítáme s rodinami, které drží mariánské školy plné. Na jedno dítě se program zatím vztahovat nebude, protože by to rozpočet neunesl. Radši slíbíme méně a dodržíme to.",
+      "Počítáme s rodinami, které drží naše školy plné. Na jedno dítě se program zatím vztahovat nebude, protože by to rozpočet neunesl. Radši slíbíme méně a dodržíme to.",
   },
   {
     icon: "lucide:house",
@@ -166,7 +166,7 @@ export const prinosy: Karta[] = [
     icon: "lucide:coins",
     title: "Rodina se zaplatí sama",
     body:
-      "Za rodinu, jejíž děti chodí do mariánských škol, pošle stát městu přes rozpočtové určení daní zhruba sto tisíc korun ročně. U rodiny, která tu kvůli programu zůstane, se tedy velká část podpory vrátí rovnou zpátky.",
+      "Za rodinu, jejíž děti chodí do zdejších škol, pošle stát městu přes rozpočtové určení daní zhruba sto tisíc korun ročně. U rodiny, která tu kvůli programu zůstane, se tedy velká část podpory vrátí rovnou zpátky.",
   },
   {
     icon: "lucide:user-check",
@@ -264,7 +264,7 @@ export const faq: Faq[] = [
   },
   {
     q: "Porodnost tím stejně nezvednete.",
-    a: "To ani nezkoušíme. Chceme plné školy, a to je něco jiného. Za čtyři roky se dá jednoduše spočítat, kolik dětí v mariánských školách přibylo nebo ubylo.",
+    a: "To ani nezkoušíme. Chceme plné školy, a to je něco jiného. Za čtyři roky se dá jednoduše spočítat, kolik dětí ve zdejších školách přibylo nebo ubylo.",
   },
   {
     q: "Budu z toho platit daň?",
