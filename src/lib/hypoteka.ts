@@ -116,7 +116,7 @@ export const financovani = {
   eyebrow: "Financování",
   title: "Hosté platí. Rodiny dostanou.",
   veta:
-    "Za každou přenocovanou noc odvede host městu padesát korun. Sečteno za rok jsou to desítky milionů, které se dnes rozplynou v rozpočtu, aniž by kdokoli poznal kde. Chceme, aby jejich část každý leden odešla rodinám, které tu nejsou tři noci, ale celý život.",
+    "Za každou přenocovanou noc odvede host městu padesát korun. Sečteno dohromady jsou to desítky milionů, které se dnes rozplynou v rozpočtu, aniž by kdokoli poznal kde. Jejich část má jednou za rok odejít rodinám, které tu nejsou tři noci, ale celý život.",
   polozky: [
     {
       value: "50 Kč",
