@@ -31,17 +31,18 @@ export type NavLink = {
   fullLabel?: string;
 };
 
+// Šest položek je strop, který se ještě vejde do desktopové lišty. Odkaz na
+// sesterské „Přehledy“ proto žije jen v patičce, kde má vlastní blok.
 export const nav: NavLink[] = [
   { label: "Program", href: "/program" },
+  {
+    label: "Hypotéka",
+    href: "/hypoteka",
+    fullLabel: "Hypotéka pro rodiny — návrh programu",
+  },
   { label: "10X lépe", href: "/plan-1155/", fullLabel: "Mariánky 10X lépe" },
   { label: "Dotazník", href: "/dotaznik" },
   { label: "Kandidáti", href: "/kandidati" },
-  {
-    label: "Přehledy",
-    href: transparencyDashboard.url,
-    external: true,
-    fullLabel: transparencyDashboard.name,
-  },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
