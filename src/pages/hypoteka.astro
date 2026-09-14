@@ -1,0 +1,729 @@
+---
+import Base from "../layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+import HypotekaKalkulacka from "../components/HypotekaKalkulacka.tsx";
+import {
+  dolazujeme,
+  faq,
+  financovani,
+  hypotekaMeta,
+  model,
+  podminky,
+  prinosy,
+  procTo,
+  prvenstvi,
+  rozpocet,
+  rozpoctoveRoky,
+  rozpocetPoznamka,
+  vzory,
+  zdroje,
+} from "../lib/hypoteka";
+import { contact } from "../lib/site";
+
+const cislo = (n: number) => n.toFixed(1).replace(".", ",");
+---
+
+<Base
+  title="Hypotéka pro rodiny"
+  description="Návrh programu Za lepší Mariánské Lázně: úrok z hypotéky rodinám se dvěma a více dětmi hradí město. Financováno z poplatku z pobytu. Včetně kalkulačky a otevřených otázek, které ještě řešíme."
+  pathname="/hypoteka"
+>
+  <!-- ============ HERO ============ -->
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%);"
+    aria-labelledby="hypoteka-heading"
+  >
+    <span
+      class="hero-shape"
+      style="width: 520px; height: 520px; top: -200px; right: -160px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative py-20 md:py-28">
+      <p class="eyebrow" style="color: var(--color-spa-gold);">
+        Bydlení pro rodiny — návrh programu
+      </p>
+      <h1 id="hypoteka-heading" class="reveal mt-4" style="color: var(--color-paper); max-width: 18ch;">
+        {hypotekaMeta.title}
+      </h1>
+      <p class="reveal mt-6 text-lg md:text-xl max-w-2xl" style="color: var(--color-mist);">
+        {hypotekaMeta.lead}
+      </p>
+
+      <p class="reveal mt-8 max-w-2xl hypo-status">
+        <Icon name="lucide:info" width={18} height={18} aria-hidden="true" />
+        <span>{hypotekaMeta.status}</span>
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="#kalkulacka" class="btn btn-primary">Spočítat moji úsporu →</a>
+        <a href="#dolazujeme" class="btn btn-outline">Co ještě dolaďujeme</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROČ ============ -->
+  <section class="section" style="background-color: var(--color-off-white);">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow" style="color: var(--color-pirate-dark);">Výchozí situace</p>
+        <h2 class="mt-3">Proč to chceme udělat</h2>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {
+          procTo.map((k) => (
+            <article
+              class="reveal card"
+              style="background-color: var(--color-paper); border-top: 4px solid var(--color-spa-gold);"
+            >
+              <span
+                class="icon-badge"
+                style="color: var(--color-spa-gold); background-color: var(--color-spa-stone);"
+                aria-hidden="true"
+              >
+                <Icon name={k.icon} width={24} height={24} />
+              </span>
+              <h3 class="mt-5" style="font-size: clamp(1.35rem, 1vw + 1rem, 1.75rem);">
+                {k.title}
+              </h3>
+              <p class="mt-3 text-[15px]" style="color: var(--color-graphite);">
+                {k.body}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PODMÍNKY ============ -->
+  <section class="section" style="background-color: var(--color-spa-stone);" aria-labelledby="podminky">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow" style="color: var(--color-spa-gold);">Jak by to fungovalo</p>
+        <h2 id="podminky" class="mt-3">Šest podmínek, nic víc</h2>
+        <p class="mt-4 text-lg" style="color: var(--color-smoke);">
+          {hypotekaMeta.claim} Úrok z jistiny do {(model.strop / 1_000_000)} milionů
+          by hradilo město po dobu {model.roky} let.
+        </p>
+      </div>
+
+      <ul class="mt-10 grid gap-4 md:grid-cols-2">
+        {
+          podminky.map((p) => (
+            <li
+              class="reveal card flex gap-4 items-start"
+              style="background-color: var(--color-paper); border-left: 4px solid var(--color-pirate);"
+            >
+              <span
+                class="icon-badge shrink-0"
+                style="color: var(--color-pirate-dark); background-color: var(--color-spa-stone);"
+                aria-hidden="true"
+              >
+                <Icon name={p.icon} width={22} height={22} />
+              </span>
+              <div>
+                <h4>{p.title}</h4>
+                <p class="mt-2 text-[15px]" style="color: var(--color-graphite);">
+                  {p.body}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ KALKULAČKA ============ -->
+  <section
+    id="kalkulacka"
+    class="section scroll-mt-24"
+    style="background-color: var(--color-off-white);"
+    aria-labelledby="kalkulacka-heading"
+  >
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow" style="color: var(--color-pirate-dark);">Co to udělá s vaší splátkou</p>
+        <h2 id="kalkulacka-heading" class="mt-3">Spočítejte si to</h2>
+        <p class="mt-4 text-lg" style="color: var(--color-smoke);">
+          Posuňte si hodnoty podle své hypotéky. Výchozí nastavení je modelová
+          rodina, se kterou počítáme: byt za {(model.cenaBytu / 1_000_000).toFixed(2).replace(".", ",")} milionu,
+          hypotéka {(model.uver / 1_000_000)} miliony, {model.splatnostLet} let, {cislo(model.sazba)} %.
+        </p>
+      </div>
+
+      <div class="mt-10 reveal kalk-obal">
+        <HypotekaKalkulacka
+          client:visible
+          strop={model.strop}
+          roky={model.roky}
+          minDeti={model.minDeti}
+          vychoziUver={model.uver}
+          vychoziSazba={model.sazba}
+          vychoziSplatnost={model.splatnostLet}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINANCOVÁNÍ ============ -->
+  <section
+    class="relative overflow-hidden"
+    style="background-color: var(--color-ink);"
+    aria-labelledby="financovani-heading"
+  >
+    <span
+      class="hero-shape"
+      style="width: 460px; height: 460px; bottom: -200px; left: -140px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative" style="padding-block: 72px 80px;">
+      <p class="eyebrow" style="color: var(--color-spa-gold);">{financovani.eyebrow}</p>
+      <h2 id="financovani-heading" class="mt-3" style="color: var(--color-paper);">
+        {financovani.title}
+      </h2>
+      <p class="reveal mt-6 text-lg md:text-xl max-w-3xl" style="color: var(--color-mist);">
+        {financovani.veta}
+      </p>
+
+      <dl class="reveal mt-10 grid gap-4 sm:grid-cols-3">
+        {
+          financovani.polozky.map((p) => (
+            <div class="hypo-stat">
+              <dt class="mono-meta" style="color: var(--color-spa-gold);">
+                {p.label}
+              </dt>
+              <dd class="hypo-stat-value">{p.value}</dd>
+              <p class="mt-3 text-[13px]" style="color: var(--color-ash);">
+                {p.note}
+              </p>
+            </div>
+          ))
+        }
+      </dl>
+
+      <p class="mt-8 text-[14px] max-w-3xl" style="color: var(--color-ash);">
+        {financovani.poznamka}
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ROZPOČET ============ -->
+  <section class="section" style="background-color: var(--color-paper);" aria-labelledby="rozpocet-heading">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow" style="color: var(--color-pirate-dark);">Čtyři roky</p>
+        <h2 id="rozpocet-heading" class="mt-3">Čísla, která ustojíme v debatě</h2>
+        <p class="mt-4 text-lg" style="color: var(--color-smoke);">
+          Hrubý náklad roste. Čistý drží kolem deseti milionů — protože každá
+          rodina, která díky programu zůstane, platí zpátky do rozpočtu města.
+        </p>
+      </div>
+
+      <div class="mt-10 hypo-tabulka-obal">
+        <table class="hypo-tabulka">
+          <caption class="sr-only">
+            Modelový propočet nákladů a příjmů programu v milionech Kč, roky 2027 až 2030
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">mil. Kč</th>
+              {rozpoctoveRoky.map((r) => <th scope="col">{r}</th>)}
+              <th scope="col">Σ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              rozpocet.map((radek) => (
+                <tr class={radek.souhrn ? "je-souhrn" : ""}>
+                  <th scope="row">{radek.label}</th>
+                  {radek.hodnoty.map((h) => <td>{cislo(h)}</td>)}
+                  <td>{cislo(radek.suma)}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-6 text-[14px] max-w-3xl" style="color: var(--color-smoke);">
+        {rozpocetPoznamka}
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CO Z TOHO MÁ MĚSTO ============ -->
+  <section class="section" style="background-color: var(--color-off-white);" aria-labelledby="prinos-heading">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow" style="color: var(--color-spa-gold);">Příjmová strana</p>
+        <h2 id="prinos-heading" class="mt-3">Co z toho má město</h2>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {
+          prinosy.map((k) => (
+            <article class="reveal card" style="background-color: var(--color-paper);">
+              <span
+                class="icon-badge"
+                style="color: var(--color-pirate-dark); background-color: var(--color-spa-stone);"
+                aria-hidden="true"
+              >
+                <Icon name={k.icon} width={22} height={22} />
+              </span>
+              <h4 class="mt-4">{k.title}</h4>
+              <p class="mt-2 text-[15px]" style="color: var(--color-graphite);">
+                {k.body}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VZORY ============ -->
+  <section class="section" style="background-color: var(--color-spa-stone);" aria-labelledby="vzory-heading">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow" style="color: var(--color-pirate-dark);">Není to experiment</p>
+        <h2 id="vzory-heading" class="mt-3">Opsali jsme to od lepších</h2>
+      </div>
+
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {
+          vzory.map((v) => (
+            <article
+              class="reveal card"
+              style="background-color: var(--color-paper); border-top: 4px solid var(--color-spa-forest);"
+            >
+              <p class="mono-meta" style="color: var(--color-spa-forest);">{v.stitek}</p>
+              <h3 class="mt-2" style="font-size: clamp(1.35rem, 1vw + 1rem, 1.75rem);">
+                {v.misto}
+              </h3>
+              <ul class="mt-4 space-y-3 text-[15px]" style="color: var(--color-graphite);">
+                {v.body.map((b) => (
+                  <li class="flex gap-3">
+                    <span
+                      aria-hidden="true"
+                      class="mt-[9px] w-1.5 h-1.5 shrink-0"
+                      style="background-color: var(--color-spa-forest);"
+                    />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <p
+                class="mt-5 p-4 text-[14px]"
+                style="background-color: var(--color-spa-stone); color: var(--color-ink);"
+              >
+                {v.pouceni}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="mt-8 text-[15px] max-w-3xl" style="color: var(--color-graphite);">
+        {prvenstvi}
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CO JEŠTĚ DOLAĎUJEME ============ -->
+  <section
+    id="dolazujeme"
+    class="section scroll-mt-24"
+    style="background-color: var(--color-paper);"
+    aria-labelledby="dolazujeme-heading"
+  >
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow flex items-center gap-2" style="color: var(--color-warning);">
+          <Icon name="lucide:alert-triangle" width={16} height={16} aria-hidden="true" />
+          Na rovinu
+        </p>
+        <h2 id="dolazujeme-heading" class="mt-3">Co ještě dolaďujeme</h2>
+        <p class="mt-4 text-lg" style="color: var(--color-smoke);">
+          Slibovat hotovou věc, která hotová není, umí každý. Tohle jsou čtyři
+          otázky, na které zatím nemáme definitivní odpověď — řešíme je
+          s právníky a daňovými poradci. Až je budeme mít, napíšeme je sem.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {
+          dolazujeme.map((d) => (
+            <article
+              class="reveal p-6 md:p-7"
+              style="background-color: var(--color-paper); border: 1px dashed var(--color-ash);"
+            >
+              <h4 class="flex items-start gap-3">
+                <span
+                  class="shrink-0 mt-1 inline-flex items-center justify-center w-5 h-5"
+                  style="background-color: var(--color-warning); color: var(--color-ink);"
+                  aria-hidden="true"
+                >
+                  <Icon name="lucide:help-circle" width={13} height={13} />
+                </span>
+                <span>{d.title}</span>
+              </h4>
+              <p class="mt-3 text-[15px]" style="color: var(--color-graphite);">
+                {d.body}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" style="background-color: var(--color-off-white);" aria-labelledby="faq-heading">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow" style="color: var(--color-pirate-dark);">Otázky, které dostáváme</p>
+        <h2 id="faq-heading" class="mt-3">Co se ptáte</h2>
+      </div>
+
+      <div class="mt-10 max-w-3xl">
+        {
+          faq.map((f) => (
+            <details class="accordion">
+              <summary>{f.q}</summary>
+              <div class="accordion-body">
+                <p>{f.a}</p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ZDROJE + CTA ============ -->
+  <section class="section" style="background-color: var(--color-spa-stone);" aria-labelledby="zdroje-heading">
+    <div class="container-site">
+      <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr]">
+        <div>
+          <p class="eyebrow" style="color: var(--color-smoke);">Odkud čerpáme</p>
+          <h2 id="zdroje-heading" class="mt-3" style="font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem);">
+            Ověřte si nás
+          </h2>
+          <p class="mt-4 text-[15px]" style="color: var(--color-graphite);">
+            Čísla na téhle stránce nejsou z hlavy. Tady jsou zdroje, ze kterých
+            vycházíme — ať si je můžete projít sami.
+          </p>
+          <ul class="mt-6 space-y-3 text-[14px]">
+            {
+              zdroje.map((z) => (
+                <li class="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    class="mt-[8px] w-1.5 h-1.5 shrink-0"
+                    style="background-color: var(--color-ash);"
+                  />
+                  {z.url ? (
+                    <a
+                      href={z.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="color: var(--color-pirate-dark); text-decoration: underline;"
+                    >
+                      {z.text}
+                    </a>
+                  ) : (
+                    <span style="color: var(--color-graphite);">{z.text}</span>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div
+          class="reveal p-7 md:p-8"
+          style="background-color: var(--color-ink); color: var(--color-paper);"
+        >
+          <p class="mono-meta" style="color: var(--color-spa-gold);">Máte k tomu co říct?</p>
+          <h3 class="mt-3" style="color: var(--color-paper); font-size: clamp(1.5rem, 1.5vw + 1rem, 2rem);">
+            Ozvěte se nám
+          </h3>
+          <p class="mt-4 text-[15px]" style="color: var(--color-mist);">
+            Chybí vám v návrhu něco? Vidíte v něm díru? Znáte město, které to
+            už dělá? Napište — tenhle program se pořád píše a připomínky do něj
+            zapracováváme.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/kontakt" class="btn btn-primary">Napsat nám</a>
+            <a href={`mailto:${contact.email}`} class="btn btn-outline">{contact.email}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hypo-status {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 16px 18px;
+    border-left: 3px solid var(--color-spa-gold);
+    background-color: rgba(212, 162, 76, 0.1);
+    color: var(--color-mist);
+    font-size: 15px;
+  }
+
+  .hypo-status :global(svg) {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--color-spa-gold);
+  }
+
+  .hypo-stat {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background-color: rgba(255, 255, 255, 0.04);
+    padding: 20px;
+  }
+
+  .hypo-stat-value {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem);
+    line-height: 1.1;
+    color: var(--color-paper);
+    margin-top: 6px;
+  }
+
+  /* ---------- tabulka ---------- */
+  .hypo-tabulka-obal {
+    overflow-x: auto;
+    border: 1px solid var(--color-mist);
+  }
+
+  .hypo-tabulka {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .hypo-tabulka th,
+  .hypo-tabulka td {
+    padding: 12px 14px;
+    text-align: right;
+    border-bottom: 1px solid var(--color-mist);
+  }
+
+  .hypo-tabulka thead th {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-smoke);
+    background-color: var(--color-cream);
+    font-weight: 600;
+  }
+
+  .hypo-tabulka tbody th[scope="row"] {
+    text-align: left;
+    font-weight: 400;
+    color: var(--color-graphite);
+    min-width: 260px;
+  }
+
+  .hypo-tabulka tbody td {
+    font-family: var(--font-mono);
+    color: var(--color-graphite);
+    white-space: nowrap;
+  }
+
+  .hypo-tabulka tr.je-souhrn th,
+  .hypo-tabulka tr.je-souhrn td {
+    background-color: var(--color-spa-stone);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  /* ---------- kalkulačka ---------- */
+  .kalk-obal :global(.kalk) {
+    display: grid;
+    gap: 0;
+    grid-template-columns: 1fr;
+    border: 1px solid var(--color-mist);
+    background-color: var(--color-paper);
+  }
+
+  @media (min-width: 900px) {
+    .kalk-obal :global(.kalk) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .kalk-obal :global(.kalk-disclaimer) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .kalk-obal :global(.kalk-vstupy) {
+    padding: 28px;
+    display: grid;
+    gap: 24px;
+    align-content: start;
+  }
+
+  .kalk-obal :global(.kalk-pole label),
+  .kalk-obal :global(.kalk-legenda) {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-graphite);
+    margin-bottom: 10px;
+  }
+
+  .kalk-obal :global(.kalk-pole label b) {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-ink);
+  }
+
+  .kalk-obal :global(.kalk-pole input[type="range"]) {
+    width: 100%;
+    accent-color: var(--color-pirate-dark);
+    cursor: pointer;
+  }
+
+  .kalk-obal :global(.kalk-prepinac) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .kalk-obal :global(.kalk-prepinac button) {
+    flex: 1 1 auto;
+    min-width: 64px;
+    padding: 10px 14px;
+    border: 1px solid var(--color-mist);
+    background-color: var(--color-paper);
+    color: var(--color-graphite);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease;
+  }
+
+  .kalk-obal :global(.kalk-prepinac button:hover) {
+    border-color: var(--color-pirate);
+  }
+
+  .kalk-obal :global(.kalk-prepinac button.je-aktivni) {
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .kalk-obal :global(.kalk-vystup) {
+    padding: 28px;
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .kalk-obal :global(.kalk-stitek) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-spa-gold);
+  }
+
+  .kalk-obal :global(.kalk-cislo) {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4vw + 1rem, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    color: var(--color-paper);
+    margin-top: 8px;
+  }
+
+  .kalk-obal :global(.kalk-podtitul) {
+    margin-top: 8px;
+    font-size: 15px;
+    color: var(--color-mist);
+  }
+
+  .kalk-obal :global(.kalk-radky) {
+    margin-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .kalk-obal :global(.kalk-radky > div) {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+  }
+
+  .kalk-obal :global(.kalk-radky dt) {
+    color: var(--color-ash);
+  }
+
+  .kalk-obal :global(.kalk-radky dd) {
+    font-family: var(--font-mono);
+    color: var(--color-paper);
+    white-space: nowrap;
+  }
+
+  .kalk-obal :global(.kalk-radek-duraz dt) {
+    color: var(--color-paper);
+    font-weight: 600;
+  }
+
+  .kalk-obal :global(.kalk-radek-duraz dd) {
+    color: var(--color-spa-gold);
+    font-weight: 600;
+  }
+
+  .kalk-obal :global(.kalk-hlaska-nadpis) {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-spa-gold);
+    margin-bottom: 12px;
+  }
+
+  .kalk-obal :global(.kalk-hlaska p) {
+    font-size: 15px;
+    color: var(--color-mist);
+  }
+
+  .kalk-obal :global(.kalk-hlaska-splatka) {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .kalk-obal :global(.kalk-hlaska-splatka b) {
+    font-family: var(--font-mono);
+    color: var(--color-paper);
+  }
+
+  .kalk-obal :global(.kalk-disclaimer) {
+    padding: 18px 28px 22px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--color-smoke);
+    background-color: var(--color-cream);
+    border-top: 1px solid var(--color-mist);
+  }
+</style>
