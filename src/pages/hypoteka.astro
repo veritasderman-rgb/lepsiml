@@ -1,4 +1,13 @@
 ---
+// Neveřejný náhled hypotečního programu pro tým.
+//
+// Stránka se buildí a je dostupná na přímé URL, ale schválně nikam nevede
+// odkaz — není v `nav`, na homepage ani na stránce programu. Nese `noindex`,
+// takže se nedostane do vyhledávačů. Do robots.txt ji ale nedávejte: ten je
+// veřejný a `Disallow: /hypoteka` by adresu prozradil komukoli, kdo si ho
+// otevře. Až se tým rozhodne obsah zveřejnit, stačí odebrat `noindex`
+// a vrátit odkazy (viz git historie).
+
 import Base from "../layouts/Base.astro";
 import { Icon } from "astro-icon/components";
 import HypotekaKalkulacka from "../components/HypotekaKalkulacka.tsx";
@@ -25,8 +34,9 @@ const cislo = (n: number) => n.toFixed(1).replace(".", ",");
 
 <Base
   title="Hypotéka pro rodiny"
-  description="Návrh programu Za lepší Mariánské Lázně: úrok z hypotéky rodinám se dvěma a více dětmi hradí město. Financováno z poplatku z pobytu. Včetně kalkulačky a otevřených otázek, které ještě řešíme."
+  description="Interní náhled návrhu: úrok z hypotéky rodinám se dvěma a více dětmi hradí město."
   pathname="/hypoteka"
+  noindex
 >
   <!-- ============ HERO ============ -->
   <section
