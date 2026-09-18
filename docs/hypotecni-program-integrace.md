@@ -1,5 +1,15 @@
 # Hypoteční program → web: rešerše a plán integrace
 
+> **POZOR — parametry v tomto dokumentu jsou překonané.** Vznikl k první verzi
+> návrhu (strop 3 mil. jistiny, deset let, limit 20 mil. ročně, ~130 rodin).
+> Program se mezitím jmenuje **„Bydlím v Mariánkách"** a platí jiná čísla:
+> strop jistiny **2,8 mil.**, nejvýš **100 tis. Kč ročně** na rodinu, zhruba
+> **150 rodin**, náklad **15 mil. Kč ročně**, podpora po dobu splácení.
+> Aktuální znění je v `src/lib/hypoteka.ts`.
+>
+> Rešeršní část (ověření tvrzení proti zdrojům, právní a daňová rizika)
+> platí dál — jen čísla a parametry čtěte z aktuálního zdroje.
+
 Podklad k prezentaci *„Vrátíme vám, co vám vláda vzala"* (interní deck pro kandidáty,
 11 slidů, září 2026) a k jejímu převedení na `lepsiml.cz`.
 
