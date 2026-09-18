@@ -1,13 +1,10 @@
 import { useMemo, useState } from "react";
 
 type Props = {
-  /** Jistina, ze které město hradí úrok. */
-  strop: number;
-  /** Kolik let město úrok hradí. */
-  roky: number;
-  /** Minimální počet dětí pro vstup do programu. */
-  minDeti: number;
-  /** Výchozí hodnoty = modelová rodina z propočtu. */
+  /** Jistina, ze které se úrok počítá (2,8 mil.). */
+  stropJistiny: number;
+  /** Nejvyšší roční příspěvek na rodinu (100 tis.). */
+  rocniStrop: number;
   vychoziUver: number;
   vychoziSazba: number;
   vychoziSplatnost: number;
@@ -19,51 +16,36 @@ const czk = new Intl.NumberFormat("cs-CZ", {
   maximumFractionDigits: 0,
 });
 
-/** Měsíční anuitní splátka. */
-function splatka(jistina: number, rocniSazba: number, mesicu: number): number {
-  const i = rocniSazba / 1200;
-  if (i === 0) return jistina / mesicu;
-  return (jistina * i) / (1 - Math.pow(1 + i, -mesicu));
-}
+const splatka = (jistina: number, sazba: number, mesicu: number) => {
+  const i = sazba / 1200;
+  return i === 0 ? jistina / mesicu : (jistina * i) / (1 - Math.pow(1 + i, -mesicu));
+};
 
-/** Zůstatek jistiny po `k` měsících splácení. */
-function zustatek(
-  jistina: number,
-  rocniSazba: number,
-  mesicu: number,
-  k: number,
-): number {
-  const i = rocniSazba / 1200;
+const zustatek = (jistina: number, sazba: number, mesicu: number, k: number) => {
+  const i = sazba / 1200;
   if (i === 0) return jistina * (1 - k / mesicu);
   const q = Math.pow(1 + i, mesicu);
   return (jistina * (q - Math.pow(1 + i, k))) / (q - 1);
-}
+};
 
 /**
- * Úrok zaplacený za prvních `let` let. Počítá se z úbytku jistiny, ne jako
- * konstanta — podíl úroku v anuitě totiž každý měsíc klesá a rovnou
- * vynásobit první splátku by výsledek nadhodnotilo.
+ * Úrok zaplacený v roce `rok`. Počítá se z úbytku jistiny, protože podíl
+ * úroku v anuitní splátce každý měsíc klesá — vynásobit první splátku
+ * dvanácti by výsledek nadhodnotilo.
  */
-function urokZaObdobi(
-  jistina: number,
-  rocniSazba: number,
-  mesicu: number,
-  odMesice: number,
-  doMesice: number,
-): number {
-  const m = splatka(jistina, rocniSazba, mesicu);
-  const kolikMesicu = Math.min(doMesice, mesicu) - odMesice;
-  if (kolikMesicu <= 0) return 0;
+function urokVRoce(jistina: number, sazba: number, mesicu: number, rok: number) {
+  const m = splatka(jistina, sazba, mesicu);
+  const od = 12 * (rok - 1);
+  const doM = Math.min(12 * rok, mesicu);
+  if (doM <= od) return 0;
   const splaceno =
-    zustatek(jistina, rocniSazba, mesicu, odMesice) -
-    zustatek(jistina, rocniSazba, mesicu, Math.min(doMesice, mesicu));
-  return m * kolikMesicu - splaceno;
+    zustatek(jistina, sazba, mesicu, od) - zustatek(jistina, sazba, mesicu, doM);
+  return m * (doM - od) - splaceno;
 }
 
 export default function HypotekaKalkulacka({
-  strop,
-  roky,
-  minDeti,
+  stropJistiny,
+  rocniStrop,
   vychoziUver,
   vychoziSazba,
   vychoziSplatnost,
@@ -71,49 +53,46 @@ export default function HypotekaKalkulacka({
   const [uver, setUver] = useState(vychoziUver);
   const [sazba, setSazba] = useState(vychoziSazba);
   const [splatnost, setSplatnost] = useState(vychoziSplatnost);
-  const [deti, setDeti] = useState(2);
+  const [dveDeti, setDveDeti] = useState(true);
 
   const v = useMemo(() => {
     const mesicu = splatnost * 12;
     const mesicniSplatka = splatka(uver, sazba, mesicu);
-    const kryto = Math.min(uver, strop);
 
-    // Úrok se refunduje z jistiny do stropu. Modelujeme ho jako samostatný
-    // úvěr se stejnou sazbou i splatností — poměr úroku a jistiny v anuitě
-    // na výši jistiny nezávisí, takže je to poctivý přepočet, ne zkratka.
-    const urokRok1Cely = urokZaObdobi(uver, sazba, mesicu, 0, 12);
-    const urokRok1Kryty = urokZaObdobi(kryto, sazba, mesicu, 0, 12);
-    const urokCelkemKryty = urokZaObdobi(kryto, sazba, mesicu, 0, roky * 12);
+    // Příspěvek se počítá z úroku připadajícího na jistinu do stropu.
+    const zapocitatelna = Math.min(uver, stropJistiny);
+    const podil = zapocitatelna / uver;
 
-    const jistinaRok1 = mesicniSplatka * 12 - urokRok1Cely;
+    const prispevekVRoce = (rok: number) =>
+      Math.min(urokVRoce(uver, sazba, mesicu, rok) * podil, rocniStrop);
+
+    const rocni = prispevekVRoce(1);
+    let zaDeset = 0;
+    for (let r = 1; r <= 10; r++) zaDeset += prispevekVRoce(r);
 
     return {
       mesicniSplatka,
-      mesicniUrok: urokRok1Cely / 12,
-      mesicniJistina: jistinaRok1 / 12,
-      mesicniMestoPlati: urokRok1Kryty / 12,
-      rocniMestoPlati: urokRok1Kryty,
-      celkemZaObdobi: urokCelkemKryty,
-      mesicniVasUrokNavic: (urokRok1Cely - urokRok1Kryty) / 12,
-      nadStrop: uver > strop,
+      rocni,
+      mesicneVy: mesicniSplatka - rocni / 12,
+      zaDeset,
+      // Pod stropem příspěvek rok od roku klesá, proto „až".
+      klesa: rocni < rocniStrop,
+      nadStrop: uver > stropJistiny,
     };
-  }, [uver, sazba, splatnost, strop, roky]);
-
-  const splnujeDeti = deti >= minDeti;
+  }, [uver, sazba, splatnost, stropJistiny, rocniStrop]);
 
   return (
     <div className="kalk">
       <div className="kalk-vstupy">
         <div className="kalk-pole">
           <label htmlFor="kalk-uver">
-            Výše hypotéky
-            <b>{czk.format(uver)}</b>
+            Výše hypotéky<b>{czk.format(uver)}</b>
           </label>
           <input
             id="kalk-uver"
             type="range"
-            min={500_000}
-            max={6_000_000}
+            min={1_000_000}
+            max={5_000_000}
             step={50_000}
             value={uver}
             onChange={(e) => setUver(Number(e.target.value))}
@@ -122,8 +101,7 @@ export default function HypotekaKalkulacka({
 
         <div className="kalk-pole">
           <label htmlFor="kalk-sazba">
-            Úroková sazba
-            <b>{sazba.toFixed(1).replace(".", ",")} %</b>
+            Úroková sazba<b>{sazba.toFixed(1).replace(".", ",")} %</b>
           </label>
           <input
             id="kalk-sazba"
@@ -137,10 +115,8 @@ export default function HypotekaKalkulacka({
         </div>
 
         <div className="kalk-pole">
-          <span className="kalk-legenda" id="kalk-splatnost-popis">
-            Splatnost
-          </span>
-          <div className="kalk-prepinac" role="group" aria-labelledby="kalk-splatnost-popis">
+          <span className="kalk-legenda" id="kalk-doba">Doba splácení</span>
+          <div className="kalk-prepinac" role="group" aria-labelledby="kalk-doba">
             {[20, 25, 30].map((r) => (
               <button
                 key={r}
@@ -156,94 +132,74 @@ export default function HypotekaKalkulacka({
         </div>
 
         <div className="kalk-pole">
-          <span className="kalk-legenda" id="kalk-deti-popis">
-            Počet dětí
-          </span>
-          <div className="kalk-prepinac" role="group" aria-labelledby="kalk-deti-popis">
-            {[0, 1, 2, 3].map((d) => (
-              <button
-                key={d}
-                type="button"
-                aria-pressed={deti === d}
-                className={deti === d ? "je-aktivni" : ""}
-                onClick={() => setDeti(d)}
-              >
-                {d === 3 ? "3+" : d}
-              </button>
-            ))}
+          <span className="kalk-legenda" id="kalk-deti">Počet dětí</span>
+          <div className="kalk-prepinac" role="group" aria-labelledby="kalk-deti">
+            <button
+              type="button"
+              aria-pressed={!dveDeti}
+              className={!dveDeti ? "je-aktivni" : ""}
+              onClick={() => setDveDeti(false)}
+            >
+              1
+            </button>
+            <button
+              type="button"
+              aria-pressed={dveDeti}
+              className={dveDeti ? "je-aktivni" : ""}
+              onClick={() => setDveDeti(true)}
+            >
+              2 a více
+            </button>
           </div>
         </div>
       </div>
 
       <div className="kalk-vystup" aria-live="polite">
-        {!splnujeDeti ? (
+        {!dveDeti ? (
           <div className="kalk-hlaska">
-            <p className="kalk-hlaska-nadpis">
-              Program je od {minDeti} dětí
-            </p>
+            <p className="kalk-hlaska-nadpis">Program je pro rodiny se dvěma a více dětmi</p>
             <p>
-              {deti === 0 ? "Bez dětí" : "S jedním dítětem"} na něj zatím
-              nedosáhnete. Rozpočet města má svůj strop a nám jde především
-              o plné třídy. Radši slíbíme méně a dodržíme to.
+              Právě u nich je odliv z města nejcitelnější. Až se vám narodí
+              druhé dítě, nárok vám vznikne. A do té doby: znáte rodinu, které
+              by se to hodilo? Pošlete jí tuhle stránku.
             </p>
             <p className="kalk-hlaska-splatka">
-              Vaše měsíční splátka:{" "}
-              <b>{czk.format(Math.round(v.mesicniSplatka))}</b>
+              Vaše měsíční splátka: <b>{czk.format(Math.round(v.mesicniSplatka))}</b>
             </p>
           </div>
         ) : (
           <>
-            <div className="kalk-hlavni">
-              <p className="kalk-stitek">Z vaší splátky byste platili jen</p>
-              <p className="kalk-cislo">
-                {czk.format(Math.round(v.mesicniJistina + v.mesicniVasUrokNavic))}
-              </p>
-              <p className="kalk-podtitul">
-                měsíčně místo {czk.format(Math.round(v.mesicniSplatka))}.{" "}
-                {v.nadStrop
-                  ? `Jistina a úrok nad ${czk.format(strop)}.`
-                  : "Zbývající úrok by platilo město."}
-              </p>
-            </div>
+            <p className="kalk-stitek">Město vám zaplatí</p>
+            <p className="kalk-cislo">{czk.format(Math.round(v.rocni))}</p>
+            <p className="kalk-podtitul">ročně</p>
 
             <dl className="kalk-radky">
+              <div className="kalk-radek-duraz">
+                <dt>Vy platíte měsíčně</dt>
+                <dd>{czk.format(Math.round(v.mesicneVy))}</dd>
+              </div>
               <div>
-                <dt>Měsíční splátka bance</dt>
+                <dt>místo</dt>
                 <dd>{czk.format(Math.round(v.mesicniSplatka))}</dd>
               </div>
-              <div>
-                <dt>Z toho úrok (první rok)</dt>
-                <dd>{czk.format(Math.round(v.mesicniUrok))}</dd>
-              </div>
               <div className="kalk-radek-duraz">
-                <dt>Z toho by hradilo město</dt>
-                <dd>{czk.format(Math.round(v.mesicniMestoPlati))}</dd>
+                <dt>Za 10 let od města{v.klesa ? " až" : ""}</dt>
+                <dd>{czk.format(Math.round(v.zaDeset))}</dd>
               </div>
               {v.nadStrop && (
                 <div>
-                  <dt>Úrok nad {czk.format(strop)} — platíte vy</dt>
-                  <dd>{czk.format(Math.round(v.mesicniVasUrokNavic))}</dd>
+                  <dt>Úrok nad {czk.format(stropJistiny)} si platíte sami</dt>
+                  <dd aria-hidden="true">—</dd>
                 </div>
               )}
-              <div>
-                <dt>Vyplaceno za první rok</dt>
-                <dd>{czk.format(Math.round(v.rocniMestoPlati))}</dd>
-              </div>
-              <div className="kalk-radek-duraz">
-                <dt>Celkem za {roky} let</dt>
-                <dd>{czk.format(Math.round(v.celkemZaObdobi))}</dd>
-              </div>
             </dl>
           </>
         )}
       </div>
 
       <p className="kalk-disclaimer">
-        Orientační propočet z anuitní splátky. Úrok v ní postupně klesá, takže
-        částka za první rok je ze všech deseti nejvyšší. Nepočítáme v ní
-        s poplatky banky ani s případným zdaněním podpory, které ještě řešíme
-        s daňovým poradcem. Rozhodující budou schválená pravidla programu, ne
-        tahle kalkulačka.
+        Orientační výpočet. Je to návrh; přesnou výši, délku a podmínky
+        příspěvku schválí zastupitelstvo města.
       </p>
     </div>
   );

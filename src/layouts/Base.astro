@@ -9,6 +9,8 @@ import CookieConsent from "../components/CookieConsent.astro";
 
 type Props = {
   title?: string;
+  /** Celý <title> bez doplnění názvu webu — pro stránky s vlastním claimem. */
+  fullTitle?: string;
   description?: string;
   ogImage?: string;
   pathname?: string;
@@ -18,15 +20,15 @@ type Props = {
 
 const {
   title,
+  fullTitle,
   description = site.description,
   ogImage = "/og-default.png",
   pathname = Astro.url.pathname,
   noindex = false,
 } = Astro.props;
 
-const pageTitle = title
-  ? `${title} — ${site.name}`
-  : `${site.name} — ${site.election}`;
+const pageTitle =
+  fullTitle ?? (title ? `${title} — ${site.name}` : `${site.name} — ${site.election}`);
 
 const canonical = new URL(pathname, Astro.site ?? "https://lepsiml.cz");
 const ogImageUrl = new URL(ogImage, Astro.site ?? "https://lepsiml.cz");
