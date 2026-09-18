@@ -91,7 +91,7 @@ export const pribeh = {
   odstavce: [
     "Vezměte si rodinu, jakých tu žijí stovky. Dvě děti, jedno ve školce, druhé na prvním stupni. Před pár lety koupili sedmdesátimetrový byt za tři a půl milionu a vzali si na něj hypotéku dva miliony osm set tisíc.",
     "Bance posílají každý měsíc 14 860 korun. Z toho jde první rok na úroky přes jedenáct tisíc měsíčně. To jsou peníze, které nezaplatí byt. Ty prostě zmizí.",
-    "S naším programem jim město pošle sto tisíc korun ročně. Místo necelých patnácti tisíc tak platí zhruba šest a půl. Za deset let dostanou od města milion korun.",
+    "S naším programem jim město jednou za rok pošle sto tisíc korun. Bance posílají svou splátku dál, ale v přepočtu na měsíc je byt stojí zhruba šest a půl tisíce místo necelých patnácti. Za deset let dostanou od města milion korun.",
   ],
   zaver: "Milion korun, který zůstane v Mariánkách. Ne v bance.",
 };
@@ -187,7 +187,7 @@ export const faq: Faq[] = [
   },
   {
     q: "Kolik město zaplatí?",
-    a: "Úroky z vaší hypotéky do výše jistiny 2,8 milionu korun, nejvíc 100 tisíc korun ročně. Máte-li hypotéku dva miliony, město zaplatí prakticky celý úrok. Máte-li hypotéku 2,8 milionu, dostanete sto tisíc ročně a místo necelých patnácti tisíc měsíčně platíte zhruba šest a půl.",
+    a: "Úroky z vaší hypotéky do výše jistiny 2,8 milionu korun, nejvíc 100 tisíc korun ročně. Máte-li hypotéku dva miliony, město zaplatí prakticky celý úrok. Máte-li hypotéku 2,8 milionu, dostanete sto tisíc ročně, takže v přepočtu na měsíc platíte za byt zhruba šest a půl tisíce místo necelých patnácti. Bance přitom posíláte celou splátku dál každý měsíc, příspěvek od města přijde jednou za rok.",
   },
   {
     q: "Proč zrovna 2,8 milionu?",
@@ -215,7 +215,7 @@ export const faq: Faq[] = [
   },
   {
     q: "Co když se přihlásí všichni? Nezkrachuje rozpočet?",
-    a: "Ne. Sto padesát rodin krát nejvíc sto tisíc je 15 milionů. To je tvrdý strop, přes který se program nedostane ani teoreticky. A jak rodiny splácejí, úroky klesají, takže náklad rok od roku klesá, nikdy neroste.",
+    a: "Ne. Sto padesát rodin krát nejvíc sto tisíc je 15 milionů, a tolik tedy program stojí při dnešním počtu rodin. Víc než sto tisíc ročně nedostane žádná z nich, to je strop, který platí vždycky. Kolik na program v daném roce půjde celkem, schvaluje zastupitelstvo v rozpočtu. A jak rodiny splácejí, úroky klesají, takže náklad na každou z nich rok od roku klesá.",
   },
   {
     q: "A co když se sem kvůli tomu nastěhuje moc rodin a bude to strašně drahé?",
@@ -239,7 +239,7 @@ export const faq: Faq[] = [
   },
   {
     q: "Budu příspěvek danit?",
-    a: "Přesnou formu příspěvku a daňové nastavení doladíme se zastupitelstvem a daňovým poradcem tak, aby vám zůstalo maximum. Úrok bance dál platíte vy, takže si ho dál odečítáte z daní jako dnes. Neslibujeme, že je příspěvek bez daně, dokud to nebude černé na bílém. Ale i kdybyste z něj odvedli patnáct procent, pořád platíte za byt méně než polovinu dnešní splátky.",
+    a: "Přesnou formu příspěvku a daňové nastavení doladíme se zastupitelstvem a daňovým poradcem tak, aby vám zůstalo maximum. Úrok bance dál platíte vy, takže si ho dál odečítáte z daní jako dnes. Neslibujeme, že je příspěvek bez daně, dokud to nebude černé na bílém. Ale i kdybyste z něj odvedli patnáct procent, pořád platíte za byt zhruba polovinu dnešní splátky.",
   },
   {
     q: "Co když byt prodáme nebo se odstěhujeme?",

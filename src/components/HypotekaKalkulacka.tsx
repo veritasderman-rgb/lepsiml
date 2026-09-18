@@ -175,7 +175,7 @@ export default function HypotekaKalkulacka({
 
             <dl className="kalk-radky">
               <div className="kalk-radek-duraz">
-                <dt>Vy platíte měsíčně</dt>
+                <dt>Byt vás stojí měsíčně v přepočtu</dt>
                 <dd>{czk.format(Math.round(v.mesicneVy))}</dd>
               </div>
               <div>
@@ -193,6 +193,12 @@ export default function HypotekaKalkulacka({
                 </div>
               )}
             </dl>
+
+            <p className="kalk-tok">
+              Bance posíláte {czk.format(Math.round(v.mesicniSplatka))} každý
+              měsíc dál. Příspěvek od města přijde jednou za rok proti
+              potvrzení z banky, částka nahoře je přepočet na měsíc.
+            </p>
           </>
         )}
       </div>
