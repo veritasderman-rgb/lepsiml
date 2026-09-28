@@ -2,7 +2,7 @@
 /**
  * Ochrana osobních údajů.
  *
- * Popisuje jen to, co web opravdu dělá — dotazník, měření návštěvnosti
+ * Popisuje jen to, co web opravdu dělá — dotazník, tipovačku, měření návštěvnosti
  * a jednu hodnotu v prohlížeči. Nic dalšího se nesbírá, tak se tu nic
  * dalšího neslibuje ani nezamlčuje.
  *
@@ -13,12 +13,12 @@ import Base from "../layouts/Base.astro";
 import { contact, site } from "../lib/site";
 import { GA_ID } from "../lib/consent";
 
-const aktualizovano = "7. 9. 2026";
+const aktualizovano = "28. 9. 2026";
 ---
 
 <Base
   title="Ochrana osobních údajů"
-  description="Jak nakládáme s osobními údaji: dotazník, měření návštěvnosti a vaše práva podle GDPR."
+  description="Jak nakládáme s osobními údaji: dotazník, tipovačka, měření návštěvnosti a vaše práva podle GDPR."
 >
   <section
     class="relative overflow-hidden"
@@ -91,6 +91,23 @@ const aktualizovano = "7. 9. 2026";
         pro nás jako zpracovatel. Kontaktní údaje mažeme
         <strong> nejpozději do konce roku 2026</strong>, tedy po komunálních
         volbách, ke kterým se kampaň váže — a dřív, když o to požádáte.
+      </p>
+
+      <h2 class="mt-14">Tipovačka</h2>
+      <p class="mt-4" style="color: var(--color-smoke);">
+        V tipovačce ukládáme váš tip, e-mail a — pokud je vyplníte — jméno
+        a telefon. Kontakt potřebujeme jen k tomu, abychom se ozvali
+        výherci. Právním základem je <strong>váš souhlas</strong>
+        (čl. 6 odst. 1 písm. a GDPR), který dáváte zaškrtnutím políčka
+        u formuláře. Ven zveřejňujeme jen průměr všech tipů, nikdy
+        jednotlivé tipy ani kontakty.
+      </p>
+      <p class="mt-4" style="color: var(--color-smoke);">
+        Data leží ve stejné databázi u <strong>Neon Inc.</strong> jako
+        dotazník. Kontakty z tipovačky mažeme po předání výhry,
+        <strong> nejpozději do 30. listopadu 2026</strong>. Pokud jste
+        zaškrtli i zasílání novinek, platí pro kontakt stejná pravidla
+        jako u dotazníku.
       </p>
 
       <h2 class="mt-14">Měření návštěvnosti</h2>

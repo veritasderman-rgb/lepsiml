@@ -139,3 +139,38 @@ from odpovedi order by vytvoreno;
 Kontaktní údaje jsou v samostatných sloupcích (`email`, `telefon`, `jmeno`,
 `souhlas`, `kontakt_zajmy`) — pro analýzu odpovědí je nepotřebujete, tak je
 do exportu netahejte.
+
+## Tipovačka
+
+Stránka `/tipovacka`: návštěvníci rozdělí 100 % hlasů mezi deset kandidátek
+v Mariánských Lázních a tipnou volební účast. Nejpřesnější tip vyhrává likér.
+Kandidátky, pravidla, uzávěrka a přepočet na mandáty (21 mandátů, klauzule
+5 %, d'Hondt) jsou v `src/lib/tipovacka.ts`.
+
+**API** `/api/tipovacka` (potřebuje stejné `DATABASE_URL` jako dotazník):
+`POST` uloží tip do tabulky `tipy`, `GET` vrátí jen souhrn — počet tipů,
+průměr za kandidátku a mandáty. Souhrn ukazuje až od 10 tipů a od 6. 10.
+00:00 do 10. 10. 14:00 ho kvůli moratoriu na průzkumy nevrací vůbec.
+
+Uzávěrku (9. 10. 2026 14:00), plnoletost, souhlas a jeden tip na e-mail
+hlídá i databáze.
+
+**Vyhodnocení** po zveřejnění výsledků — doplňte skutečná procenta a účast:
+
+```sql
+with vysledek(cislo, pct) as (values
+  ('1', 0.0), ('2', 0.0), ('3', 0.0), ('4', 0.0), ('5', 0.0),
+  ('6', 0.0), ('7', 0.0), ('8', 0.0), ('9', 0.0), ('10', 0.0)
+), ucast(pct) as (values (0.0))
+select t.id, t.email, t.jmeno, t.telefon, t.vytvoreno,
+       sum(abs((t.tip ->> v.cislo)::numeric - v.pct)) as odchylka,
+       abs(t.tip_ucast - (select pct from ucast)) as odchylka_ucasti
+from tipy t cross join vysledek v
+group by t.id
+order by odchylka, odchylka_ucasti, t.vytvoreno
+limit 5;
+```
+
+Po předání výhry kontakty smazat (nejpozději 30. 11. 2026), kromě těch,
+kdo zaškrtli `novinky`.
+
