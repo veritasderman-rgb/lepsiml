@@ -1,13 +1,9 @@
 ---
-// Neveřejný náhled programu „Bydlím v Mariánkách" pro tým.
+// Program „Bydlím v Mariánkách" — město platí rodinám úroky z hypotéky.
 //
-// Stránka se buildí a je dostupná na přímé URL, ale schválně na ni nikde
-// nevede odkaz — není v `nav`, na homepage ani na stránce programu. Nese
-// `noindex`. Do robots.txt ji nedávejte: ten je veřejný a `Disallow:
-// /hypoteka` by adresu prozradil komukoli, kdo si ho otevře.
-//
-// Až se stránka bude zveřejňovat: odebrat `noindex`, vrátit odkazy a doplnit
-// tlačítko „Sdílet výpočet" u kalkulačky (viz git historie a zadání).
+// Veškerý text je v src/lib/hypoteka.ts (včetně pravidel slovníku).
+// Odkazy sem vedou z homepage a ze stránky programu; obojí čte stejná data,
+// takže při změně parametrů stačí upravit jedno místo.
 
 import Base from "../layouts/Base.astro";
 import { Icon } from "astro-icon/components";
@@ -31,7 +27,6 @@ import {
   fullTitle={meta.metaTitle}
   description={meta.metaDescription}
   pathname="/hypoteka"
-  noindex
 >
   <!-- ============ 1 · HERO ============ -->
   <section
@@ -60,7 +55,7 @@ import {
       </p>
 
       <div class="mt-10">
-        <a href="#kalkulacka" class="btn btn-primary">{meta.ctaHero}</a>
+        <a href="#kalkulacka" class="btn btn-primary whitespace-normal text-center">{meta.ctaHero}</a>
       </div>
 
       <p class="mt-8 mono-meta" style="color: var(--color-pirate-light);">
