@@ -1,0 +1,1973 @@
+{
+ "zdroj": "volby.gov.cz — jmenné seznamy KV 2026, Mariánské Lázně (554642)",
+ "generovano": "2026-09-23T13:53:27",
+ "legenda": {
+  "ANO": "ANO 2011",
+  "AUTO": "Motoristé sobě",
+  "BEZ-UL": "BEZPEČNÉ ULICE",
+  "BEZPP": "bez politické příslušnosti",
+  "KDU-ČSL": "KDU-ČSL",
+  "KSČM": "Komunistická strana Čech a Moravy",
+  "NK": "nezávislý kandidát",
+  "NČ": "Naše Česko",
+  "ODS": "Občanská demokratická strana",
+  "Piráti": "Česká pirátská strana",
+  "SPD": "Svoboda a přímá demokracie (SPD)",
+  "STAN": "STAROSTOVÉ A NEZÁVISLÍ",
+  "Svobodní": "Svobodní",
+  "Trikolora": "Trikolora",
+  "VOK": "VOK – Volba pro kraj"
+ },
+ "kandidatky": [
+  {
+   "cislo": 1,
+   "nazev": "Změna pro M. L. s podporou VOK-Volba pro kraj",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Pelc Miloslav Mgr.",
+     "vek": 69,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "místostarosta",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Marzy Tomáš",
+     "vek": 42,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel a manažer",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Hála Petr Mgr.",
+     "vek": 69,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "pedagog",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Špelina Ladislav Mgr.",
+     "vek": 38,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "advokát",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Hálová Alena PaedDr.",
+     "vek": 69,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "speciální pedagog",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Babor Šaratová Pavla",
+     "vek": 43,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "fyzioterapeut",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Česal Stanislav",
+     "vek": 61,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Bláha Vladislav Ing.",
+     "vek": 71,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "ekonom, důchodce",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Jelínková Ivona Mgr.",
+     "vek": 60,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "pedagog",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Bláha Vladislav Ing.",
+     "vek": 39,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "IT specialista",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Ungerová Klára  DiS.",
+     "vek": 29,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "všeobecná zdravotní sestra",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Kučavová Věra Mgr.",
+     "vek": 70,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Novotný Karel",
+     "vek": 59,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Fajkus Lukáš",
+     "vek": 50,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "provozní",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Vetešníková Denisa",
+     "vek": 20,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "barmanka",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Česal Stanislav",
+     "vek": 36,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "sportovní manažer",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Anh Do Quynh",
+     "vek": 20,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "studentka vysoké školy",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Vlačuhová Lenka",
+     "vek": 34,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Ginová Monika",
+     "vek": 50,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "pracovník v gastronomii",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Váchalová Olga Ing.",
+     "vek": 74,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Ungerová Daniela",
+     "vek": 74,
+     "navrh": "VOK",
+     "prislusnost": "BEZPP",
+     "povolani": "fyzioterapeut",
+     "bydliste": "Mariánské Lázně"
+    }
+   ]
+  },
+  {
+   "cislo": 2,
+   "nazev": "STAROSTOVÉ A NEZÁVISLÍ",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Špindler Kamil Ing.",
+     "vek": 44,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "ekonomický ředitel, zastupitel města",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Drexler Dušan Mgr.",
+     "vek": 49,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "učitel SŠ, zastupitel města",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Rákos Tomáš Ing.",
+     "vek": 53,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "krajinářský architekt",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Kovárníková Nikola Ing.",
+     "vek": 43,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "key account manager",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Míka Ondřej Bc.",
+     "vek": 29,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "UNESCO site manažer",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Sasková Andrea Ing.",
+     "vek": 48,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "středoškolský učitel",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Hlavatý Daniel",
+     "vek": 21,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "student vysoké školy",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Měrka Daniel Ing.",
+     "vek": 50,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "ekonom",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Černá Monika",
+     "vek": 52,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Zigmund Jakub Ing.",
+     "vek": 34,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "technik přípravy výroby",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Richterová Šárka",
+     "vek": 59,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Milota Josef",
+     "vek": 68,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce, dříve u AOPK ČR",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Blažek Miroslav Ing. Ph.D.",
+     "vek": 33,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "procesní chemik",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Havlíková Martina  MBA, DiS.",
+     "vek": 53,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "provozní ředitel hotelu",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Kotoun Václav Mgr.",
+     "vek": 62,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "učitel základní školy",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Richterová Melánie Bc.",
+     "vek": 25,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "student vysoké školy a OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Sýs Miroslav Ing.",
+     "vek": 50,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "ředitel logistiky",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Vondrašová Lenka",
+     "vek": 44,
+     "navrh": "STAN",
+     "prislusnost": "STAN",
+     "povolani": "manažer prodeje",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Šimek Karel MUDr.",
+     "vek": 53,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "lékař-gastroent. a interna",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Prinz Tomáš Ing. DiS.",
+     "vek": 45,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "krajinný a zahradní architekt",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Jindřichová Lenka",
+     "vek": 62,
+     "navrh": "STAN",
+     "prislusnost": "BEZPP",
+     "povolani": "průvodce cestovního ruchu",
+     "bydliste": "Úšovice"
+    }
+   ]
+  },
+  {
+   "cislo": 3,
+   "nazev": "Naše Česko",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Zabolotný Samuel Bc. BBA",
+     "vek": 26,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "bývalý 1. místostarosta Mariánských Lázní, student",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Oravcová Daniela",
+     "vek": 35,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "mistryně světa v parapole, invalida",
+     "bydliste": "Rájov"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Kandráč Adam Bc.",
+     "vek": 40,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel, trenér tenisu",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Stonawská Adéla",
+     "vek": 40,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "mistryně světa v kulturistice, trenérka",
+     "bydliste": "Drmoul"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Hulena Albert Ing.",
+     "vek": 32,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "specialista financování, trenér basketu",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Ptáček Michal Ing.",
+     "vek": 25,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "člen akademického senátu ZČU, student",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Myslivec Milan",
+     "vek": 61,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "správce hřbitova, řidič autobusu",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Paroubek Jaroslav",
+     "vek": 46,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "učitel odborného výcviku",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Škorničková Monika Mgr.",
+     "vek": 61,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "trenérka krasobruslení",
+     "bydliste": "Stará Role"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Foustka Tomáš MUDr.",
+     "vek": 72,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "zubař a patriot města",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Zadranský Daniel",
+     "vek": 25,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel, školitel AI",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Pátek Marek",
+     "vek": 29,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "hasič HZS Mariánské Lázně",
+     "bydliste": "Chotěnov-Skláře"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Hráský Martin",
+     "vek": 59,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "rybář",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Bílek Jaroslav",
+     "vek": 67,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel a cyklista",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Galas Martin",
+     "vek": 49,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "vedoucí údržby městské zeleně, TDS",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Tomi David",
+     "vek": 21,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "profesionální golfista",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Čech Marek",
+     "vek": 42,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "údržba zeleně, trávníkář",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Kodýtek Martin",
+     "vek": 50,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel, trenér MMA a bojových sportů, KODY - AK GYM",
+     "bydliste": "Stará Voda"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Molnár Pavel",
+     "vek": 60,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Gezo Michal Ing.",
+     "vek": 32,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "finanční kontrolor, trenér a předseda basketového klubu BKML",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Kavina Richard",
+     "vek": 48,
+     "navrh": "NČ",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel, realitní makléř",
+     "bydliste": "Mariánské Lázně"
+    }
+   ]
+  },
+  {
+   "cislo": 4,
+   "nazev": "ANO 2011 a Nezávislí",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Hurajčík Martin",
+     "vek": 48,
+     "navrh": "ANO",
+     "prislusnost": "ANO",
+     "povolani": "starosta města Mariánské Lázně",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Roubalová Jana Mgr.",
+     "vek": 54,
+     "navrh": "ANO",
+     "prislusnost": "ANO",
+     "povolani": "ředitelka Domova pro seniory",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Chadim Miloslav JUDr.",
+     "vek": 60,
+     "navrh": "ANO",
+     "prislusnost": "ANO",
+     "povolani": "radní města Mariánské Lázně, podnikatel",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Dubnický Roman MUDr.",
+     "vek": 45,
+     "navrh": "ANO",
+     "prislusnost": "ANO",
+     "povolani": "doktor, Nemocnice Mariánské Lázně",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Hamar Jan",
+     "vek": 32,
+     "navrh": "ANO",
+     "prislusnost": "ANO",
+     "povolani": "oblastní vedoucí provozu, ředitel komunitního centra",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Kafka Vladimír",
+     "vek": 38,
+     "navrh": "ANO",
+     "prislusnost": "BEZPP",
+     "povolani": "pedagog ZŠ, sportovní trenér",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Mottlová Ivana",
+     "vek": 67,
+     "navrh": "ANO",
+     "prislusnost": "BEZPP",
+     "povolani": "zastupitelka města Mariánské Lázně",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Černý Vladimír",
+     "vek": 64,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "ředitel skiareálu",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Pinkasová Zdeňka",
+     "vek": 73,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "pracovnice ve státní správě, v důchodu",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Karlíček Ladislav",
+     "vek": 47,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "obchodní zástupce",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Borsik Viktor Mgr.",
+     "vek": 61,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "ředitel městských sportovišť",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Dubský Jiří",
+     "vek": 61,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Oleňová Kristýna",
+     "vek": 24,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "vedoucí spa recepce",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Rozníček Pavel",
+     "vek": 49,
+     "navrh": "ANO",
+     "prislusnost": "ANO",
+     "povolani": "podnikatel",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Vaněk Vojtěch",
+     "vek": 24,
+     "navrh": "ANO",
+     "prislusnost": "BEZPP",
+     "povolani": "tiskový mluvčí",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Senaj Petr",
+     "vek": 62,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "technik",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Drahorád Michal",
+     "vek": 57,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "správce sportovního areálu, sportovní trenér",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Tóthová Tamara",
+     "vek": 42,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "strážnice městské policie",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Friedman Miloš MUDr.",
+     "vek": 77,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "praktický lékař pro děti a dorost",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Kolmerová Alice MUDr.",
+     "vek": 50,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "lékařka, internistka",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Horníková Stanislava",
+     "vek": 68,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "sanitářka, v důchodu",
+     "bydliste": "Úšovice"
+    }
+   ]
+  },
+  {
+   "cislo": 5,
+   "nazev": "Motoristé sobě",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Král Zdeněk",
+     "vek": 66,
+     "navrh": "AUTO",
+     "prislusnost": "AUTO",
+     "povolani": "radní pro městský majetek a životní prostředí, bývalý starosta Mar. Lázní",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Stanová Markéta Ing.",
+     "vek": 60,
+     "navrh": "AUTO",
+     "prislusnost": "Trikolora",
+     "povolani": "podnikatelka v realitní a inženýrské činnosti, předsedkyně klubu přátel Rakouska",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Petr Pavel",
+     "vek": 67,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "farmář, motorkář, nimrod, rybář",
+     "bydliste": "Stanoviště"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Žižka David",
+     "vek": 42,
+     "navrh": "AUTO",
+     "prislusnost": "Trikolora",
+     "povolani": "manažer dopravy ve zdravotnictví, předseda fotbalového klubu Lokomotiva Mar. Lázně",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Kandelová Helena",
+     "vek": 57,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "učitelka",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Voltrová Lucie",
+     "vek": 33,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "vychovatelka a kuchařka v mateřské škole, cvičitelka psů",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Tůma Jan Ing.",
+     "vek": 75,
+     "navrh": "AUTO",
+     "prislusnost": "Trikolora",
+     "povolani": "hygienik, hudebník, cyklista a cestovatel",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Blahout Rostislav",
+     "vek": 22,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "operátor údržby a zeleně",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Ernst Petr",
+     "vek": 59,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "kuchař",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Marek Kristina",
+     "vek": 32,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatelka, recitátorka",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Rieger Josef",
+     "vek": 34,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "asistent pečovatelské služby",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Kuchařová Drahomíra",
+     "vek": 60,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "vedoucí obchodu domácích potřeb",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Sůva Luděk",
+     "vek": 52,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "vedoucí obchodu sportovních potřeb",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Slezák Štěpán",
+     "vek": 52,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "profesionální trenér golfu",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Lhotáková Petra",
+     "vek": 34,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "prodejce optiky",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Masopust Radek",
+     "vek": 54,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "správce budovy",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Křivánková Barbora",
+     "vek": 33,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "cukrářka",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Tišerová Zdena",
+     "vek": 72,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "hygienička",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Hornáková Renáta",
+     "vek": 58,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "asistentka radiologie",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Mika Pavel",
+     "vek": 75,
+     "navrh": "AUTO",
+     "prislusnost": "Trikolora",
+     "povolani": "důchodce",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Votavová Emilie",
+     "vek": 85,
+     "navrh": "AUTO",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Mariánské Lázně"
+    }
+   ]
+  },
+  {
+   "cislo": 6,
+   "nazev": "Město sobě",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Borka Luboš Mgr.",
+     "vek": 63,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "ředitel školy",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Richter Tomáš Mgr.",
+     "vek": 46,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "pořadatel kulturních akcí",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Vlasák Martin Mgr.",
+     "vek": 60,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "ředitel školy",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Novák Jiří",
+     "vek": 59,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "provozní technik",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Šulc Pavel",
+     "vek": 52,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "provozní technik",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Kysilková Lenka Bc.",
+     "vek": 56,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "vedoucí učitelka MŠ",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Pánková Martina",
+     "vek": 54,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "vedoucí DOVB",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Švarcová Kristýna",
+     "vek": 36,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "servírka",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Kysilka Marcel",
+     "vek": 57,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "vedoucí školní jídelny",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Věrný Pavel",
+     "vek": 58,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Bompanová Jarmila Mgr.",
+     "vek": 55,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "pedagog",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Šmerda Koutenská Lucie  DiS.",
+     "vek": 45,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "fyzioterapeut",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Provazník Karel",
+     "vek": 52,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Karásková Jana",
+     "vek": 51,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "učitelka MŠ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Pavlíková Lenka",
+     "vek": 58,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "koordinátorka",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Bockstefelová Radka",
+     "vek": 56,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "fyzioterapeut",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Holakovská Barbora",
+     "vek": 33,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Poplštejn Petr",
+     "vek": 39,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "bar manager",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Krišková Zděnka",
+     "vek": 68,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Štěpánek Miroslav",
+     "vek": 54,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "poštovní doručovatel",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Kunešová Jana Mgr.",
+     "vek": 80,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Úšovice"
+    }
+   ]
+  },
+  {
+   "cislo": 7,
+   "nazev": "ODS + KDU-ČSL",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Míková Ludmila Ing. arch.",
+     "vek": 62,
+     "navrh": "KDU-ČSL",
+     "prislusnost": "KDU-ČSL",
+     "povolani": "architektka",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Šnajdr Radek Ing. MBA",
+     "vek": 58,
+     "navrh": "ODS",
+     "prislusnost": "BEZPP",
+     "povolani": "jednatel společnosti",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Chlad Bohumil",
+     "vek": 53,
+     "navrh": "ODS",
+     "prislusnost": "ODS",
+     "povolani": "podnikatel",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Dominik Tomáš",
+     "vek": 46,
+     "navrh": "ODS",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Hovorková Markéta MUDr. Ph.D.",
+     "vek": 51,
+     "navrh": "ODS",
+     "prislusnost": "BEZPP",
+     "povolani": "lékařka",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Čapek Jiří Ing. Ph.D.",
+     "vek": 63,
+     "navrh": "ODS",
+     "prislusnost": "ODS",
+     "povolani": "ekonom",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Formánek Jakub PhDr. MBA",
+     "vek": 36,
+     "navrh": "KDU-ČSL",
+     "prislusnost": "KDU-ČSL",
+     "povolani": "učitel gymnázia",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Hauzar Josef Mgr.",
+     "vek": 67,
+     "navrh": "ODS",
+     "prislusnost": "BEZPP",
+     "povolani": "duchovní",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Urbanová Marta Bc.",
+     "vek": 48,
+     "navrh": "KDU-ČSL",
+     "prislusnost": "BEZPP",
+     "povolani": "zástupkyně ředitele",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Chval Jiří Ing.",
+     "vek": 65,
+     "navrh": "ODS",
+     "prislusnost": "ODS",
+     "povolani": "ekonom",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Pospíšil Martin prof. Dr. Ing. Ph.D.",
+     "vek": 64,
+     "navrh": "KDU-ČSL",
+     "prislusnost": "BEZPP",
+     "povolani": "profesor na ČVUT v Praze",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Kořán Roman Ing. Ph.D.",
+     "vek": 62,
+     "navrh": "ODS",
+     "prislusnost": "ODS",
+     "povolani": "vysokoškolský pedagog",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Lazebníčková Jana",
+     "vek": 53,
+     "navrh": "KDU-ČSL",
+     "prislusnost": "BEZPP",
+     "povolani": "knihovnice",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Dvořák Petr Daniel",
+     "vek": 21,
+     "navrh": "ODS",
+     "prislusnost": "ODS",
+     "povolani": "student",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Dobešek Petr",
+     "vek": 51,
+     "navrh": "ODS",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Tomášková Radka",
+     "vek": 54,
+     "navrh": "ODS",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Hera Ivan",
+     "vek": 53,
+     "navrh": "ODS",
+     "prislusnost": "BEZPP",
+     "povolani": "jednatel",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Coufalík Miloš",
+     "vek": 71,
+     "navrh": "ODS",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Kubín Erik",
+     "vek": 61,
+     "navrh": "KDU-ČSL",
+     "prislusnost": "KDU-ČSL",
+     "povolani": "jednatel společnosti",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Kajlik Vladimír Dr. Ph.D., MSI",
+     "vek": 80,
+     "navrh": "KDU-ČSL",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Škroch Jiří  DiS.",
+     "vek": 42,
+     "navrh": "ODS",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel",
+     "bydliste": "Úšovice"
+    }
+   ]
+  },
+  {
+   "cislo": 8,
+   "nazev": "Sdružení pol. stran KSČM a SPD za lepší Mar. Lázně",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Brill Jindřich",
+     "vek": 55,
+     "navrh": "KSČM",
+     "prislusnost": "KSČM",
+     "povolani": "elektromontér - živnostník",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Stráník Štěpán",
+     "vek": 50,
+     "navrh": "SPD",
+     "prislusnost": "SPD",
+     "povolani": "zastupitel města Mariánské Lázně, hudebník v symfonickém orchestru",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Klestilová Eva",
+     "vek": 72,
+     "navrh": "KSČM",
+     "prislusnost": "KSČM",
+     "povolani": "živnostník - kočárová doprava",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Králová Blanka",
+     "vek": 44,
+     "navrh": "SPD",
+     "prislusnost": "BEZPP",
+     "povolani": "poštovní doručovatelka",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Varmuža Jan",
+     "vek": 73,
+     "navrh": "KSČM",
+     "prislusnost": "KSČM",
+     "povolani": "automechanik",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Urban Jan",
+     "vek": 48,
+     "navrh": "SPD",
+     "prislusnost": "BEZPP",
+     "povolani": "řidič",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Němec Josef",
+     "vek": 73,
+     "navrh": "KSČM",
+     "prislusnost": "KSČM",
+     "povolani": "podnikatel",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Holakovská Šárka",
+     "vek": 55,
+     "navrh": "SPD",
+     "prislusnost": "BEZPP",
+     "povolani": "pečovatelka v sociálních službách",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Procházka Karel",
+     "vek": 75,
+     "navrh": "KSČM",
+     "prislusnost": "KSČM",
+     "povolani": "ekonom",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Hrachovina František",
+     "vek": 70,
+     "navrh": "SPD",
+     "prislusnost": "SPD",
+     "povolani": "technik",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Sloupová Olga",
+     "vek": 49,
+     "navrh": "KSČM",
+     "prislusnost": "BEZPP",
+     "povolani": "účetní",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Vavřich Ivan Ing.",
+     "vek": 79,
+     "navrh": "KSČM",
+     "prislusnost": "BEZPP",
+     "povolani": "živnostník v oblasti reklamy",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Soušek Jiří",
+     "vek": 42,
+     "navrh": "KSČM",
+     "prislusnost": "BEZPP",
+     "povolani": "ošetřovatel",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Králová Hana",
+     "vek": 46,
+     "navrh": "KSČM",
+     "prislusnost": "BEZPP",
+     "povolani": "ošetřovatelka",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Němcová Alena",
+     "vek": 69,
+     "navrh": "KSČM",
+     "prislusnost": "BEZPP",
+     "povolani": "učitelka",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Soušková Magdaléna",
+     "vek": 41,
+     "navrh": "KSČM",
+     "prislusnost": "BEZPP",
+     "povolani": "ošetřovatelka",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Manych Mojmír",
+     "vek": 71,
+     "navrh": "KSČM",
+     "prislusnost": "BEZPP",
+     "povolani": "řidič",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Marhoun Václav",
+     "vek": 81,
+     "navrh": "KSČM",
+     "prislusnost": "KSČM",
+     "povolani": "opravář - zámečník",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Červinková Marie",
+     "vek": 84,
+     "navrh": "KSČM",
+     "prislusnost": "KSČM",
+     "povolani": "vedoucí střediska",
+     "bydliste": "Stanoviště"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Nekovářová Ladislava",
+     "vek": 61,
+     "navrh": "KSČM",
+     "prislusnost": "BEZPP",
+     "povolani": "invalidní důchodce",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Červák Václav",
+     "vek": 61,
+     "navrh": "KSČM",
+     "prislusnost": "BEZPP",
+     "povolani": "podlahář",
+     "bydliste": "Mariánské Lázně"
+    }
+   ]
+  },
+  {
+   "cislo": 9,
+   "nazev": "Za lepší Mariánské Lázně",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Franta Vojtěch Ing. arch.",
+     "vek": 41,
+     "navrh": "Piráti",
+     "prislusnost": "Piráti",
+     "povolani": "architekt, zastupitel města, bývalý starosta a náměstek hejtmana",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Pivec Jan",
+     "vek": 20,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "student sociologie a politologie, radní Studentské rady FF UK, spoluzakladatel \"Média nedáme!\", nadšený čtenář filosofie",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Pavlovic Josef Bc.",
+     "vek": 42,
+     "navrh": "Piráti",
+     "prislusnost": "Piráti",
+     "povolani": "Head of marketing LLML, člen Správní rady VZP, předseda SR ZSO, autor portálu skorezdravotnictvi.cz",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Pivcová Žaneta",
+     "vek": 46,
+     "navrh": "Piráti",
+     "prislusnost": "Piráti",
+     "povolani": "zubní technik - specialistka na kombinovanou protetiku, členka sociálně-zdravotní komise města ML",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Hodovský Alan",
+     "vek": 43,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "truhlář, srdcař, skater",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Nguyen Huy Khánh",
+     "vek": 22,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "student učitelství geografie a dějepisu",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Barcziová Jana",
+     "vek": 66,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "babička na plný úvazek",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Kalina Martin Ing.",
+     "vek": 42,
+     "navrh": "Piráti",
+     "prislusnost": "Piráti",
+     "povolani": "dispečer, bývalý starosta Mariánských Lázní",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Vlček William",
+     "vek": 22,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "student skladby a klasické kytary, člen rady Západočeského hudebního centra, recenzent Opery PLUS, hudební pedagog",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Pipta Jan Ing.",
+     "vek": 32,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "projektant, OSVČ, lezec, tvůrce",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Vachout František",
+     "vek": 38,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "cestovatel a poradce",
+     "bydliste": "Stanoviště"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Třešňák Zdeněk Ing.",
+     "vek": 70,
+     "navrh": "Piráti",
+     "prislusnost": "Piráti",
+     "povolani": "zeměměřič",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Jadlovský Lukáš",
+     "vek": 41,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ - fotograf",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Martinek Zbyněk",
+     "vek": 75,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ - zahradník",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Řežábek Vojtěch",
+     "vek": 41,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "jednatel",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Kalinová Jana",
+     "vek": 40,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "zdravotní sestra, domácí péče",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Předotová Hana",
+     "vek": 67,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodkyně, dámská krejčová",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Rezek Stanislav",
+     "vek": 41,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ, servisní technik",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Pavlicová Kateřina Bc. DiS.",
+     "vek": 42,
+     "navrh": "Piráti",
+     "prislusnost": "Piráti",
+     "povolani": "logistika",
+     "bydliste": "Hamrníky"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Harajdová Kateřina Marie",
+     "vek": 33,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "tattoo designer",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Juřica Roman",
+     "vek": 48,
+     "navrh": "NK",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel",
+     "bydliste": "Mariánské Lázně"
+    }
+   ]
+  },
+  {
+   "cislo": 10,
+   "nazev": "Svobodní",
+   "kandidati": [
+    {
+     "poradi": 1,
+     "jmeno": "Kraslová Milada",
+     "vek": 69,
+     "navrh": "Svobodní",
+     "prislusnost": "Svobodní",
+     "povolani": "vedoucí střediska",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 2,
+     "jmeno": "Hladík Martin",
+     "vek": 56,
+     "navrh": "Svobodní",
+     "prislusnost": "Svobodní",
+     "povolani": "OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 3,
+     "jmeno": "Michalcová Milada",
+     "vek": 49,
+     "navrh": "Svobodní",
+     "prislusnost": "Svobodní",
+     "povolani": "pracovník v sociálních službách",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 4,
+     "jmeno": "Pelák Daniel",
+     "vek": 52,
+     "navrh": "Svobodní",
+     "prislusnost": "Svobodní",
+     "povolani": "číšník",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 5,
+     "jmeno": "Doležalová Radka",
+     "vek": 67,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZ-UL",
+     "povolani": "úřednice",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 6,
+     "jmeno": "Voráček Martin",
+     "vek": 53,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 7,
+     "jmeno": "Řehák Martin",
+     "vek": 54,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "elektromechanik",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 8,
+     "jmeno": "Brouček Petr",
+     "vek": 52,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 9,
+     "jmeno": "Babor Jaroslav",
+     "vek": 54,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "elektromechanik",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 10,
+     "jmeno": "Valko Marian",
+     "vek": 51,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "podnikatel",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 11,
+     "jmeno": "Dvořák Daniel",
+     "vek": 55,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 12,
+     "jmeno": "Peláková Světlana",
+     "vek": 53,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 13,
+     "jmeno": "Šimeček Petr",
+     "vek": 47,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 14,
+     "jmeno": "Kmeťová Pavla",
+     "vek": 52,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "pokladní",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 15,
+     "jmeno": "Trnková Marcela",
+     "vek": 62,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "OSVČ",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 16,
+     "jmeno": "Bílková Lenka",
+     "vek": 62,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "plavčice",
+     "bydliste": "Mariánské Lázně"
+    },
+    {
+     "poradi": 17,
+     "jmeno": "Zitterbartová Anna",
+     "vek": 68,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 18,
+     "jmeno": "Kolář Jiří",
+     "vek": 57,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "řidič",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 19,
+     "jmeno": "Slepičková Růžena",
+     "vek": 78,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 20,
+     "jmeno": "Moser Jana",
+     "vek": 53,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "odborný poradce",
+     "bydliste": "Úšovice"
+    },
+    {
+     "poradi": 21,
+     "jmeno": "Šneberková Jaroslava",
+     "vek": 70,
+     "navrh": "Svobodní",
+     "prislusnost": "BEZPP",
+     "povolani": "důchodce",
+     "bydliste": "Mariánské Lázně"
+    }
+   ]
+  }
+ ]
+}
