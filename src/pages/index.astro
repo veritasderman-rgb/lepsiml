@@ -71,28 +71,56 @@ const SHOW_PODCAST_TEASER = false;
         <p class="mt-6 text-sm" style="color: rgba(255,255,255,0.35);">
           Pátek 9. října 2026 — otevření volebních místností
         </p>
-        <a
-          href="/tipovacka"
-          class="mt-8 inline-flex items-center gap-2 underline underline-offset-4 hover:no-underline"
-          style="color: var(--color-pirate-light);"
-        >
-          Tipněte si výsledek voleb a vyhrajte likér Maria
-          <Icon name="lucide:arrow-right" width={16} height={16} />
-        </a>
-        <br />
-        <a
-          href="/hlasovaci-listek"
-          class="mt-3 inline-flex items-center gap-2 underline underline-offset-4 hover:no-underline"
-          style="color: var(--color-pirate-light);"
-        >
-          Vyzkoušejte si hlasovací lístek nanečisto
-          <Icon name="lucide:arrow-right" width={16} height={16} />
-        </a>
       </div>
     </div>
   </section>
 
   <PillarStrip />
+
+  <!-- Před volbami: tipovačka a hlasovací lístek nanečisto -->
+  <section
+    class="section"
+    style="background-color: var(--color-off-white);"
+    aria-labelledby="pred-volbami-heading"
+  >
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Před volbami</p>
+        <h2 id="pred-volbami-heading" class="mt-3">Zkuste si volby nanečisto</h2>
+        <p class="mt-4 text-lg" style="color: var(--color-smoke);">
+          Tipněte si, jak to v Mariánkách dopadne, nebo si vyzkoušejte, jak
+          rozdělit svých 21 hlasů mezi strany a konkrétní lidi.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <a href="/tipovacka" class="reveal card card-hover flex flex-col" style="border-top: 4px solid var(--color-spa-gold);">
+          <span class="icon-badge icon-badge-lg" aria-hidden="true" style="color: var(--color-spa-gold);">
+            <Icon name="lucide:trophy" width={34} height={34} />
+          </span>
+          <p class="mt-6 mono-meta" style="color: var(--color-spa-gold);">Tipovačka · do 9. 10. 14:00</p>
+          <h3 class="mt-2 nanecisto-title">Tipněte si výsledek voleb</h3>
+          <p class="mt-3 text-[15px]" style="color: var(--color-smoke);">
+            Rozdělte 100 % hlasů mezi deset kandidátek. Kdo se nejvíc trefí,
+            vyhrává láhev likéru Maria. Uvidíte i to, jak tipují ostatní.
+          </p>
+          <span class="mt-6 btn btn-primary self-start">Tipnout si</span>
+        </a>
+        <a href="/hlasovaci-listek" class="reveal card card-hover flex flex-col" style="border-top: 4px solid var(--color-pirate);">
+          <span class="icon-badge icon-badge-lg" aria-hidden="true" style="color: var(--color-primary);">
+            <Icon name="lucide:square-check" width={34} height={34} />
+          </span>
+          <p class="mt-6 mono-meta" style="color: var(--color-pirate-dark);">210 kandidátů · 21 hlasů</p>
+          <h3 class="mt-2 nanecisto-title">Sestavte si hlasovací lístek</h3>
+          <p class="mt-3 text-[15px]" style="color: var(--color-smoke);">
+            Celá strana, jednotliví lidé napříč stranami, nebo obojí? Zaklikejte
+            si lístek a hned uvidíte, komu vaše hlasy připadnou a jestli je
+            lístek platný.
+          </p>
+          <span class="mt-6 btn btn-primary self-start">Sestavit lístek</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Bydlím v Mariánkách — program na úroky z hypotéky (odkaz na /hypoteka) -->
   <section
@@ -419,3 +447,14 @@ const SHOW_PODCAST_TEASER = false;
     setInterval(tick, 1000);
   })();
 </script>
+
+<style>
+  .nanecisto-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    font-size: 1.75rem;
+    color: var(--color-ink);
+  }
+</style>
