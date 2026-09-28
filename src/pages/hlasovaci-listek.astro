@@ -1,0 +1,407 @@
+---
+import Base from "../layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+import { legenda, listiny, zdrojDat } from "../lib/listek";
+import { MANDATU } from "../lib/tipovacka";
+
+const zpusoby = [
+  {
+    icon: "lucide:square-check",
+    title: "Celá strana",
+    body: `Křížek do rámečku u názvu strany. Hlas dostane všech ${MANDATU} jejích kandidátů v pořadí, v jakém jsou na listině.`,
+  },
+  {
+    icon: "lucide:users",
+    title: "Jednotliví kandidáti",
+    body: `Křížky u konkrétních lidí — klidně z různých stran. Nejvýš ${MANDATU}, víc hlasů nemáte.`,
+  },
+  {
+    icon: "lucide:shuffle",
+    title: "Kombinace",
+    body: `Křížek u jedné strany a k tomu lidé z jiných stran. Nejdřív se počítají jednotlivci, zbytek do ${MANDATU} dostanou kandidáti označené strany odshora.`,
+  },
+];
+
+const datum = new Date(zdrojDat.generovano).toLocaleDateString("cs-CZ");
+---
+
+<Base
+  title="Sestavte si hlasovací lístek"
+  description={`Vyzkoušejte si komunální hlasovací lístek Mariánských Lázní: zaškrtněte stranu, jednotlivé kandidáty napříč stranami nebo obojí a uvidíte, komu vašich ${MANDATU} hlasů připadne.`}
+>
+  <!-- ============ HERO ============ -->
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%);"
+    aria-labelledby="listek-heading"
+  >
+    <span
+      class="hero-shape"
+      style="width: 500px; height: 500px; top: -190px; right: -150px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative py-20 md:py-24">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">Komunální volby 9. a 10. října 2026</p>
+      <h1 id="listek-heading" class="reveal mt-4" style="color: var(--color-paper); max-width: 20ch;">
+        Sestavte si svůj hlasovací lístek
+      </h1>
+      <p class="reveal mt-6 text-lg md:text-xl max-w-2xl" style="color: var(--color-mist);">
+        V komunálních volbách máte {MANDATU} hlasů — tolik, kolik má
+        zastupitelstvo členů. Můžete je dát jedné straně, rozdělit je mezi
+        konkrétní lidi napříč stranami, nebo obojí zkombinovat. Tady si to
+        vyzkoušíte nanečisto.
+      </p>
+      <p class="reveal mt-6 text-[14px]" style="color: var(--color-ash);">
+        Nic neodesíláme ani neukládáme na server. Rozpracovaný lístek si
+        pamatuje jen váš prohlížeč.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ JAK SE VOLÍ ============ -->
+  <section class="section !pb-10" style="background-color: var(--color-off-white);" aria-labelledby="jak-heading">
+    <div class="container-site">
+      <p class="eyebrow">Tři způsoby</p>
+      <h2 id="jak-heading" class="mt-3">Jak se v komunálu volí</h2>
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        {zpusoby.map((z) => (
+          <article class="card">
+            <span class="icon-badge" aria-hidden="true" style="color: var(--color-primary);">
+              <Icon name={z.icon} width={28} height={28} />
+            </span>
+            <h3 class="mt-4 zpusob-title">{z.title}</h3>
+            <p class="mt-2 text-[15px]" style="color: var(--color-smoke);">{z.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="mt-6 text-[15px] max-w-3xl" style="color: var(--color-smoke);">
+        Pozor na dvě věci: křížek u víc než jedné strany nebo víc než {MANDATU}
+        označených kandidátů udělá lístek neplatným. A když zaškrtnete stranu
+        i někoho z ní, platí jen křížek u strany.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ LÍSTEK ============ -->
+  <section class="section !pt-10" style="background-color: var(--color-off-white);" aria-labelledby="stranky-heading">
+    <div class="container-site">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow">Hlasovací lístek</p>
+          <h2 id="stranky-heading" class="mt-3">Deset kandidátek, {listiny.length * MANDATU} lidí</h2>
+        </div>
+        <button type="button" id="vymazat" class="btn btn-ghost">Vymazat lístek</button>
+      </div>
+
+      <div id="listek" class="mt-8 grid gap-4 lg:grid-cols-2">
+        {listiny.map((l) => (
+          <article class="strana-karta card !p-0" data-strana={l.cislo}>
+            <div class="strana-hlava">
+              <span class="strana-cislo">{l.cislo}</span>
+              <h3 class="strana-nazev">{l.nazev}</h3>
+              <label class="strana-krizek">
+                <input type="checkbox" name="strana" value={l.cislo} />
+                <span>Celá strana</span>
+              </label>
+            </div>
+            <details class="strana-detail">
+              <summary>
+                <span>Kandidáti ({l.kandidati.length})</span>
+                <span class="strana-pocet" data-pocet={l.cislo}></span>
+              </summary>
+              <ol class="kandidati">
+                {l.kandidati.map((k) => (
+                  <li>
+                    <label class="kandidat" data-klic={`${l.cislo}-${k.poradi}`}>
+                      <input type="checkbox" name="kandidat" value={`${l.cislo}-${k.poradi}`} />
+                      <span class="kandidat-poradi">{k.poradi}.</span>
+                      <span class="kandidat-text">
+                        <span class="kandidat-jmeno">{k.jmeno}, {k.vek}</span>
+                        <span class="kandidat-info">
+                          {k.povolani}, {k.bydliste} ·{" "}
+                          <abbr title={legenda[k.navrh]}>{k.navrh}</abbr>,{" "}
+                          <abbr title={legenda[k.prislusnost]}>{k.prislusnost}</abbr>
+                        </span>
+                        <span class="kandidat-stav"></span>
+                      </span>
+                    </label>
+                  </li>
+                ))}
+              </ol>
+            </details>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-6 text-[13px]" style="color: var(--color-smoke);">
+        U kandidáta je zkratka strany, která ho navrhla, a jeho politická
+        příslušnost (NK = nezávislý kandidát, BEZPP = bez politické
+        příslušnosti; další zkratky vysvětlí najetí myší). Zdroj:
+        volby.gov.cz, jmenné seznamy ke {datum}.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SHRNUTÍ ============ -->
+  <section class="section" aria-labelledby="shrnuti-heading">
+    <div class="container-site max-w-4xl">
+      <p class="eyebrow">Shrnutí</p>
+      <h2 id="shrnuti-heading" class="mt-3">Komu dáváte hlas</h2>
+      <div id="shrnuti" class="mt-6" aria-live="polite"></div>
+      <div class="mt-10 card" style="border-left: 4px solid var(--color-pirate);">
+        <p style="color: var(--color-graphite);">
+          Chcete dát všech {MANDATU} hlasů nám? Stačí jeden křížek
+          u kandidátky <strong>číslo 9, Za lepší Mariánské Lázně</strong>.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href="/kandidati" class="btn btn-primary">Naši kandidáti</a>
+          <a href="/program" class="btn btn-ghost">Program</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plovoucí počítadlo -->
+  <div class="pocitadlo" id="pocitadlo" role="status" aria-live="polite">
+    <div class="container-site flex items-center justify-between gap-3">
+      <span id="pocitadlo-text">Hlasy: 0 / {MANDATU}</span>
+      <a href="#shrnuti-heading" class="pocitadlo-odkaz">Shrnutí ↓</a>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import { listiny, vyhodnot, type Volba } from "../lib/listek";
+  import { MANDATU } from "../lib/tipovacka";
+
+  const KLIC_ULOZENI = "lepsiml-listek-v1";
+  const listek = document.getElementById("listek")!;
+  const shrnuti = document.getElementById("shrnuti")!;
+  const pocitadlo = document.getElementById("pocitadlo")!;
+  const pocitadloText = document.getElementById("pocitadlo-text")!;
+  const stranyInputs = [...listek.querySelectorAll<HTMLInputElement>('input[name="strana"]')];
+  const kandInputs = [...listek.querySelectorAll<HTMLInputElement>('input[name="kandidat"]')];
+
+  const nazevStrany = (c: number) => listiny.find((l) => l.cislo === c)?.nazev ?? "";
+  const kandidat = (v: Volba) => listiny.find((l) => l.cislo === v.strana)?.kandidati.find((k) => k.poradi === v.poradi);
+  const parse = (s: string): Volba => {
+    const [strana, poradi] = s.split("-").map(Number);
+    return { strana, poradi };
+  };
+  const hlasu = (n: number) => (n === 1 ? "hlas" : n >= 2 && n <= 4 ? "hlasy" : "hlasů");
+
+  function uloz() {
+    try {
+      localStorage.setItem(
+        KLIC_ULOZENI,
+        JSON.stringify({
+          strany: stranyInputs.filter((i) => i.checked).map((i) => i.value),
+          kandidati: kandInputs.filter((i) => i.checked).map((i) => i.value),
+        }),
+      );
+    } catch {}
+  }
+  function nacti() {
+    try {
+      const d = JSON.parse(localStorage.getItem(KLIC_ULOZENI) || "null");
+      if (!d) return;
+      stranyInputs.forEach((i) => (i.checked = d.strany?.includes(i.value)));
+      kandInputs.forEach((i) => (i.checked = d.kandidati?.includes(i.value)));
+    } catch {}
+  }
+
+  function prekresli() {
+    const strany = stranyInputs.filter((i) => i.checked).map((i) => Number(i.value));
+    const vybrani = kandInputs.filter((i) => i.checked).map((i) => parse(i.value));
+    const v = vyhodnot(strany, vybrani);
+
+    // Stav u každého kandidáta a počty u stran.
+    const presStranu = new Set(v.stav === "platny" ? v.hlasy.filter((h) => h.pres === "strana").map((h) => `${h.strana}-${h.poradi}`) : []);
+    const ignor = new Set(v.stav === "platny" ? v.ignorovani.map((h) => `${h.strana}-${h.poradi}`) : []);
+    for (const label of listek.querySelectorAll<HTMLElement>(".kandidat")) {
+      const klic = label.dataset.klic!;
+      const stav = label.querySelector(".kandidat-stav")!;
+      label.dataset.stav = ignor.has(klic) ? "ignor" : presStranu.has(klic) ? "strana" : "";
+      stav.textContent = ignor.has(klic)
+        ? "Započteno už v křížku u strany"
+        : presStranu.has(klic)
+          ? "Dostane hlas přes křížek u strany"
+          : "";
+    }
+    for (const l of listiny) {
+      const karta = listek.querySelector<HTMLElement>(`[data-strana="${l.cislo}"]`)!;
+      const pocet = vybrani.filter((x) => x.strana === l.cislo).length;
+      karta.dataset.vybrana = String(strany.includes(l.cislo));
+      listek.querySelector<HTMLElement>(`[data-pocet="${l.cislo}"]`)!.textContent = pocet ? `vybráno ${pocet}` : "";
+    }
+
+    // Počítadlo dole.
+    const pouzito = v.stav === "platny" ? v.hlasy.length : vybrani.length;
+    pocitadlo.dataset.stav = v.stav;
+    pocitadloText.textContent =
+      v.stav === "neplatny" ? `Neplatný lístek — ${v.duvod.split(".")[0].toLowerCase()}` : `Hlasy: ${pouzito} / ${MANDATU}`;
+
+    // Shrnutí.
+    shrnuti.replaceChildren();
+    const p = (text: string, cls = "") => {
+      const el = document.createElement("p");
+      el.className = cls;
+      el.textContent = text;
+      return el;
+    };
+    if (v.stav === "prazdny") {
+      shrnuti.append(p("Zatím nemáte nic zaškrtnuté. Začněte křížkem u strany nebo u konkrétních lidí.", "shrnuti-info"));
+      return;
+    }
+    if (v.stav === "neplatny") {
+      shrnuti.append(p(v.duvod, "shrnuti-chyba"));
+      return;
+    }
+    shrnuti.append(
+      p(
+        v.nevyuzito > 0
+          ? `Lístek je platný. Rozdáváte ${v.hlasy.length} ${hlasu(v.hlasy.length)} z ${MANDATU}, ${v.nevyuzito} necháváte nevyužit${v.nevyuzito === 1 ? "ý" : "ých"}.`
+          : `Lístek je platný a využíváte všech ${MANDATU} hlasů.`,
+        "shrnuti-ok",
+      ),
+    );
+    if (v.ignorovani.length) {
+      shrnuti.append(
+        p(
+          v.ignorovani.length === 1
+            ? `Křížek u kandidáta strany ${v.ignorovani[0].strana} se nepočítá zvlášť — platí pro něj křížek u celé strany.`
+            : `Křížky u ${v.ignorovani.length} kandidátů strany ${v.ignorovani[0].strana} se nepočítají zvlášť — platí pro ně křížek u celé strany.`,
+          "shrnuti-info",
+        ),
+      );
+    }
+    const poStranach = new Map<number, typeof v.hlasy>();
+    for (const h of v.hlasy) poStranach.set(h.strana, [...(poStranach.get(h.strana) ?? []), h]);
+    const ul = document.createElement("ul");
+    ul.className = "shrnuti-strany";
+    for (const [strana, hl] of [...poStranach].sort((a, b) => b[1].length - a[1].length || a[0] - b[0])) {
+      const li = document.createElement("li");
+      const hlava = document.createElement("p");
+      hlava.className = "shrnuti-strana";
+      hlava.textContent = `${strana} · ${nazevStrany(strana)} — ${hl.length} ${hlasu(hl.length)}`;
+      const jmena = document.createElement("p");
+      jmena.className = "shrnuti-jmena";
+      jmena.textContent = hl
+        .map((h) => `${h.poradi}. ${kandidat(h)?.jmeno ?? ""}${h.pres === "strana" ? "" : " ✕"}`)
+        .join(", ");
+      li.append(hlava, jmena);
+      ul.append(li);
+    }
+    shrnuti.append(ul);
+    shrnuti.append(
+      p(
+        "✕ = označen jednotlivě. Každý hlas pro kandidáta se zároveň počítá jeho straně — z hlasů stran se pak rozdělují mandáty.",
+        "shrnuti-pozn",
+      ),
+    );
+  }
+
+  listek.addEventListener("change", () => {
+    prekresli();
+    uloz();
+  });
+  document.getElementById("vymazat")!.addEventListener("click", () => {
+    [...stranyInputs, ...kandInputs].forEach((i) => (i.checked = false));
+    prekresli();
+    uloz();
+  });
+  nacti();
+  // Strany s vybranými kandidáty rozbalíme, ať je vidět, co je zaškrtnuté.
+  for (const i of kandInputs.filter((x) => x.checked)) i.closest("details")?.setAttribute("open", "");
+  prekresli();
+</script>
+
+<style>
+  .zpusob-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 1.5rem;
+    color: var(--color-ink);
+  }
+
+  .strana-karta { background-color: var(--color-paper); align-self: start; }
+  .strana-karta[data-vybrana="true"] { border-color: var(--color-pirate); box-shadow: inset 4px 0 0 var(--color-pirate); }
+  .strana-hlava {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+  .strana-cislo {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px;
+    background-color: var(--color-ink); color: var(--color-paper);
+    font-family: var(--font-display); font-size: 20px; line-height: 1;
+  }
+  .strana-nazev { font-family: var(--font-body); font-weight: 700; font-size: 16px; line-height: 1.3; color: var(--color-ink); }
+  .strana-krizek {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 12px;
+    border: 2px solid var(--color-ink);
+    font-size: 14px; font-weight: 600; color: var(--color-ink);
+    cursor: pointer; white-space: nowrap;
+  }
+  .strana-krizek:has(input:checked) { background-color: var(--color-pirate); border-color: var(--color-pirate-dark); }
+  .strana-krizek input, .kandidat input { width: 18px; height: 18px; accent-color: var(--color-pirate-dark); flex: 0 0 auto; }
+
+  .strana-detail { border-top: 1px solid var(--color-mist); }
+  .strana-detail > summary {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--color-smoke);
+  }
+  .strana-pocet { color: var(--color-pirate-dark); }
+
+  .kandidati { list-style: none; margin: 0; padding: 0 10px 12px; }
+  .kandidat {
+    display: grid;
+    grid-template-columns: 18px 28px minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-mist);
+  }
+  .kandidat input { margin-top: 2px; }
+  .kandidat:hover { background-color: var(--color-cream); }
+  .kandidat:has(input:checked) { background-color: #eefbfa; }
+  .kandidat[data-stav="strana"] { background-color: var(--color-spa-stone); }
+  .kandidat[data-stav="ignor"] { opacity: 0.7; }
+  .kandidat-poradi { font-family: var(--font-mono); font-size: 13px; color: var(--color-smoke); padding-top: 1px; }
+  .kandidat-jmeno { display: block; font-weight: 600; font-size: 15px; color: var(--color-ink); }
+  .kandidat-info { display: block; font-size: 13px; line-height: 1.4; color: var(--color-smoke); margin-top: 2px; }
+  .kandidat-info abbr { text-decoration: none; border-bottom: 1px dotted var(--color-ash); cursor: help; }
+  .kandidat-stav { display: block; font-size: 12px; color: var(--color-pirate-dark); margin-top: 2px; }
+  .kandidat-stav:empty { display: none; }
+
+  :global(.shrnuti-ok) { font-weight: 700; color: var(--color-pirate-dark); }
+  :global(.shrnuti-chyba) { font-weight: 700; color: var(--color-error); }
+  :global(.shrnuti-info) { margin-top: 8px; color: var(--color-smoke); }
+  :global(.shrnuti-strany) { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+  :global(.shrnuti-strany > li) { padding: 14px 16px; background-color: var(--color-paper); border: 1px solid var(--color-mist); }
+  :global(.shrnuti-strana) { font-weight: 700; color: var(--color-ink); }
+  :global(.shrnuti-jmena) { margin-top: 4px; font-size: 14px; line-height: 1.5; color: var(--color-smoke); }
+  :global(.shrnuti-pozn) { margin-top: 14px; font-size: 13px; color: var(--color-smoke); }
+
+  .pocitadlo {
+    position: sticky;
+    bottom: 0;
+    z-index: 30;
+    padding: 12px 0;
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+  .pocitadlo[data-stav="platny"] { background-color: var(--color-pirate-dark); }
+  .pocitadlo[data-stav="neplatny"] { background-color: var(--color-error); }
+  .pocitadlo-odkaz { color: var(--color-paper); text-decoration: underline; white-space: nowrap; }
+</style>

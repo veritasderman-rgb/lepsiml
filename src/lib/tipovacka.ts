@@ -50,6 +50,9 @@ export const kandidatky: Kandidatka[] = [
   { cislo: 10, nazev: "Svobodní" },
 ];
 
+/** Horní mez posuvníku u jedné kandidátky. Víc v Mariánkách nikdo nečeká. */
+export const TIP_MAX = 60;
+
 /** Součet tipů musí dát 100 %, s tolerancí na zaokrouhlení. */
 export const SOUCET_TOLERANCE = 1;
 
