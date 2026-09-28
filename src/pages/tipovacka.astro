@@ -1,0 +1,551 @@
+---
+import Base from "../layouts/Base.astro";
+import {
+  KLAUZULE,
+  MANDATU,
+  SOUCET_TOLERANCE,
+  TIP_UZAVERKA_ISO,
+  kandidatky,
+  tipDisclaimer,
+  tipEndpoint,
+  tipMeta,
+  tipNovinky,
+  tipPravidla,
+  tipPrumerPoznamka,
+  tipSouhlas,
+} from "../lib/tipovacka";
+---
+
+<Base title={tipMeta.title} description={tipMeta.intro}>
+  <!-- ============ HERO ============ -->
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%);"
+    aria-labelledby="tip-heading"
+  >
+    <span
+      class="hero-shape"
+      style="width: 500px; height: 500px; top: -190px; right: -150px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative py-20 md:py-24">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">
+        Tipovačka · hrajeme o {tipMeta.cena}
+      </p>
+      <h1 id="tip-heading" class="reveal mt-4" style="color: var(--color-paper); max-width: 20ch;">
+        {tipMeta.title}
+      </h1>
+      <p class="reveal mt-6 text-lg md:text-xl max-w-2xl" style="color: var(--color-mist);">
+        {tipMeta.intro}
+      </p>
+      <p class="reveal mt-6 mono-meta" style="color: var(--color-pirate-light);">
+        Tipy přijímáme do: {tipMeta.uzaverkaText}
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ PRŮMĚR TIPŮ ============ -->
+  <section
+    class="section"
+    style="background-color: var(--color-off-white);"
+    aria-labelledby="prumer-heading"
+  >
+    <div class="container-site max-w-4xl">
+      <p class="eyebrow">Jak tipujete vy</p>
+      <h2 id="prumer-heading" class="mt-3">Zastupitelstvo podle vašich tipů</h2>
+      <p id="prumer-stav" class="mt-4 text-lg" style="color: var(--color-smoke);">
+        Načítáme průměr tipů…
+      </p>
+
+      <div id="prumer" hidden>
+        <div class="mt-8 card !p-5 md:!p-7">
+          <p class="mono-meta" style="color: var(--color-smoke);">
+            {MANDATU} mandátů
+          </p>
+          <div id="prumer-kresla" class="kresla mt-3" aria-hidden="true"></div>
+        </div>
+        <ul id="prumer-radky" class="mt-6 grid gap-2"></ul>
+        <p class="mt-6 text-[14px]" style="color: var(--color-smoke);">
+          {tipPrumerPoznamka}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FORMULÁŘ ============ -->
+  <section class="section" aria-labelledby="form-heading">
+    <div class="container-site max-w-4xl">
+      <p class="eyebrow">Váš tip</p>
+      <h2 id="form-heading" class="mt-3">Rozdělte 100 % hlasů</h2>
+      <p class="mt-4 text-lg" style="color: var(--color-smoke);">
+        Kandidátky jsou v pořadí podle čísla na hlasovacím lístku. Pole, které
+        necháte prázdné, bereme jako nulu. Pod formulářem hned uvidíte, jak by
+        podle vašeho tipu vypadalo zastupitelstvo.
+      </p>
+
+      <p id="uzavreno" class="mt-8 card dekujeme" hidden>
+        Tipovačka je uzavřená — volební místnosti už jsou otevřené. Výherce
+        vyhlásíme po zveřejnění výsledků.
+      </p>
+
+      <form
+        id="tip-form"
+        class="mt-8"
+        novalidate
+        data-endpoint={tipEndpoint}
+        data-uzaverka={TIP_UZAVERKA_ISO}
+        data-tolerance={SOUCET_TOLERANCE}
+      >
+        <div class="hp" aria-hidden="true">
+          <label>Web <input type="text" name="web" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <fieldset class="card q-card">
+          <legend class="q-legend">
+            <span class="mono-meta" style="color: var(--color-pirate-dark);">Výsledek voleb</span>
+            <span class="q-title">Kolik procent hlasů dostane která kandidátka?</span>
+          </legend>
+
+          <div class="mt-5 grid gap-2">
+            {kandidatky.map((k) => (
+              <label class:list={["strana", { "strana-nase": k.nase }]}>
+                <span class="strana-cislo">{k.cislo}</span>
+                <span class="strana-nazev">{k.nazev}</span>
+                <span class="strana-pole">
+                  <input
+                    type="text"
+                    inputmode="decimal"
+                    name={`tip-${k.cislo}`}
+                    data-cislo={k.cislo}
+                    maxlength="5"
+                    placeholder="0"
+                    aria-label={`Tip pro kandidátku ${k.cislo}, ${k.nazev}, v procentech`}
+                  />
+                  <span aria-hidden="true">%</span>
+                </span>
+              </label>
+            ))}
+          </div>
+
+          <div class="soucet mt-5" id="soucet" data-ok="false" role="status" aria-live="polite">
+            Součet: 0 % — zbývá rozdělit 100 %
+          </div>
+
+          <div class="mt-6">
+            <p class="mono-meta" style="color: var(--color-smoke);">
+              Váš tip v mandátech (klauzule {KLAUZULE} %)
+            </p>
+            <div id="muj-kresla" class="kresla mt-3" aria-hidden="true"></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="card q-card mt-6" style="border-left: 4px solid var(--color-spa-gold);">
+          <legend class="q-legend">
+            <span class="mono-meta" style="color: var(--color-pirate-dark);">Rozhoduje při shodě</span>
+            <span class="q-title">Jaká bude volební účast?</span>
+          </legend>
+          <label class="pole mt-4 max-w-[200px]">
+            <span class="pole-label">Účast v %</span>
+            <input type="text" inputmode="decimal" name="tipUcast" maxlength="5" placeholder="např. 38" />
+          </label>
+        </fieldset>
+
+        <fieldset class="card q-card mt-6">
+          <legend class="q-legend">
+            <span class="mono-meta" style="color: var(--color-pirate-dark);">Kontakt</span>
+            <span class="q-title">Kam vám dáme vědět, že jste vyhráli?</span>
+          </legend>
+
+          <div class="mt-5 grid gap-4 sm:grid-cols-3">
+            <label class="pole">
+              <span class="pole-label">E-mail</span>
+              <input type="email" name="email" maxlength="254" autocomplete="email" required />
+            </label>
+            <label class="pole">
+              <span class="pole-label">Jméno (volitelné)</span>
+              <input type="text" name="jmeno" maxlength="100" autocomplete="name" />
+            </label>
+            <label class="pole">
+              <span class="pole-label">Telefon (volitelné)</span>
+              <input type="tel" name="telefon" maxlength="40" autocomplete="tel" />
+            </label>
+          </div>
+
+          <label class="opt mt-5 souhlas">
+            <input type="checkbox" name="plnolety" value="1" />
+            <span>Je mi 18 let nebo víc.</span>
+          </label>
+          <label class="opt mt-3 souhlas">
+            <input type="checkbox" name="souhlas" value="1" />
+            <span>{tipSouhlas}</span>
+          </label>
+          <label class="opt mt-3 souhlas">
+            <input type="checkbox" name="novinky" value="1" />
+            <span>{tipNovinky} (nepovinné)</span>
+          </label>
+        </fieldset>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <button type="submit" class="btn btn-primary" id="odeslat">Odeslat tip</button>
+          <p id="stav" class="stav" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <div id="hotovo" class="card dekujeme mt-8" hidden>
+        <p class="eyebrow">Odesláno</p>
+        <h2 class="mt-3">Tip máme. Držte si palce!</h2>
+        <p class="mt-4" style="color: var(--color-smoke);">
+          Po volbách tipy vyhodnotíme a výherci napíšeme e-mail. Mezitím se
+          můžete podívat, s čím do voleb jdeme.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/program" class="btn btn-ghost">Náš program</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRAVIDLA ============ -->
+  <section class="section" style="background-color: var(--color-ink);" aria-labelledby="pravidla-heading">
+    <div class="container-site max-w-4xl">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">Pravidla</p>
+      <h2 id="pravidla-heading" class="mt-3" style="color: var(--color-paper);">Jak soutěž funguje</h2>
+      <ol class="mt-8 grid gap-3">
+        {tipPravidla.map((p, i) => (
+          <li class="pravidlo">
+            <span class="pravidlo-cislo">{i + 1}</span>
+            <span>{p}</span>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-10 text-[13px]" style="color: var(--color-ash); line-height: 1.6;">
+        {tipDisclaimer}
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { MANDATU, kandidatky, prepocetMandatu, tipEndpoint } from "../lib/tipovacka";
+
+  const nase = kandidatky.find((k) => k.nase)?.cislo;
+  const cz = (n: number) => n.toFixed(1).replace(".", ",").replace(",0", "");
+
+  /** Nakreslí 21 křesel: čtverečky s číslem kandidátky, naše tyrkysově. */
+  function kresla(el: HTMLElement, mandaty: Record<number, number>) {
+    el.replaceChildren();
+    const serazene = kandidatky
+      .map((k) => k.cislo)
+      .filter((c) => mandaty[c] > 0)
+      .sort((a, b) => mandaty[b] - mandaty[a] || a - b);
+    let obsazeno = 0;
+    for (const c of serazene) {
+      for (let i = 0; i < mandaty[c]; i++) {
+        const s = document.createElement("span");
+        s.className = c === nase ? "kreslo kreslo-nase" : "kreslo";
+        s.textContent = String(c);
+        el.append(s);
+        obsazeno++;
+      }
+    }
+    for (; obsazeno < MANDATU; obsazeno++) {
+      const s = document.createElement("span");
+      s.className = "kreslo kreslo-prazdne";
+      el.append(s);
+    }
+  }
+
+  // ---------- Průměr tipů ----------
+  (async function () {
+    const stav = document.getElementById("prumer-stav")!;
+    const blok = document.getElementById("prumer")!;
+    try {
+      const r = await fetch(tipEndpoint);
+      const d = await r.json();
+      if (!r.ok) throw new Error();
+      if (d.karence) {
+        stav.textContent =
+          "Od úterý 6. října do konce hlasování platí zákonné moratorium na zveřejňování předvolebních průzkumů, proto průměr tipů teď neukazujeme. Tipovat ale můžete dál až do pátku 9. října 14:00.";
+        return;
+      }
+      if (!d.prumery) {
+        stav.textContent = `Průměr ukážeme, jakmile bude aspoň ${d.min} tipů. Zatím jich máme ${d.pocet}. Buďte mezi prvními!`;
+        return;
+      }
+      stav.textContent = `Z ${d.pocet} tipů. Průměrný odhad účasti: ${cz(d.ucast)} %.`;
+      kresla(document.getElementById("prumer-kresla")!, d.mandaty);
+      const ul = document.getElementById("prumer-radky")!;
+      const max = Math.max(...Object.values(d.prumery as Record<number, number>), 1);
+      const serazene = [...kandidatky].sort((a, b) => d.prumery[b.cislo] - d.prumery[a.cislo]);
+      for (const k of serazene) {
+        const li = document.createElement("li");
+        li.className = k.nase ? "radek radek-nase" : "radek";
+        const pct = d.prumery[k.cislo];
+        const m = d.mandaty[k.cislo];
+        li.innerHTML = `
+          <span class="radek-cislo"></span>
+          <span class="radek-nazev"></span>
+          <span class="radek-bar"><span style="width:${(pct / max) * 100}%"></span></span>
+          <span class="radek-pct"></span>
+          <span class="radek-m"></span>`;
+        li.querySelector(".radek-cislo")!.textContent = String(k.cislo);
+        li.querySelector(".radek-nazev")!.textContent = k.nazev;
+        li.querySelector(".radek-pct")!.textContent = `${cz(pct)} %`;
+        li.querySelector(".radek-m")!.textContent = m === 1 ? "1 mandát" : m >= 2 && m <= 4 ? `${m} mandáty` : `${m} mandátů`;
+        ul.append(li);
+      }
+      blok.hidden = false;
+    } catch {
+      stav.textContent = "Průměr tipů se teď nepodařilo načíst.";
+    }
+  })();
+
+  // ---------- Formulář ----------
+  const form = document.getElementById("tip-form") as HTMLFormElement | null;
+  if (form) {
+    const uzaverka = new Date(form.dataset.uzaverka!).getTime();
+    const tolerance = Number(form.dataset.tolerance);
+    const soucetEl = document.getElementById("soucet")!;
+    const mujKresla = document.getElementById("muj-kresla")!;
+    const stav = document.getElementById("stav")!;
+    const tlacitko = document.getElementById("odeslat") as HTMLButtonElement;
+    const pole = [...form.querySelectorAll<HTMLInputElement>("input[data-cislo]")];
+
+    if (Date.now() >= uzaverka) {
+      form.hidden = true;
+      document.getElementById("uzavreno")!.hidden = false;
+    }
+
+    const cislo = (v: string) => {
+      const s = v.trim().replace(",", ".");
+      if (s === "") return 0;
+      const n = Number(s);
+      return Number.isFinite(n) && n >= 0 && n <= 100 ? n : NaN;
+    };
+
+    function tipy(): Record<number, number> {
+      return Object.fromEntries(pole.map((i) => [Number(i.dataset.cislo), cislo(i.value)]));
+    }
+
+    function prepocitej() {
+      const t = tipy();
+      const hodnoty = Object.values(t);
+      const spatne = hodnoty.some((n) => Number.isNaN(n));
+      const soucet = hodnoty.reduce((a, b) => a + (Number.isNaN(b) ? 0 : b), 0);
+      const ok = !spatne && Math.abs(soucet - 100) <= tolerance;
+      soucetEl.dataset.ok = String(ok);
+      if (spatne) soucetEl.textContent = "Některé pole nemá platné číslo (0–100).";
+      else if (ok) soucetEl.textContent = `Součet: ${cz(soucet)} % — sedí.`;
+      else if (soucet < 100) soucetEl.textContent = `Součet: ${cz(soucet)} % — zbývá rozdělit ${cz(100 - soucet)} %`;
+      else soucetEl.textContent = `Součet: ${cz(soucet)} % — o ${cz(soucet - 100)} % víc, než je 100 %`;
+      const cista = Object.fromEntries(Object.entries(t).map(([k, v]) => [k, Number.isNaN(v) ? 0 : v]));
+      kresla(mujKresla, prepocetMandatu(cista));
+      return ok;
+    }
+    form.addEventListener("input", (e) => {
+      if ((e.target as HTMLElement).dataset?.cislo) prepocitej();
+    });
+    prepocitej();
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const chyba = (text: string) => {
+        stav.dataset.typ = "chyba";
+        stav.textContent = text;
+      };
+      if (!prepocitej()) return chyba("Tipy musí dát dohromady 100 %.");
+      if (!String(fd.get("tipUcast") || "").trim()) return chyba("Doplňte prosím tip na volební účast.");
+      if (!String(fd.get("email") || "").trim()) return chyba("Doplňte prosím e-mail, ať se vám můžeme ozvat.");
+      if (fd.get("plnolety") !== "1" || fd.get("souhlas") !== "1")
+        return chyba("Potvrďte prosím, že je vám 18 let, a souhlas s pravidly.");
+
+      const data = {
+        web: fd.get("web") || "",
+        tip: Object.fromEntries(pole.map((i) => [i.dataset.cislo, i.value.trim()])),
+        tipUcast: fd.get("tipUcast"),
+        email: fd.get("email"),
+        jmeno: fd.get("jmeno") || "",
+        telefon: fd.get("telefon") || "",
+        plnolety: true,
+        souhlas: true,
+        novinky: fd.get("novinky") === "1",
+      };
+
+      tlacitko.disabled = true;
+      stav.dataset.typ = "";
+      stav.textContent = "Odesíláme…";
+      try {
+        const r = await fetch(form.dataset.endpoint!, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        if (r.ok) {
+          form.hidden = true;
+          const hotovo = document.getElementById("hotovo")!;
+          hotovo.hidden = false;
+          hotovo.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        const telo = await r.json().catch(() => ({}));
+        chyba(telo.chyba || "Odeslání se nepovedlo. Zkuste to prosím znovu.");
+      } catch {
+        chyba("Nepodařilo se spojit se serverem. Zkontrolujte připojení a zkuste to znovu.");
+      } finally {
+        tlacitko.disabled = false;
+      }
+    });
+  }
+</script>
+
+<style>
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .q-card { background-color: var(--color-paper); }
+  .q-legend { display: block; padding: 0; }
+  .q-title {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 1.5vw + 0.875rem, 1.625rem);
+    line-height: 1.25;
+    color: var(--color-ink);
+  }
+
+  .strana {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background-color: var(--color-cream);
+    border: 1px solid var(--color-mist);
+    cursor: text;
+  }
+  .strana:focus-within { border-color: var(--color-pirate); }
+  .strana-nase { border-left: 4px solid var(--color-pirate); }
+  .strana-cislo {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    background-color: var(--color-ink); color: var(--color-paper);
+    font-family: var(--font-display); font-size: 18px; line-height: 1;
+  }
+  .strana-nase .strana-cislo { background-color: var(--color-pirate); color: var(--color-ink); }
+  .strana-nazev { font-size: 15px; line-height: 1.3; color: var(--color-ink); }
+  .strana-pole { display: inline-flex; align-items: center; gap: 6px; color: var(--color-smoke); }
+  .strana-pole input {
+    width: 72px;
+    padding: 9px 10px;
+    text-align: right;
+    background-color: var(--color-paper);
+    border: 1px solid var(--color-ash);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-ink);
+  }
+  .strana-pole input:focus { outline: 2px solid var(--color-pirate); outline-offset: 1px; border-color: var(--color-pirate); }
+
+  .soucet {
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background-color: var(--color-spa-stone);
+    border: 1px solid var(--color-mist);
+    color: var(--color-graphite);
+  }
+  .soucet[data-ok="true"] { background-color: #eefbfa; border-color: var(--color-pirate); color: var(--color-pirate-dark); }
+
+  .kresla { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; max-width: 420px; }
+  @media (min-width: 640px) { .kresla { grid-template-columns: repeat(11, minmax(0, 1fr)); max-width: 620px; } }
+  :global(.kreslo) {
+    display: flex; align-items: center; justify-content: center;
+    aspect-ratio: 1;
+    background-color: var(--color-graphite); color: var(--color-paper);
+    font-family: var(--font-display); font-size: 16px; line-height: 1;
+  }
+  :global(.kreslo-nase) { background-color: var(--color-pirate); color: var(--color-ink); }
+  :global(.kreslo-prazdne) { background-color: transparent; border: 1px dashed var(--color-ash); }
+
+  :global(.radek) {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    grid-template-areas: "c n m" "c b p";
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 6px;
+    padding: 12px 14px;
+    background-color: var(--color-paper);
+    border: 1px solid var(--color-mist);
+  }
+  @media (min-width: 768px) {
+    :global(.radek) {
+      grid-template-columns: 30px minmax(0, 1.4fr) minmax(0, 1fr) 64px 92px;
+      grid-template-areas: "c n b p m";
+    }
+  }
+  :global(.radek-nase) { border-left: 4px solid var(--color-pirate); }
+  :global(.radek-cislo) { grid-area: c; font-family: var(--font-display); font-size: 20px; color: var(--color-ink); }
+  :global(.radek-nazev) { grid-area: n; font-size: 15px; line-height: 1.3; color: var(--color-ink); }
+  :global(.radek-bar) { grid-area: b; height: 10px; background-color: var(--color-mist); }
+  :global(.radek-bar > span) { display: block; height: 100%; background-color: var(--color-graphite); }
+  :global(.radek-nase .radek-bar > span) { background-color: var(--color-pirate); }
+  :global(.radek-pct) { grid-area: p; text-align: right; font-weight: 700; color: var(--color-ink); }
+  :global(.radek-m) { grid-area: m; text-align: right; font-size: 14px; color: var(--color-smoke); white-space: nowrap; }
+
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background-color: var(--color-cream);
+    border: 1px solid var(--color-mist);
+    color: var(--color-graphite);
+    cursor: pointer;
+  }
+  .opt:has(input:checked) { border-color: var(--color-pirate); background-color: #eefbfa; }
+  .opt input { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--color-pirate-dark); }
+  .souhlas { font-size: 13.5px; line-height: 1.5; color: var(--color-smoke); }
+
+  .pole { display: block; }
+  .pole-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-smoke);
+    margin-bottom: 6px;
+  }
+  .pole input {
+    width: 100%;
+    padding: 11px 13px;
+    background-color: var(--color-paper);
+    border: 1px solid var(--color-ash);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-ink);
+  }
+  .pole input:focus { outline: 2px solid var(--color-pirate); outline-offset: 1px; border-color: var(--color-pirate); }
+
+  .stav { font-size: 15px; color: var(--color-smoke); margin: 0; }
+  .stav[data-typ="chyba"] { color: var(--color-error); }
+  .dekujeme { background-color: var(--color-paper); border-left: 4px solid var(--color-pirate); }
+
+  .pravidlo {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    padding: 16px 18px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--color-mist);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .pravidlo-cislo { font-family: var(--font-display); font-size: 22px; line-height: 1; color: var(--color-pirate); }
+</style>
