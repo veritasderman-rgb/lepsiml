@@ -14,6 +14,9 @@
 // ODLOŽEN nebo POSUNUT, nikdy zrušen nebo porušen.
 //
 // DAŇ: nikdy netvrdit, že je příspěvek osvobozený od daně.
+//
+// FINANCOVÁNÍ: vždy jen „z městského rozpočtu“. Poplatek z pobytu ani peníze
+// lázeňských hostů jako zdroj neuvádět.
 
 export type Krok = { cislo: string; text: string };
 export type Karta = { icon: string; title: string; body: string };
@@ -25,7 +28,7 @@ export const hypotekaMeta = {
   /** Hlavní claim. Nikdy neměnit. */
   claim: "Vrátíme vám, co vám vláda vzala.",
   podtitulek:
-    "Máte dvě děti a splácíte hypotéku na byt, ve kterém bydlíte? Úroky za vás zaplatí město. Až sto tisíc korun ročně, z peněz lázeňských hostů.",
+    "Máte dvě děti a splácíte hypotéku na byt, ve kterém bydlíte? Úroky za vás zaplatí město. Až sto tisíc korun ročně, z městského rozpočtu.",
   kandidatka: "Kandidátka číslo 9",
   volby: "9. a 10. října 2026",
   status:
@@ -33,7 +36,7 @@ export const hypotekaMeta = {
   ctaHero: "Spočítejte si, kolik vám město zaplatí",
   metaTitle: "Vrátíme vám, co vám vláda vzala | Bydlím v Mariánkách",
   metaDescription:
-    "Město zaplatí rodinám se dvěma a více dětmi úroky z hypotéky, až 100 tisíc korun ročně. Z peněz lázeňských hostů, ne z vašich daní. Spočítejte si, kolik dostanete.",
+    "Město zaplatí rodinám se dvěma a více dětmi úroky z hypotéky, až 100 tisíc korun ročně, z městského rozpočtu. Spočítejte si, kolik dostanete.",
 };
 
 /** Parametry programu i výchozí hodnoty kalkulačky. */
@@ -167,7 +170,7 @@ export const pilot = {
   eyebrow: "Nabídka státu",
   title: "Začněte u nás",
   odstavce: [
-    "Věříme, že stát dodrží, co slíbil. Do té doby si to platíme sami z poplatku od lázeňských hostů.",
+    "Věříme, že stát dodrží, co slíbil. Do té doby si to platíme sami z městského rozpočtu.",
     "A nabízíme vládě něco, co zatím nikdo nemá: místo, kde si může ověřit, jestli jistota bydlení opravdu drží rodiny ve městě, přitahuje nové a ovlivňuje rozhodování o dalším dítěti. Stopadesát rodin, dva roky, měřitelný výsledek.",
     "Je to levnější než plošný program, který se po roce ruší. A když to funguje, má stát hotový model pro každé město, kterému utíkají mladí.",
   ],
@@ -199,15 +202,11 @@ export const faq: Faq[] = [
   },
   {
     q: "Odkud na to město vezme peníze?",
-    a: "Z poplatku z pobytu, který platí lázeňští hosté. Město ho loni vybralo přes 60 milionů korun. Třináct milionů šlo na rekonstrukci Zpívající fontány, jedenáct na propagaci. Program stojí maximálně 15 milionů ročně. Fontána je hotová. Teď jsou na řadě rodiny.",
+    a: "Z městského rozpočtu. Program stojí nejvýš 15 milionů korun ročně. Kolik na něj v daném roce půjde, schvaluje zastupitelstvo v rozpočtu.",
   },
   {
     q: "Vyhazuje město peníze?",
     a: "Naopak. Za každé dítě ve školce posílá stát městu ze sdílených daní zhruba 44 tisíc korun ročně, za školáka 37 tisíc, s rodiči přinese rodina se dvěma dětmi do rozpočtu přes sto tisíc. Zatím z těch peněz neviděla nic. Program jí je vrátí. Není to dárek, je to vyúčtování.",
-  },
-  {
-    q: "Nezruší se kvůli tomu propagace města?",
-    a: "Ne. Program stojí čtvrtinu výběru poplatku z pobytu. Propagace, destinační agentura i rezerva zůstávají. Peníze bereme z toho, co po fontáně zůstalo volné.",
   },
   {
     q: "Kolik rodin se to týká?",
