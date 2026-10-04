@@ -6,6 +6,7 @@ import { site } from "../lib/site";
 import Analytics from "@vercel/analytics/astro";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import CookieConsent from "../components/CookieConsent.astro";
+import TipovackaPopup from "../components/TipovackaPopup.astro";
 
 type Props = {
   title?: string;
@@ -92,6 +93,8 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? "https://lepsiml.cz");
     <Footer />
 
     <CookieConsent />
+
+    <TipovackaPopup pathname={pathname} />
 
     <!-- Reveal on scroll (vanilla Intersection Observer, no libs) -->
     <script is:inline>

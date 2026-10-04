@@ -31,6 +31,7 @@ src/
     PodcastCard.astro
     PhotoPlaceholder.astro      # Šedý placeholder s Lucide ikonou User
     ContactForm.tsx             # React island — POST na Formspree endpoint
+    TipovackaPopup.astro        # Pop-up s tipovačkou na všech stránkách do uzávěrky tipů
   pages/
     index.astro
     program.astro

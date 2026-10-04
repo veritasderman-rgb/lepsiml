@@ -8,7 +8,7 @@ const { pathname = "/" } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50" style="background-color: var(--color-ink);">
-  <div class="container-site flex items-center justify-between gap-6 py-4">
+  <div class="container-site flex items-center justify-between gap-4 py-4">
     <a
       href="/"
       class="flex items-center gap-3 text-white"
@@ -41,8 +41,8 @@ const { pathname = "/" } = Astro.props;
           return (
             <a
               href={link.href}
-              class="px-2 py-2 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
-              style={`font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em; font-size: 16px; color: ${active ? "var(--color-pirate)" : "var(--color-paper)"};`}
+              class="px-1.5 py-2 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
+              style={`font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em; font-size: 15px; color: ${active ? "var(--color-pirate)" : "var(--color-paper)"};`}
               data-active={active}
               title={link.fullLabel}
               target={link.external ? "_blank" : undefined}
@@ -73,7 +73,7 @@ const { pathname = "/" } = Astro.props;
           );
         })
       }
-      <a href="/program" class="btn btn-primary ml-2 !py-[10px] !px-4 !text-sm whitespace-nowrap">
+      <a href="/program" class="btn btn-primary ml-1 !py-[10px] !px-3 !text-sm whitespace-nowrap">
         Náš program
       </a>
     </nav>
