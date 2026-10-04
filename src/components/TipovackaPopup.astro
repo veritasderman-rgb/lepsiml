@@ -25,20 +25,20 @@ const STORAGE_KEY = "plml.tipovackaPopup.v1";
 <div
   id="tip-popup"
   hidden
-  class="fixed inset-0 z-[80] flex items-end sm:items-center justify-center p-4 sm:p-6"
+  class="fixed inset-0 z-[80] flex justify-center overflow-y-auto overscroll-contain p-4 sm:p-6"
   role="dialog"
   aria-modal="true"
   aria-labelledby="tip-popup-heading"
   aria-describedby="tip-popup-text"
 >
   <div
-    class="tip-popup-backdrop absolute inset-0"
+    class="tip-popup-backdrop fixed inset-0"
     data-tip-popup-close
     aria-hidden="true"
   ></div>
 
   <div
-    class="tip-popup-card relative w-full max-w-lg overflow-hidden"
+    class="tip-popup-card relative w-full max-w-lg overflow-hidden mt-auto sm:my-auto"
     style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%); border-top: 4px solid var(--color-spa-gold);"
   >
     <span
@@ -128,7 +128,9 @@ const STORAGE_KEY = "plml.tipovackaPopup.v1";
     if (seen) return;
 
     var lastFocus = null;
-    var prevOverflow = "";
+    var LOCK_CLASS = "tip-popup-lock";
+    var FOCUSABLE =
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
     function remember() {
       try {
@@ -141,24 +143,52 @@ const STORAGE_KEY = "plml.tipovackaPopup.v1";
     function close() {
       if (popup.hidden) return;
       popup.hidden = true;
-      document.body.style.overflow = prevOverflow;
+      document.documentElement.classList.remove(LOCK_CLASS);
       document.removeEventListener("keydown", onKey);
       remember();
       if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
     }
 
     function onKey(event) {
-      if (event.key === "Escape") close();
+      if (event.key === "Escape") {
+        close();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      // Fokus zůstává v dialogu: za posledním prvkem jde zase na první a naopak.
+      var items = Array.prototype.filter.call(
+        popup.querySelectorAll(FOCUSABLE),
+        function (el) {
+          return el.offsetParent !== null;
+        },
+      );
+      if (items.length === 0) return;
+      var first = items[0];
+      var last = items[items.length - 1];
+      var active = document.activeElement;
+      if (event.shiftKey && (active === first || !popup.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (active === last || !popup.contains(active))) {
+        event.preventDefault();
+        first.focus();
+      }
     }
 
     function open() {
+      // Otevřené mobilní menu žije uvnitř hlavičky (vlastní z-index kontext),
+      // takže by ho pop-up překryl. Počkáme, až ho návštěvník zavře.
+      if (document.querySelector('[role="dialog"][aria-label="Hlavní menu"]')) {
+        window.setTimeout(open, 800);
+        return;
+      }
       lastFocus = document.activeElement;
-      prevOverflow = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
+      document.documentElement.classList.add(LOCK_CLASS);
       popup.hidden = false;
       document.addEventListener("keydown", onKey);
       var go = popup.querySelector("[data-tip-popup-go]");
-      if (go) go.focus();
+      // preventScroll: na nízkém displeji ať zůstane vidět začátek karty.
+      if (go) go.focus({ preventScroll: true });
     }
 
     popup.addEventListener("click", function (event) {

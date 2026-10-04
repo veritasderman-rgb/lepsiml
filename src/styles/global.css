@@ -264,6 +264,12 @@
     height: 72px;
   }
 
+  /* Zámek scrollu pod otevřeným pop-upem. Třída na <html>, aby se nepletl
+     s inline overflow na <body>, který si zamyká a vrací mobilní menu. */
+  html.tip-popup-lock {
+    overflow: hidden;
+  }
+
   /* Fade-in on scroll */
   .reveal {
     opacity: 0;
