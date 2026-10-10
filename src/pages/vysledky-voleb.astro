@@ -1,0 +1,422 @@
+---
+import Base from "../layouts/Base.astro";
+import Kresla from "../components/Kresla.astro";
+import { Icon } from "astro-icon/components";
+import {
+  MANDATU,
+  VETSINA,
+  VYSLEDKY_URL,
+  cislo,
+  mandatu,
+  nas,
+  nasZastupitel,
+  odchylkaPrumeru,
+  pct,
+  porovnani,
+  prehled,
+  tipy,
+  vysledky,
+  vysledkyPodlePoradi,
+  zvoleni,
+} from "../lib/volby2026";
+
+const skutecneMandaty = Object.fromEntries(vysledky.map((v) => [v.cislo, v.mandaty]));
+const maxPct = Math.max(...porovnani.flatMap((p) => [p.procent, p.tip]));
+const sirka = (n: number) => `${((n / maxPct) * 100).toFixed(1)}%`;
+const vZastupitelstvu = vysledkyPodlePoradi.filter((v) => v.mandaty > 0);
+---
+
+<Base
+  title="Výsledky voleb 2026"
+  description={`Výsledky komunálních voleb 2026 v Mariánských Lázních: Za lepší Mariánské Lázně ${pct(nas.procent, 2)} a ${mandatu(nas.mandaty)}, zastupitelem se stává ${nasZastupitel.jmeno}. A jak jste tipovali.`}
+>
+  <!-- ============ HERO ============ -->
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%);"
+    aria-labelledby="vysledky-heading"
+  >
+    <span
+      class="hero-shape"
+      style="width: 500px; height: 500px; top: -190px; right: -150px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative py-20 md:py-24">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">
+        Komunální volby 9.–10. října 2026 · Mariánské Lázně
+      </p>
+      <h1 id="vysledky-heading" class="reveal mt-4" style="color: var(--color-paper);">
+        Výsledky voleb
+      </h1>
+      <p class="reveal mt-6 text-lg md:text-xl max-w-2xl" style="color: var(--color-mist);">
+        Děkujeme za {cislo(nas.hlasy)} hlasů. Za lepší Mariánské Lázně má
+        v zastupitelstvu {mandatu(nas.mandaty)} a zastupitelem se stává
+        <strong style="color: var(--color-paper);">{nasZastupitel.jmeno}</strong>,
+        jednička naší kandidátky.
+      </p>
+
+      <dl class="reveal mt-10 grid gap-4 grid-cols-2 lg:grid-cols-4 max-w-4xl">
+        <div class="stat">
+          <dt>Naše hlasy</dt>
+          <dd>{pct(nas.procent, 2)}</dd>
+        </div>
+        <div class="stat">
+          <dt>Mandáty</dt>
+          <dd>{nas.mandaty} z {MANDATU}</dd>
+        </div>
+        <div class="stat">
+          <dt>Přednostní hlasy pro Vojtu</dt>
+          <dd>{cislo(nasZastupitel.prednostniHlasy)}</dd>
+        </div>
+        <div class="stat">
+          <dt>Volební účast</dt>
+          <dd>{pct(prehled.ucast, 2)}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ ZASTUPITELSTVO ============ -->
+  <section class="section" aria-labelledby="zastupitelstvo-heading">
+    <div class="container-site max-w-4xl">
+      <p class="eyebrow">Zastupitelstvo 2026–2030</p>
+      <h2 id="zastupitelstvo-heading" class="mt-3">Jak se rozdělilo 21 křesel</h2>
+      <p class="mt-4 text-lg" style="color: var(--color-smoke);">
+        Do zastupitelstva se dostalo šest kandidátek. K většině je potřeba
+        {VETSINA} hlasů z {MANDATU}.
+      </p>
+
+      <div class="mt-8 card !p-5 md:!p-7">
+        <p class="mono-meta" style="color: var(--color-smoke);">{MANDATU} mandátů</p>
+        <div class="mt-3">
+          <Kresla
+            mandaty={skutecneMandaty}
+            label={vZastupitelstvu.map((v) => `${v.nazev}: ${mandatu(v.mandaty)}`).join(", ")}
+          />
+        </div>
+      </div>
+
+      <ol class="mt-6 grid gap-2">
+        {
+          vysledkyPodlePoradi.map((v) => (
+            <li class:list={["radek", { "radek-nase": v.nase, "radek-mimo": v.mandaty === 0 }]}>
+              <span class="radek-cislo">{v.cislo}</span>
+              <span class="radek-nazev">{v.nazev}</span>
+              <span class="radek-bar" aria-hidden="true">
+                <span style={`width: ${sirka(v.procent)}`} />
+              </span>
+              <span class="radek-pct">{pct(v.procent, 2)}</span>
+              <span class="radek-m">
+                {v.mandaty > 0 ? mandatu(v.mandaty) : "bez mandátu"} · {cislo(v.hlasy)} hlasů
+              </span>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mt-4 text-[14px]" style="color: var(--color-smoke);">
+        Číslo vlevo je číslo kandidátky na hlasovacím lístku. Kandidátky pod
+        hranicí 5 % mandát nezískaly.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ZVOLENÍ ============ -->
+  <section
+    class="section"
+    style="background-color: var(--color-spa-stone);"
+    aria-labelledby="zvoleni-heading"
+  >
+    <div class="container-site max-w-4xl">
+      <p class="eyebrow" style="color: var(--color-spa-gold);">Kdo sedí v zastupitelstvu</p>
+      <h2 id="zvoleni-heading" class="mt-3">Zvolení zastupitelé</h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {
+          vZastupitelstvu.map((v) => (
+            <div
+              class="card"
+              style={`background-color: var(--color-paper); border-top: 4px solid ${v.nase ? "var(--color-pirate)" : "var(--color-graphite)"};`}
+            >
+              <p class="mono-meta" style="color: var(--color-smoke);">
+                {v.cislo} · {mandatu(v.mandaty)}
+              </p>
+              <h3 class="mt-1 zvoleni-nazev">{v.nazev}</h3>
+              <ul class="mt-3 grid gap-1 text-[15px]" style="color: var(--color-graphite);">
+                {(zvoleni[v.cislo] ?? []).map((jmeno) => (
+                  <li>{jmeno}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-6 text-[14px]" style="color: var(--color-smoke);">
+        Jména v pořadí zvolení podle Českého statistického úřadu.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ TIPOVAČKA ============ -->
+  <section
+    id="tipy"
+    class="section"
+    style="background-color: var(--color-off-white); scroll-margin-top: 80px;"
+    aria-labelledby="tipy-heading"
+  >
+    <div class="container-site max-w-4xl">
+      <p class="eyebrow">Tipovačka</p>
+      <h2 id="tipy-heading" class="mt-3">Takhle jste tipovali, takhle to dopadlo</h2>
+      <p class="mt-4 text-lg" style="color: var(--color-smoke);">
+        Do tipovačky přišlo {tipy.pocet} tipů. Vedle sebe dáváme jejich průměr
+        a skutečný výsledek. Nám jste tipovali {pct(tipy.prumery[nas.cislo])}.
+        Tolik to nakonec nebylo, ale každého z {cislo(nas.hlasy)} hlasů si
+        vážíme.
+      </p>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="card !p-5 md:!p-6">
+          <p class="mono-meta" style="color: #8a6420;">Podle vašich tipů</p>
+          <div class="mt-3">
+            <Kresla
+              mandaty={tipy.mandaty}
+              label={`Zastupitelstvo podle průměru tipů: ${porovnani
+                .filter((p) => p.tipMandaty > 0)
+                .map((p) => `${p.nazev} ${mandatu(p.tipMandaty)}`)
+                .join(", ")}`}
+            />
+          </div>
+        </div>
+        <div class="card !p-5 md:!p-6">
+          <p class="mono-meta" style="color: var(--color-pirate-dark);">Skutečnost</p>
+          <div class="mt-3">
+            <Kresla
+              mandaty={skutecneMandaty}
+              label={`Skutečné zastupitelstvo: ${vZastupitelstvu
+                .map((v) => `${v.nazev} ${mandatu(v.mandaty)}`)
+                .join(", ")}`}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[14px]" style="color: var(--color-smoke);">
+        <span class="inline-flex items-center gap-2">
+          <span class="legenda legenda-tip" aria-hidden="true"></span> Průměr vašich tipů
+        </span>
+        <span class="inline-flex items-center gap-2">
+          <span class="legenda legenda-vysledek" aria-hidden="true"></span> Skutečný výsledek
+        </span>
+      </div>
+
+      <ol class="mt-4 grid gap-2">
+        {
+          porovnani.map((p) => (
+            <li class:list={["srovnani", { "radek-nase": p.nase }]}>
+              <span class="radek-cislo">{p.cislo}</span>
+              <span class="radek-nazev">{p.nazev}</span>
+              <span class="srovnani-bary" aria-hidden="true">
+                <span class="bar bar-tip" style={`width: ${sirka(p.tip)}`} />
+                <span class="bar bar-vysledek" style={`width: ${sirka(p.procent)}`} />
+              </span>
+              <span class="srovnani-cisla">
+                <span>
+                  tip <b>{pct(p.tip)}</b>
+                </span>
+                <span>
+                  výsledek <b>{pct(p.procent, 2)}</b>
+                </span>
+              </span>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="mt-6 card flex flex-wrap items-baseline gap-x-8 gap-y-2" style="border-left: 4px solid var(--color-spa-gold);">
+        <p class="mono-meta" style="color: var(--color-smoke);">Volební účast</p>
+        <p class="text-[17px]" style="color: var(--color-ink);">
+          tip <b>{pct(tipy.ucast)}</b> · skutečnost <b>{pct(prehled.ucast, 2)}</b>
+        </p>
+      </div>
+
+      <p class="mt-6 text-[15px]" style="color: var(--color-smoke);">
+        Když sečteme rozdíly u všech kandidátek, průměrný tip se od výsledku
+        liší zhruba o {Math.round(odchylkaPrumeru)} procentních bodů. Tipovačka je uzavřená, výherce likéru vybereme podle
+        pravidel soutěže a ozveme se mu e-mailem.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CO DÁL ============ -->
+  <section class="section" style="background-color: var(--color-ink);" aria-labelledby="dal-heading">
+    <div class="container-site max-w-4xl">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">Co bude dál</p>
+      <h2 id="dal-heading" class="mt-3" style="color: var(--color-paper);">
+        Teď prosazujeme, co jsme slíbili
+      </h2>
+      <p class="mt-4 text-lg" style="color: var(--color-mist);">
+        {nasZastupitel.jmeno} bude v zastupitelstvu prosazovat náš plán pro
+        Mariánské Lázně 2026–2030. Jak dopadnou jednání o koalici, budeme psát
+        v Aktualitách.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/plan-1155/" class="btn btn-primary">Plán 2026–2030</a>
+        <a href="/aktuality" class="btn btn-outline">Aktuality</a>
+      </div>
+      <p class="mt-12 text-[13px]" style="color: var(--color-ash); line-height: 1.6;">
+        Zdroj: Český statistický úřad,
+        <a href={VYSLEDKY_URL} rel="noopener" style="color: var(--color-pirate-light);">volby.cz</a>,
+        zastupitelstvo obce Mariánské Lázně. Zpracováno {prehled.okrsky} z {prehled.okrsky}
+        okrsků, data ze {prehled.aktualizovano}. Voličů v seznamu {cislo(prehled.volici)},
+        vydaných obálek {cislo(prehled.obalky)}, platných hlasů {cislo(prehled.platneHlasy)}.
+        Každý volič mohl rozdat až {MANDATU} hlasů, proto je hlasů víc než voličů.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .stat {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background-color: rgba(255, 255, 255, 0.04);
+    padding: 16px 18px;
+  }
+  .stat dt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-pirate-light);
+  }
+  .stat dd {
+    margin-top: 6px;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
+    line-height: 1;
+    color: var(--color-paper);
+  }
+
+  .radek,
+  .srovnani {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "c n p"
+      "c b b"
+      "c m m";
+    column-gap: 12px;
+    row-gap: 6px;
+    align-items: center;
+    padding: 12px 14px;
+    background-color: var(--color-paper);
+    border: 1px solid var(--color-mist);
+  }
+  .srovnani {
+    grid-template-areas:
+      "c n n"
+      "c b b"
+      "c p p";
+  }
+  @media (min-width: 768px) {
+    .radek {
+      grid-template-columns: 32px minmax(0, 1.3fr) minmax(0, 1fr) 76px 210px;
+      grid-template-areas: "c n b p m";
+    }
+    .srovnani {
+      grid-template-columns: 32px minmax(0, 1.2fr) minmax(0, 1fr) 250px;
+      grid-template-areas: "c n b p";
+    }
+  }
+  .radek-nase {
+    border-left: 4px solid var(--color-pirate);
+  }
+  .radek-mimo {
+    opacity: 0.7;
+  }
+  .radek-cislo {
+    grid-area: c;
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--color-ink);
+  }
+  .radek-nazev {
+    grid-area: n;
+    font-size: 15px;
+    line-height: 1.3;
+    color: var(--color-ink);
+  }
+  .radek-bar {
+    grid-area: b;
+    height: 10px;
+    background-color: var(--color-mist);
+  }
+  .radek-bar > span {
+    display: block;
+    height: 100%;
+    background-color: var(--color-graphite);
+  }
+  .radek-nase .radek-bar > span {
+    background-color: var(--color-pirate);
+  }
+  .radek-pct {
+    grid-area: p;
+    text-align: right;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .radek-m {
+    grid-area: m;
+    white-space: nowrap;
+    font-size: 14px;
+    color: var(--color-smoke);
+  }
+  @media (min-width: 768px) {
+    .radek-m {
+      text-align: right;
+    }
+  }
+
+  .zvoleni-nazev {
+    font-size: 1.5rem;
+  }
+
+  .srovnani-bary {
+    grid-area: b;
+    display: grid;
+    gap: 3px;
+  }
+  .bar {
+    display: block;
+    height: 8px;
+  }
+  .bar-tip,
+  .legenda-tip {
+    background-color: var(--color-spa-gold);
+  }
+  .bar-vysledek,
+  .legenda-vysledek {
+    background-color: var(--color-graphite);
+  }
+  .radek-nase .bar-vysledek {
+    background-color: var(--color-pirate);
+  }
+  .legenda {
+    display: inline-block;
+    width: 18px;
+    height: 8px;
+  }
+  .srovnani-cisla {
+    grid-area: p;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    white-space: nowrap;
+    font-size: 14px;
+    color: var(--color-smoke);
+  }
+  @media (min-width: 768px) {
+    .srovnani-cisla {
+      justify-content: flex-end;
+    }
+  }
+  .srovnani-cisla b {
+    color: var(--color-ink);
+  }
+</style>

@@ -80,7 +80,7 @@ const sportVisibleAtBuild = sportProjectIds.some((id) => {
 
       <div class="mt-10 flex flex-wrap gap-3">
         <a href="#kalendar" class="btn btn-primary">Zobrazit projekty →</a>
-        <a href="#sledujte-nas" class="btn btn-outline">Chci to vědět první</a>
+        <a href="/aktuality" class="btn btn-outline">Aktuality</a>
       </div>
     </div>
   </section>
@@ -94,9 +94,9 @@ const sportVisibleAtBuild = sportProjectIds.some((id) => {
   >
     <div class="container-site">
       <div class="max-w-2xl">
-        <p class="eyebrow">Adventní kalendář projektů</p>
+        <p class="eyebrow">Plán 2026–2030</p>
         <h2 id="kalendar-heading" class="mt-3">
-          10 projektů. Odhalujeme jeden po druhém.
+          10 projektů, které budeme prosazovat
         </h2>
       </div>
 
@@ -778,7 +778,7 @@ const sportVisibleAtBuild = sportProjectIds.some((id) => {
         })[0];
 
       if (unlocked >= total) {
-        cd.textContent = "Všech " + total + " projektů je odemčeno. Rozhodnou volby 9.–10. října 2026.";
+        cd.textContent = "Všech " + total + " projektů je odemčeno. Teď je prosazujeme v zastupitelstvu.";
       } else if (next) {
         var days = Math.ceil((unlockDate(next.getAttribute("data-unlock")) - new Date()) / 86400000);
         var when;

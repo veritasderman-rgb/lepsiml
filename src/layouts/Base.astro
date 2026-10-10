@@ -6,7 +6,7 @@ import { site } from "../lib/site";
 import Analytics from "@vercel/analytics/astro";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import CookieConsent from "../components/CookieConsent.astro";
-import TipovackaPopup from "../components/TipovackaPopup.astro";
+import DekujemePopup from "../components/DekujemePopup.astro";
 
 type Props = {
   title?: string;
@@ -17,6 +17,8 @@ type Props = {
   pathname?: string;
   /** Neveřejné stránky — vyhodit z indexace vyhledávačů. */
   noindex?: boolean;
+  /** Stránka z předvolební kampaně — nahoře dostane pruh „Archiv kampaně“. */
+  archiv?: boolean;
 };
 
 const {
@@ -26,6 +28,7 @@ const {
   ogImage = "/og-default.png",
   pathname = Astro.url.pathname,
   noindex = false,
+  archiv = false,
 } = Astro.props;
 
 const pageTitle =
@@ -87,6 +90,19 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? "https://lepsiml.cz");
     <Header pathname={pathname} />
 
     <main id="main">
+      {
+        archiv && (
+          <div style="background-color: var(--color-spa-stone); border-bottom: 1px solid var(--color-mist);">
+            <p class="container-site py-3 text-[14px]" style="color: var(--color-graphite);">
+              <span class="mono-meta" style="color: #8a6420;">Archiv kampaně 2026</span>
+              <span class="mx-2" aria-hidden="true">·</span>
+              Stránka z kampaně před komunálními volbami 2026. Aktuální je
+              <a href="/plan-1155/" class="underline">plán 2026–2030</a> a
+              <a href="/aktuality" class="underline">Aktuality</a>.
+            </p>
+          </div>
+        )
+      }
       <slot />
     </main>
 
@@ -94,7 +110,7 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? "https://lepsiml.cz");
 
     <CookieConsent />
 
-    <TipovackaPopup pathname={pathname} />
+    <DekujemePopup />
 
     <!-- Reveal on scroll (vanilla Intersection Observer, no libs) -->
     <script is:inline>

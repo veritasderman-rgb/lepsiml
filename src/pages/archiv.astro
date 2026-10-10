@@ -1,0 +1,126 @@
+---
+import Base from "../layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+import { transparencyDashboard } from "../lib/site";
+
+type Polozka = {
+  href: string;
+  icon: string;
+  meta: string;
+  title: string;
+  text: string;
+  external?: boolean;
+};
+
+const polozky: Polozka[] = [
+  {
+    href: "/kandidati",
+    icon: "lucide:users-round",
+    meta: "21 kandidátů",
+    title: "Naše kandidátka",
+    text: "Lidé, kteří kandidovali za Za lepší Mariánské Lázně, v pořadí kandidátní listiny.",
+  },
+  {
+    href: "/hypoteka",
+    icon: "lucide:house",
+    meta: "Bydlím v Mariánkách",
+    title: "Příspěvek na úroky z hypotéky",
+    text: "Návrh programu, jak přilákat do města mladé rodiny, s kalkulačkou příspěvku.",
+  },
+  {
+    href: "/co-jsme-dokazali",
+    icon: "lucide:badge-check",
+    meta: "2018–2022",
+    title: "Co jsme dokázali",
+    text: "Přehled toho, co se městu podařilo v době, kdy jsme byli na radnici.",
+  },
+  {
+    href: "/dotaznik",
+    icon: "lucide:clipboard-list",
+    meta: "Dotazník",
+    title: "Dotazník pro obyvatele",
+    text: "Co Mariánky trápí a které projekty lidé chtějí. Podle odpovědí jsme ladili program.",
+  },
+  {
+    href: "/hlasovaci-listek",
+    icon: "lucide:square-check",
+    meta: "210 kandidátů · 21 hlasů",
+    title: "Hlasovací lístek nanečisto",
+    text: "Jak funguje hlasování v komunálních volbách a komu připadnou vaše hlasy.",
+  },
+  {
+    href: "/vysledky-voleb#tipy",
+    icon: "lucide:trophy",
+    meta: "Tipovačka · uzavřeno",
+    title: "Tipovačka výsledku voleb",
+    text: "Jak jste tipovali a jak volby skutečně dopadly.",
+  },
+  {
+    href: transparencyDashboard.url,
+    icon: "lucide:chart-column",
+    meta: "Pokus ve spolupráci s AI",
+    title: transparencyDashboard.name,
+    text: "Usnesení, hlasování, smlouvy a peníze města z veřejných zdrojů na jednom místě.",
+    external: true,
+  },
+];
+---
+
+<Base
+  title="Archiv kampaně 2026"
+  description="Stránky z kampaně Za lepší Mariánské Lázně před komunálními volbami 2026: kandidátka, dotazník, hlasovací lístek nanečisto, tipovačka a další."
+>
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%);"
+    aria-labelledby="archiv-heading"
+  >
+    <span
+      class="hero-shape"
+      style="width: 500px; height: 500px; top: -190px; right: -150px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative py-20 md:py-24">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">Komunální volby 2026</p>
+      <h1 id="archiv-heading" class="reveal mt-4" style="color: var(--color-paper);">
+        Archiv kampaně
+      </h1>
+      <p class="reveal mt-6 text-lg md:text-xl max-w-2xl" style="color: var(--color-mist);">
+        Všechno, co jsme na webu měli před volbami. Necháváme to tu pro
+        přehled. Aktuální je náš plán pro Mariánské Lázně 2026–2030 a zprávy
+        v Aktualitách.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Stránky z kampaně">
+    <div class="container-site">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          polozky.map((p) => (
+            <a
+              href={p.href}
+              class="reveal card card-hover flex flex-col"
+              style="border-top: 4px solid var(--color-spa-gold);"
+              target={p.external ? "_blank" : undefined}
+              rel={p.external ? "noopener" : undefined}
+            >
+              <span class="icon-badge" aria-hidden="true" style="color: var(--color-spa-gold);">
+                <Icon name={p.icon} width={26} height={26} />
+              </span>
+              <p class="mt-5 mono-meta" style="color: #8a6420;">{p.meta}</p>
+              <h2 class="mt-2 archiv-title">{p.title}</h2>
+              <p class="mt-3 text-[15px]" style="color: var(--color-smoke);">{p.text}</p>
+              {p.external && <span class="sr-only">(otevře se v novém okně)</span>}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .archiv-title {
+    font-size: 1.75rem;
+  }
+</style>

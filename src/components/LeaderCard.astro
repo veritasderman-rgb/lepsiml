@@ -5,9 +5,18 @@ import { leader } from "../lib/site";
 type Props = {
   compact?: boolean;
   showCta?: boolean;
+  eyebrow?: string;
+  role?: string;
+  cta?: { label: string; href: string };
 };
 
-const { compact = false, showCta = true } = Astro.props;
+const {
+  compact = false,
+  showCta = true,
+  eyebrow = "Lídr kandidátky",
+  role = leader.role,
+  cta = { label: "Celý tým", href: "/kandidati" },
+} = Astro.props;
 ---
 
 <section class="section" aria-labelledby="leader-heading">
@@ -27,7 +36,7 @@ const { compact = false, showCta = true } = Astro.props;
           />
         </div>
         <div>
-          <p class="eyebrow">Lídr kandidátky</p>
+          <p class="eyebrow">{eyebrow}</p>
           <h2
             id="leader-heading"
             class="mt-3"
@@ -39,7 +48,7 @@ const { compact = false, showCta = true } = Astro.props;
             class="mt-2"
             style="font-family: var(--font-body); font-weight: 500; color: var(--color-pirate-dark); font-size: 16px; line-height: 1.45;"
           >
-            {leader.role}
+            {role}
           </p>
           <p class="mt-6 text-[17px]" style="color: var(--color-graphite);">
             {leader.bio}
@@ -70,11 +79,11 @@ const { compact = false, showCta = true } = Astro.props;
           {
             showCta && (
               <a
-                href="/kandidati"
+                href={cta.href}
                 class="mt-8 inline-flex items-center gap-2"
                 style="font-family: var(--font-body); font-weight: 700; font-size: 16px; color: var(--color-pirate-dark);"
               >
-                Celý tým
+                {cta.label}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"

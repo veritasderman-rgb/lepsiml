@@ -266,7 +266,7 @@
 
   /* Zámek scrollu pod otevřeným pop-upem. Třída na <html>, aby se nepletl
      s inline overflow na <body>, který si zamyká a vrací mobilní menu. */
-  html.tip-popup-lock {
+  html.dek-popup-lock {
     overflow: hidden;
   }
 
@@ -371,45 +371,6 @@
   details.accordion > div.accordion-body {
     padding: 0 0 22px;
     color: var(--color-graphite);
-  }
-
-  /* Election countdown */
-  .countdown-unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    min-width: 90px;
-  }
-
-  .countdown-num {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 6vw + 1rem, 5rem);
-    font-weight: 400;
-    line-height: 1;
-    color: var(--color-pirate);
-    letter-spacing: 0.02em;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .countdown-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
-  }
-
-  .countdown-sep {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.2);
-    align-self: flex-start;
-    padding-top: 6px;
-    line-height: 1;
-    user-select: none;
   }
 
   /* Decorative hero shapes */

@@ -36,8 +36,8 @@ export const planMeta = {
     { label: "Externí financování", value: "70–85 %" },
     { label: "Spoluúčast města", value: "60–100 mil./rok" },
   ] as PlanStat[],
-  election: "Rozhodnou volby 9.–10. října 2026.",
-  finale: "Mariánky 10X lépe. Volte. Město nesmí dostávat zbytky, musí vést.",
+  election: "Vojta Franta je prosazuje v zastupitelstvu 2026–2030.",
+  finale: "Mariánky 10X lépe. Město nesmí dostávat zbytky, musí vést.",
 };
 
 /** Projekty #02–#04 sdílejí jeden argument — ukáže se, jakmile je odemčený aspoň jeden. */

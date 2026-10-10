@@ -9,10 +9,11 @@ type NavLink = {
 
 type Props = {
   links: NavLink[];
+  cta: { label: string; href: string };
   pathname?: string;
 };
 
-export default function MobileMenu({ links, pathname = "/" }: Props) {
+export default function MobileMenu({ links, cta, pathname = "/" }: Props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -183,12 +184,12 @@ export default function MobileMenu({ links, pathname = "/" }: Props) {
 
             <div className="px-8 pb-10 pt-4 flex-shrink-0">
               <a
-                href="/program"
+                href={cta.href}
                 onClick={() => setOpen(false)}
                 className="btn btn-primary w-full"
                 style={{ width: "100%" }}
               >
-                Náš program
+                {cta.label}
               </a>
             </div>
           </div>

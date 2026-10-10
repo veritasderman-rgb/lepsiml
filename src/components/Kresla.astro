@@ -1,0 +1,80 @@
+---
+/**
+ * 21 křesel zastupitelstva: čtverečky s číslem kandidátky, od nejsilnější.
+ * Naše křesla tyrkysově. Čistě statické, bez JS.
+ */
+import { MANDATU } from "../lib/volby2026";
+
+type Props = {
+  /** Mandáty podle čísla kandidátky. */
+  mandaty: Record<number, number>;
+  /** Číslo naší kandidátky — zvýrazní se. */
+  nase?: number;
+  /** Tmavé pozadí: prázdná a cizí křesla světlejší. */
+  dark?: boolean;
+  label: string;
+};
+
+const { mandaty, nase = 9, dark = false, label } = Astro.props;
+
+const poradi = Object.entries(mandaty)
+  .map(([k, m]) => ({ k: Number(k), m }))
+  .filter((x) => x.m > 0)
+  .sort((a, b) => b.m - a.m || a.k - b.k);
+
+const kresla: (number | null)[] = poradi.flatMap(({ k, m }) => Array(m).fill(k));
+while (kresla.length < MANDATU) kresla.push(null);
+---
+
+<div class:list={["kresla", { "kresla-dark": dark }]} role="img" aria-label={label}>
+  {
+    kresla.map((k) => (
+      <span
+        class:list={["kreslo", { "kreslo-nase": k === nase, "kreslo-prazdne": k === null }]}
+        aria-hidden="true"
+      >
+        {k ?? ""}
+      </span>
+    ))
+  }
+</div>
+
+<style>
+  .kresla {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+    max-width: 420px;
+  }
+  @media (min-width: 640px) {
+    .kresla {
+      grid-template-columns: repeat(11, minmax(0, 1fr));
+      max-width: 620px;
+    }
+  }
+  .kreslo {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1;
+    background-color: var(--color-graphite);
+    color: var(--color-paper);
+  }
+  .kreslo-nase {
+    background-color: var(--color-pirate);
+    color: var(--color-ink);
+  }
+  .kreslo-prazdne {
+    background-color: transparent;
+    border: 1px dashed var(--color-ash);
+  }
+  .kresla-dark .kreslo:not(.kreslo-nase):not(.kreslo-prazdne) {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+  .kresla-dark .kreslo-prazdne {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+</style>

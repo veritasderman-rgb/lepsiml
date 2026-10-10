@@ -1,45 +1,34 @@
 ---
 /**
- * Pop-up s tipovačkou — hlavní téma webu až do voleb. Vyskočí chvíli po
- * načtení na každé stránce kromě /tipovacka samotné, jednou za návštěvu
- * (sessionStorage), a po uzávěrce tipů (otevření volebních místností)
- * se už neukáže vůbec. Bez JS se nevykreslí nic.
+ * Poděkování voličům po volbách. Vyskočí chvíli po načtení na kterékoli
+ * stránce a po zavření se tomu prohlížeči už neukáže (localStorage; když
+ * nejde zapisovat, aspoň jednou za návštěvu přes sessionStorage).
+ * Bez JS se nevykreslí nic.
  */
 import { Icon } from "astro-icon/components";
-import { TIP_UZAVERKA_ISO, tipMeta } from "../lib/tipovacka";
+import { cislo, nas, nasZastupitel } from "../lib/volby2026";
 
-type Props = { pathname?: string };
-const { pathname = "/" } = Astro.props;
-
-const naTipovacce = pathname.replace(/\/$/, "") === "/tipovacka";
-// Web je statický, takže tahle kontrola platí k času buildu — po uzávěrce
-// se pop-up z nového deploye vyhodí úplně. Do té doby ho hlídá skript níž.
-const poUzaverce = Date.now() >= new Date(TIP_UZAVERKA_ISO).getTime();
-const enabled = !naTipovacce && !poUzaverce;
-
-const STORAGE_KEY = "plml.tipovackaPopup.v1";
+const STORAGE_KEY = "plml.dekujemePopup.v1";
 ---
 
-{ enabled && (
-
 <div
-  id="tip-popup"
+  id="dek-popup"
   hidden
   class="fixed inset-0 z-[80] flex justify-center overflow-y-auto overscroll-contain p-4 sm:p-6"
   role="dialog"
   aria-modal="true"
-  aria-labelledby="tip-popup-heading"
-  aria-describedby="tip-popup-text"
+  aria-labelledby="dek-popup-heading"
+  aria-describedby="dek-popup-text"
 >
   <div
-    class="tip-popup-backdrop fixed inset-0"
-    data-tip-popup-close
+    class="dek-popup-backdrop fixed inset-0"
+    data-dek-popup-close
     aria-hidden="true"
   ></div>
 
   <div
-    class="tip-popup-card relative w-full max-w-lg overflow-hidden mt-auto sm:my-auto"
-    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%); border-top: 4px solid var(--color-spa-gold);"
+    class="dek-popup-card relative w-full max-w-lg overflow-hidden mt-auto sm:my-auto"
+    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%); border-top: 4px solid var(--color-pirate);"
   >
     <span
       class="hero-shape"
@@ -48,10 +37,10 @@ const STORAGE_KEY = "plml.tipovackaPopup.v1";
 
     <button
       type="button"
-      class="tip-popup-x absolute top-3 right-3 inline-flex items-center justify-center w-11 h-11 rounded-md transition-colors"
+      class="dek-popup-x absolute top-3 right-3 inline-flex items-center justify-center w-11 h-11 rounded-md transition-colors"
       style="color: var(--color-paper);"
       aria-label="Zavřít"
-      data-tip-popup-close
+      data-dek-popup-close
     >
       <svg
         width="24"
@@ -73,70 +62,75 @@ const STORAGE_KEY = "plml.tipovackaPopup.v1";
       <span
         class="icon-badge icon-badge-lg"
         aria-hidden="true"
-        style="color: var(--color-spa-gold); background: rgba(212, 162, 76, 0.12);"
+        style="color: var(--color-pirate); background: rgba(0, 178, 168, 0.14);"
       >
-        <Icon name="lucide:trophy" width={34} height={34} />
+        <Icon name="lucide:heart-handshake" width={34} height={34} />
       </span>
 
-      <p class="eyebrow mt-6" style="color: var(--color-spa-gold);">
-        Tipovačka · hrajeme o {tipMeta.cena}
+      <p class="eyebrow mt-6 !flex" style="color: var(--color-pirate-light);">
+        Komunální volby 2026 · Mariánské Lázně
       </p>
       <h2
-        id="tip-popup-heading"
+        id="dek-popup-heading"
         class="mt-3"
         style="color: var(--color-paper); font-size: clamp(30px, 6vw, 42px); line-height: 1.02;"
       >
-        {tipMeta.title}
+        Děkujeme všem, kdo nás volili
       </h2>
-      <p id="tip-popup-text" class="mt-4 text-[16px] sm:text-lg" style="color: var(--color-mist);">
-        {tipMeta.intro}
+      <p id="dek-popup-text" class="mt-4 text-[16px] sm:text-lg" style="color: var(--color-mist);">
+        Naše kandidátka dostala {cislo(nas.hlasy)} hlasů. Zastupitelem
+        se za nás stal
+        <strong style="color: var(--color-paper);">{nasZastupitel.jmeno}</strong>,
+        jednička naší kandidátky. V zastupitelstvu bude prosazovat priority,
+        které jsme vám ve volbách slíbili.
       </p>
-      <p class="mt-5 mono-meta" style="color: var(--color-pirate-light);">
-        Tipy přijímáme do: {tipMeta.uzaverkaText}
+      <p class="mt-4 text-[15px]" style="color: var(--color-mist);">
+        Jak se daří vyjednat koalici, budeme psát v Aktualitách.
       </p>
 
       <div class="mt-7 flex flex-col sm:flex-row sm:items-center gap-3">
-        <a href="/tipovacka" class="btn btn-primary" data-tip-popup-go>
-          Tipnout si
+        <a href="/plan-1155/" class="btn btn-primary" data-dek-popup-go>
+          Plán 2026–2030
         </a>
-        <button
-          type="button"
-          class="btn btn-outline"
-          data-tip-popup-close
-        >
-          Teď ne
-        </button>
+        <a href="/vysledky-voleb" class="btn btn-outline" data-dek-popup-go>
+          Výsledky voleb
+        </a>
       </div>
     </div>
   </div>
 </div>
 
-<script is:inline define:vars={{ STORAGE_KEY, TIP_UZAVERKA_ISO }}>
+<script is:inline define:vars={{ STORAGE_KEY }}>
   (function () {
-    var popup = document.getElementById("tip-popup");
+    var popup = document.getElementById("dek-popup");
     if (!popup) return;
 
-    // Po uzávěrce tipů (otevření volebních místností) už nemá co nabízet.
-    if (Date.now() >= new Date(TIP_UZAVERKA_ISO).getTime()) return;
-
-    // Jednou za návštěvu. Kdo zavřel, má do zavření karty/prohlížeče klid;
-    // při další návštěvě ho tipovačka přivítá znovu — až do voleb.
+    // Poděkování stačí jednou: kdo ho zavřel, už ho neuvidí.
     var seen = null;
     try {
-      seen = sessionStorage.getItem(STORAGE_KEY);
+      seen = localStorage.getItem(STORAGE_KEY);
+    } catch (e) {}
+    try {
+      seen = seen || sessionStorage.getItem(STORAGE_KEY);
     } catch (e) {}
     if (seen) return;
 
     var lastFocus = null;
-    var LOCK_CLASS = "tip-popup-lock";
+    var LOCK_CLASS = "dek-popup-lock";
     var FOCUSABLE =
       'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
     function remember() {
+      var now = String(Date.now());
       try {
-        sessionStorage.setItem(STORAGE_KEY, String(Date.now()));
+        localStorage.setItem(STORAGE_KEY, now);
       } catch (e) {
-        /* private mode – pop-up se příště ukáže znovu, nic horšího */
+        /* private mode – zkusíme aspoň tuhle návštěvu */
+      }
+      try {
+        sessionStorage.setItem(STORAGE_KEY, now);
+      } catch (e) {
+        /* pop-up se příště ukáže znovu, nic horšího */
       }
     }
 
@@ -186,19 +180,19 @@ const STORAGE_KEY = "plml.tipovackaPopup.v1";
       document.documentElement.classList.add(LOCK_CLASS);
       popup.hidden = false;
       document.addEventListener("keydown", onKey);
-      var go = popup.querySelector("[data-tip-popup-go]");
+      var go = popup.querySelector("[data-dek-popup-go]");
       // preventScroll: na nízkém displeji ať zůstane vidět začátek karty.
       if (go) go.focus({ preventScroll: true });
     }
 
     popup.addEventListener("click", function (event) {
-      if (event.target.closest("[data-tip-popup-close]")) {
+      if (event.target.closest("[data-dek-popup-close]")) {
         event.preventDefault();
         close();
         return;
       }
-      // Proklik na tipovačku: zapamatovat, ať se po návratu neukáže znovu.
-      if (event.target.closest("[data-tip-popup-go]")) remember();
+      // Proklik dál: zapamatovat, ať se na další stránce neukáže znovu.
+      if (event.target.closest("[data-dek-popup-go]")) remember();
     });
 
     // Krátká prodleva, ať si návštěvník nejdřív všimne stránky, na kterou přišel.
@@ -207,23 +201,23 @@ const STORAGE_KEY = "plml.tipovackaPopup.v1";
 </script>
 
 <style>
-  .tip-popup-backdrop {
+  .dek-popup-backdrop {
     background: rgba(0, 0, 0, 0.62);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-    animation: tip-popup-fade 240ms ease-out both;
+    animation: dek-popup-fade 240ms ease-out both;
   }
 
-  .tip-popup-card {
+  .dek-popup-card {
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
-    animation: tip-popup-rise 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation: dek-popup-rise 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
 
-  .tip-popup-x:hover {
+  .dek-popup-x:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  @keyframes tip-popup-fade {
+  @keyframes dek-popup-fade {
     from {
       opacity: 0;
     }
@@ -232,7 +226,7 @@ const STORAGE_KEY = "plml.tipovackaPopup.v1";
     }
   }
 
-  @keyframes tip-popup-rise {
+  @keyframes dek-popup-rise {
     from {
       opacity: 0;
       transform: translateY(24px);
@@ -244,10 +238,9 @@ const STORAGE_KEY = "plml.tipovackaPopup.v1";
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .tip-popup-backdrop,
-    .tip-popup-card {
+    .dek-popup-backdrop,
+    .dek-popup-card {
       animation: none;
     }
   }
 </style>
-) }
