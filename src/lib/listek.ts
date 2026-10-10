@@ -12,7 +12,7 @@
 // Data kandidátek jsou z volby.gov.cz (src/data/kandidatky-kv2026.json).
 
 import data from "../data/kandidatky-kv2026.json";
-import { MANDATU } from "./tipovacka";
+import { MANDATU } from "./volby2026";
 
 export type Kandidat = {
   poradi: number;

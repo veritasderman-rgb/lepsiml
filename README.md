@@ -31,9 +31,13 @@ src/
     PodcastCard.astro
     PhotoPlaceholder.astro      # Šedý placeholder s Lucide ikonou User
     ContactForm.tsx             # React island — POST na Formspree endpoint
-    TipovackaPopup.astro        # Pop-up s tipovačkou na všech stránkách do uzávěrky tipů
+    DekujemePopup.astro         # Pop-up s poděkováním voličům po volbách
+    Kresla.astro                # 21 křesel zastupitelstva
   pages/
     index.astro
+    vysledky-voleb.astro        # Výsledky voleb + srovnání s tipovačkou
+    aktuality/                  # Zprávy po volbách (výpis + detail)
+    archiv.astro                # Rozcestník stránek z kampaně
     program.astro
     kandidati.astro
     podcast.astro
@@ -141,28 +145,24 @@ Kontaktní údaje jsou v samostatných sloupcích (`email`, `telefon`, `jmeno`,
 `souhlas`, `kontakt_zajmy`) — pro analýzu odpovědí je nepotřebujete, tak je
 do exportu netahejte.
 
-## Tipovačka
+## Výsledky voleb a tipovačka
 
-Stránka `/tipovacka`: návštěvníci rozdělí 100 % hlasů mezi deset kandidátek
-v Mariánských Lázních a tipnou volební účast. Nejpřesnější tip vyhrává likér.
-Kandidátky, pravidla, uzávěrka a přepočet na mandáty (21 mandátů, klauzule
-5 %, d'Hondt) jsou v `src/lib/tipovacka.ts`.
+Volby proběhly 9.–10. 10. 2026. Stránka `/vysledky-voleb` ukazuje oficiální
+výsledek (ČSÚ, volby.cz) a vedle něj finální průměr tipů z tipovačky. Obojí
+je zamražené v `src/lib/volby2026.ts` — data se už nemění.
 
-**API** `/api/tipovacka` (potřebuje stejné `DATABASE_URL` jako dotazník):
-`POST` uloží tip do tabulky `tipy`, `GET` vrátí jen souhrn — počet tipů,
-průměr za kandidátku a mandáty. Souhrn ukazuje až od 10 tipů a od 6. 10.
-00:00 do 10. 10. 14:00 ho kvůli moratoriu na průzkumy nevrací vůbec.
+Tipovačka je uzavřená: formulář, pop-up i API `/api/tipovacka` jsou pryč,
+stará adresa `/tipovacka` přesměrovává na `/vysledky-voleb#tipy`. Tipy
+zůstávají v tabulce `tipy` kvůli vyhodnocení soutěže.
 
-Uzávěrku (9. 10. 2026 14:00), plnoletost, souhlas a jeden tip na e-mail
-hlídá i databáze.
-
+**Vyhodnocení** — skutečná procenta a účast jsou už doplněná:
 **Vyhodnocení** po zveřejnění výsledků — doplňte skutečná procenta a účast:
 
 ```sql
 with vysledek(cislo, pct) as (values
-  ('1', 0.0), ('2', 0.0), ('3', 0.0), ('4', 0.0), ('5', 0.0),
-  ('6', 0.0), ('7', 0.0), ('8', 0.0), ('9', 0.0), ('10', 0.0)
-), ucast(pct) as (values (0.0))
+  ('1', 8.19), ('2', 24.28), ('3', 7.4), ('4', 32.39), ('5', 2.53),
+  ('6', 4.19), ('7', 8.04), ('8', 3.34), ('9', 6.97), ('10', 2.67)
+), ucast(pct) as (values (38.71))
 select t.id, t.email, t.jmeno, t.telefon, t.vytvoreno,
        sum(abs((t.tip ->> v.cislo)::numeric - v.pct)) as odchylka,
        abs(t.tip_ucast - (select pct from ucast)) as odchylka_ucasti
@@ -175,3 +175,32 @@ limit 5;
 Po předání výhry kontakty smazat (nejpozději 30. 11. 2026), kromě těch,
 kdo zaškrtli `novinky`.
 
+
+## Aktuality (po volbách)
+
+Zprávy o jednání o koalici a práci v zastupitelstvu jsou na `/aktuality`,
+tři nejnovější i na homepage. Nový příspěvek = nový Markdown soubor
+v `src/content/aktuality/`, např. `2026-10-20-koalice.md`:
+
+```md
+---
+title: "Nadpis příspěvku"
+date: 2026-10-20
+perex: "Jedna dvě věty do výpisu a do náhledu na sítích."
+tag: "Koalice"
+---
+
+Text příspěvku v Markdownu. Odkazy [takhle](/plan-1155/), **tučně**,
+nadpisy `##`.
+```
+
+Název souboru je zároveň adresa (`/aktuality/2026-10-20-koalice`).
+`draft: true` v hlavičce příspěvek skryje.
+
+## Archiv kampaně
+
+Předvolební stránky (kandidáti, hypotéka, co jsme dokázali, dotazník,
+hlasovací lístek, podcast, setkání) zůstávají dostupné, ale nejsou v menu.
+Rozcestník je na `/archiv` a stránky mají nahoře pruh „Archiv kampaně 2026“
+(prop `archiv` v `Base.astro`). Po volbách vyskakuje jednou na návštěvníka
+poděkování voličům (`DekujemePopup.astro`).

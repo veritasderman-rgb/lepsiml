@@ -10,7 +10,7 @@ export const site = {
   subheadline:
     "Hrdé město. Pro rodiny i mladé. Otevřené, udržitelné, naše.",
   description:
-    "Za lepší Mariánské Lázně — lokální kandidátka do zastupitelstva. Vojta Franta a tým s praktickou zkušeností z radnice i kraje.",
+    "Za lepší Mariánské Lázně — lokální kandidátka v Mariánských Lázních. V zastupitelstvu 2026–2030 nás zastupuje Vojta Franta.",
 };
 
 /**
@@ -32,19 +32,15 @@ export type NavLink = {
 };
 
 export const nav: NavLink[] = [
+  { label: "Výsledky voleb", href: "/vysledky-voleb" },
   { label: "Program", href: "/program" },
-  { label: "10X lépe", href: "/plan-1155/", fullLabel: "Mariánky 10X lépe" },
-  { label: "Tipovačka", href: "/tipovacka" },
-  { label: "Dotazník", href: "/dotaznik" },
-  { label: "Kandidáti", href: "/kandidati" },
-  {
-    label: "Přehledy",
-    href: transparencyDashboard.url,
-    external: true,
-    fullLabel: transparencyDashboard.name,
-  },
+  { label: "Aktuality", href: "/aktuality" },
+  { label: "Archiv kampaně", href: "/archiv" },
   { label: "Kontakt", href: "/kontakt" },
 ];
+
+/** Hlavní výzva v hlavičce — plán, který po volbách prosazujeme. */
+export const navCta = { label: "Plán 2026–2030", href: "/plan-1155/" };
 
 export const contact = {
   email: "mail@josefpavlovic.cz",

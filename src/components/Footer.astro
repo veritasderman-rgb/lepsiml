@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { nav, site, contact, transparencyDashboard } from "../lib/site";
+import { nav, navCta, site, contact, transparencyDashboard } from "../lib/site";
 import LogoMark from "./LogoMark.astro";
 import { GA_ID } from "../lib/consent";
 
@@ -24,8 +24,8 @@ const year = new Date().getFullYear();
           </span>
         </div>
         <p class="text-sm max-w-md" style="color: var(--color-mist);">
-          Lokální kandidátka pro komunální volby 2026. Vojta Franta a tým
-          s praktickou zkušeností z radnice i kraje.
+          Lokální kandidátka v Mariánských Lázních. V zastupitelstvu
+          2026–2030 nás zastupuje Vojta Franta.
         </p>
         <p
           class="mt-5 accent-quote"
@@ -44,7 +44,7 @@ const year = new Date().getFullYear();
         </h4>
         <ul class="space-y-2 text-sm">
           {
-            nav.map((link) => (
+            [navCta, ...nav].map((link) => (
               <li>
                 <a
                   href={link.href}

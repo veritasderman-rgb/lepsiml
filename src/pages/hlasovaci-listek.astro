@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import { Icon } from "astro-icon/components";
 import { legenda, listiny, zdrojDat } from "../lib/listek";
-import { MANDATU } from "../lib/tipovacka";
+import { MANDATU } from "../lib/volby2026";
 
 const zpusoby = [
   {
@@ -26,6 +26,7 @@ const datum = new Date(zdrojDat.generovano).toLocaleDateString("cs-CZ");
 ---
 
 <Base
+  archiv
   title="Sestavte si hlasovací lístek"
   description={`Vyzkoušejte si komunální hlasovací lístek Mariánských Lázní: zaškrtněte stranu, jednotlivé kandidáty napříč stranami nebo obojí a uvidíte, komu vašich ${MANDATU} hlasů připadne.`}
 >
@@ -171,7 +172,7 @@ const datum = new Date(zdrojDat.generovano).toLocaleDateString("cs-CZ");
 
 <script>
   import { listiny, vyhodnot, type Volba } from "../lib/listek";
-  import { MANDATU } from "../lib/tipovacka";
+  import { MANDATU } from "../lib/volby2026";
 
   const KLIC_ULOZENI = "lepsiml-listek-v1";
   const listek = document.getElementById("listek")!;

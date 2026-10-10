@@ -1,5 +1,5 @@
 ---
-import { nav, site } from "../lib/site";
+import { nav, navCta, site } from "../lib/site";
 import MobileMenu from "./MobileMenu.tsx";
 import LogoMark from "./LogoMark.astro";
 
@@ -26,7 +26,7 @@ const { pathname = "/" } = Astro.props;
           class="hidden sm:block mono-meta"
           style="color: var(--color-pirate-light); font-size: 10px;"
         >
-          Komunální volby 2026
+          Mariánské Lázně 2026–2030
         </span>
       </span>
     </a>
@@ -73,12 +73,12 @@ const { pathname = "/" } = Astro.props;
           );
         })
       }
-      <a href="/program" class="btn btn-primary ml-1 !py-[10px] !px-3 !text-sm whitespace-nowrap">
-        Náš program
+      <a href={navCta.href} class="btn btn-primary ml-1 !py-[10px] !px-3 !text-sm whitespace-nowrap">
+        {navCta.label}
       </a>
     </nav>
 
-    <MobileMenu client:load links={nav} pathname={pathname} />
+    <MobileMenu client:load links={nav} cta={navCta} pathname={pathname} />
   </div>
 </header>
 

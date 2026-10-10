@@ -1,0 +1,75 @@
+---
+import Base from "../../layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+import { datum, nactiAktuality } from "../../lib/aktuality";
+
+const aktuality = await nactiAktuality();
+---
+
+<Base
+  title="Aktuality"
+  description="Zprávy Za lepší Mariánské Lázně po volbách 2026: jednání o koalici a práce Vojty Franty v zastupitelstvu."
+>
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, #000000 0%, #0a1f1d 100%);"
+    aria-labelledby="aktuality-heading"
+  >
+    <span
+      class="hero-shape"
+      style="width: 500px; height: 500px; top: -190px; right: -150px;"
+      aria-hidden="true"></span>
+    <div class="container-site relative py-20 md:py-24">
+      <p class="eyebrow" style="color: var(--color-pirate-light);">Po volbách 2026</p>
+      <h1 id="aktuality-heading" class="reveal mt-4" style="color: var(--color-paper);">
+        Aktuality
+      </h1>
+      <p class="reveal mt-6 text-lg md:text-xl max-w-2xl" style="color: var(--color-mist);">
+        Jak se daří vyjednat koalici a co prosazujeme v zastupitelstvu.
+        Nové zprávy přidáváme sem.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Seznam aktualit">
+    <div class="container-site max-w-3xl">
+      {
+        aktuality.length === 0 ? (
+          <p class="text-lg" style="color: var(--color-smoke);">
+            Zatím tu nic není. Brzy přidáme první zprávu.
+          </p>
+        ) : (
+          <ol class="grid gap-6">
+            {aktuality.map((a) => (
+              <li>
+                <a
+                  href={`/aktuality/${a.id}`}
+                  class="reveal card card-hover block"
+                  style="border-left: 4px solid var(--color-pirate);"
+                >
+                  <p class="mono-meta" style="color: var(--color-pirate-dark);">
+                    {a.data.tag} · <time datetime={a.data.date.toISOString().slice(0, 10)}>{datum(a.data.date)}</time>
+                  </p>
+                  <h2 class="mt-2 aktualita-title">{a.data.title}</h2>
+                  <p class="mt-3 text-[16px]" style="color: var(--color-smoke);">
+                    {a.data.perex}
+                  </p>
+                  <span class="mt-4 inline-flex items-center gap-1 mono-meta" style="color: var(--color-pirate);">
+                    Číst dál
+                    <Icon name="lucide:arrow-right" width={16} height={16} />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .aktualita-title {
+    font-size: clamp(1.75rem, 1.5vw + 1rem, 2.25rem);
+  }
+</style>

@@ -12,6 +12,11 @@ export default defineConfig({
   // která má prerender = false. Adaptér z ní na Vercelu udělá funkci.
   output: "static",
   adapter: vercel(),
+  // Tipovačka skončila s volbami; staré odkazy (newsletter, sítě) vedou
+  // na srovnání tipů s výsledkem.
+  redirects: {
+    "/tipovacka": "/vysledky-voleb#tipy",
+  },
   integrations: [
     react(),
     icon({
