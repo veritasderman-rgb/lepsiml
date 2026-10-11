@@ -108,16 +108,18 @@ export const zvoleni: Record<number, string[]> = {
 /**
  * Finální souhrn tipovačky po uzávěrce 9. 10. 2026 ve 14:00: počet tipů,
  * průměrný tip na kandidátku a účast (na desetiny) a jeho přepočet na
- * mandáty (klauzule 5 %, d'Hondt). Jednotlivé tipy zůstávají v databázi.
+ * mandáty (klauzule 5 %, d'Hondt). Bez čtyř tipů organizátora (e-maily
+ * Josefa Pavlovice), které by průměr zkreslovaly. Jednotlivé tipy zůstávají
+ * v databázi.
  */
 export const tipy = {
-  pocet: 13,
-  ucast: 50.6,
-  prumery: { 1: 6.4, 2: 11.8, 3: 11.9, 4: 26.5, 5: 5.8, 6: 5.9, 7: 6, 8: 2.9, 9: 20.5, 10: 2.3 } as Record<
+  pocet: 9,
+  ucast: 45.2,
+  prumery: { 1: 7.9, 2: 13, 3: 13.5, 4: 27.6, 5: 5.1, 6: 7.1, 7: 5.9, 8: 3.5, 9: 14.2, 10: 2.2 } as Record<
     number,
     number
   >,
-  mandaty: { 1: 1, 2: 3, 3: 3, 4: 6, 5: 1, 6: 1, 7: 1, 8: 0, 9: 5, 10: 0 } as Record<number, number>,
+  mandaty: { 1: 2, 2: 3, 3: 3, 4: 7, 5: 1, 6: 1, 7: 1, 8: 0, 9: 3, 10: 0 } as Record<number, number>,
 };
 
 export type Porovnani = VysledekKandidatky & { tip: number; tipMandaty: number; rozdil: number };
